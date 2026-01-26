@@ -12,16 +12,18 @@ const Guide = () => {
 
                 {/* --- BRANDING --- */}
                 <div className="flex flex-col md:flex-row justify-between items-center pb-2">
-                    <div className="flex items-center gap-2">
+                    <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                         <Hammer className="text-safety-orange w-5 h-5 md:w-6 md:h-6" />
                         <span className="font-black uppercase tracking-tighter text-xl text-white">
                             YourTradePartner<span className="text-safety-orange">.</span>
                         </span>
-                    </div>
-                    <div className="flex flex-col md:flex-row gap-1 md:gap-4 text-xs font-bold text-gray-500 mt-2 md:mt-0 text-center md:text-right">
-                        <span>0400 000 000</span>
+                    </a>
+                    <div className="flex flex-col md:flex-row gap-1 md:gap-4 text-xs font-bold text-gray-500 mt-2 md:mt-0 text-center md:text-right uppercase tracking-wider">
+                        <span>0451 044 751</span>
                         <span className="hidden md:inline text-safety-orange">•</span>
                         <span>hello@yourtradepartner.com.au</span>
+                        <span className="hidden md:inline text-safety-orange">•</span>
+                        <span>Adelaide, Australia</span>
                     </div>
                 </div>
 
@@ -188,7 +190,7 @@ const Guide = () => {
                         It’s how customers choose trades today.
                     </p>
 
-                    <a href="tel:0400000000">
+                    <a href="tel:0451044751">
                         <Button className="w-full md:w-auto bg-white hover:bg-gray-200 text-black font-black uppercase tracking-widest text-sm px-10 py-5 h-auto rounded-full shadow-xl mb-12">
                             Reach Out!
                         </Button>
@@ -200,6 +202,20 @@ const Guide = () => {
                         </p>
                     </div>
                 </footer>
+
+                {/* MOBILE STICKY FOOTER (Thumb Zone) */}
+                <div className="fixed bottom-0 left-0 w-full bg-construction-charcoal border-t border-white/10 z-50 md:hidden p-4 flex gap-3 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+                    <a href="tel:0451044751" className="flex-1">
+                        <Button className="w-full h-12 bg-white text-black hover:bg-white/90 font-black uppercase tracking-widest rounded-none border border-white/20">
+                            Call Now
+                        </Button>
+                    </a>
+                    <a href="mailto:hello@yourtradepartner.com.au" className="flex-1">
+                        <Button className="w-full h-12 bg-safety-orange hover:bg-safety-orange-hover text-white font-black uppercase tracking-widest rounded-none">
+                            Email Us
+                        </Button>
+                    </a>
+                </div>
 
             </div>
         </div>
