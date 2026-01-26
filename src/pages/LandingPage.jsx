@@ -1,0 +1,1426 @@
+import React from 'react'
+import ReactPixel from 'react-facebook-pixel'
+import ReactGA from 'react-ga4'
+import {
+    ArrowRight,
+    CheckCircle2,
+    Phone,
+    BarChart3,
+    Zap,
+    ShieldCheck,
+    Clock,
+    Hammer,
+    Smartphone,
+    Check,
+    AlertCircle,
+    XCircle,
+    TrendingUp,
+    Target,
+    Users,
+    ChevronDown,
+    ChevronUp,
+    Menu,
+    X
+} from 'lucide-react'
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import {
+    Card,
+    CardContent,
+    CardDescription,
+    CardFooter,
+    CardHeader,
+    CardTitle,
+} from "@/components/ui/card"
+import ChatBot from '../components/ChatBot'
+import MissedJobReviewModal from '../components/MissedJobReviewModal'
+
+function LandingPage() {
+    const [openFaq, setOpenFaq] = React.useState(null)
+    const [isReviewModalOpen, setIsReviewModalOpen] = React.useState(false)
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+
+    // Contact Form State
+    const [formStatus, setFormStatus] = React.useState('idle') // idle, submitting, success
+    const [formData, setFormData] = React.useState({
+        name: '',
+        businessName: '',
+        phone: '',
+        email: '',
+        trade: '',
+        location: '',
+        situation: '',
+        situationOther: '',
+        package: '',
+        hasWebsite: '',
+        goal: '',
+        readyToInvest: '',
+        websiteLink: '',
+        message: ''
+    })
+
+    const toggleFaq = (index) => {
+        setOpenFaq(openFaq === index ? null : index)
+    }
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target
+
+        if (name === 'phone') {
+            // Only allow numbers
+            const re = /^[0-9\b]+$/;
+            if (value === '' || re.test(value)) {
+                setFormData(prev => ({ ...prev, [name]: value }))
+            }
+        } else {
+            setFormData(prev => ({ ...prev, [name]: value }))
+        }
+    }
+
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        setFormStatus('submitting')
+
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1500))
+
+        setFormStatus('success')
+
+        ReactPixel.track('Lead', {
+            content_name: 'Consultation Form',
+            currency: 'AUD'
+        });
+        ReactGA.event({
+            category: "Lead",
+            action: "Submit_Contact_Form",
+            label: "New Enquiry"
+        });
+        // In reality, here you would send data to your backend/email service
+    }
+
+    const faqs = [
+        {
+            question: "Will this actually make me more money?",
+            answer: (
+                <div className="space-y-4">
+                    <p>Yes — but not overnight.</p>
+                    <p>This is not a “boost a post and hope” service. We build the online structure that makes homeowners trust you enough to call, choose you, and pay properly.</p>
+                    <div className="bg-white/5 p-4 border-l-2 border-safety-orange italic text-white/80">
+                        <p>Think of it like this: You don’t pour a slab and expect a finished house the next day. This is the same — foundations first, results compound over time.</p>
+                    </div>
+                </div>
+            )
+        },
+        {
+            question: "How long before I see results?",
+            answer: (
+                <div className="space-y-4">
+                    <p>Most trades start seeing better quality enquiries within the first 30–90 days once everything is live.</p>
+                    <p>Real growth (rankings, reviews, authority, repeat leads) usually builds over 3–6 months.</p>
+                    <p className="text-white/60 text-sm">If someone promises instant SEO or instant leads without structure — they’re selling paint, not concrete.</p>
+                </div>
+            )
+        },
+        {
+            question: "Is this just a website?",
+            answer: (
+                <div className="space-y-4">
+                    <p>No. A website alone is just a signboard.</p>
+                    <p>We build a lead-producing system, which can include:</p>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                        <li>Professional trade-ready website</li>
+                        <li>Google Business Profile optimisation</li>
+                        <li>Voice agent & enquiry capture</li>
+                        <li>Clear service positioning</li>
+                        <li>Follow-up foundations</li>
+                        <li>AI-assisted visibility across search and answers</li>
+                    </ul>
+                    <p className="font-bold text-safety-orange">The goal is simple: more calls from better clients.</p>
+                </div>
+            )
+        },
+        {
+            question: "Do I need ads for this to work?",
+            answer: (
+                <div className="space-y-4">
+                    <p>No — but ads can speed things up.</p>
+                    <p>This system works with or without ads. Ads are optional and paid directly by you so you stay in control.</p>
+                    <p>If you do run ads, we help set the structure so the money isn’t wasted.</p>
+                </div>
+            )
+        },
+        {
+            question: "Why can’t I just use a cheap agency or website builder?",
+            answer: (
+                <div className="space-y-4">
+                    <p>You can — and many trades do. The problem is:</p>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                        <li>Generic websites</li>
+                        <li>No industry understanding</li>
+                        <li>No trust signals</li>
+                        <li>No system behind it</li>
+                    </ul>
+                    <p>That’s why they get price-shoppers, tyre-kickers, or no calls at all.</p>
+                    <p className="font-bold">We design this specifically for trades, using real-world construction logic — not marketing fluff.</p>
+                </div>
+            )
+        },
+        {
+            question: "What makes you different from other agencies?",
+            answer: (
+                <div className="space-y-4">
+                    <p>We don’t sell “marketing”. We sell outcomes trades care about.</p>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                        <li>Built for construction businesses</li>
+                        <li>Written in trade language</li>
+                        <li>Designed to make you look established</li>
+                        <li>Structured so leads actually convert</li>
+                    </ul>
+                    <p>Most agencies sell tools. We build the whole structure.</p>
+                </div>
+            )
+        },
+        {
+            question: "Is this a long-term contract?",
+            answer: (
+                <div className="space-y-4">
+                    <p>No lock-in tricks.</p>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                        <li>One-time setup fee</li>
+                        <li>Clear yearly partnership fee for hosting & maintenance</li>
+                        <li>Advanced AI or growth systems are scoped clearly</li>
+                    </ul>
+                    <p>You know exactly what you’re paying for — upfront.</p>
+                </div>
+            )
+        },
+        {
+            question: "What do I need to provide?",
+            answer: (
+                <div className="space-y-4">
+                    <p>Very little. We’ll ask for:</p>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                        <li>Business details</li>
+                        <li>Services you offer</li>
+                        <li>Service areas</li>
+                        <li>Logo (if you have one)</li>
+                    </ul>
+                    <p>Everything else is handled for you.</p>
+                </div>
+            )
+        },
+        {
+            question: "What if I already have a website or branding?",
+            answer: (
+                <div className="space-y-4">
+                    <p>That’s fine. We can:</p>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                        <li>Improve what you have</li>
+                        <li>Rebuild only what’s holding you back</li>
+                        <li>Or layer AI systems on top</li>
+                    </ul>
+                    <p>You’re not forced into a one-size-fits-all package.</p>
+                </div>
+            )
+        },
+        {
+            question: "Is this suitable for established trades or only new businesses?",
+            answer: (
+                <div className="space-y-4">
+                    <p>Both.</p>
+                    <p><span className="text-white font-bold">New trades</span> use this to look established fast.</p>
+                    <p><span className="text-white font-bold">Established trades</span> use it to scale, systemise, and stop relying on word-of-mouth only.</p>
+                    <p>Different starting point — same goal: more predictable growth.</p>
+                </div>
+            )
+        },
+        {
+            question: "What if I’m not tech-savvy?",
+            answer: (
+                <div className="space-y-4">
+                    <p>Perfect — you don’t need to be.</p>
+                    <p>This is built for trades, not tech people. If it’s confusing, we’ve done something wrong.</p>
+                </div>
+            )
+        },
+        {
+            question: "What happens after I submit the form?",
+            answer: (
+                <div className="space-y-4">
+                    <p>No hard sell. We:</p>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                        <li>Review your business</li>
+                        <li>Identify gaps and opportunities</li>
+                        <li>Recommend the best setup for your situation</li>
+                    </ul>
+                    <p>If it makes sense — we proceed. If not — we’ll tell you straight.</p>
+                </div>
+            )
+        }
+    ]
+
+    return (
+        <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
+
+            <MissedJobReviewModal isOpen={isReviewModalOpen} onClose={() => setIsReviewModalOpen(false)} />
+
+            {/* Navigation */}
+            {/* Navigation */}
+            <nav className="border-b border-white/5 py-4 bg-construction-charcoal/95 backdrop-blur-md sticky top-0 z-50">
+                <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
+                    <a href="#" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
+                        <Hammer className="text-safety-orange w-5 h-5 md:w-6 md:h-6" />
+                        <span className="text-lg md:text-xl font-black uppercase tracking-tighter">YourTradePartner<span className="text-safety-orange">.</span></span>
+                    </a>
+                    <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
+                        <a href="#why" className="hover:text-white transition-colors">Why It Matters</a>
+                        <a href="#packages" className="hover:text-white transition-colors">Packages</a>
+                        <a href="#guarantee" className="hover:text-white transition-colors">Guarantee</a>
+                    </div>
+                    <div className="flex items-center gap-4">
+                        <Button
+                            onClick={() => {
+                                setIsReviewModalOpen(true);
+                                ReactPixel.track('InitiateCheckout', { content_name: 'Stop Missing Jobs Modal' });
+                                ReactGA.event({ category: "Conversion", action: "Click_Hero_CTA", label: "Stop Missing Jobs" });
+                            }}
+                            className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-3 py-2 md:px-6 md:py-2 text-[10px] md:text-xs font-black uppercase tracking-widest shadow-lg shadow-safety-orange/20"
+                        >
+                            Stop Missing Jobs
+                        </Button>
+                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden text-white hover:text-safety-orange transition-colors">
+                            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                        </button>
+                    </div>
+
+                    {/* Mobile Menu Overlay */}
+                    {isMenuOpen && (
+                        <div className="absolute top-full left-0 w-full bg-construction-charcoal border-b border-white/10 p-6 flex flex-col gap-6 lg:hidden shadow-2xl animate-in slide-in-from-top-5 duration-200">
+                            <a href="#why" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Why It Matters</a>
+                            <a href="#packages" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Packages</a>
+                            <a href="#guarantee" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Guarantee</a>
+                        </div>
+                    )}
+                </div>
+            </nav>
+
+            {/* 1. HERO SECTION */}
+            <header className="relative pt-24 pb-32 md:pt-40 md:pb-52 border-b border-white/5 overflow-hidden">
+                <div className="absolute inset-0 bg-grid-white opacity-20 pointer-events-none"></div>
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h1 className="text-5xl md:text-8xl font-black leading-[0.9] mb-8 uppercase italic">
+                            No one tells trades this — <br />
+                            <span className="text-safety-orange">but customers decide before they call.</span>
+                        </h1>
+                        <p className="text-xl md:text-3xl text-white/90 font-bold mb-10 leading-tight">
+                            If your website looks outdated or your enquiries go unanswered, the job usually goes to the next trade on Google. We build the system that stops that from happening.
+                        </p>
+
+                        <div className="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 mb-12 rounded-sm md:text-lg">
+                            <ShieldCheck className="text-safety-orange w-6 h-6 flex-shrink-0" />
+                            <p className="font-bold">
+                                Built by someone with 4+ years in construction project management (and counting) — <span className="text-white/40 italic">actively working in the industry and building this to give trades a real advantage.</span>
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col items-center gap-4">
+                            <a href="#packages" className="w-full sm:w-auto">
+                                <Button size="xl" className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-12 py-10 text-xl md:text-2xl font-black uppercase tracking-widest group shadow-2xl shadow-safety-orange/30 w-full">
+                                    <span>Let's fix it together</span>
+                                    <ArrowRight className="ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                                </Button>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            {/* 2. PROBLEM AGITATION SECTION */}
+            <section id="why" className="py-24 md:py-32 border-b border-white/5 bg-black/20">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic text-center md:text-left">
+                            What most tradies <br className="hidden md:block" /> don’t realise…
+                        </h2>
+
+                        <div className="grid md:grid-cols-2 gap-8 mb-16">
+                            {[
+                                "Missed calls while on site",
+                                "Enquiries coming from multiple places",
+                                "Websites that look fine but don’t convert",
+                                "Work going to whoever answers first"
+                            ].map((bullet, i) => (
+                                <div key={i} className="flex items-center gap-6 bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
+                                    <AlertCircle className="text-red-500 w-10 h-10 flex-shrink-0" />
+                                    <p className="text-xl md:text-2xl font-black uppercase">{bullet}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="text-center md:text-right">
+                            <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
+                                It’s not a work ethic problem. <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">It’s a system problem.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* NEW SECTION: SURVEY RESULT VISUAL (Hard-Coded) */}
+            <section className="py-24 border-b border-white/5 bg-zinc-900/50">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto text-center">
+
+                        {/* Survey Card */}
+                        <div className="bg-white/5 border border-white/10 p-8 md:p-12 rounded-sm mb-12 text-left relative overflow-hidden backdrop-blur-sm">
+                            {/* Card Header */}
+                            <h3 className="text-2xl md:text-3xl font-black uppercase italic tracking-tight mb-10 text-center text-white">
+                                What Homeowners Look For <br /> Before Contacting a Trade
+                            </h3>
+
+                            {/* Bars */}
+                            <div className="space-y-6 mb-12">
+                                {/* Bar 1 */}
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-4 bg-white/5 p-2 rounded-sm border border-white/10">
+                                        <div className="bg-white/10 p-2 rounded-sm">
+                                            <Smartphone className="w-6 h-6 text-safety-orange" />
+                                        </div>
+                                        <div className="flex-grow relative h-12 bg-white/5 rounded-sm border border-white/5 overflow-hidden">
+                                            <div className="h-full bg-safety-orange flex items-center justify-end px-4 font-black text-white text-xl" style={{ width: "78%" }}>
+                                                78%
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p className="text-right text-xs font-bold uppercase tracking-widest text-white/40">Professional website & branding</p>
+                                </div>
+
+                                {/* Bar 2 */}
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-4 bg-white/5 p-2 rounded-sm border border-white/10">
+                                        <div className="bg-white/10 p-2 rounded-sm">
+                                            <Users className="w-6 h-6 text-white" />
+                                        </div>
+                                        <div className="flex-grow relative h-12 bg-white/5 rounded-sm border border-white/5 overflow-hidden">
+                                            <div className="h-full bg-construction-charcoal border border-white/10 flex items-center justify-end px-4 font-black text-white text-xl" style={{ width: "65%" }}>
+                                                65%
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="flex justify-end items-center gap-2">
+                                        <p className="text-right text-xs font-bold uppercase tracking-widest text-white/40">Google reviews & online presence</p>
+                                    </div>
+                                </div>
+
+                                {/* Bar 3 */}
+                                <div className="space-y-2">
+                                    <div className="flex items-center gap-4 bg-white/5 p-2 rounded-sm border border-white/10">
+                                        <div className="bg-white/10 p-2 rounded-sm">
+                                            <Phone className="w-6 h-6 text-white/60" />
+                                        </div>
+                                        <div className="flex-grow relative h-12 bg-white/5 rounded-sm border border-white/5 overflow-hidden">
+                                            <div className="h-full bg-white/20 flex items-center justify-end px-4 font-black text-white/80 text-xl" style={{ width: "52%" }}>
+                                                52%
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p className="text-right text-xs font-bold uppercase tracking-widest text-white/40">Clear services and easy contact details</p>
+                                </div>
+                            </div>
+
+                            {/* Comparison Columns */}
+                            <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-white/10">
+                                <div className="space-y-4">
+                                    <div className="flex items-center gap-3">
+                                        <CheckCircle2 className="w-8 h-8 text-green-500" />
+                                        <h4 className="font-black uppercase text-lg text-green-500">Professional Presence</h4>
+                                    </div>
+                                    <ul className="space-y-2 pl-11">
+                                        <li className="flex items-start gap-2 text-sm font-bold text-white/60">
+                                            <Check className="w-4 h-4 text-green-500 mt-0.5" />
+                                            More enquiries
+                                        </li>
+                                        <li className="flex items-start gap-2 text-sm font-bold text-white/60">
+                                            <Check className="w-4 h-4 text-green-500 mt-0.5" />
+                                            Higher trust
+                                        </li>
+                                        <li className="flex items-start gap-2 text-sm font-bold text-white/60">
+                                            <Check className="w-4 h-4 text-green-500 mt-0.5" />
+                                            Better clients
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div className="space-y-4 md:border-l md:border-white/10 md:pl-8">
+                                    <div className="flex items-center gap-3">
+                                        <XCircle className="w-8 h-8 text-red-500/80" />
+                                        <h4 className="font-black uppercase text-lg text-white/40">No Online Presence</h4>
+                                    </div>
+                                    <ul className="space-y-2 pl-11">
+                                        <li className="flex items-start gap-2 text-sm font-bold text-white/40">
+                                            <span className="text-red-500/50">✕</span>
+                                            Missed calls
+                                        </li>
+                                        <li className="flex items-start gap-2 text-sm font-bold text-white/40">
+                                            <span className="text-red-500/50">✕</span>
+                                            Price shoppers
+                                        </li>
+                                        <li className="flex items-start gap-2 text-sm font-bold text-white/40">
+                                            <span className="text-red-500/50">✕</span>
+                                            Lost opportunities
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            {/* Card Footer */}
+                            <div className="mt-12 text-center">
+                                <p className="text-[10px] uppercase font-bold text-white/20 italic">
+                                    Illustrative example based on common consumer behaviour and industry insights
+                                </p>
+                            </div>
+                        </div>
+
+                        {/* Supporting Copy */}
+                        <div className="space-y-6">
+                            <h3 className="text-2xl md:text-4xl font-black uppercase italic leading-tight">
+                                Most homeowners won’t tell you this — <br />
+                                <span className="text-safety-orange">but they check online before they call.</span>
+                            </h3>
+                            <p className="text-xl md:text-2xl text-white/60 font-medium">
+                                This isn’t about looking fancy. <br />
+                                It’s about being <span className="text-white underline decoration-safety-orange underline-offset-4">trusted enough</span> to get the call.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 3. SOLUTION SECTION */}
+            <section className="py-24 md:py-32 border-b border-white/5">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto text-center md:text-left">
+                        <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic leading-none">
+                            We don’t sell websites. <br />
+                            <span className="text-white/20 font-black">We build job-winning systems.</span>
+                        </h2>
+
+                        <div className="grid md:grid-cols-2 gap-12 text-xl md:text-2xl leading-relaxed font-bold text-white/80">
+                            <div className="space-y-4">
+                                <div className="w-12 h-1 bg-safety-orange mb-6"></div>
+                                <p>The system captures enquiries before they're lost and responds automatically so potential clients aren't left waiting.</p>
+                            </div>
+                            <div className="space-y-4">
+                                <div className="w-12 h-1 bg-safety-orange mb-6"></div>
+                                <p>Reduced admin means you spend more time on tools or with family, while the system works to help win more local jobs.</p>
+                            </div>
+                        </div>
+
+                        <div className="mt-20 p-10 bg-white/5 border-2 border-dashed border-white/10 text-center">
+                            <p className="text-2xl md:text-3xl font-black italic uppercase leading-tight">
+                                "No buzzwords. No dashboards you’ll never open. Just systems that work while you’re on the tools."
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* NEW SECTION: WHAT WE ACTUALLY FIX */}
+            <section className="py-24 md:py-32 border-b border-white/5 bg-black/40">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl md:text-6xl font-black uppercase italic mb-6">
+                                What We Actually Fix
+                            </h2>
+                            <p className="text-white/60 font-bold uppercase tracking-widest">
+                                This section removes confusion about why you'd pay us.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                            <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors">
+                                <CardHeader>
+                                    <Badge className="w-fit bg-white/10 text-white mb-2">Problem 1</Badge>
+                                    <CardTitle className="text-xl font-black uppercase text-white/60">"We’re flat out, but enquiries are inconsistent"</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="flex items-start gap-3">
+                                        <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
+                                        <p className="text-lg font-bold text-white">We build systems that capture demand when it shows up.</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+
+                            <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors">
+                                <CardHeader>
+                                    <Badge className="w-fit bg-white/10 text-white mb-2">Problem 2</Badge>
+                                    <CardTitle className="text-xl font-black uppercase text-white/60">"People check us out but don’t call"</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="flex items-start gap-3">
+                                        <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
+                                        <p className="text-lg font-bold text-white">We make your business look established, not risky.</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+
+                            <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors">
+                                <CardHeader>
+                                    <Badge className="w-fit bg-white/10 text-white mb-2">Problem 3</Badge>
+                                    <CardTitle className="text-xl font-black uppercase text-white/60">"We miss calls while on the tools"</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="flex items-start gap-3">
+                                        <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
+                                        <p className="text-lg font-bold text-white">AI answers, logs, and follows up so leads don’t die.</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+
+                            <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors">
+                                <CardHeader>
+                                    <Badge className="w-fit bg-white/10 text-white mb-2">Problem 4</Badge>
+                                    <CardTitle className="text-xl font-black uppercase text-white/60">"Our online stuff is messy or outdated"</CardTitle>
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="flex items-start gap-3">
+                                        <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
+                                        <p className="text-lg font-bold text-white">One clean setup that just works.</p>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </div>
+
+                        <div className="mt-12 text-center">
+                            <p className="text-2xl font-black italic border-l-4 border-safety-orange pl-6 inline-block text-left">
+                                This isn’t marketing. <br />
+                                <span className="text-safety-orange">This is infrastructure for making money.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* NEW SECTION: WHO THIS IS FOR */}
+            <section className="py-24 md:py-32 border-b border-white/5">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-4xl md:text-6xl font-black uppercase italic">
+                                Who This Is For <br />
+                                <span className="text-white/20">(And Who It's Not)</span>
+                            </h2>
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-0 border border-white/10">
+                            <div className="p-12 md:p-16 border-b md:border-b-0 md:border-r border-white/10">
+                                <div className="flex items-center gap-4 mb-10">
+                                    <Target className="text-safety-orange w-10 h-10" />
+                                    <h3 className="text-3xl font-black uppercase italic">This IS for trades who:</h3>
+                                </div>
+                                <ul className="space-y-6">
+                                    {[
+                                        "Want more qualified enquiries",
+                                        "Are tired of explaining themselves to customers",
+                                        "Want systems that work without babysitting",
+                                        "Care about how their business looks long-term"
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-center gap-4">
+                                            <CheckCircle2 className="text-safety-orange w-6 h-6 flex-shrink-0" />
+                                            <span className="text-xl font-bold text-white">{item}</span>
+                                        </div>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div className="p-12 md:p-16 bg-white/5">
+                                <div className="flex items-center gap-4 mb-10">
+                                    <XCircle className="text-white/20 w-10 h-10" />
+                                    <h3 className="text-3xl font-black uppercase italic text-white/40">This is NOT for:</h3>
+                                </div>
+                                <ul className="space-y-6">
+                                    {[
+                                        "People who want unlimited changes",
+                                        "Trades who don’t answer their phone",
+                                        "Anyone looking for the cheapest option"
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex items-center gap-4">
+                                            <XCircle className="text-white/20 w-6 h-6 flex-shrink-0" />
+                                            <span className="text-xl font-bold text-white/40">{item}</span>
+                                        </div>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div className="text-center mt-16">
+                            <p className="text-3xl md:text-4xl font-black italic uppercase">
+                                If you don’t want to make more money, <br />
+                                <span className="text-white/40 decoration-white/20 line-through decoration-4">this won’t help you.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* 4. PACKAGES SECTION */}
+            <section id="packages" className="py-12 md:py-20 border-b border-white/5 bg-black/40">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-10">
+                        <h2 className="text-4xl md:text-7xl font-black mb-6 uppercase italic">
+                            Clear Pricing <br className="hidden md:block" /> (No Guesswork)
+                        </h2>
+                        <p className="text-white/40 font-black uppercase tracking-widest italic">One-time setup + simple partnership structure · No confusing monthly retainers</p>
+                    </div>
+
+                    <div className="grid lg:grid-cols-3 gap-8 items-start">
+
+                        {/* PACKAGE 1 */}
+                        <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
+                            <CardHeader className="p-5 md:p-6 border-b border-white/10">
+                                <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 1</CardTitle>
+                                <div className="text-xl font-black uppercase mb-4">Trade-Ready Online Setup</div>
+                                <div className="text-3xl font-black italic text-safety-orange italic">$1,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                <p className="text-xs font-black uppercase tracking-widest text-white/40 mt-2">+ $499/year partnership</p>
+                            </CardHeader>
+                            <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
+                                <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">Best for solo operators & small crews</p>
+
+                                {/* Website Inclusions */}
+                                <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
+                                        <p className="text-sm font-black uppercase text-white">3-Page Website Included</p>
+                                    </div>
+                                    <ul className="space-y-2 pl-4 border-l border-white/10">
+                                        <li className="text-xs font-bold text-white/60">Home (Services + Trust + Contact)</li>
+                                        <li className="text-xs font-bold text-white/60">Project Showcase</li>
+                                        <li className="text-xs font-bold text-white/60">Contact / Quote Page</li>
+                                    </ul>
+                                </div>
+
+                                <div className="space-y-4">
+                                    {[
+                                        "Domain + hosting included for Year 1",
+                                        "Professional business email (no more Gmail)",
+                                        "Google Business Profile set up properly",
+                                        "Business card design (print-ready)",
+                                        "Contact & quote forms that send enquiries to you instantly"
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex gap-3 text-sm font-bold uppercase tracking-tight">
+                                            <Check className="text-safety-orange w-5 h-5 flex-shrink-0" />
+                                            <span>{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CardContent>
+                            <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
+                                <div className="bg-white/10 p-4 text-xs font-black uppercase tracking-widest text-center italic w-full">
+                                    "You stop looking like a “maybe” and start looking like a real business people call."
+                                </div>
+                                <a href="#contact" className="w-full" onClick={() => {
+                                    ReactPixel.track('AddToCart', { content_name: 'Package 1: Trade-Ready', value: 1900, currency: 'AUD' });
+                                    ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 1", value: 1900 });
+                                }}>
+                                    <Button className="w-full bg-white text-black hover:bg-white/90 rounded-none h-12 font-black uppercase tracking-widest">
+                                        Check Availability
+                                    </Button>
+                                </a>
+                            </CardFooter>
+                        </Card>
+
+                        {/* PACKAGE 2 */}
+                        <Card className="bg-white/5 border-4 border-safety-orange rounded-none h-full flex flex-col relative scale-105 z-10 shadow-2xl shadow-safety-orange/10">
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-safety-orange text-white px-4 py-1 text-[10px] font-black uppercase tracking-widest whitespace-nowrap italic">
+                                Most Popular
+                            </div>
+                            <CardHeader className="p-5 md:p-6 border-b border-white/10">
+                                <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 2: Core</CardTitle>
+                                <div className="text-xl font-black uppercase mb-4">Local Jobs Engine</div>
+                                <div className="text-3xl font-black italic text-safety-orange">$3,600 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                <div className="mt-2">
+                                    <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $399 / quarter</p>
+                                    <p className="text-[10px] font-bold text-white/20">(Reviewed annually, subject to AI usage & scope)</p>
+                                </div>
+                            </CardHeader>
+                            <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
+                                <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">For trades who want more enquiries without more admin</p>
+
+                                {/* Website Inclusions */}
+                                <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                                    <div className="flex items-center gap-2 mb-3">
+                                        <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
+                                        <p className="text-sm font-black uppercase text-white">6-Page Website Included</p>
+                                    </div>
+                                    <ul className="grid grid-cols-2 gap-y-2 gap-x-4 pl-4 border-l border-white/10">
+                                        <li className="text-xs font-bold text-white/60">Home</li>
+                                        <li className="text-xs font-bold text-white/60">Project Showcase</li>
+                                        <li className="text-xs font-bold text-white/60">Services</li>
+                                        <li className="text-xs font-bold text-white/60">Service Area</li>
+                                        <li className="text-xs font-bold text-white/60">About / Trust</li>
+                                        <li className="text-xs font-bold text-white/60">Contact / Quote</li>
+                                    </ul>
+                                </div>
+
+                                <div className="space-y-4">
+                                    <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">Everything in Trade-Ready, plus:</p>
+                                    {[
+                                        "Service & suburb pages designed to convert searches into calls",
+                                        "Enquiry tracking so leads don’t get lost",
+                                        "AI Voice Assistant setup (captures missed calls & routes them)",
+                                        "Semi-custom branded trade templates (SWMS / reports)",
+                                        "Ongoing updates & support within scope"
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex gap-3 text-sm font-bold uppercase tracking-tight">
+                                            <Check className="text-safety-orange w-5 h-5 flex-shrink-0" />
+                                            <span>{item}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            </CardContent>
+                            <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
+                                <div className="bg-safety-orange/20 p-4 text-xs font-black uppercase tracking-widest text-center italic w-full text-safety-orange">
+                                    "You miss fewer calls, look more established, and turn attention into booked work."
+                                </div>
+                                <a href="#contact" className="w-full" onClick={() => {
+                                    ReactPixel.track('AddToCart', { content_name: 'Package 2: Local Jobs Engine', value: 3600, currency: 'AUD' });
+                                    ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 2", value: 3600 });
+                                }}>
+                                    <Button className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none h-12 font-black uppercase tracking-widest">
+                                        Get The Jobs Engine Ready
+                                    </Button>
+                                </a>
+                            </CardFooter>
+                        </Card>
+
+                        {/* PACKAGE 3 */}
+                        {/* PACKAGE 3 */}
+                        <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
+                            <CardHeader className="p-5 md:p-6 border-b border-white/10">
+                                <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 3: Growth System</CardTitle>
+                                <div className="text-3xl font-black italic text-safety-orange">From $6,500 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                <div className="mt-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
+                                    (Most projects land between $6,500 – $12,000)
+                                </div>
+                                <div className="mt-2">
+                                    <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Ongoing partnership quoted based on your requirements</p>
+                                </div>
+                            </CardHeader>
+                            <CardContent className="p-5 md:p-6 space-y-6 flex-grow">
+                                <p className="text-xs font-black uppercase tracking-widest text-safety-orange">
+                                    Best for established trades who want consistent enquiries and long-term growth.
+                                </p>
+
+                                <div className="space-y-4">
+                                    <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
+                                            <p className="text-sm font-black uppercase text-white">12-Page Website Included</p>
+                                        </div>
+                                        <p className="text-xs font-bold text-white/40 pl-4 border-l border-white/10 italic">Additional pages quoted separately if needed</p>
+                                    </div>
+
+                                    <div>
+                                        <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">Everything in Local Jobs Engine, plus:</p>
+                                        <ul className="space-y-3">
+                                            {[
+                                                "EXTRA SERVICE & SUBURB PAGES BUILT AROUND REAL LOCAL SEARCHES",
+                                                "SETUP DESIGNED TO HELP YOU SHOW UP MORE OFTEN WHEN PEOPLE ARE LOOKING",
+                                                "AFTER-HOURS, MISSED-CALL AND RECEPTIONIST HANDLING SETUP",
+                                                "ENQUIRIES ROUTED SO NOTHING SLIPS THROUGH THE CRACKS",
+                                            ].map((item, i) => (
+                                                <li key={i} className="flex items-start gap-3 text-sm font-bold text-white/80">
+                                                    <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
+                                                    {item}
+                                                </li>
+                                            ))}
+
+                                            <li className="flex items-start gap-3 text-sm font-bold text-white/80">
+                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
+                                                <div>
+                                                    SIMPLE TRACKING TO SEE:
+                                                    <ul className="pl-4 mt-1 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                        <li>WHERE ENQUIRIES COME FROM</li>
+                                                        <li>WHICH PAGES BRING CALLS</li>
+                                                        <li>WHAT’S WORTH SPENDING MONEY ON</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+
+                                            <li className="flex items-start gap-3 text-sm font-bold text-white/80">
+                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
+                                                <div>
+                                                    PROMOTIONAL VIDEOS OR AI-ASSISTED VISUAL CONTENT
+                                                    <p className="text-xs text-white/60 font-normal mt-0.5">USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</p>
+                                                </div>
+                                            </li>
+
+                                            <li className="flex items-start gap-3 text-sm font-bold text-white/80">
+                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
+                                                <div>
+                                                    SYSTEMS SELECTED BASED ON:
+                                                    <ul className="pl-4 mt-1 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                        <li>YOUR TRADE</li>
+                                                        <li>YOUR WORKLOAD</li>
+                                                        <li>HOW AGGRESSIVE YOU WANT TO GROW</li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </CardContent>
+                            <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
+                                <div className="bg-white/10 p-4 border border-white/5">
+                                    <p className="text-xs font-black uppercase text-white mb-2">Why pricing varies</p>
+                                    <p className="text-[10px] uppercase font-bold text-white/40 leading-relaxed">
+                                        Not every trade needs the same setup. Pricing depends on how many pages, locations, promotions, and systems are required to get results.
+                                    </p>
+                                    <p className="text-[10px] uppercase font-bold text-white/40 mt-2 italic">We scope this before anything is built — no surprises.</p>
+                                </div>
+                                <a href="#contact" className="w-full" onClick={() => {
+                                    ReactPixel.track('AddToCart', { content_name: 'Package 3: Growth System', value: 6500, currency: 'AUD' });
+                                    ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 3", value: 6500 });
+                                }}>
+                                    <Button className="w-full bg-white text-black hover:bg-white/90 rounded-none h-12 font-black uppercase tracking-widest">
+                                        Apply for Growth System
+                                    </Button>
+                                </a>
+                            </CardFooter>
+                        </Card>
+                    </div>
+                    {/* DISCLAIMER / EXPLANATION SECTION */}
+                    <div className="mt-20 max-w-4xl mx-auto">
+                        <div className="bg-white/5 border border-white/10 p-8 md:p-12 text-center rounded-sm relative overflow-hidden">
+                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-safety-orange to-transparent opacity-50"></div>
+
+                            <h3 className="text-2xl md:text-3xl font-black uppercase italic mb-6">
+                                Your Website Is Included. <br />
+                                <span className="text-safety-orange">The Partnership Is the Investment.</span>
+                            </h3>
+
+
+                        </div>
+                    </div>
+                    {/* Free Guide Link - Relocated & ROI Focused */}
+                    <div className="mt-20 max-w-2xl mx-auto text-center">
+                        <div className="bg-white/5 border border-white/10 p-8 rounded-sm hover:border-white/20 transition-colors">
+                            <h4 className="text-xl font-black uppercase italic mb-3">
+                                Not ready to commit? <span className="text-white/40">That’s fine.</span>
+                            </h4>
+                            <p className="text-sm font-bold text-white/60 mb-6 leading-relaxed">
+                                You don't need to pay us to understand why your current setup isn't working.
+                                Download the guide to see exactly where trades lose money online.
+                            </p>
+                            <a
+                                href="/guide.pdf"
+                                download
+                                className="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 px-6 py-3 font-black uppercase tracking-widest text-xs transition-colors rounded-none"
+                            >
+                                <span className="text-lg">↓</span> Download Free Guide
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* NEW SECTION: RESULTS TIMELINE */}
+            <section className="py-24 md:py-32 border-b border-white/5 bg-zinc-900/30">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-5xl mx-auto">
+                        <div className="text-center mb-16">
+                            <Badge className="bg-white/10 text-white mb-6 hover:bg-white/10 pointer-events-none uppercase tracking-widest text-[10px]">Expectations</Badge>
+                            <h2 className="text-4xl md:text-6xl font-black uppercase italic mb-6">
+                                How Results <span className="text-safety-orange">Actually</span> Work <br />
+                                <span className="text-2xl md:text-3xl text-white/40 not-italic normal-case block mt-4">(In Plain English)</span>
+                            </h2>
+                            <p className="text-xl md:text-2xl text-white/80 font-bold max-w-3xl mx-auto">
+                                This is not a quick patch-and-paint job. We’re building a proper online structure that keeps working long after it’s built.
+                            </p>
+                        </div>
+
+                        {/* Trade-Off Comparison */}
+                        <div className="grid md:grid-cols-2 gap-8 mb-20">
+                            <div className="bg-red-950/20 p-8 border border-red-500/20">
+                                <h3 className="text-xl font-black uppercase text-red-500 mb-4">The Short-Term Trap</h3>
+                                <p className="text-white/60 font-bold mb-4">Chasing referrals, quoting more, racing competitors on price.</p>
+                                <div className="text-sm font-black uppercase tracking-widest text-red-500/50">Result: Burnout</div>
+                            </div>
+                            <div className="bg-green-950/20 p-8 border border-green-500/20 relative overflow-hidden">
+                                <div className="absolute top-0 right-0 p-32 bg-green-500/5 blur-[100px] rounded-full"></div>
+                                <h3 className="text-xl font-black uppercase text-green-500 mb-4">The Long-Term Asset</h3>
+                                <p className="text-white/60 font-bold mb-4">Owning a system that brings enquiries to you — even while you’re on the tools.</p>
+                                <div className="text-sm font-black uppercase tracking-widest text-green-500/50">Result: Freedom</div>
+                            </div>
+                        </div>
+
+                        {/* What We Building & Timeline Grid */}
+                        <div className="grid lg:grid-cols-12 gap-12">
+                            {/* What We Building */}
+                            <div className="lg:col-span-5 space-y-8">
+                                <h3 className="text-2xl font-black uppercase italic">What We’re Building</h3>
+                                <div className="space-y-6">
+                                    {[
+                                        "A professional online presence customers trust",
+                                        "Pages that match what people are actually searching for",
+                                        "AI systems that answer questions and capture enquiries",
+                                        "A foundation that compounds instead of resetting every month"
+                                    ].map((item, i) => (
+                                        <div key={i} className="flex gap-4">
+                                            <div className="bg-safety-orange/10 p-2 rounded-sm h-fit">
+                                                <Hammer className="w-5 h-5 text-safety-orange" />
+                                            </div>
+                                            <p className="font-bold text-white/80">{item}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                                <div className="bg-white/5 p-8 border-l-4 border-safety-orange mt-8">
+                                    <p className="text-xl font-black italic text-white/90">
+                                        "We’re not fixing a leak. We’re building the house that stops the rain getting in forever."
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Timeline */}
+                            <div className="lg:col-span-7">
+                                <div className="bg-white/5 border border-white/10 p-8 md:p-10">
+                                    <h3 className="text-2xl font-black uppercase italic mb-8">When Results Show Up</h3>
+
+                                    <div className="space-y-12 relative before:absolute before:left-[19px] before:top-2 before:bottom-2 before:w-0.5 before:bg-white/10">
+                                        {/* Phase 1 */}
+                                        <div className="relative pl-12">
+                                            <div className="absolute left-0 top-1 w-10 h-10 bg-construction-charcoal border-2 border-white/20 rounded-full flex items-center justify-center z-10 transition-colors hover:border-safety-orange">
+                                                <span className="text-xs font-black text-white/40">01</span>
+                                            </div>
+                                            <h4 className="text-xl font-black uppercase text-safety-orange mb-2">Setup Phase</h4>
+                                            <div className="text-xs font-black uppercase tracking-widest text-white/40 mb-4">Weeks 1–2</div>
+                                            <ul className="space-y-2">
+                                                <li className="text-white/70 font-bold text-sm">• Website & systems go live</li>
+                                                <li className="text-white/70 font-bold text-sm">• AI tools installed</li>
+                                                <li className="text-white/70 font-bold text-sm">• Tracking enabled</li>
+                                            </ul>
+                                        </div>
+
+                                        {/* Phase 2 */}
+                                        <div className="relative pl-12">
+                                            <div className="absolute left-0 top-1 w-10 h-10 bg-construction-charcoal border-2 border-white/20 rounded-full flex items-center justify-center z-10 transition-colors hover:border-safety-orange">
+                                                <span className="text-xs font-black text-white/40">02</span>
+                                            </div>
+                                            <h4 className="text-xl font-black uppercase text-white mb-2">Momentum Phase</h4>
+                                            <div className="text-xs font-black uppercase tracking-widest text-white/40 mb-4">Weeks 3–6</div>
+                                            <ul className="space-y-2">
+                                                <li className="text-white/70 font-bold text-sm">• Visibility improves</li>
+                                                <li className="text-white/70 font-bold text-sm">• Early enquiries start flowing</li>
+                                                <li className="text-white/70 font-bold text-sm">• Google starts validating your business</li>
+                                            </ul>
+                                        </div>
+
+                                        {/* Phase 3 */}
+                                        <div className="relative pl-12">
+                                            <div className="absolute left-0 top-1 w-10 h-10 bg-safety-orange border-2 border-safety-orange rounded-full flex items-center justify-center z-10 shadow-[0_0_20px_rgba(255,107,0,0.3)]">
+                                                <TrendingUp className="w-5 h-5 text-black" />
+                                            </div>
+                                            <h4 className="text-xl font-black uppercase text-white mb-2">Growth Phase</h4>
+                                            <div className="text-xs font-black uppercase tracking-widest text-white/40 mb-4">Months 2–6+</div>
+                                            <ul className="space-y-2">
+                                                <li className="text-white/70 font-bold text-sm">• Strong local presence</li>
+                                                <li className="text-white/70 font-bold text-sm">• Consistent, higher quality leads</li>
+                                                <li className="text-white/70 font-bold text-sm">• Compounding results over time</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </section>
+
+            {/* 5. GUARANTEE SECTION */}
+            <section id="guarantee" className="py-24 md:py-32 border-b border-white/5 bg-safety-orange text-white">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto text-center">
+                        <h2 className="text-4xl md:text-7xl font-black mb-8 uppercase italic leading-none text-black">
+                            A simple, <br /> fair guarantee.
+                        </h2>
+                        <div className="w-20 h-2 bg-black mx-auto mb-10"></div>
+                        <p className="text-2xl md:text-4xl font-black uppercase leading-tight italic">
+                            "No lock-in: if you’re not confident after delivery, you can walk away before ongoing fees start."
+                        </p>
+                    </div>
+                </div>
+            </section >
+
+            {/* 6. REVISION POLICY SECTION */}
+            < section className="py-24 md:py-32 border-b border-white/5" >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="grid md:grid-cols-2 gap-16 items-center">
+                            <div>
+                                <h2 className="text-3xl md:text-5xl font-black mb-8 uppercase italic leading-none">
+                                    How revisions work <span className="text-white/20 italic block mt-2">(so projects don’t drag on)</span>
+                                </h2>
+                                <div className="space-y-6 text-xl font-bold text-white/70">
+                                    <div className="flex gap-4">
+                                        <CheckCircle2 className="text-safety-orange w-6 h-6 flex-shrink-0" />
+                                        <p>No unlimited revisions = no endless delays.</p>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <CheckCircle2 className="text-safety-orange w-6 h-6 flex-shrink-0" />
+                                        <p>Clear scope agreed upfront before we start.</p>
+                                    </div>
+                                    <div className="flex gap-4">
+                                        <CheckCircle2 className="text-safety-orange w-6 h-6 flex-shrink-0" />
+                                        <p>Defined revision rounds for precision.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="bg-white/5 p-10 border-4 border-white/10 text-center">
+                                <Clock className="w-16 h-16 text-safety-orange mx-auto mb-6" />
+                                <p className="text-2xl font-black uppercase italic leading-none">
+                                    Faster launches <br /> lead to <br /> <span className="text-safety-orange">Better Results</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section >
+
+            {/* 7. FAQ SECTION */}
+            <section className="py-24 border-b border-white/5 bg-black">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-3xl mx-auto">
+                        <div className="text-center mb-16">
+                            <h2 className="text-3xl md:text-5xl font-black uppercase italic mb-6">
+                                Frequently Asked Questions <br />
+                                <span className="text-white/40 text-2xl md:text-3xl not-italic">(Read This Before Booking)</span>
+                            </h2>
+                        </div>
+
+                        <div className="space-y-2">
+                            {faqs.map((faq, index) => (
+                                <div key={index} className="border-b border-white/10 last:border-0">
+                                    <button
+                                        onClick={() => toggleFaq(index)}
+                                        className="w-full flex items-center justify-between py-6 text-left hover:bg-white/5 px-4 transition-colors group"
+                                    >
+                                        <span className={`text-lg md:text-xl font-bold uppercase transition-colors ${openFaq === index ? 'text-safety-orange' : 'text-white group-hover:text-white/90'}`}>
+                                            {faq.question}
+                                        </span>
+                                        {openFaq === index ? (
+                                            <ChevronUp className="w-6 h-6 text-safety-orange flex-shrink-0" />
+                                        ) : (
+                                            <ChevronDown className="w-6 h-6 text-white/40 group-hover:text-white flex-shrink-0 transition-colors" />
+                                        )}
+                                    </button>
+
+                                    <div
+                                        className={`grid transition-all duration-300 ease-in-out overflow-hidden ${openFaq === index ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+                                            }`}
+                                    >
+                                        <div className="overflow-hidden">
+                                            <div className="px-4 pb-8 pt-2 text-white/70 text-base md:text-lg leading-relaxed">
+                                                {faq.answer}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </section>
+
+            {/* 8. FINAL CTA SECTION */}
+            <section id="contact" className="pt-20 pb-[10px] text-center relative overflow-hidden">
+                <div className="absolute inset-0 blueprint-grid opacity-10"></div>
+                <div className="container mx-auto px-6 relative z-10">
+
+                    {formStatus === 'success' ? (
+                        <div className="max-w-xl mx-auto bg-green-950/20 border border-green-500/30 p-8 md:p-12 rounded-sm">
+                            <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-6" />
+                            <h2 className="text-3xl md:text-4xl font-black uppercase italic mb-4 text-white">
+                                Thanks — you’re all set.
+                            </h2>
+                            <p className="text-lg md:text-xl text-white/80 font-medium mb-6">
+                                We’ll review your business and walk through the journey.
+                            </p>
+                            <p className="text-xs font-black uppercase tracking-widest text-white/40 border-t border-white/10 pt-4">
+                                No pressure. No hard sell.
+                            </p>
+                        </div>
+                    ) : (
+                        <div className="max-w-xl mx-auto">
+                            <div className="mb-10">
+                                <h2 className="text-3xl md:text-5xl font-black mb-4 uppercase italic leading-none tracking-tighter text-white">
+                                    Let’s work on <br /> <span className="text-safety-orange">building your system.</span>
+                                </h2>
+                            </div>
+
+                            <form onSubmit={handleSubmit} className="text-left space-y-6 bg-zinc-900/80 p-6 md:p-8 border border-white/10 backdrop-blur-sm shadow-2xl">
+
+                                {/* Basic Details Grid */}
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Full Name <span className="text-safety-orange">*</span></label>
+                                        <input
+                                            required
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
+                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            placeholder="Name"
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Business <span className="text-safety-orange">*</span></label>
+                                        <input
+                                            required
+                                            type="text"
+                                            name="businessName"
+                                            value={formData.businessName}
+                                            onChange={handleInputChange}
+                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            placeholder="Business Name"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Phone <span className="text-safety-orange">*</span></label>
+                                        <input
+                                            required
+                                            type="tel"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            placeholder="0400..."
+                                        />
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Email <span className="text-safety-orange">*</span></label>
+                                        <input
+                                            required
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleInputChange}
+                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            placeholder="Email"
+                                        />
+                                    </div>
+                                </div>
+
+                                {/* Context Grid */}
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Trade <span className="text-safety-orange">*</span></label>
+                                        <div className="relative">
+                                            <select
+                                                required
+                                                name="trade"
+                                                value={formData.trade}
+                                                onChange={handleInputChange}
+                                                className="w-full bg-white/5 border border-white/10 p-2 text-base text-white appearance-none focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            >
+                                                <option value="" disabled className="bg-zinc-900">Select...</option>
+                                                <option value="roofing" className="bg-zinc-900">Roofing</option>
+                                                <option value="plumbing" className="bg-zinc-900">Plumbing</option>
+                                                <option value="electrical" className="bg-zinc-900">Electrical</option>
+                                                <option value="carpentry" className="bg-zinc-900">Carpentry</option>
+                                                <option value="concreting" className="bg-zinc-900">Concreting</option>
+                                                <option value="landscaping" className="bg-zinc-900">Landscaping</option>
+                                                <option value="other" className="bg-zinc-900">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Location <span className="text-safety-orange">*</span></label>
+                                        <input
+                                            required
+                                            type="text"
+                                            name="location"
+                                            value={formData.location}
+                                            onChange={handleInputChange}
+                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            placeholder="City/Region"
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="space-y-1">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Interested Package</label>
+                                    <div className="relative">
+                                        <select
+                                            required
+                                            name="package"
+                                            value={formData.package}
+                                            onChange={handleInputChange}
+                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white appearance-none focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                        >
+                                            <option value="" disabled className="bg-zinc-900">Select...</option>
+                                            <option value="trade-ready" className="bg-zinc-900">Trade-Ready Setup ($1,900)</option>
+                                            <option value="core" className="bg-zinc-900">Local Jobs Engine ($3,600)</option>
+                                            <option value="growth" className="bg-zinc-900">Growth System (From $6,500)</option>
+                                            <option value="unsure" className="bg-zinc-900">Unsure / Need Advice</option>
+                                        </select>
+                                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
+                                    </div>
+                                </div>
+
+                                {/* Compact Radios - 2 Columns */}
+                                <div className="space-y-1">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Current Situation</label>
+                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                                        {[
+                                            "I want more consistent enquiries",
+                                            "I want to look more professional",
+                                            "I’m missing calls / enquiries",
+                                            "I’m ready to grow the business"
+                                        ].map((option) => (
+                                            <label key={option} className="flex items-center gap-2 p-2 border border-white/5 bg-white/5 rounded-sm cursor-pointer hover:border-white/20 transition-colors h-full">
+                                                <input
+                                                    type="radio"
+                                                    name="situation"
+                                                    value={option}
+                                                    checked={formData.situation === option}
+                                                    onChange={handleInputChange}
+                                                    className="accent-safety-orange w-3 h-3 flex-shrink-0"
+                                                />
+                                                <span className="text-xs font-bold text-white/80 leading-tight">{option}</span>
+                                            </label>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Already have a website?</label>
+                                        <div className="flex flex-col gap-1">
+                                            {["Yes", "No", "Outdated"].map((option) => (
+                                                <label key={option} className="flex items-center gap-2 cursor-pointer group">
+                                                    <div className={`w-3 h-3 rounded-full border border-white/20 flex items-center justify-center group-hover:border-safety-orange transition-colors ${formData.hasWebsite === option ? 'border-safety-orange' : ''}`}>
+                                                        {formData.hasWebsite === option && <div className="w-1.5 h-1.5 bg-safety-orange rounded-full" />}
+                                                    </div>
+                                                    <input
+                                                        type="radio"
+                                                        name="hasWebsite"
+                                                        value={option}
+                                                        checked={formData.hasWebsite === option}
+                                                        onChange={handleInputChange}
+                                                        className="hidden"
+                                                    />
+                                                    <span className="text-xs font-bold text-white/60 group-hover:text-white transition-colors">{option}</span>
+                                                </label>
+                                            ))}
+                                        </div>
+                                        {formData.hasWebsite === 'Yes' && (
+                                            <div className="mt-2">
+                                                <input
+                                                    type="url"
+                                                    name="websiteLink"
+                                                    value={formData.websiteLink}
+                                                    onChange={handleInputChange}
+                                                    className="w-full bg-white/5 border border-white/10 p-2 text-xs text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                                    placeholder="Paste website link..."
+                                                />
+                                            </div>
+                                        )}
+                                    </div>
+                                    <div className="space-y-1">
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Ready to Invest?</label>
+                                        <div className="flex flex-col gap-1">
+                                            {["Yes", "Possibly"].map((option) => (
+                                                <label key={option} className="flex items-center gap-2 cursor-pointer group">
+                                                    <div className={`w-3 h-3 rounded-full border border-white/20 flex items-center justify-center group-hover:border-safety-orange transition-colors ${formData.readyToInvest === option ? 'border-safety-orange' : ''}`}>
+                                                        {formData.readyToInvest === option && <div className="w-1.5 h-1.5 bg-safety-orange rounded-full" />}
+                                                    </div>
+                                                    <input
+                                                        type="radio"
+                                                        name="readyToInvest"
+                                                        value={option}
+                                                        checked={formData.readyToInvest === option}
+                                                        onChange={handleInputChange}
+                                                        className="hidden"
+                                                    />
+                                                    <span className="text-xs font-bold text-white/60 group-hover:text-white transition-colors">{option}</span>
+                                                </label>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Message / Additional Info */}
+                                <div className="space-y-1">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Message / Additional Info</label>
+                                    <textarea
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleInputChange}
+                                        className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium min-h-[100px]"
+                                        placeholder="Anything else we should know?"
+                                    />
+                                </div>
+
+                                <div className="pt-2">
+                                    <Button
+                                        type="submit"
+                                        disabled={formStatus === 'submitting'}
+                                        className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none py-4 text-base font-black uppercase tracking-widest shadow-lg shadow-safety-orange/20"
+                                    >
+                                        {formStatus === 'submitting' ? 'Submitting...' : 'Let’s Connect'}
+                                    </Button>
+                                    <p className="text-center text-xs uppercase font-bold text-white/30 tracking-widest mt-3">
+                                        We review every submission personally.
+                                    </p>
+                                </div>
+
+                            </form>
+                        </div>
+                    )}
+                </div>
+            </section>
+
+            {/* Footer */}
+            <footer className="bg-black py-20 border-t border-white/10">
+                <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
+                    <div className="flex gap-10 text-xs font-black uppercase tracking-widest text-white/40 order-2 md:order-1">
+                        <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+                        <a href="#contact" className="hover:text-white hover:text-safety-orange transition-colors">Contact Us</a>
+                    </div>
+                    <div className="flex flex-col items-center gap-4 order-1 md:order-2">
+                        <div className="flex items-center gap-2">
+                            <Hammer className="text-safety-orange w-6 h-6" />
+                            <span className="text-2xl font-black uppercase tracking-tighter">YourTradePartner<span className="text-safety-orange">.</span></span>
+                        </div>
+                        <div className="flex flex-col md:flex-row gap-2 md:gap-4 text-xs font-black uppercase tracking-widest text-white/60 items-center">
+                            <a href="tel:0400000000" className="hover:text-safety-orange transition-colors">0400 000 000</a>
+                            <span className="hidden md:inline">•</span>
+                            <a href="mailto:hello@yourtradepartner.com.au" className="hover:text-safety-orange transition-colors">hello@yourtradepartner.com.au</a>
+                        </div>
+                    </div>
+                    <p className="text-[10px] uppercase font-bold tracking-widest text-white/20 order-3 md:order-3">
+                        &copy; 2026 YourTradePartner Australian Operations.
+                    </p>
+                </div>
+            </footer >
+
+            <ChatBot />
+
+        </div >
+    )
+}
+
+export default LandingPage

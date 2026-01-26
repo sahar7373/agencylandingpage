@@ -16,9 +16,12 @@ CORE OFFERINGS:
    - 12-page site, intense SEO, advanced receptionist systems, ads setup (optional).
    - For established trades scaling up.
 
-NEW OFFERS:
-- MISSED JOB REVIEW ($89.99): A 30-min session to find where you're losing money (missed calls, bad follow-up).
-- FREE GUIDE: "Get a Free Guide" available for download to help you understand the system.
+NEW OFFER: "STOP MISSING JOBS" STRATEGY SESSION ($149 - Fully Credited):
+A quick, paid business check to find where enquiries, calls, and confidence are leaking.
+- WHAT WE REVIEW: Website & enquiry flow, call handling, trust signals, system gaps.
+- WHAT YOU GET: 3-5 clear improvement points, priority order, one clear recommendation.
+- PRICE: $149 one-time (fully credited if you move forward with any setup). No lock-in.
+- CTA: "Book Strategy Session" via the "Stop Missing Jobs" button.
 
 KEY STATS & PHILOSOPHY:
 - 78% of homeowners check a website before calling.
@@ -27,8 +30,9 @@ KEY STATS & PHILOSOPHY:
 
 INSTRUCTIONS:
 - STRICT LIMIT: Keep answers UNDER 30 WORDS.
-- DRIVE ACTION: Use CTAs like "Book a Missed Job Review ($89)" or "Check out the Local Jobs Engine."
+- DRIVE ACTION: Use CTAs like "Book a Strategy Session" or "Check out the Local Jobs Engine."
 - TONE: Professional but blunt trade talk. No marketing fluff.
+- DYNAMIC CONTENT: The user's current view content is provided below. Use it to answer specific questions about what's on the page.
 `
 
 const ChatBot = () => {
@@ -46,6 +50,14 @@ const ChatBot = () => {
         }
     }, [messages, isOpen])
 
+    // Auto-open effect
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsOpen(true)
+        }, 2000)
+        return () => clearTimeout(timer)
+    }, [])
+
     const handleSend = async () => {
         if (!input.trim()) return
 
@@ -60,6 +72,16 @@ const ChatBot = () => {
         setInput('')
         setIsLoading(true)
 
+        // Capture current page text logic
+        let pageContent = ""
+        try {
+            // Simple robust scraping: Get visible text from body, ideally confusing parts removed
+            // But for this simple landing page, body.innerText is sufficient and robust
+            pageContent = document.body.innerText.slice(0, 10000) // Limit to avoid token overflow if huge
+        } catch (e) {
+            console.error("Failed to read page content", e)
+        }
+
         try {
             const genAI = new GoogleGenerativeAI(apiKey)
             const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" })
@@ -67,7 +89,7 @@ const ChatBot = () => {
                 history: [
                     {
                         role: "user",
-                        parts: [{ text: `System Context: ${CONTEXT}` }],
+                        parts: [{ text: `System Context: ${CONTEXT}\n\nCURRENT PAGE VISIBLE TEXT:\n${pageContent}` }],
                     },
                     {
                         role: "model",
@@ -94,7 +116,7 @@ const ChatBot = () => {
     }
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 font-sans">
+        <div className="fixed bottom-6 right-6 z-50 font-sans hidden md:block">
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
