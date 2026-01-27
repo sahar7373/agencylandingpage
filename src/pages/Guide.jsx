@@ -1,40 +1,46 @@
 import React from 'react';
-import { Phone, Globe, ShieldAlert, MessageSquare, Briefcase, X, Check, ArrowDown, AlertTriangle, Hammer } from 'lucide-react';
+import { X, Check, ArrowDown, AlertTriangle, Hammer } from 'lucide-react';
 import { Button } from '../components/ui/button';
+
+// GuidePrintable: A print-optimized version of the Guide content.
+// Changes from Guide.jsx:
+// - Removed mobile sticky footer.
+// - Added specific print styles to ensure background colors and text colors are preserved.
+// - ensured container width is optimal for printing.
 
 const Guide = () => {
     return (
-        // CANVAS: Deep Charcoal background for contrast & premium feel
+        // CANVAS: Deep Charcoal background, forced print settings
         <div className="min-h-screen bg-construction-charcoal text-white font-sans flex justify-center py-8 px-4 md:px-0 print:bg-construction-charcoal print:text-white print:p-0 print:m-0" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
 
             {/* ARTBOARD: Max width restricted for optimal reading length (approx 700px) */}
-            <div className="w-full max-w-[700px] flex flex-col gap-6">
+            <div className="w-full max-w-[700px] flex flex-col gap-6 print:w-full print:max-w-none">
 
                 {/* --- BRANDING --- */}
-                <div className="flex flex-col md:flex-row justify-between items-center pb-2">
-                    <a href="/" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
-                        <Hammer className="text-safety-orange w-5 h-5 md:w-6 md:h-6" />
-                        <span className="font-black uppercase tracking-tighter text-xl text-white">
+                <div className="flex flex-col items-center pb-6 gap-4">
+                    <a href="https://yourtradepartner.com.au" className="flex items-center gap-2 hover:opacity-80 transition-opacity text-decoration-none">
+                        <Hammer className="text-safety-orange w-6 h-6" />
+                        <span className="font-black uppercase tracking-tighter text-2xl text-white">
                             YourTradePartner<span className="text-safety-orange">.</span>
                         </span>
                     </a>
-                    <div className="flex flex-col md:flex-row gap-1 md:gap-4 text-xs font-bold text-gray-500 mt-2 md:mt-0 text-center md:text-right uppercase tracking-wider">
-                        <span>0451 044 751</span>
-                        <span className="hidden md:inline text-safety-orange">•</span>
-                        <span>hello@yourtradepartner.com.au</span>
-                        <span className="hidden md:inline text-safety-orange">•</span>
-                        <span>Adelaide, Australia</span>
+                    <div className="flex flex-col md:flex-row gap-3 md:gap-4 text-[10px] md:text-xs font-bold text-gray-400 text-center uppercase tracking-widest leading-relaxed items-center w-full justify-center">
+                        <a href="tel:0451044751" className="hover:text-safety-orange transition-colors whitespace-nowrap">0451 044 751</a>
+                        <span className="hidden md:inline text-safety-orange select-none">•</span>
+                        <a href="mailto:hello@yourtradepartner.com.au" className="hover:text-safety-orange transition-colors break-all text-center">hello@yourtradepartner.com.au</a>
+                        <span className="hidden md:inline text-safety-orange select-none">•</span>
+                        <span className="whitespace-nowrap">Adelaide, Australia</span>
                     </div>
                 </div>
 
                 {/* --- HEADER BLOCK --- */}
-                <header className="bg-construction-charcoal p-8 md:p-10 rounded-2xl border-l-8 border-safety-orange shadow-lg break-inside-avoid">
+                <header className="bg-construction-charcoal p-8 md:p-10 rounded-2xl border-l-8 border-safety-orange shadow-lg break-inside-avoid print:break-inside-avoid">
                     <div className="flex items-center gap-3 text-safety-orange mb-4">
                         <AlertTriangle className="w-5 h-5" />
                         <span className="text-xs font-black uppercase tracking-widest">Crucial Insight</span>
                     </div>
 
-                    <h1 className="text-3xl md:text-5xl font-black uppercase leading-[1.1] mb-4">
+                    <h1 className="text-3xl md:text-5xl font-black uppercase leading-[1.1] mb-4 text-white">
                         What Customers <br />
                         <span className="text-white opacity-40">Don’t Tell Trades</span> <br />
                         Before Moving On
@@ -47,7 +53,7 @@ const Guide = () => {
 
 
                 {/* --- SECTION 1: THE LEAK --- */}
-                <div className="bg-white/5 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden group border border-red-500/20 break-inside-avoid">
+                <div className="bg-white/5 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden group border border-red-500/20 break-inside-avoid print:break-inside-avoid">
                     {/* Number Watermark */}
                     <div className="absolute top-0 right-0 p-6 opacity-5 font-black text-8xl text-red-500 leading-none select-none">1</div>
 
@@ -87,7 +93,7 @@ const Guide = () => {
 
 
                 {/* --- CONNECTOR ARROW --- */}
-                <div className="flex justify-center -my-3 z-10">
+                <div className="flex justify-center -my-3 z-10 break-inside-avoid print:break-inside-avoid">
                     <div className="bg-construction-charcoal p-2 rounded-full border border-white/5">
                         <ArrowDown className="w-5 h-5 text-gray-600" />
                     </div>
@@ -95,7 +101,7 @@ const Guide = () => {
 
 
                 {/* --- SECTION 2: THE TRUTH --- */}
-                <div className="bg-white/5 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden border border-safety-orange break-inside-avoid">
+                <div className="bg-white/5 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden border border-safety-orange break-inside-avoid print:break-inside-avoid">
                     <div className="absolute top-0 right-0 p-6 opacity-5 font-black text-8xl text-safety-orange leading-none select-none">2</div>
 
                     <div className="relative z-10">
@@ -132,7 +138,7 @@ const Guide = () => {
 
 
                 {/* --- CONNECTOR ARROW --- */}
-                <div className="flex justify-center -my-3 z-10">
+                <div className="flex justify-center -my-3 z-10 break-inside-avoid print:break-inside-avoid">
                     <div className="bg-construction-charcoal p-2 rounded-full border border-white/5">
                         <ArrowDown className="w-5 h-5 text-gray-600" />
                     </div>
@@ -140,7 +146,7 @@ const Guide = () => {
 
 
                 {/* --- SECTION 3: THE FIX --- */}
-                <div className="bg-white/5 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden border border-green-500/20 break-inside-avoid">
+                <div className="bg-white/5 rounded-2xl p-8 md:p-10 shadow-lg relative overflow-hidden border border-green-500/20 break-inside-avoid print:break-inside-avoid">
                     <div className="absolute top-0 right-0 p-6 opacity-5 font-black text-8xl text-green-500 leading-none select-none">3</div>
 
                     <div className="relative z-10">
@@ -182,7 +188,7 @@ const Guide = () => {
 
 
                 {/* --- FOOTER CTA --- */}
-                <footer className="text-center pt-8 pb-12 px-6 break-inside-avoid">
+                <footer className="text-center pt-8 pb-12 px-6 break-inside-avoid print:break-inside-avoid">
                     <p className="text-lg md:text-xl font-bold text-white mb-2">
                         This isn’t marketing hype.
                     </p>
@@ -190,7 +196,7 @@ const Guide = () => {
                         It’s how customers choose trades today.
                     </p>
 
-                    <a href="tel:0451044751">
+                    <a href="tel:0451044751" className="inline-block">
                         <Button className="w-full md:w-auto bg-white hover:bg-gray-200 text-black font-black uppercase tracking-widest text-sm px-10 py-5 h-auto rounded-full shadow-xl mb-12">
                             Reach Out!
                         </Button>
@@ -202,20 +208,6 @@ const Guide = () => {
                         </p>
                     </div>
                 </footer>
-
-                {/* MOBILE STICKY FOOTER (Thumb Zone) */}
-                <div className="fixed bottom-0 left-0 w-full bg-construction-charcoal border-t border-white/10 z-50 md:hidden p-4 flex gap-3 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-                    <a href="tel:0451044751" className="flex-1">
-                        <Button className="w-full h-12 bg-white text-black hover:bg-white/90 font-black uppercase tracking-widest rounded-none border border-white/20">
-                            Call Now
-                        </Button>
-                    </a>
-                    <a href="mailto:hello@yourtradepartner.com.au" className="flex-1">
-                        <Button className="w-full h-12 bg-safety-orange hover:bg-safety-orange-hover text-white font-black uppercase tracking-widest rounded-none">
-                            Email Us
-                        </Button>
-                    </a>
-                </div>
 
             </div>
         </div>

@@ -97,7 +97,7 @@ const MissedJobReviewModal = ({ isOpen, onClose }) => {
                             {/* Price */}
                             <div className="text-center md:text-left">
                                 <span className="text-xs font-bold uppercase tracking-widest text-white/40 block mb-1">One-time Investment</span>
-                                <div className="text-4xl font-black uppercase text-white mb-3">$149</div>
+                                <div className="text-4xl font-black uppercase text-white mb-3">$149 <span className="text-lg">+ GST</span></div>
                                 <div className="space-y-1">
                                     <p className="text-xs font-bold text-green-500 flex items-center justify-center md:justify-start gap-2">
                                         <CheckCircle2 className="w-3 h-3" /> Fully credited if you proceed

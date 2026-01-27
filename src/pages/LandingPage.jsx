@@ -14,6 +14,7 @@ import {
     Smartphone,
     Check,
     AlertCircle,
+    AlertTriangle,
     XCircle,
     TrendingUp,
     Target,
@@ -21,7 +22,8 @@ import {
     ChevronDown,
     ChevronUp,
     Menu,
-    X
+    X,
+    Calculator
 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -44,7 +46,8 @@ function LandingPage() {
     const [isPrivacyModalOpen, setIsPrivacyModalOpen] = React.useState(false)
     const [isTermsModalOpen, setIsTermsModalOpen] = React.useState(false)
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-    const [expandedPackage, setExpandedPackage] = React.useState(null) // null = all collapsed on mobile
+    const [expandedPackages, setExpandedPackages] = React.useState([2]); // Default Package 2 open
+    const [pricingVariesOpen, setPricingVariesOpen] = React.useState(false);
 
     // Contact Form State
     const [formStatus, setFormStatus] = React.useState('idle') // idle, submitting, success
@@ -67,6 +70,14 @@ function LandingPage() {
 
     const toggleFaq = (index) => {
         setOpenFaq(openFaq === index ? null : index)
+    }
+
+    const togglePackage = (id) => {
+        setExpandedPackages(prev =>
+            prev.includes(id)
+                ? prev.filter(p => p !== id)
+                : [...prev, id]
+        )
     }
 
     const handleInputChange = (e) => {
@@ -666,59 +677,54 @@ function LandingPage() {
             {/* NEW SECTION: WHO THIS IS FOR */}
             <section className="py-24 md:py-32 border-b border-white/5">
                 <div className="container mx-auto px-6">
-                    <div className="max-w-6xl mx-auto">
-                        <div className="text-center mb-16">
-                            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black uppercase leading-[0.9] tracking-tighter italic mb-6">
-                                Stop losing jobs <br />
-                                to <span className="text-safety-orange">competitors</span> <br />
-                                with worse skills.
-                            </h2></div>
-
-                        <div className="grid md:grid-cols-2 gap-0 border border-white/10">
-                            <div className="p-12 md:p-16 border-b md:border-b-0 md:border-r border-white/10">
-                                <div className="flex items-center gap-4 mb-10">
-                                    <Target className="text-safety-orange w-10 h-10" />
-                                    <h3 className="text-3xl font-black uppercase italic">This IS for trades who:</h3>
-                                </div>
-                                <ul className="space-y-6">
-                                    {[
-                                        "Want more qualified enquiries",
-                                        "Are tired of explaining themselves to customers",
-                                        "Want systems that work without babysitting",
-                                        "Care about how their business looks long-term"
-                                    ].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-4">
-                                            <CheckCircle2 className="text-safety-orange w-6 h-6 flex-shrink-0" />
-                                            <span className="text-xl font-bold text-white">{item}</span>
-                                        </div>
-                                    ))}
-                                </ul>
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-safety-orange/10 border border-safety-orange/20 text-safety-orange mb-6">
+                                <AlertTriangle className="w-4 h-4" />
+                                <span className="text-xs font-black uppercase tracking-widest">Reality Check</span>
                             </div>
+                            <h2 className="text-3xl md:text-5xl font-black uppercase leading-tight italic mb-6 text-white">
+                                This doesn’t stay neutral if you wait. <br />
+                                <span className="text-safety-orange">It quietly gets worse.</span>
+                            </h2>
+                        </div>
 
-                            <div className="p-12 md:p-16 bg-white/5">
-                                <div className="flex items-center gap-4 mb-10">
-                                    <XCircle className="text-white/20 w-10 h-10" />
-                                    <h3 className="text-3xl font-black uppercase italic text-white/40">This is NOT for:</h3>
-                                </div>
-                                <ul className="space-y-6">
-                                    {[
-                                        "People who want unlimited changes",
-                                        "Trades who don’t answer their phone",
-                                        "Anyone looking for the cheapest option"
-                                    ].map((item, i) => (
-                                        <div key={i} className="flex items-center gap-4">
-                                            <XCircle className="text-white/20 w-6 h-6 flex-shrink-0" />
-                                            <span className="text-xl font-bold text-white/40">{item}</span>
-                                        </div>
-                                    ))}
-                                </ul>
+                        <div className="bg-white/5 border border-white/10 p-8 md:p-12 rounded-sm relative overflow-hidden">
+                            {/* Background pattern */}
+                            <div className="absolute top-0 right-0 p-32 bg-safety-orange/5 blur-3xl rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
+
+                            <h3 className="text-xl font-black uppercase text-white mb-6 relative z-10">Every week you delay:</h3>
+                            <ul className="space-y-4 mb-10 relative z-10">
+                                {[
+                                    "Missed calls don’t magically come back",
+                                    "Competitors keep showing up first",
+                                    "Customers choose whoever feels easier to trust in the moment"
+                                ].map((item, i) => (
+                                    <li key={i} className="flex items-start gap-4">
+                                        <XCircle className="text-safety-orange w-6 h-6 flex-shrink-0 mt-0.5" />
+                                        <span className="text-lg font-bold text-white/80">{item}</span>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div className="space-y-6 text-lg font-medium text-white/60 relative z-10 border-t border-white/10 pt-8">
+                                <p>
+                                    <span className="text-white font-bold">Nothing breaks overnight.</span> But the gap between who gets the call and who doesn’t widens quietly.
+                                </p>
+                                <p>
+                                    Most established trades don’t realise there’s a problem until demand slows, enquiries dry up, or price pressure starts.
+                                </p>
+                                <p className="text-safety-orange font-bold italic flex items-center gap-2">
+                                    <AlertTriangle className="w-5 h-5" />
+                                    By then, fixing it costs more — and takes longer.
+                                </p>
                             </div>
                         </div>
 
-                        <div className="text-center mt-16">
-                            <p className="text-3xl md:text-4xl font-black italic uppercase">
-                                If you don’t want to make more money, <br />
-                                <span className="text-white/40 decoration-white/20 line-through decoration-4">this won’t help you.</span>
+                        <div className="text-center mt-12">
+                            <p className="text-xl md:text-2xl font-black uppercase tracking-wide text-white">
+                                The Growth System exists for trades who want to <br className="hidden md:block" />
+                                <span className="text-safety-orange underline decoration-safety-orange/30 underline-offset-4">fix this once</span> — not patch it later.
                             </p>
                         </div>
                     </div>
@@ -735,13 +741,13 @@ function LandingPage() {
                         <p className="text-white/40 font-black uppercase tracking-widest italic">One-time setup + simple partnership structure · No confusing monthly retainers</p>
                     </div>
 
-                    <div className="grid lg:grid-cols-3 gap-8 items-start">
+                    <div className="grid lg:grid-cols-3 gap-8 items-start mt-2.5">
 
                         {/* PACKAGE 1 */}
                         <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
                             <CardHeader
                                 className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
-                                onClick={() => setExpandedPackage(expandedPackage === 1 ? null : 1)}
+                                onClick={() => togglePackage(1)}
                             >
                                 <div className="flex justify-between items-start">
                                     <div>
@@ -751,25 +757,24 @@ function LandingPage() {
                                         <p className="text-xs font-black uppercase tracking-widest text-white/40 mt-2">+ $499/year partnership</p>
                                     </div>
                                     <div className="md:hidden mt-2">
-                                        {expandedPackage === 1 ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
+                                        {expandedPackages.includes(1) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
                                     </div>
                                 </div>
                             </CardHeader>
-                            <div className={`${expandedPackage === 1 ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
+                            <div className={`${expandedPackages.includes(1) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
                                 <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
                                     <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">Best for solo operators & small crews</p>
 
                                     {/* Website Inclusions */}
                                     <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
-                                        <div className="flex items-center gap-2 mb-3">
+                                        <div className="flex items-center gap-2 mb-2">
                                             <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
-                                            <p className="text-sm font-black uppercase text-white">3-Page Website Included</p>
+                                            <p className="text-sm font-black uppercase text-white">Website</p>
                                         </div>
-                                        <ul className="space-y-2 pl-4 border-l border-white/10">
-                                            <li className="text-xs font-bold text-white/60">Home (Services + Trust + Contact)</li>
-                                            <li className="text-xs font-bold text-white/60">Project Showcase</li>
-                                            <li className="text-xs font-bold text-white/60">Contact / Quote Page</li>
-                                        </ul>
+                                        <div className="pl-4 border-l border-white/10 space-y-1">
+                                            <p className="text-sm font-bold text-white uppercase">3-page website included</p>
+                                            <p className="text-xs text-white/50">(Home, Services, Project Showcase, Contact)</p>
+                                        </div>
                                     </div>
 
                                     <div className="space-y-4">
@@ -803,107 +808,33 @@ function LandingPage() {
                             </div>
                         </Card>
 
-                        {/* PACKAGE 2 */}
+                        {/* PACKAGE 3 (Highlighted Middle) */}
                         <Card className="bg-white/5 border-4 border-safety-orange rounded-none h-full flex flex-col relative scale-105 z-10 shadow-2xl shadow-safety-orange/10">
                             <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-safety-orange text-white px-4 py-1 text-[10px] font-black uppercase tracking-widest whitespace-nowrap italic">
                                 Most Popular
                             </div>
                             <CardHeader
                                 className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
-                                onClick={() => setExpandedPackage(expandedPackage === 2 ? null : 2)}
-                            >
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 2: Core</CardTitle>
-                                        <div className="text-xl font-black uppercase mb-4">Local Jobs Engine</div>
-                                        <div className="text-3xl font-black italic text-safety-orange">$3,600 <span className="text-sm not-italic text-white/40">+ GST</span></div>
-                                        <div className="mt-2">
-                                            <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $399 / quarter</p>
-                                            <p className="text-[10px] font-bold text-white/20">(Reviewed annually, subject to AI usage & scope)</p>
-                                        </div>
-                                    </div>
-                                    <div className="md:hidden mt-2">
-                                        {expandedPackage === 2 ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
-                                    </div>
-                                </div>
-                            </CardHeader>
-                            <div className={`${expandedPackage === 2 ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
-                                <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
-                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">For trades who want more enquiries without more admin</p>
-
-                                    {/* Website Inclusions */}
-                                    <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
-                                            <p className="text-sm font-black uppercase text-white">6-Page Website Included</p>
-                                        </div>
-                                        <ul className="grid grid-cols-2 gap-y-2 gap-x-4 pl-4 border-l border-white/10">
-                                            <li className="text-xs font-bold text-white/60">Home</li>
-                                            <li className="text-xs font-bold text-white/60">Project Showcase</li>
-                                            <li className="text-xs font-bold text-white/60">Services</li>
-                                            <li className="text-xs font-bold text-white/60">Service Area</li>
-                                            <li className="text-xs font-bold text-white/60">About / Trust</li>
-                                            <li className="text-xs font-bold text-white/60">Contact / Quote</li>
-                                        </ul>
-                                    </div>
-
-                                    <div className="space-y-4">
-                                        <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-2">Everything in Trade-Ready, plus:</p>
-                                        {[
-                                            "Service & suburb pages designed to convert searches into calls",
-                                            "Enquiry tracking so leads don’t get lost",
-                                            "AI Voice Assistant setup (captures missed calls & routes them)",
-                                            "Semi-custom branded trade templates (SWMS / reports)",
-                                            "Ongoing updates & support within scope"
-                                        ].map((item, i) => (
-                                            <div key={i} className="flex gap-3 text-sm font-bold uppercase tracking-tight">
-                                                <Check className="text-safety-orange w-5 h-5 flex-shrink-0" />
-                                                <span>{item}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                                <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
-                                    <div className="bg-safety-orange/20 p-4 text-xs font-black uppercase tracking-widest text-center italic w-full text-safety-orange">
-                                        "You miss fewer calls, look more established, and turn attention into booked work."
-                                    </div>
-                                    <a href="#contact" className="w-full" onClick={() => {
-                                        ReactPixel.track('AddToCart', { content_name: 'Package 2: Local Jobs Engine', value: 3600, currency: 'AUD' });
-                                        ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 2", value: 3600 });
-                                    }}>
-                                        <Button className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none h-12 font-black uppercase tracking-widest">
-                                            Get The Jobs Engine Ready
-                                        </Button>
-                                    </a>
-                                </CardFooter>
-                            </div>
-                        </Card>
-
-                        {/* PACKAGE 3 */}
-                        {/* PACKAGE 3 */}
-                        <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
-                            <CardHeader
-                                className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
-                                onClick={() => setExpandedPackage(expandedPackage === 3 ? null : 3)}
+                                onClick={() => togglePackage(3)}
                             >
                                 <div className="flex justify-between items-start">
                                     <div>
                                         <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 3</CardTitle>
                                         <div className="text-xl font-black uppercase mb-4">Growth System</div>
-                                        <div className="text-3xl font-black italic text-safety-orange">From $6,500 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                        <div className="text-[35px] font-black italic text-safety-orange">From $6,500 <span className="text-sm not-italic text-white/40">+ GST</span></div>
                                         <div className="mt-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
-                                            (Most projects land between $6,500 – $12,000)
+                                            (Most projects land between $7,500 – $12,000)
                                         </div>
                                         <div className="mt-2">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Ongoing partnership quoted based on your requirements</p>
                                         </div>
                                     </div>
                                     <div className="md:hidden mt-2">
-                                        {expandedPackage === 3 ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
+                                        {expandedPackages.includes(3) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
                                     </div>
                                 </div>
                             </CardHeader>
-                            <div className={`${expandedPackage === 3 ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
+                            <div className={`${expandedPackages.includes(3) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
                                 <CardContent className="p-5 md:p-6 space-y-6 flex-grow">
                                     <p className="text-xs font-black uppercase tracking-widest text-safety-orange">
                                         Best for established trades who want consistent enquiries and long-term growth.
@@ -913,9 +844,12 @@ function LandingPage() {
                                         <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
                                             <div className="flex items-center gap-2 mb-2">
                                                 <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
-                                                <p className="text-sm font-black uppercase text-white">Website foundation: Up to 6 pages included</p>
+                                                <p className="text-sm font-black uppercase text-white">Website</p>
                                             </div>
-                                            <p className="text-xs font-bold text-white/40 pl-4 border-l border-white/10 italic">Additional pages: + $250–$400 per page</p>
+                                            <div className="pl-4 border-l border-white/10 space-y-1">
+                                                <p className="text-sm font-bold text-white uppercase">Up to 7 pages included</p>
+                                                <p className="text-xs text-white/50">(Additional pages: + $250–$400 per page)</p>
+                                            </div>
                                         </div>
 
                                         <div>
@@ -924,12 +858,31 @@ function LandingPage() {
                                                 {[
                                                     "EXTRA SERVICE & SUBURB PAGES BUILT AROUND REAL LOCAL SEARCHES",
                                                     "SETUP DESIGNED TO HELP YOU SHOW UP MORE OFTEN WHEN PEOPLE ARE LOOKING",
-                                                    "AFTER-HOURS, MISSED-CALL AND RECEPTIONIST HANDLING SETUP",
+                                                    {
+                                                        text: "AFTER-HOURS, MISSED-CALL AND RECEPTIONIST HANDLING SETUP",
+                                                        subItems: [
+                                                            "HANDLES MULTIPLE CALLERS AT THE SAME TIME (NO HOLD, NO VOICEMAIL)",
+                                                            "EVERY CALL ANSWERED, EVEN WHEN YOU’RE ALREADY BUSY"
+                                                        ],
+                                                    },
                                                     "ENQUIRIES ROUTED SO NOTHING SLIPS THROUGH THE CRACKS",
+                                                    "LINKEDIN PROFILE SETUP"
                                                 ].map((item, i) => (
                                                     <li key={i} className="flex items-start gap-3 text-sm font-bold text-white/80">
                                                         <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                        {item}
+                                                        {typeof item === 'string' ? item : (
+                                                            <div>
+                                                                {item.text}
+                                                                {item.subItems && (
+                                                                    <ul className="pl-4 mt-1 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                                        {item.subItems.map((sub, k) => <li key={k}>{sub}</li>)}
+                                                                    </ul>
+                                                                )}
+                                                                {item.note && (
+                                                                    <p className="text-[10px] text-white/40 font-normal mt-1 italic leading-relaxed">{item.note}</p>
+                                                                )}
+                                                            </div>
+                                                        )}
                                                     </li>
                                                 ))}
 
@@ -969,19 +922,140 @@ function LandingPage() {
                                     </div>
                                 </CardContent>
                                 <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
-                                    <div className="bg-white/10 p-4 border border-white/5">
-                                        <p className="text-xs font-black uppercase text-white mb-2">Why pricing varies</p>
-                                        <p className="text-[10px] uppercase font-bold text-white/40 leading-relaxed">
-                                            Not every trade needs the same setup. Pricing depends on how many pages, locations, promotions, and systems are required to get results.
-                                        </p>
-                                        <p className="text-[10px] uppercase font-bold text-white/40 mt-2 italic">We scope this before anything is built — no surprises.</p>
+                                    <div
+                                        className="bg-white/10 p-4 border border-white/5 cursor-pointer hover:bg-white/15 transition-colors"
+                                        onClick={() => setPricingVariesOpen(!pricingVariesOpen)}
+                                    >
+                                        <div className="flex justify-between items-center mb-2">
+                                            <p className="text-xs font-black uppercase text-white">Why pricing varies</p>
+                                            {pricingVariesOpen ? <ChevronUp className="w-4 h-4 text-white/60" /> : <ChevronDown className="w-4 h-4 text-white/60" />}
+                                        </div>
+
+                                        {pricingVariesOpen && (
+                                            <>
+                                                <p className="text-[10px] uppercase font-bold text-white/40 leading-relaxed animate-in fade-in slide-in-from-top-1 duration-200">
+                                                    Not every trade needs the same setup. Pricing depends on how many pages, locations, promotions, and systems are required to get results.
+                                                    <br /><br />
+                                                    - Receptionist usage is billed separately based on call volume. We set this up to be cost-effective and scale only when needed.
+                                                </p>
+                                                <p className="text-[10px] uppercase font-bold text-white/40 mt-2 italic animate-in fade-in slide-in-from-top-1 duration-200 delay-75">We scope this before anything is built — no surprises.</p>
+                                            </>
+                                        )}
                                     </div>
                                     <a href="#contact" className="w-full" onClick={() => {
-                                        ReactPixel.track('AddToCart', { content_name: 'Package 3: Growth System', value: 6500, currency: 'AUD' });
-                                        ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 3", value: 6500 });
+                                        ReactPixel.track('AddToCart', { content_name: 'Package 3: Growth System', value: 7500, currency: 'AUD' });
+                                        ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 3", value: 7500 });
+                                    }}>
+                                        <Button className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none h-12 font-black uppercase tracking-widest">
+                                            Apply for Growth System
+                                        </Button>
+                                    </a>
+                                </CardFooter>
+                            </div>
+                        </Card>
+
+                        {/* PACKAGE 2 (Standard Right) */}
+                        <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
+                            <CardHeader
+                                className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
+                                onClick={() => togglePackage(2)}
+                            >
+                                <div className="flex justify-between items-start">
+                                    <div>
+                                        <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">PACKAGE 2</CardTitle>
+                                        <div className="text-xl font-black uppercase mb-4">LOCAL JOBS ENGINE</div>
+                                        <div className="text-3xl font-black italic text-safety-orange">$3,600 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                        <div className="mt-2">
+                                            <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $399 / quarter</p>
+                                            <p className="text-[10px] font-bold text-white/20">(Reviewed annually, subject to AI usage & scope)</p>
+                                        </div>
+                                    </div>
+                                    <div className="md:hidden mt-2">
+                                        {expandedPackages.includes(2) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
+                                    </div>
+                                </div>
+                            </CardHeader>
+                            <div className={`${expandedPackages.includes(2) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
+                                <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
+                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">Don’t miss enquiries. Turn interest into calls.</p>
+
+                                    {/* Inclusions List - Grouped */}
+                                    <div className="space-y-5">
+                                        {/* Website */}
+                                        <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                                            <div className="flex items-center gap-2 mb-2">
+                                                <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
+                                                <p className="text-sm font-black uppercase text-white">Website</p>
+                                            </div>
+                                            <div className="pl-4 border-l border-white/10 space-y-1">
+                                                <p className="text-sm font-bold text-white uppercase">6-page website included</p>
+                                                <p className="text-xs text-white/50">(Home, Services, About/Trust, Service Area, Projects, Contact)</p>
+                                            </div>
+                                        </div>
+
+                                        {/* Other Sections */}
+                                        {[
+                                            {
+                                                title: "Lead capture",
+                                                items: [
+                                                    "Contact & quote forms",
+                                                    "Enquiry tracking (nothing gets lost)"
+                                                ]
+                                            },
+                                            {
+                                                title: "Call handling",
+                                                items: [
+                                                    { text: <span>Website assistance chatbot - <span className="text-[10px] text-white/50 uppercase">(Priced separately for customised chatbot to book the appointments)</span></span> }
+                                                ]
+                                            },
+                                            {
+                                                title: "Report templates",
+                                                items: [
+                                                    "Custom branded trade templates (SWMS / reports)"
+                                                ]
+                                            },
+                                            {
+                                                title: "Local setup",
+                                                items: [
+                                                    "Google Business Profile setup",
+                                                    "Service & suburb pages (basic)"
+                                                ]
+                                            },
+                                            {
+                                                title: "Support",
+                                                items: [
+                                                    "Ongoing updates & support (within scope)"
+                                                ]
+                                            }
+                                        ].map((section, i) => (
+                                            <div key={i}>
+                                                <div className="space-y-2">
+                                                    {section.items.map((item, j) => {
+                                                        const isNote = typeof item === 'object' && item.isNote;
+                                                        const content = typeof item === 'object' ? item.text : item;
+
+                                                        return (
+                                                            <div key={j} className={`flex gap-3 text-sm font-bold uppercase tracking-tight ${isNote ? 'pl-7 text-white/50' : ''}`}>
+                                                                {!isNote && <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />}
+                                                                <span>{content}</span>
+                                                            </div>
+                                                        );
+                                                    })}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </CardContent>
+                                <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
+                                    <div className="bg-white/10 p-4 text-xs font-black uppercase tracking-widest text-center italic w-full">
+                                        "You miss fewer calls, look more established, and turn attention into booked work."
+                                    </div>
+                                    <a href="#contact" className="w-full" onClick={() => {
+                                        ReactPixel.track('AddToCart', { content_name: 'Package 2: Local Jobs Engine', value: 3600, currency: 'AUD' });
+                                        ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 2", value: 3600 });
                                     }}>
                                         <Button className="w-full bg-white text-black hover:bg-white/90 rounded-none h-12 font-black uppercase tracking-widest">
-                                            Apply for Growth System
+                                            Get The Jobs Engine Ready
                                         </Button>
                                     </a>
                                 </CardFooter>
@@ -989,16 +1063,82 @@ function LandingPage() {
                         </Card>
                     </div>
                     {/* DISCLAIMER / EXPLANATION SECTION */}
-                    <div className="mt-20 max-w-4xl mx-auto">
-                        <div className="bg-white/5 border border-white/10 p-8 md:p-12 text-center rounded-sm relative overflow-hidden">
-                            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-safety-orange to-transparent opacity-50"></div>
-
-                            <h3 className="text-2xl md:text-3xl font-black uppercase italic mb-6">
-                                Your Website Is Included. <br />
-                                <span className="text-safety-orange">The Partnership Is the Investment.</span>
-                            </h3>
 
 
+                    {/* NEW SECTION: ROI CALCULATOR (Does This Pay For Itself?) */}
+                    <div className="mt-20 max-w-3xl mx-auto">
+                        <div className="bg-zinc-900 border border-white/10 p-8 md:p-12 rounded-sm relative overflow-hidden">
+                            <div className="text-center mb-10">
+                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-500/10 border border-green-500/20 text-green-500 mb-6">
+                                    <Calculator className="w-4 h-4" />
+                                    <span className="text-xs font-black uppercase tracking-widest">ROI Check</span>
+                                </div>
+                                <h3 className="text-2xl md:text-4xl font-black uppercase italic mb-2 text-white">
+                                    Does This Actually Pay for Itself?
+                                </h3>
+                                <p className="text-white/40 font-bold uppercase tracking-widest text-sm">
+                                    A simple numbers check (no fluff)
+                                </p>
+                            </div>
+
+                            <div className="space-y-8 relative z-10">
+                                {/* Calculation Block */}
+                                <div className="bg-black/40 border border-white/5 p-6 md:p-8 rounded-sm space-y-6">
+                                    <div className="space-y-4">
+                                        <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                                            <p className="text-sm font-black uppercase tracking-widest text-white">Growth System setup:</p>
+                                            <p className="text-xl font-black text-white">APPROX. $6,500 <span className="text-sm text-white/40">+ GST</span></p>
+                                        </div>
+                                        <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                                            <p className="text-sm font-black uppercase tracking-widest text-white/60">Average job value:</p>
+                                            <p className="text-xl font-black text-white/60">$1,500–$4,000</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="bg-white/5 p-6 rounded-sm border-l-4 border-safety-orange space-y-2">
+                                        <p className="text-lg font-black uppercase text-white">
+                                            <span className="text-safety-orange">3–5 extra jobs</span> = break even
+                                        </p>
+                                        <p className="text-sm font-bold text-white/60 uppercase tracking-widest">
+                                            Usually within 90 days
+                                        </p>
+                                    </div>
+
+                                    <div className="text-center pt-2">
+                                        <p className="text-lg font-bold text-white/80 leading-relaxed">
+                                            Every missed call or enquiry pushes that further away. <br />
+                                            <span className="text-white font-black italic">The longer you wait, the more work quietly slips to someone else.</span>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Comparison / Need vs Don't Need */}
+                                <div className="grid md:grid-cols-2 gap-8 items-center border-t border-white/10 pt-8">
+                                    <div>
+                                        <p className="text-xs font-black uppercase tracking-widest text-red-500 mb-4">You don’t need:</p>
+                                        <ul className="space-y-2">
+                                            {["More hours", "More stress", "More “leads”"].map((item, i) => (
+                                                <li key={i} className="flex items-center gap-2 text-sm font-bold text-white/40 line-through decoration-red-500/50">
+                                                    <XCircle className="w-4 h-4 text-red-500/50" />
+                                                    {item}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                    <div className="md:text-right">
+                                        <p className="text-lg font-black text-white leading-tight">
+                                            You need a few extra <span className="text-green-500">good jobs</span> that don’t get missed.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* Disclaimer */}
+                                <div className="text-center pt-4">
+                                    <p className="text-[10px] text-white/20 uppercase tracking-widest italic">
+                                        Results vary by trade, location, pricing, and workload. This isn’t a guarantee — it’s a reality check.
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     {/* Free Guide Link - Relocated & ROI Focused */}
@@ -1370,7 +1510,7 @@ function LandingPage() {
                                             <option value="audit" className="bg-zinc-900">Stop Missing Jobs Audit - $149</option>
                                             <option value="trade-ready" className="bg-zinc-900">Trade-Ready Setup ($1,900)</option>
                                             <option value="core" className="bg-zinc-900">Local Jobs Engine ($3,600)</option>
-                                            <option value="growth" className="bg-zinc-900">Growth System (From $6,500)</option>
+                                            <option value="growth" className="bg-zinc-900">Growth System ($7,500)</option>
                                             <option value="unsure" className="bg-zinc-900">Unsure / Need Advice</option>
                                         </select>
                                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
@@ -1502,12 +1642,12 @@ function LandingPage() {
                             <Hammer className="text-safety-orange w-6 h-6" />
                             <span className="text-2xl font-black uppercase tracking-tighter">YourTradePartner<span className="text-safety-orange">.</span></span>
                         </div>
-                        <div className="flex flex-col md:flex-row gap-2 md:gap-4 text-xs font-black uppercase tracking-widest text-white/60 items-center">
-                            <a href="tel:0451044751" className="hover:text-safety-orange transition-colors">0451 044 751</a>
-                            <span className="hidden md:inline">•</span>
-                            <a href="mailto:hello@yourtradepartner.com.au" className="hover:text-safety-orange transition-colors">hello@yourtradepartner.com.au</a>
-                            <span className="hidden md:inline">•</span>
-                            <span>Adelaide, Australia</span>
+                        <div className="flex flex-col md:flex-row gap-3 md:gap-4 text-xs font-black uppercase tracking-widest text-white/60 items-center text-center w-full justify-center">
+                            <a href="tel:0451044751" className="hover:text-safety-orange transition-colors whitespace-nowrap">0451 044 751</a>
+                            <span className="hidden md:inline text-safety-orange select-none">•</span>
+                            <a href="mailto:hello@yourtradepartner.com.au" className="hover:text-safety-orange transition-colors break-all text-center">hello@yourtradepartner.com.au</a>
+                            <span className="hidden md:inline text-safety-orange select-none">•</span>
+                            <span className="whitespace-nowrap">Adelaide, Australia</span>
                         </div>
                     </div>
                     <p className="text-[10px] uppercase font-bold tracking-widest text-white/20 order-3 md:order-3">

@@ -38,6 +38,7 @@ function App() {
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/guide" element={<Guide />} />
+                    <Route path="/guide-pdf" element={<Guide />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </BrowserRouter>
