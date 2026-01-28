@@ -781,7 +781,7 @@ function LandingPage() {
                                         {[
                                             "Domain + hosting included for Year 1",
                                             "Professional business email (no more Gmail)",
-                                            "Google Business Profile set up properly",
+                                            "Google Business Profile set up",
                                             "Business card design (print-ready)",
                                             "Contact & quote forms that send enquiries to you instantly"
                                         ].map((item, i) => (
@@ -1017,7 +1017,6 @@ function LandingPage() {
                                             {
                                                 title: "Local setup",
                                                 items: [
-                                                    "Google Business Profile setup",
                                                     "Service & suburb pages (basic)"
                                                 ]
                                             },
@@ -1152,9 +1151,9 @@ function LandingPage() {
                                 Download the guide to see exactly where trades lose money online.
                             </p>
                             <a
-                                href="/guide.pdf"
+                                href="/Trade_Growth_Guide.pdf"
                                 download
-                                className="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 px-6 py-3 font-black uppercase tracking-widest text-xs transition-colors rounded-none"
+                                className="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 px-6 py-3 font-black uppercase tracking-widest text-xs transition-colors rounded-none cursor-pointer"
                             >
                                 <span className="text-lg">↓</span> Download Free Guide
                             </a>
