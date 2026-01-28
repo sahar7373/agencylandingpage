@@ -12,6 +12,12 @@ const Guide = () => {
     return (
         // CANVAS: Deep Charcoal background, forced print settings
         <div className="min-h-screen bg-construction-charcoal text-white font-sans flex justify-center py-8 px-4 md:px-0 print:bg-construction-charcoal print:text-white print:p-0 print:m-0" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
+            <style>{`
+                @media print {
+                    @page { margin: 0; }
+                    body { margin: 0; background-color: #1a1a1a !important; -webkit-print-color-adjust: exact; }
+                }
+            `}</style>
 
             {/* ARTBOARD: Max width restricted for optimal reading length (approx 700px) */}
             <div className="w-full max-w-[700px] flex flex-col gap-6 print:w-full print:max-w-none">

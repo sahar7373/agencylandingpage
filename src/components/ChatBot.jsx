@@ -26,12 +26,14 @@ A quick, paid business check to find where enquiries, calls, and confidence are 
 KEY STATS & PHILOSOPHY:
 - 78% of homeowners check a website before calling.
 - "We don't sell websites, we build job-winning systems."
-- GUARANTEE: "No lock-in: if you’re not confident after delivery, you can walk away."
+- GUARANTEE: "No lock-in: if you're not confident after delivery, you can walk away."
 
-INSTRUCTIONS:
-- STRICT LIMIT: Keep answers UNDER 30 WORDS.
+CONVERSATIONAL INSTRUCTIONS:
+- GREETINGS: If the user says "hi", "hello", "hey", "good morning", "how are you", "g'day", or similar casual greetings, respond warmly and briefly (e.g., "G'day! Doing well, thanks for asking. What can I help you with today?"). Then naturally transition to offering help.
+- BE HUMAN: Don't jump straight into sales mode. Acknowledge the person first, then guide them.
+- STRICT LIMIT: Keep answers UNDER 40 WORDS.
 - DRIVE ACTION: Use CTAs like "Book a Strategy Session" or "Check out the Local Jobs Engine."
-- TONE: Professional but blunt trade talk. No marketing fluff.
+- TONE: Professional but friendly. Sound like a helpful tradie, not a pushy salesperson.
 - DYNAMIC CONTENT: The user's current view content is provided below. Use it to answer specific questions about what's on the page.
 `
 
@@ -84,7 +86,7 @@ const ChatBot = () => {
 
         try {
             const genAI = new GoogleGenerativeAI(apiKey)
-            const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" })
+            const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" })
             const chat = model.startChat({
                 history: [
                     {
@@ -108,7 +110,8 @@ const ChatBot = () => {
 
             setMessages(prev => [...prev, { role: 'assistant', content: text }])
         } catch (error) {
-            console.error(error)
+            console.error('Chatbot API Error:', error)
+            console.error('Error details:', error.message)
             setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I hit a snag. Try asking differently?" }])
         } finally {
             setIsLoading(false)
@@ -116,18 +119,20 @@ const ChatBot = () => {
     }
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 font-sans hidden md:block">
+        <div className="fixed left-0 top-1/2 -translate-y-1/2 z-50 font-sans">
             {!isOpen && (
                 <button
                     onClick={() => setIsOpen(true)}
-                    className="h-16 w-16 rounded-full bg-safety-orange hover:bg-safety-orange-hover shadow-2xl animate-in fade-in zoom-in duration-300 flex items-center justify-center text-black transition-colors"
+                    className="h-32 w-12 bg-safety-orange hover:bg-safety-orange-hover shadow-2xl flex flex-col items-center justify-center text-white transition-all duration-300 rounded-r-lg gap-2"
+                    style={{ writingMode: 'vertical-rl' }}
                 >
-                    <Hammer className="w-8 h-8" />
+                    <span className="text-xs font-black uppercase tracking-widest rotate-180">Assistant</span>
+                    <Hammer className="w-5 h-5 rotate-180" />
                 </button>
             )}
 
             {isOpen && (
-                <div className="bg-construction-charcoal border border-white/10 w-[350px] md:w-[400px] h-[500px] rounded-lg shadow-2xl flex flex-col animate-in slide-in-from-bottom-5 duration-300 overflow-hidden">
+                <div className="bg-construction-charcoal border-r border-white/10 w-[350px] md:w-[400px] h-[500px] shadow-2xl flex flex-col animate-in slide-in-from-left-5 duration-300 overflow-hidden">
                     {/* Header */}
                     <div className="p-4 bg-safety-orange flex items-center justify-between">
                         <div className="flex items-center gap-2">
