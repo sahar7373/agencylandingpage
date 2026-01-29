@@ -305,7 +305,7 @@ function LandingPage() {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
             <Helmet>
-                <title>YourTradePartner | Digital Growth Systems for Tradies</title>
+                <title>Your Trade Partner | YOURTRADEPARTNER. | Digital Growth Systems</title>
                 <meta name="description" content="We build high-converting websites and automated enquiry systems for Australian trade businesses. Stop missing jobs and start scaling." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/" />
                 <meta name="robots" content="index, follow" />
@@ -324,7 +324,8 @@ function LandingPage() {
                         {
                             "@context": "https://schema.org",
                             "@type": "ProfessionalService",
-                            "name": "YourTradePartner",
+                            "name": "YOURTRADEPARTNER.",
+                            "alternateName": "Your Trade Partner",
                             "description": "Digital growth systems, websites, and automation for Australian trade businesses. Specializing in clear-cut packages for plumbers, electricians, and builders.",
                             "url": "https://yourtradepartner.com.au",
                             "telephone": "0451044751",
