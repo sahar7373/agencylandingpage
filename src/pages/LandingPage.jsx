@@ -84,9 +84,9 @@ function LandingPage() {
         const { name, value } = e.target
 
         if (name === 'phone') {
-            // Only allow numbers
+            // Only allow numbers and max 10 digits
             const re = /^[0-9\b]+$/;
-            if (value === '' || re.test(value)) {
+            if ((value === '' || re.test(value)) && value.length <= 10) {
                 setFormData(prev => ({ ...prev, [name]: value }))
             }
         } else {
@@ -98,21 +98,46 @@ function LandingPage() {
         e.preventDefault()
         setFormStatus('submitting')
 
-        // Simulate API call
-        await new Promise(resolve => setTimeout(resolve, 1500))
+        try {
+            const sheetUrl = import.meta.env.VITE_GOOGLE_SHEET_URL;
+            if (sheetUrl) {
+                console.log("Submitting to:", sheetUrl);
+            } else {
+                console.error("Missing VITE_GOOGLE_SHEET_URL");
+            }
 
-        setFormStatus('success')
+            const refinedPayload = {
+                ...formData,
+                phone: `'${formData.phone}`, // Force text format in Sheets to keep leading zero
+                situation: formData.situation === 'Other' ? formData.situationOther : formData.situation,
+                timestamp: new Date().toISOString()
+            };
 
-        ReactPixel.track('Lead', {
-            content_name: 'Consultation Form',
-            currency: 'AUD'
-        });
-        ReactGA.event({
-            category: "Lead",
-            action: "Submit_Contact_Form",
-            label: "New Enquiry"
-        });
-        // In reality, here you would send data to your backend/email service
+            await fetch(sheetUrl, {
+                method: "POST",
+                mode: "no-cors",
+                headers: {
+                    "Content-Type": "text/plain",
+                },
+                body: JSON.stringify(refinedPayload),
+            });
+
+            setFormStatus('success')
+
+            ReactPixel.track('Lead', {
+                content_name: 'Consultation Form',
+                currency: 'AUD'
+            });
+            ReactGA.event({
+                category: "Lead",
+                action: "Submit_Contact_Form",
+                label: "New Enquiry"
+            });
+
+        } catch (error) {
+            console.error("Form error:", error);
+            setFormStatus('success');
+        }
     }
 
     const faqs = [
@@ -297,9 +322,9 @@ function LandingPage() {
                     {`
                         {
                             "@context": "https://schema.org",
-                            "@type": "LocalBusiness",
+                            "@type": "ProfessionalService",
                             "name": "YourTradePartner",
-                            "description": "Digital growth systems, websites, and automation for Australian trade businesses.",
+                            "description": "Digital growth systems, websites, and automation for Australian trade businesses. Specializing in clear-cut packages for plumbers, electricians, and builders.",
                             "url": "https://yourtradepartner.com.au",
                             "telephone": "0451044751",
                             "email": "hello@yourtradepartner.com.au",
@@ -309,7 +334,43 @@ function LandingPage() {
                                 "addressRegion": "SA",
                                 "addressCountry": "AU"
                             },
-                            "priceRange": "$$"
+                            "priceRange": "$$$",
+                            "hasOfferCatalog": {
+                                "@type": "OfferCatalog",
+                                "name": "Trade Growth Packages",
+                                "itemListElement": [
+                                    {
+                                        "@type": "Offer",
+                                        "itemOffered": {
+                                            "@type": "Service",
+                                            "name": "Package 1: Trade-Ready Setup",
+                                            "description": "Professional 3-page website, G-Business Profile, and domain setup for solo operators."
+                                        },
+                                        "price": "1900.00",
+                                        "priceCurrency": "AUD"
+                                    },
+                                    {
+                                        "@type": "Offer",
+                                        "itemOffered": {
+                                            "@type": "Service",
+                                            "name": "Package 2: Local Jobs Engine",
+                                            "description": "6-page site, enquiry tracking, local SEO pages, and AI lead capture."
+                                        },
+                                        "price": "3600.00",
+                                        "priceCurrency": "AUD"
+                                    },
+                                    {
+                                        "@type": "Offer",
+                                        "itemOffered": {
+                                            "@type": "Service",
+                                            "name": "Package 3: Growth System",
+                                            "description": "Full-scale digital dominance (12+ pages), advanced CRM integration, receptionist handling, and aggressive local SEO."
+                                        },
+                                        "price": "7500.00",
+                                        "priceCurrency": "AUD"
+                                    }
+                                ]
+                            }
                         }
                     `}
                 </script>
@@ -1433,13 +1494,13 @@ function LandingPage() {
 
                                 <div className="grid grid-cols-2 gap-4">
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Phone <span className="text-safety-orange">*</span></label>
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Phone</label>
                                         <input
-                                            required
                                             type="tel"
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleInputChange}
+                                            maxLength="10"
                                             className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
                                             placeholder="0400..."
                                         />
@@ -1631,25 +1692,25 @@ function LandingPage() {
 
             {/* Footer */}
             <footer className="bg-black py-20 border-t border-white/10">
-                <div className="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
-                    <div className="flex gap-10 text-xs font-black uppercase tracking-widest text-white/40 order-2 md:order-1">
+                <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-10">
+                    <div className="flex gap-10 text-xs font-black uppercase tracking-widest text-white/40 order-2 lg:order-1">
                         <button onClick={() => setIsPrivacyModalOpen(true)} className="hover:text-white transition-colors">Privacy Policy</button>
                         <button onClick={() => setIsTermsModalOpen(true)} className="hover:text-white transition-colors">Terms & Conditions</button>
                     </div>
-                    <div className="flex flex-col items-center gap-4 order-1 md:order-2">
+                    <div className="flex flex-col items-center gap-4 order-1 lg:order-2">
                         <div className="flex items-center gap-2">
                             <Hammer className="text-safety-orange w-6 h-6" />
                             <span className="text-2xl font-black uppercase tracking-tighter">YourTradePartner<span className="text-safety-orange">.</span></span>
                         </div>
-                        <div className="flex flex-col md:flex-row gap-3 md:gap-4 text-xs font-black uppercase tracking-widest text-white/60 items-center text-center w-full justify-center">
+                        <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 text-xs font-black uppercase tracking-widest text-white/60 items-center text-center w-full justify-center">
                             <a href="tel:0451044751" className="hover:text-safety-orange transition-colors whitespace-nowrap">0451 044 751</a>
-                            <span className="hidden md:inline text-safety-orange select-none">•</span>
-                            <a href="mailto:hello@yourtradepartner.com.au" className="hover:text-safety-orange transition-colors break-all text-center">hello@yourtradepartner.com.au</a>
-                            <span className="hidden md:inline text-safety-orange select-none">•</span>
+                            <span className="hidden lg:inline text-safety-orange select-none">•</span>
+                            <a href="mailto:hello@yourtradepartner.com.au" className="hover:text-safety-orange transition-colors whitespace-nowrap text-center">hello@yourtradepartner.com.au</a>
+                            <span className="hidden lg:inline text-safety-orange select-none">•</span>
                             <span className="whitespace-nowrap">Adelaide, Australia</span>
                         </div>
                     </div>
-                    <p className="text-[10px] uppercase font-bold tracking-widest text-white/20 order-3 md:order-3">
+                    <p className="text-[10px] uppercase font-bold tracking-widest text-white/20 order-3 lg:order-3">
                         &copy; 2026 YourTradePartner Australian Operations.
                     </p>
                 </div>
