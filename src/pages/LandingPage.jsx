@@ -815,7 +815,7 @@ function LandingPage() {
                                         <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 1</CardTitle>
                                         <div className="text-xl font-black uppercase mb-4">Trade-Ready Online Setup</div>
                                         <div className="text-3xl font-black italic text-safety-orange italic">$1,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
-                                        <p className="text-xs font-black uppercase tracking-widest text-white/40 mt-2">+ $499/year partnership</p>
+                                        <p className="text-xs font-black uppercase tracking-widest text-white/40 mt-2">+ $599/year partnership</p>
                                     </div>
                                     <div className="md:hidden mt-2">
                                         {expandedPackages.includes(1) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
@@ -882,7 +882,7 @@ function LandingPage() {
                                     <div>
                                         <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 3</CardTitle>
                                         <div className="text-xl font-black uppercase mb-4">Growth System</div>
-                                        <div className="text-[35px] font-black italic text-safety-orange">From $6,500 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                        <div className="text-[35px] font-black italic text-safety-orange">From $6,800 <span className="text-sm not-italic text-white/40">+ GST</span></div>
                                         <div className="mt-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
                                             (Most projects land between $7,500 – $12,000)
                                         </div>
@@ -1025,9 +1025,9 @@ function LandingPage() {
                                     <div>
                                         <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">PACKAGE 2</CardTitle>
                                         <div className="text-xl font-black uppercase mb-4">LOCAL JOBS ENGINE</div>
-                                        <div className="text-3xl font-black italic text-safety-orange">$3,600 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                        <div className="text-3xl font-black italic text-safety-orange">$3,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
                                         <div className="mt-2">
-                                            <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $399 / quarter</p>
+                                            <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $449 / quarter</p>
                                             <p className="text-[10px] font-bold text-white/20">(Reviewed annually, subject to AI usage & scope)</p>
                                         </div>
                                     </div>
@@ -1147,7 +1147,7 @@ function LandingPage() {
                                     <div className="space-y-4">
                                         <div className="flex justify-between items-center border-b border-white/10 pb-4">
                                             <p className="text-sm font-black uppercase tracking-widest text-white">Growth System setup:</p>
-                                            <p className="text-xl font-black text-white">APPROX. $6,500 <span className="text-sm text-white/40">+ GST</span></p>
+                                            <p className="text-xl font-black text-white">APPROX. $6,800 <span className="text-sm text-white/40">+ GST</span></p>
                                         </div>
                                         <div className="flex justify-between items-center border-b border-white/10 pb-4">
                                             <p className="text-sm font-black uppercase tracking-widest text-white/60">Average job value:</p>
@@ -1606,8 +1606,8 @@ function LandingPage() {
                                             <option value="" disabled className="bg-zinc-900">Select...</option>
                                             <option value="audit" className="bg-zinc-900">Stop Missing Jobs Audit - $149</option>
                                             <option value="trade-ready" className="bg-zinc-900">Trade-Ready Setup ($1,900)</option>
-                                            <option value="core" className="bg-zinc-900">Local Jobs Engine ($3,600)</option>
-                                            <option value="growth" className="bg-zinc-900">Growth System ($7,500)</option>
+                                            <option value="core" className="bg-zinc-900">Local Jobs Engine ($3,900)</option>
+                                            <option value="growth" className="bg-zinc-900">Growth System ($6,800)</option>
                                             <option value="unsure" className="bg-zinc-900">Unsure / Need Advice</option>
                                         </select>
                                         <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
