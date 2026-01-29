@@ -46,7 +46,7 @@ function LandingPage() {
     const [isPrivacyModalOpen, setIsPrivacyModalOpen] = React.useState(false)
     const [isTermsModalOpen, setIsTermsModalOpen] = React.useState(false)
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-    const [expandedPackages, setExpandedPackages] = React.useState([2]); // Default Package 2 open
+    const [expandedPackages, setExpandedPackages] = React.useState([3]); // Default Package 3 open
     const [pricingVariesOpen, setPricingVariesOpen] = React.useState(false);
 
     // Contact Form State
