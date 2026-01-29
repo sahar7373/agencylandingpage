@@ -4,6 +4,7 @@ import ReactGA from 'react-ga4'
 import { Helmet } from 'react-helmet-async'
 import {
     ArrowRight,
+    ArrowDown,
     CheckCircle2,
     Phone,
     BarChart3,
@@ -445,7 +446,7 @@ function LandingPage() {
                             <span className="text-safety-orange">but customers decide before they call.</span>
                         </h1>
                         <p className="text-xl md:text-3xl text-white/90 font-bold mb-10 leading-tight">
-                            If your website looks outdated or your enquiries go unanswered, the job usually goes to the next trade on Google. We build the system that stops that from happening.
+                            If your website looks outdated or your enquiries go unanswered, the job usually goes to the next trade on Google. We build the system that stops that from happening to you.
                         </p>
 
                         <div className="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 mb-12 rounded-sm md:text-lg">
@@ -492,8 +493,8 @@ function LandingPage() {
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
-                                It’s not a work ethic problem. <br />
-                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">It’s a system problem.</span>
+                                Missing jobs doesn’t feel like a measurable problem — <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">until you look at the numbers.</span>
                             </p>
                         </div>
                     </div>
@@ -634,7 +635,7 @@ function LandingPage() {
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center md:text-left">
                         <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic leading-none">
-                            We don’t sell websites. <br />
+                            We don’t just sell websites. <br />
                             <span className="text-white/20 font-black">We build job-winning systems.</span>
                         </h2>
 
@@ -651,7 +652,7 @@ function LandingPage() {
 
                         <div className="mt-20 p-10 bg-white/5 border-2 border-dashed border-white/10 text-center">
                             <p className="text-2xl md:text-3xl font-black italic uppercase leading-tight">
-                                "No buzzwords. No dashboards you’ll never open. Just systems that work while you’re on the tools."
+                                "Stop losing 3–5 jobs every month before you even talk to the customer."
                             </p>
                         </div>
                     </div>
@@ -1173,24 +1174,7 @@ function LandingPage() {
                                 </div>
 
                                 {/* Comparison / Need vs Don't Need */}
-                                <div className="grid md:grid-cols-2 gap-8 items-center border-t border-white/10 pt-8">
-                                    <div>
-                                        <p className="text-xs font-black uppercase tracking-widest text-red-500 mb-4">You don’t need:</p>
-                                        <ul className="space-y-2">
-                                            {["More hours", "More stress", "More “leads”"].map((item, i) => (
-                                                <li key={i} className="flex items-center gap-2 text-sm font-bold text-white/40 line-through decoration-red-500/50">
-                                                    <XCircle className="w-4 h-4 text-red-500/50" />
-                                                    {item}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                    <div className="md:text-right">
-                                        <p className="text-lg font-black text-white leading-tight">
-                                            You need a few extra <span className="text-green-500">good jobs</span> that don’t get missed.
-                                        </p>
-                                    </div>
-                                </div>
+
 
                                 {/* Disclaimer */}
                                 <div className="text-center pt-4">
@@ -1273,11 +1257,7 @@ function LandingPage() {
                                         </div>
                                     ))}
                                 </div>
-                                <div className="bg-white/5 p-8 border-l-4 border-safety-orange mt-8">
-                                    <p className="text-xl font-black italic text-white/90">
-                                        "We’re not fixing a leak. We’re building the house that stops the rain getting in forever."
-                                    </p>
-                                </div>
+
                             </div>
 
                             {/* Timeline */}
@@ -1320,7 +1300,7 @@ function LandingPage() {
                                                 <TrendingUp className="w-5 h-5 text-black" />
                                             </div>
                                             <h4 className="text-xl font-black uppercase text-white mb-2">Growth Phase</h4>
-                                            <div className="text-xs font-black uppercase tracking-widest text-white/40 mb-4">Months 2–6+</div>
+                                            <div className="text-xs font-black uppercase tracking-widest text-white/40 mb-4">Months 3–6+</div>
                                             <ul className="space-y-2">
                                                 <li className="text-white/70 font-bold text-sm">• Strong local presence</li>
                                                 <li className="text-white/70 font-bold text-sm">• Consistent, higher quality leads</li>
@@ -1436,8 +1416,66 @@ function LandingPage() {
                 </div>
             </section>
 
+            {/* GROWTH SYSTEM EFFECT SECTION */}
+            <section className="py-24 border-b border-white/5 bg-zinc-900 border-t border-white/5 relative overflow-hidden">
+                <div className="absolute inset-0 blueprint-grid opacity-5"></div>
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="max-w-4xl mx-auto">
+                        <div className="text-center mb-12">
+                            <h2 className="text-3xl md:text-5xl font-black uppercase italic mb-6 text-white">
+                                Growth system effect
+                            </h2>
+                        </div>
+
+                        <div className="max-w-3xl mx-auto space-y-8 mb-16">
+                            {/* Sentence 1 */}
+                            <div className="flex items-start md:items-center gap-6">
+                                <div className="bg-safety-orange/10 p-3 rounded-full flex-shrink-0 mt-1 md:mt-0">
+                                    <CheckCircle2 className="w-6 h-6 text-safety-orange" />
+                                </div>
+                                <p className="text-xl md:text-3xl font-bold text-white leading-tight">
+                                    <span className="text-safety-orange font-black">10–30%</span> revenue uplift over 3–6 months.
+                                </p>
+                            </div>
+
+                            {/* Sentence 2 */}
+                            <div className="flex items-start md:items-center gap-6">
+                                <div className="bg-safety-orange/10 p-3 rounded-full flex-shrink-0 mt-1 md:mt-0">
+                                    <CheckCircle2 className="w-6 h-6 text-safety-orange" />
+                                </div>
+                                <p className="text-xl md:text-3xl font-bold text-white leading-tight">
+                                    Often results in <span className="text-safety-orange font-black">3–8</span> extra jobs per month.
+                                </p>
+                            </div>
+
+                            {/* Sentence 3 */}
+                            <div className="flex items-start md:items-center gap-6">
+                                <div className="bg-safety-orange/10 p-3 rounded-full flex-shrink-0 mt-1 md:mt-0">
+                                    <CheckCircle2 className="w-6 h-6 text-safety-orange" />
+                                </div>
+                                <p className="text-xl md:text-3xl font-bold text-white leading-tight">
+                                    Break-even commonly occurs after just <span className="text-safety-orange font-black">2–5</span> jobs.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="bg-white/5 p-8 border-l-4 border-white/20">
+                            <p className="text-lg text-white/80 leading-relaxed font-medium">
+                                Most trades see <span className="text-white font-bold">20–30% more enquiries captured</span> simply by answering every call and replying instantly -  without spending more on ads.
+                            </p>
+                        </div>
+
+                        <div className="mt-6 p-6">
+                            <p className="text-sm text-white/30 leading-relaxed italic">
+                                Results vary by trade, location, pricing, and workload. This isn't a guarantee — it's a reality check.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             {/* 8. FINAL CTA SECTION */}
-            <section id="contact" className="pt-20 pb-[10px] text-center relative overflow-hidden">
+            <section id="contact" className="py-20 text-center relative overflow-hidden">
                 <div className="absolute inset-0 blueprint-grid opacity-10"></div>
                 <div className="container mx-auto px-6 relative z-10">
 
@@ -1448,7 +1486,7 @@ function LandingPage() {
                                 Thanks — you’re all set.
                             </h2>
                             <p className="text-lg md:text-xl text-white/80 font-medium mb-6">
-                                We’ll review your business and walk through the journey.
+                                We'll look over what you shared and let you know if there's something worth fixing, we'll explain it clearly. If everything's already solid, you'll know that too.
                             </p>
                             <p className="text-xs font-black uppercase tracking-widest text-white/40 border-t border-white/10 pt-4">
                                 No pressure. No hard sell.
