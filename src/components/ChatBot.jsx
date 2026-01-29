@@ -62,13 +62,13 @@ const ChatBot = () => {
         }
     }, [messages, isOpen])
 
-    // Auto-open effect
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsOpen(true)
-        }, 2000)
-        return () => clearTimeout(timer)
-    }, [])
+    // Auto-open effect - DISABLED
+    // useEffect(() => {
+    //     const timer = setTimeout(() => {
+    //         setIsOpen(true)
+    //     }, 2000)
+    //     return () => clearTimeout(timer)
+    // }, [])
 
     const handleSend = async () => {
         if (!input.trim()) return
@@ -137,7 +137,6 @@ const ChatBot = () => {
                     style={{ writingMode: 'vertical-rl' }}
                 >
                     <span className="text-xs font-black uppercase tracking-widest rotate-180">Assistant</span>
-                    <Hammer className="w-5 h-5 rotate-180" />
                 </button>
             )}
 
@@ -167,7 +166,7 @@ const ChatBot = () => {
                                 <div key={i} className={`flex gap-3 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}>
                                     {m.role === 'assistant' && (
                                         <div className="h-8 w-8 bg-white/10 border border-white/5 rounded-full flex items-center justify-center overflow-hidden flex-shrink-0">
-                                            <div className="bg-safety-orange text-white text-xs font-bold w-full h-full flex items-center justify-center">AI</div>
+                                            <div className="bg-safety-orange text-white text-xs font-bold w-full h-full flex items-center justify-center">YTP</div>
                                         </div>
                                     )}
                                     <div
@@ -183,7 +182,7 @@ const ChatBot = () => {
                             {isLoading && (
                                 <div className="flex gap-3">
                                     <div className="h-8 w-8 bg-white/10 border border-white/5 rounded-full flex items-center justify-center">
-                                        <div className="bg-safety-orange text-white text-xs font-bold w-full h-full flex items-center justify-center rounded-full">AI</div>
+                                        <div className="bg-safety-orange text-white text-xs font-bold w-full h-full flex items-center justify-center rounded-full">YTP</div>
                                     </div>
                                     <div className="bg-white/10 rounded-lg p-3 border border-white/5 flex items-center">
                                         <div className="w-4 h-4 text-white/50 animate-pulse text-[10px]">...</div>

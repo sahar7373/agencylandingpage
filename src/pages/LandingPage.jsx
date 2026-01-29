@@ -402,7 +402,7 @@ function LandingPage() {
                 <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
                     <a href="#" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                         <Hammer className="text-safety-orange w-5 h-5 md:w-6 md:h-6" />
-                        <span className="text-lg md:text-xl font-black uppercase tracking-tighter">YourTradePartner<span className="text-safety-orange">.</span></span>
+                        <span className="text-sm md:text-xl font-black uppercase tracking-tighter">YourTradePartner<span className="text-safety-orange">.</span></span>
                     </a>
                     <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                         <a href="#why" className="hover:text-white transition-colors">Why It Matters</a>
@@ -416,7 +416,7 @@ function LandingPage() {
                                 ReactPixel.track('InitiateCheckout', { content_name: 'Stop Missing Jobs Modal' });
                                 ReactGA.event({ category: "Conversion", action: "Click_Hero_CTA", label: "Stop Missing Jobs" });
                             }}
-                            className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-3 h-11 md:h-auto md:py-2 text-[10px] md:text-xs font-black uppercase tracking-widest shadow-lg shadow-safety-orange/20 flex items-center"
+                            className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-2 md:px-3 h-9 md:h-auto md:py-2 text-[9px] md:text-xs font-black uppercase tracking-wider md:tracking-widest shadow-lg shadow-safety-orange/20 flex items-center"
                         >
                             Stop Missing Jobs
                         </Button>
@@ -568,7 +568,7 @@ function LandingPage() {
                                 <div className="space-y-4">
                                     <div className="flex items-center gap-3">
                                         <CheckCircle2 className="w-8 h-8 text-green-500" />
-                                        <h4 className="font-black uppercase text-lg text-green-500">Professional Presence</h4>
+                                        <h4 className="font-black uppercase text-lg text-green-500">Online Presence</h4>
                                     </div>
                                     <ul className="space-y-2 pl-11">
                                         <li className="flex items-start gap-2 text-sm font-bold text-white/60">
@@ -777,7 +777,6 @@ function LandingPage() {
                                     Most established trades don’t realise there’s a problem until demand slows, enquiries dry up, or price pressure starts.
                                 </p>
                                 <p className="text-safety-orange font-bold italic flex items-center gap-2">
-                                    <AlertTriangle className="w-5 h-5" />
                                     By then, fixing it costs more — and takes longer.
                                 </p>
                             </div>
