@@ -308,15 +308,15 @@ function LandingPage() {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
             <Helmet>
-                <title>Your Trade Partner | YOURTRADEPARTNER. | Digital Growth Systems</title>
-                <meta name="description" content="We build high-converting websites and automated enquiry systems for Australian trade businesses. Stop missing jobs and start scaling." />
+                <title>Your Trade Partner | Digital Growth Systems</title>
+                <meta name="description" content="Your Trade Partner provides high-converting websites and automated enquiry systems for Australian trade businesses. Stop missing jobs and start scaling." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/" />
                 <meta name="robots" content="index, follow" />
 
                 {/* Open Graph / Social Media */}
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="YourTradePartner | Digital Growth Systems for Tradies" />
-                <meta property="og:description" content="We build high-converting websites and automated enquiry systems for Australian trade businesses. Stop missing jobs and start scaling." />
+                <meta property="og:title" content="Your Trade Partner | Growth Systems for Tradies" />
+                <meta property="og:description" content="Your Trade Partner helps Australian trades build a job-winning online presence. Professional websites and lead capture systems built for the industry." />
                 <meta property="og:url" content="https://yourtradepartner.com.au/" />
                 {/* Placeholder Image - replace with actual URL when live */}
                 <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
@@ -327,8 +327,8 @@ function LandingPage() {
                         {
                             "@context": "https://schema.org",
                             "@type": "ProfessionalService",
-                            "name": "YOURTRADEPARTNER.",
-                            "alternateName": "Your Trade Partner",
+                            "name": "Your Trade Partner",
+                            "alternateName": "YOURTRADEPARTNER.",
                             "description": "Digital growth systems, websites, and automation for Australian trade businesses. Specializing in clear-cut packages for plumbers, electricians, and builders.",
                             "url": "https://yourtradepartner.com.au",
                             "telephone": "0451044751",
@@ -406,7 +406,7 @@ function LandingPage() {
                 <div className="container mx-auto px-4 md:px-6 flex items-center justify-between">
                     <a href="#" className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                         <Hammer className="text-safety-orange w-5 h-5 md:w-6 md:h-6" />
-                        <span className="text-sm md:text-xl font-black uppercase tracking-tighter">YourTradePartner<span className="text-safety-orange">.</span></span>
+                        <span className="text-sm md:text-xl font-black uppercase tracking-tighter">Your Trade Partner<span className="text-safety-orange">.</span></span>
                     </a>
                     <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                         <a href="#why" className="hover:text-white transition-colors">Why It Matters</a>
@@ -1775,7 +1775,7 @@ function LandingPage() {
                     <div className="flex flex-col items-center gap-4 order-1 lg:order-2">
                         <div className="flex items-center gap-2">
                             <Hammer className="text-safety-orange w-6 h-6" />
-                            <span className="text-2xl font-black uppercase tracking-tighter">YourTradePartner<span className="text-safety-orange">.</span></span>
+                            <span className="text-2xl font-black uppercase tracking-tighter">Your Trade Partner<span className="text-safety-orange">.</span></span>
                         </div>
                         <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 text-xs font-black uppercase tracking-widest text-white/60 items-center text-center w-full justify-center">
                             <a href="tel:0451044751" className="hover:text-safety-orange transition-colors whitespace-nowrap">0451 044 751</a>
@@ -1786,7 +1786,7 @@ function LandingPage() {
                         </div>
                     </div>
                     <p className="text-[10px] uppercase font-bold tracking-widest text-white/20 order-3 lg:order-3">
-                        &copy; 2026 YourTradePartner Australian Operations.
+                        &copy; 2026 Your Trade Partner Australian Operations.
                     </p>
                 </div>
             </footer >
