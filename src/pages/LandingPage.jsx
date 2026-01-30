@@ -66,6 +66,8 @@ function LandingPage() {
         goal: '',
         readyToInvest: '',
         websiteLink: '',
+        referral: '',
+        referralOther: '',
         message: ''
     })
 
@@ -111,6 +113,7 @@ function LandingPage() {
                 ...formData,
                 phone: `'${formData.phone}`, // Force text format in Sheets to keep leading zero
                 situation: formData.situation === 'Other' ? formData.situationOther : formData.situation,
+                referral: formData.referral === 'Other' ? formData.referralOther : formData.referral,
                 timestamp: new Date().toISOString()
             };
 
@@ -1695,6 +1698,40 @@ function LandingPage() {
                                             ))}
                                         </div>
                                     </div>
+                                </div>
+
+                                {/* Referral Source */}
+                                <div className="space-y-1">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Where did you hear about us?</label>
+                                    <div className="relative">
+                                        <select
+                                            name="referral"
+                                            value={formData.referral}
+                                            onChange={handleInputChange}
+                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white appearance-none focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                        >
+                                            <option value="" disabled className="bg-zinc-900">Select...</option>
+                                            <option value="FB" className="bg-zinc-900">FB</option>
+                                            <option value="Google" className="bg-zinc-900">Google</option>
+                                            <option value="Word of mouth" className="bg-zinc-900">Word of mouth</option>
+                                            <option value="Search" className="bg-zinc-900">Search</option>
+                                            <option value="Other" className="bg-zinc-900">Other</option>
+                                        </select>
+                                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
+                                    </div>
+                                    {formData.referral === 'Other' && (
+                                        <div className="mt-2">
+                                            <input
+                                                required
+                                                type="text"
+                                                name="referralOther"
+                                                value={formData.referralOther}
+                                                onChange={handleInputChange}
+                                                className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                                placeholder="Please specify..."
+                                            />
+                                        </div>
+                                    )}
                                 </div>
 
                                 {/* Message / Additional Info */}
