@@ -898,7 +898,7 @@ function LandingPage() {
                                         "Manual reporting and paper-based SWMS",
                                         "Need for professional communication channels"
                                     ],
-                                    tags: ["14+ Page Website", "Brand Identity", "Custom SWMS", "Roof Reports"],
+                                    tags: ["14+ Page Website", "Brand Identity", "Custom SWMS", "Roof Report Template", "Lead Capture Form", "Custom Email Box"],
                                     images: {
                                         preview: "/projects/SWRP/swrp-homepage.png",
                                         homepage: "/projects/SWRP/swrp-homepage.png",
@@ -930,9 +930,9 @@ function LandingPage() {
                                     <div className="p-6 md:p-8 flex flex-col flex-grow">
                                         <h3 className="text-2xl font-black uppercase italic mb-4">{project.title}</h3>
 
-                                        <div className="flex flex-wrap gap-2 mb-6">
+                                        <div className="flex flex-wrap gap-2 mb-8">
                                             {project.tags.map((tag, i) => (
-                                                <span key={i} className="text-[9px] font-black uppercase tracking-widest bg-white/5 px-2 py-1 text-white/40 border border-white/5">
+                                                <span key={i} className="text-[9px] font-black uppercase tracking-widest bg-safety-orange/10 px-3 py-1.5 text-safety-orange border border-safety-orange/20 rounded-sm">
                                                     {tag}
                                                 </span>
                                             ))}
