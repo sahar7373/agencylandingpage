@@ -37,12 +37,12 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import ChatBot from '../components/ChatBot'
-import CaseStudyModal from '../components/CaseStudyModal'
-import VideoModal from '../components/VideoModal'
-import MissedJobReviewModal from '../components/MissedJobReviewModal'
-import PrivacyPolicyModal from '../components/PrivacyPolicyModal'
-import TermsConditionsModal from '../components/TermsConditionsModal'
+const ChatBot = React.lazy(() => import('../components/ChatBot'))
+const CaseStudyModal = React.lazy(() => import('../components/CaseStudyModal'))
+const VideoModal = React.lazy(() => import('../components/VideoModal'))
+const MissedJobReviewModal = React.lazy(() => import('../components/MissedJobReviewModal'))
+const PrivacyPolicyModal = React.lazy(() => import('../components/PrivacyPolicyModal'))
+const TermsConditionsModal = React.lazy(() => import('../components/TermsConditionsModal'))
 
 const CollapsibleDetail = ({ title, children }) => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -407,20 +407,23 @@ function LandingPage() {
                 </script>
             </Helmet>
 
-            <MissedJobReviewModal isOpen={isReviewModalOpen} onClose={() => setIsReviewModalOpen(false)} />
-            <CaseStudyModal
-                isOpen={isCaseStudyModalOpen}
-                onClose={() => setIsCaseStudyModalOpen(false)}
-                project={selectedProject}
-            />
+            <React.Suspense fallback={null}>
+                <MissedJobReviewModal isOpen={isReviewModalOpen} onClose={() => setIsReviewModalOpen(false)} />
+                <CaseStudyModal
+                    isOpen={isCaseStudyModalOpen}
+                    onClose={() => setIsCaseStudyModalOpen(false)}
+                    project={selectedProject}
+                />
 
-            <VideoModal
-                isOpen={isVideoModalOpen}
-                onClose={() => setIsVideoModalOpen(false)}
-                videoSrc={selectedProject?.video}
-            />
-            <PrivacyPolicyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
-            <TermsConditionsModal isOpen={isTermsModalOpen} onClose={() => setIsTermsModalOpen(false)} />
+                <VideoModal
+                    isOpen={isVideoModalOpen}
+                    onClose={() => setIsVideoModalOpen(false)}
+                    videoSrc={selectedProject?.video}
+                />
+                <PrivacyPolicyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
+                <TermsConditionsModal isOpen={isTermsModalOpen} onClose={() => setIsTermsModalOpen(false)} />
+                <ChatBot />
+            </React.Suspense>
 
             {/* MOBILE STICKY FOOTER (Thumb Zone) */}
             <div className="fixed bottom-0 left-0 w-full bg-construction-charcoal border-t border-white/10 z-50 md:hidden p-4 flex gap-3 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
@@ -913,6 +916,7 @@ function LandingPage() {
                                             <img
                                                 src={project.images.preview}
                                                 alt={`${project.title} Showcase`}
+                                                loading="lazy"
                                                 className="w-full h-full object-cover object-top lg:object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
                                             />
                                             <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-construction-charcoal via-transparent to-transparent opacity-80 lg:opacity-60"></div>
