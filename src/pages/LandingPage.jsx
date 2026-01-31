@@ -861,7 +861,7 @@ function LandingPage() {
                                                 onClick={() => setIsCaseStudyModalOpen(true)}
                                                 className="bg-white hover:bg-white/90 text-black rounded-none px-8 py-6 text-sm font-black uppercase tracking-widest shadow-xl transition-all"
                                             >
-                                                Show More Case Study
+                                                See More
                                             </Button>
 
                                             <button
