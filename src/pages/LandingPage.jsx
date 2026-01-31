@@ -849,7 +849,7 @@ function LandingPage() {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 gap-12">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
                             {[
                                 {
                                     id: 'zjc',
@@ -909,63 +909,57 @@ function LandingPage() {
                                     video: "/projects/SWRP/swrp-demo-1.mov"
                                 }
                             ].map((project) => (
-                                <div key={project.id} className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500">
-                                    <div className="grid lg:grid-cols-2 gap-0 overflow-hidden">
-                                        {/* Preview Image */}
-                                        <div className="relative h-[400px] lg:h-full min-h-[400px] lg:min-h-0 overflow-hidden">
-                                            <img
-                                                src={project.images.preview}
-                                                alt={`${project.title} Showcase`}
-                                                loading="lazy"
-                                                className="w-full h-full object-cover object-top lg:object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
-                                            />
-                                            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-construction-charcoal via-transparent to-transparent opacity-80 lg:opacity-60"></div>
+                                <div key={project.id} className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500 flex flex-col">
+                                    {/* Preview Image (Top Half) */}
+                                    <div className="relative h-[250px] md:h-[300px] overflow-hidden border-b border-white/10">
+                                        <img
+                                            src={project.images.preview}
+                                            alt={`${project.title} Showcase`}
+                                            loading="lazy"
+                                            className="w-full h-full object-cover object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-construction-charcoal to-transparent opacity-60"></div>
+
+                                        <div className="absolute bottom-4 left-4 flex items-center gap-3">
+                                            <div className="w-8 h-0.5 bg-safety-orange"></div>
+                                            <span className="text-[10px] font-black uppercase tracking-widest text-white shadow-sm">Verified Result • {project.location}</span>
+                                        </div>
+                                    </div>
+
+                                    {/* Content Area (Bottom Half) */}
+                                    <div className="p-6 md:p-8 flex flex-col flex-grow">
+                                        <h3 className="text-2xl font-black uppercase italic mb-4">{project.title}</h3>
+
+                                        <div className="flex flex-wrap gap-2 mb-6">
+                                            {project.tags.map((tag, i) => (
+                                                <span key={i} className="text-[9px] font-black uppercase tracking-widest bg-white/5 px-2 py-1 text-white/40 border border-white/5">
+                                                    {tag}
+                                                </span>
+                                            ))}
                                         </div>
 
-                                        {/* Content Area */}
-                                        <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-center">
-                                            <div className="flex items-center gap-3 mb-6">
-                                                <div className="w-10 h-0.5 bg-safety-orange"></div>
-                                                <span className="text-xs font-black uppercase tracking-widest text-safety-orange">Verified Result • {project.location}</span>
-                                            </div>
+                                        <div className="mt-auto flex items-center gap-3">
+                                            <Button
+                                                onClick={() => {
+                                                    setSelectedProject(project);
+                                                    setIsCaseStudyModalOpen(true);
+                                                }}
+                                                className="bg-white hover:bg-white/90 text-black rounded-none px-6 py-5 text-[11px] font-black uppercase tracking-widest shadow-xl transition-all"
+                                            >
+                                                See More
+                                            </Button>
 
-                                            <h3 className="text-3xl md:text-4xl font-black uppercase italic mb-6">{project.title}</h3>
-
-                                            <p className="text-lg font-bold text-white/70 mb-8 leading-relaxed italic line-clamp-3">
-                                                "{project.testimonial}"
-                                            </p>
-
-                                            <div className="flex flex-wrap gap-4 mb-10">
-                                                {project.tags.map((tag, i) => (
-                                                    <span key={i} className="text-[10px] font-black uppercase tracking-widest bg-white/5 px-3 py-1 text-white/40 border border-white/5">
-                                                        {tag}
-                                                    </span>
-                                                ))}
-                                            </div>
-
-                                            <div className="mt-auto flex items-center gap-4">
-                                                <Button
-                                                    onClick={() => {
-                                                        setSelectedProject(project);
-                                                        setIsCaseStudyModalOpen(true);
-                                                    }}
-                                                    className="bg-white hover:bg-white/90 text-black rounded-none px-8 py-6 text-sm font-black uppercase tracking-widest shadow-xl transition-all"
-                                                >
-                                                    See More
-                                                </Button>
-
-                                                <button
-                                                    onClick={() => {
-                                                        setSelectedProject(project);
-                                                        setIsVideoModalOpen(true);
-                                                    }}
-                                                    className="group/play flex items-center gap-3 bg-safety-orange/10 hover:bg-safety-orange/20 border border-safety-orange/30 p-4 transition-all"
-                                                    title="Watch Video Demo"
-                                                >
-                                                    <Play className="w-6 h-6 text-safety-orange fill-safety-orange group-hover/play:scale-110 transition-transform" />
-                                                    <span className="text-xs font-black uppercase tracking-widest text-safety-orange hidden md:inline">Watch Demo</span>
-                                                </button>
-                                            </div>
+                                            <button
+                                                onClick={() => {
+                                                    setSelectedProject(project);
+                                                    setIsVideoModalOpen(true);
+                                                }}
+                                                className="group/play flex items-center gap-3 bg-safety-orange/10 hover:bg-safety-orange/20 border border-safety-orange/30 p-3.5 transition-all"
+                                                title="Watch Video Demo"
+                                            >
+                                                <Play className="w-4 h-4 text-safety-orange fill-safety-orange group-hover/play:scale-110 transition-transform" />
+                                                <span className="text-[10px] font-black uppercase tracking-widest text-safety-orange">Watch Demo</span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
