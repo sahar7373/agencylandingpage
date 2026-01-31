@@ -826,17 +826,17 @@ function LandingPage() {
                             <div className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500">
                                 <div className="grid lg:grid-cols-2 gap-0 overflow-hidden">
                                     {/* Preview Image */}
-                                    <div className="relative h-[300px] lg:h-full min-h-[400px] overflow-hidden">
+                                    <div className="relative h-[400px] lg:h-full min-h-[400px] lg:min-h-0 overflow-hidden">
                                         <img
                                             src="/projects/zjc/homepage.png"
                                             alt="ZJC Renovations Showcase"
-                                            className="w-full h-full object-cover object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
+                                            className="w-full h-full object-cover object-top lg:object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-r from-construction-charcoal via-transparent to-transparent opacity-60"></div>
+                                        <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-construction-charcoal via-transparent to-transparent opacity-80 lg:opacity-60"></div>
                                     </div>
 
                                     {/* Content Area */}
-                                    <div className="p-8 md:p-12 flex flex-col justify-center">
+                                    <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-center">
                                         <div className="flex items-center gap-3 mb-6">
                                             <div className="w-10 h-0.5 bg-safety-orange"></div>
                                             <span className="text-xs font-black uppercase tracking-widest text-safety-orange">Verified Result • ACT</span>
