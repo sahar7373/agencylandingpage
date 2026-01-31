@@ -44,6 +44,26 @@ import MissedJobReviewModal from '../components/MissedJobReviewModal'
 import PrivacyPolicyModal from '../components/PrivacyPolicyModal'
 import TermsConditionsModal from '../components/TermsConditionsModal'
 
+const CollapsibleDetail = ({ title, children }) => {
+    const [isOpen, setIsOpen] = React.useState(false);
+    return (
+        <div>
+            <div
+                className="flex items-center gap-2 cursor-pointer group/collapsible"
+                onClick={() => setIsOpen(!isOpen)}
+            >
+                <span>{title}</span>
+                <ChevronDown className={`w-3 h-3 text-safety-orange transition-transform duration-200 ${isOpen ? 'rotate-180' : ''} group-hover/collapsible:scale-125`} />
+            </div>
+            {isOpen && (
+                <div className="animate-in fade-in slide-in-from-top-1 duration-200">
+                    {children}
+                </div>
+            )}
+        </div>
+    );
+};
+
 function LandingPage() {
     const [openFaq, setOpenFaq] = React.useState(null)
     const [isReviewModalOpen, setIsReviewModalOpen] = React.useState(false)
@@ -1008,11 +1028,14 @@ function LandingPage() {
                                                     "EXTRA SERVICE & SUBURB PAGES BUILT AROUND REAL LOCAL SEARCHES",
                                                     "SETUP DESIGNED TO HELP YOU SHOW UP MORE OFTEN WHEN PEOPLE ARE LOOKING",
                                                     {
-                                                        text: "AFTER-HOURS, MISSED-CALL AND RECEPTIONIST HANDLING SETUP",
-                                                        subItems: [
-                                                            "HANDLES MULTIPLE CALLERS AT THE SAME TIME (NO HOLD, NO VOICEMAIL)",
-                                                            "EVERY CALL ANSWERED, EVEN WHEN YOU’RE ALREADY BUSY"
-                                                        ],
+                                                        text: (
+                                                            <CollapsibleDetail title="AFTER-HOURS, MISSED-CALL & RECEPTIONIST HANDLING">
+                                                                <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                                    <li>HANDLES MULTIPLE CALLERS AT THE SAME TIME (NO HOLD, NO VOICEMAIL)</li>
+                                                                    <li>EVERY CALL ANSWERED, EVEN WHEN YOU’RE ALREADY BUSY</li>
+                                                                </ul>
+                                                            </CollapsibleDetail>
+                                                        )
                                                     },
                                                     "ENQUIRIES ROUTED SO NOTHING SLIPS THROUGH THE CRACKS",
                                                     "LINKEDIN PROFILE SETUP"
@@ -1022,14 +1045,6 @@ function LandingPage() {
                                                         {typeof item === 'string' ? item : (
                                                             <div>
                                                                 {item.text}
-                                                                {item.subItems && (
-                                                                    <ul className="pl-4 mt-1 space-y-1 list-disc text-xs text-white/60 font-normal">
-                                                                        {item.subItems.map((sub, k) => <li key={k}>{sub}</li>)}
-                                                                    </ul>
-                                                                )}
-                                                                {item.note && (
-                                                                    <p className="text-[10px] text-white/40 font-normal mt-1 italic leading-relaxed">{item.note}</p>
-                                                                )}
                                                             </div>
                                                         )}
                                                     </li>
@@ -1037,34 +1052,31 @@ function LandingPage() {
 
                                                 <li className="flex items-start gap-3 text-sm font-bold text-white/80">
                                                     <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                    <div>
-                                                        SIMPLE TRACKING TO SEE:
-                                                        <ul className="pl-4 mt-1 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                    <CollapsibleDetail title="SIMPLE TRACKING TO SEE:">
+                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
                                                             <li>WHERE ENQUIRIES COME FROM</li>
                                                             <li>WHICH PAGES BRING CALLS</li>
                                                             <li>WHAT’S WORTH SPENDING MONEY ON</li>
                                                         </ul>
-                                                    </div>
+                                                    </CollapsibleDetail>
                                                 </li>
 
                                                 <li className="flex items-start gap-3 text-sm font-bold text-white/80">
                                                     <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                    <div>
-                                                        PROMOTIONAL VIDEOS OR AI-ASSISTED VISUAL CONTENT
-                                                        <p className="text-xs text-white/60 font-normal mt-0.5">USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</p>
-                                                    </div>
+                                                    <CollapsibleDetail title="PROMOTIONAL VIDEOS OR AI VISUAL CONTENT">
+                                                        <p className="text-xs text-white/60 font-normal mt-1 pl-4 border-l border-white/10">USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</p>
+                                                    </CollapsibleDetail>
                                                 </li>
 
                                                 <li className="flex items-start gap-3 text-sm font-bold text-white/80">
                                                     <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                    <div>
-                                                        SYSTEMS SELECTED BASED ON:
-                                                        <ul className="pl-4 mt-1 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                    <CollapsibleDetail title="SYSTEMS SELECTED BASED ON:">
+                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
                                                             <li>YOUR TRADE</li>
                                                             <li>YOUR WORKLOAD</li>
                                                             <li>HOW AGGRESSIVE YOU WANT TO GROW</li>
                                                         </ul>
-                                                    </div>
+                                                    </CollapsibleDetail>
                                                 </li>
                                             </ul>
                                         </div>
