@@ -69,6 +69,7 @@ function LandingPage() {
     const [isReviewModalOpen, setIsReviewModalOpen] = React.useState(false)
     const [isCaseStudyModalOpen, setIsCaseStudyModalOpen] = React.useState(false)
     const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false)
+    const [selectedProject, setSelectedProject] = React.useState(null)
     const [isPrivacyModalOpen, setIsPrivacyModalOpen] = React.useState(false)
     const [isTermsModalOpen, setIsTermsModalOpen] = React.useState(false)
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
@@ -407,11 +408,16 @@ function LandingPage() {
             </Helmet>
 
             <MissedJobReviewModal isOpen={isReviewModalOpen} onClose={() => setIsReviewModalOpen(false)} />
-            <CaseStudyModal isOpen={isCaseStudyModalOpen} onClose={() => setIsCaseStudyModalOpen(false)} />
+            <CaseStudyModal
+                isOpen={isCaseStudyModalOpen}
+                onClose={() => setIsCaseStudyModalOpen(false)}
+                project={selectedProject}
+            />
+
             <VideoModal
                 isOpen={isVideoModalOpen}
                 onClose={() => setIsVideoModalOpen(false)}
-                videoSrc="/projects/zjc/zjc-demo-1.mov"
+                videoSrc={selectedProject?.video}
             />
             <PrivacyPolicyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
             <TermsConditionsModal isOpen={isTermsModalOpen} onClose={() => setIsTermsModalOpen(false)} />
@@ -840,61 +846,126 @@ function LandingPage() {
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-1 gap-12">
-                            {/* ZJC Renovations Card */}
-                            <div className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500">
-                                <div className="grid lg:grid-cols-2 gap-0 overflow-hidden">
-                                    {/* Preview Image */}
-                                    <div className="relative h-[400px] lg:h-full min-h-[400px] lg:min-h-0 overflow-hidden">
-                                        <img
-                                            src="/projects/zjc/homepage.png"
-                                            alt="ZJC Renovations Showcase"
-                                            className="w-full h-full object-cover object-top lg:object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
-                                        />
-                                        <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-construction-charcoal via-transparent to-transparent opacity-80 lg:opacity-60"></div>
-                                    </div>
-
-                                    {/* Content Area */}
-                                    <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-center">
-                                        <div className="flex items-center gap-3 mb-6">
-                                            <div className="w-10 h-0.5 bg-safety-orange"></div>
-                                            <span className="text-xs font-black uppercase tracking-widest text-safety-orange">Verified Result • ACT</span>
+                        <div className="grid grid-cols-1 gap-12">
+                            {[
+                                {
+                                    id: 'zjc',
+                                    title: "ZJC Renovations",
+                                    location: "ACT",
+                                    testimonial: "The website, logo, and enquiry system made a big difference. Customers now contact us with clearer requests and are more confident.",
+                                    attribution: "ZJC Renovations — ACT",
+                                    delivered: [
+                                        "Professional website built for local customers",
+                                        "Custom business logo design",
+                                        "Lead capture system with clear enquiry forms",
+                                        "Google Business Profile setup for local visibility"
+                                    ],
+                                    challenge: [
+                                        "A great reputation locally",
+                                        "No real online presence that converted",
+                                        "No clear enquiry system or trust signals",
+                                        "Low visibility for local search"
+                                    ],
+                                    tags: ["8 Pages Local Website", "Logo Design", "Lead Capture", "GBP Setup"],
+                                    images: {
+                                        preview: "/projects/zjc/homepage.png",
+                                        homepage: "/projects/zjc/homepage.png",
+                                        service: "/projects/zjc/service.png",
+                                        serviceLabel: "Bathroom Renovation Showcase",
+                                        work: "/projects/zjc/work.png"
+                                    },
+                                    video: "/projects/zjc/zjc-demo-1.mov"
+                                },
+                                {
+                                    id: 'swrp',
+                                    title: "SWRP",
+                                    location: "NSW",
+                                    testimonial: "Building a scaleable roofing business required more than just a website; we needed a full digital infrastructure. From custom SWMS to professional roof reporting, the system now handles our growth without the typical operational headaches.",
+                                    attribution: "SWRP — NSW",
+                                    delivered: [
+                                        "Company Logo & Branding",
+                                        "14+ Pages Website Project (Ongoing)",
+                                        "Custom Professional Email Setup",
+                                        "SWMS (Safe Work Method Statements) Integration",
+                                        "Roof Report Templates"
+                                    ],
+                                    challenge: [
+                                        "Scaling operations without digital systems",
+                                        "No centralized branding for a 14+ page site",
+                                        "Manual reporting and paper-based SWMS",
+                                        "Need for professional communication channels"
+                                    ],
+                                    tags: ["14+ Page Website", "Brand Identity", "Custom SWMS", "Roof Reports"],
+                                    images: {
+                                        preview: "/projects/SWRP/swrp-homepage.png",
+                                        homepage: "/projects/SWRP/swrp-homepage.png",
+                                        service: "/projects/SWRP/swrp-service.png",
+                                        serviceLabel: "Roof Reconstruction Showcase",
+                                        work: "/projects/SWRP/swrp-work.png"
+                                    },
+                                    video: "/projects/SWRP/swrp-demo-1.mov"
+                                }
+                            ].map((project) => (
+                                <div key={project.id} className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500">
+                                    <div className="grid lg:grid-cols-2 gap-0 overflow-hidden">
+                                        {/* Preview Image */}
+                                        <div className="relative h-[400px] lg:h-full min-h-[400px] lg:min-h-0 overflow-hidden">
+                                            <img
+                                                src={project.images.preview}
+                                                alt={`${project.title} Showcase`}
+                                                className="w-full h-full object-cover object-top lg:object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-construction-charcoal via-transparent to-transparent opacity-80 lg:opacity-60"></div>
                                         </div>
 
-                                        <h3 className="text-3xl md:text-4xl font-black uppercase italic mb-6">ZJC Renovations</h3>
+                                        {/* Content Area */}
+                                        <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-center">
+                                            <div className="flex items-center gap-3 mb-6">
+                                                <div className="w-10 h-0.5 bg-safety-orange"></div>
+                                                <span className="text-xs font-black uppercase tracking-widest text-safety-orange">Verified Result • {project.location}</span>
+                                            </div>
 
-                                        <p className="text-lg font-bold text-white/70 mb-8 leading-relaxed italic">
-                                            "The website, logo, and enquiry system made a big difference. Customers now contact us with clearer requests and are more confident."
-                                        </p>
+                                            <h3 className="text-3xl md:text-4xl font-black uppercase italic mb-6">{project.title}</h3>
 
-                                        <div className="flex flex-wrap gap-4 mb-10">
-                                            {["8 Pages Local Website", "Logo Design", "Lead Capture", "GBP Setup"].map((tag, i) => (
-                                                <span key={i} className="text-[10px] font-black uppercase tracking-widest bg-white/5 px-3 py-1 text-white/40 border border-white/5">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
+                                            <p className="text-lg font-bold text-white/70 mb-8 leading-relaxed italic line-clamp-3">
+                                                "{project.testimonial}"
+                                            </p>
 
-                                        <div className="mt-auto flex items-center gap-4">
-                                            <Button
-                                                onClick={() => setIsCaseStudyModalOpen(true)}
-                                                className="bg-white hover:bg-white/90 text-black rounded-none px-8 py-6 text-sm font-black uppercase tracking-widest shadow-xl transition-all"
-                                            >
-                                                See More
-                                            </Button>
+                                            <div className="flex flex-wrap gap-4 mb-10">
+                                                {project.tags.map((tag, i) => (
+                                                    <span key={i} className="text-[10px] font-black uppercase tracking-widest bg-white/5 px-3 py-1 text-white/40 border border-white/5">
+                                                        {tag}
+                                                    </span>
+                                                ))}
+                                            </div>
 
-                                            <button
-                                                onClick={() => setIsVideoModalOpen(true)}
-                                                className="group/play flex items-center gap-3 bg-safety-orange/10 hover:bg-safety-orange/20 border border-safety-orange/30 p-4 transition-all"
-                                                title="Watch Video Demo"
-                                            >
-                                                <Play className="w-6 h-6 text-safety-orange fill-safety-orange group-hover/play:scale-110 transition-transform" />
-                                                <span className="text-xs font-black uppercase tracking-widest text-safety-orange hidden md:inline">Watch Demo</span>
-                                            </button>
+                                            <div className="mt-auto flex items-center gap-4">
+                                                <Button
+                                                    onClick={() => {
+                                                        setSelectedProject(project);
+                                                        setIsCaseStudyModalOpen(true);
+                                                    }}
+                                                    className="bg-white hover:bg-white/90 text-black rounded-none px-8 py-6 text-sm font-black uppercase tracking-widest shadow-xl transition-all"
+                                                >
+                                                    See More
+                                                </Button>
+
+                                                <button
+                                                    onClick={() => {
+                                                        setSelectedProject(project);
+                                                        setIsVideoModalOpen(true);
+                                                    }}
+                                                    className="group/play flex items-center gap-3 bg-safety-orange/10 hover:bg-safety-orange/20 border border-safety-orange/30 p-4 transition-all"
+                                                    title="Watch Video Demo"
+                                                >
+                                                    <Play className="w-6 h-6 text-safety-orange fill-safety-orange group-hover/play:scale-110 transition-transform" />
+                                                    <span className="text-xs font-black uppercase tracking-widest text-safety-orange hidden md:inline">Watch Demo</span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            ))}
                         </div>
                     </div>
                 </div>
