@@ -1064,7 +1064,10 @@ function LandingPage() {
                                                 <li className="flex items-start gap-3 text-sm font-bold text-white/80">
                                                     <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
                                                     <CollapsibleDetail title="PROMOTIONAL VIDEOS OR AI VISUAL CONTENT">
-                                                        <p className="text-xs text-white/60 font-normal mt-1 pl-4 border-l border-white/10">USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</p>
+                                                        <div className="pl-4 border-l border-white/10 uppercase space-y-2 mt-1">
+                                                            <p className="text-xs text-white/60 font-normal">USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</p>
+                                                            <p className="text-xs text-white/40 font-bold italic">3 videos x 10-15 secs included in the package, additional videos quote separately</p>
+                                                        </div>
                                                     </CollapsibleDetail>
                                                 </li>
 
