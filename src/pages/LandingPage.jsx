@@ -932,7 +932,7 @@ function LandingPage() {
 
                                         <div className="flex flex-wrap gap-2 mb-8">
                                             {project.tags.map((tag, i) => (
-                                                <span key={i} className="text-[9px] font-black uppercase tracking-widest bg-safety-orange/10 px-3 py-1.5 text-safety-orange border border-safety-orange/20 rounded-sm">
+                                                <span key={i} className="text-[9px] font-black uppercase tracking-widest bg-white/10 px-3 py-1.5 text-white border border-white/20 rounded-sm">
                                                     {tag}
                                                 </span>
                                             ))}
