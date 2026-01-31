@@ -808,11 +808,10 @@ function LandingPage() {
             </section>
 
             {/* SECTION: SUCCESS STORIES / SHOWCASE */}
-            <section className="py-24 md:py-32 border-b border-white/5 bg-zinc-900/10">
+            <section className="pt-[66px] pb-24 md:pt-[98px] md:pb-32 border-b border-white/5 bg-zinc-900/10">
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
                         <div className="text-center mb-16">
-                            <Badge className="bg-white/10 text-white mb-6 hover:bg-white/10 pointer-events-none uppercase tracking-widest text-[10px]">Project Showcase</Badge>
                             <h2 className="text-4xl md:text-6xl font-black uppercase italic mb-6">
                                 Success <span className="text-safety-orange">Stories</span>
                             </h2>
