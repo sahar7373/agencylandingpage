@@ -24,7 +24,8 @@ import {
     ChevronUp,
     Menu,
     X,
-    Calculator
+    Calculator,
+    Play
 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -37,6 +38,8 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import ChatBot from '../components/ChatBot'
+import CaseStudyModal from '../components/CaseStudyModal'
+import VideoModal from '../components/VideoModal'
 import MissedJobReviewModal from '../components/MissedJobReviewModal'
 import PrivacyPolicyModal from '../components/PrivacyPolicyModal'
 import TermsConditionsModal from '../components/TermsConditionsModal'
@@ -44,6 +47,8 @@ import TermsConditionsModal from '../components/TermsConditionsModal'
 function LandingPage() {
     const [openFaq, setOpenFaq] = React.useState(null)
     const [isReviewModalOpen, setIsReviewModalOpen] = React.useState(false)
+    const [isCaseStudyModalOpen, setIsCaseStudyModalOpen] = React.useState(false)
+    const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false)
     const [isPrivacyModalOpen, setIsPrivacyModalOpen] = React.useState(false)
     const [isTermsModalOpen, setIsTermsModalOpen] = React.useState(false)
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
@@ -382,6 +387,12 @@ function LandingPage() {
             </Helmet>
 
             <MissedJobReviewModal isOpen={isReviewModalOpen} onClose={() => setIsReviewModalOpen(false)} />
+            <CaseStudyModal isOpen={isCaseStudyModalOpen} onClose={() => setIsCaseStudyModalOpen(false)} />
+            <VideoModal
+                isOpen={isVideoModalOpen}
+                onClose={() => setIsVideoModalOpen(false)}
+                videoSrc="/projects/zjc/zjc-demo-1.mov"
+            />
             <PrivacyPolicyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
             <TermsConditionsModal isOpen={isTermsModalOpen} onClose={() => setIsTermsModalOpen(false)} />
 
@@ -791,6 +802,80 @@ function LandingPage() {
                                 The Growth System exists for trades who want to <br className="hidden md:block" />
                                 <span className="text-safety-orange underline decoration-safety-orange/30 underline-offset-4">fix this once</span> — not patch it later.
                             </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* SECTION: SUCCESS STORIES / SHOWCASE */}
+            <section className="py-24 md:py-32 border-b border-white/5 bg-zinc-900/10">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-16">
+                            <Badge className="bg-white/10 text-white mb-6 hover:bg-white/10 pointer-events-none uppercase tracking-widest text-[10px]">Project Showcase</Badge>
+                            <h2 className="text-4xl md:text-6xl font-black uppercase italic mb-6">
+                                Success <span className="text-safety-orange">Stories</span>
+                            </h2>
+                            <p className="text-xl md:text-2xl text-white/60 font-bold max-w-2xl mx-auto">
+                                See how we’ve helped other Australian trade businesses dominate their local areas.
+                            </p>
+                        </div>
+
+                        <div className="grid md:grid-cols-1 gap-12">
+                            {/* ZJC Renovations Card */}
+                            <div className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500">
+                                <div className="grid lg:grid-cols-2 gap-0 overflow-hidden">
+                                    {/* Preview Image */}
+                                    <div className="relative h-[300px] lg:h-full min-h-[400px] overflow-hidden">
+                                        <img
+                                            src="/projects/zjc/homepage.png"
+                                            alt="ZJC Renovations Showcase"
+                                            className="w-full h-full object-cover object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-r from-construction-charcoal via-transparent to-transparent opacity-60"></div>
+                                    </div>
+
+                                    {/* Content Area */}
+                                    <div className="p-8 md:p-12 flex flex-col justify-center">
+                                        <div className="flex items-center gap-3 mb-6">
+                                            <div className="w-10 h-0.5 bg-safety-orange"></div>
+                                            <span className="text-xs font-black uppercase tracking-widest text-safety-orange">Verified Result • ACT</span>
+                                        </div>
+
+                                        <h3 className="text-3xl md:text-4xl font-black uppercase italic mb-6">ZJC Renovations</h3>
+
+                                        <p className="text-lg font-bold text-white/70 mb-8 leading-relaxed italic">
+                                            "The website, logo, and enquiry system made a big difference. Customers now contact us with clearer requests and are more confident."
+                                        </p>
+
+                                        <div className="flex flex-wrap gap-4 mb-10">
+                                            {["8 Pages Local Website", "Logo Design", "Lead Capture", "GBP Setup"].map((tag, i) => (
+                                                <span key={i} className="text-[10px] font-black uppercase tracking-widest bg-white/5 px-3 py-1 text-white/40 border border-white/5">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+
+                                        <div className="mt-auto flex items-center gap-4">
+                                            <Button
+                                                onClick={() => setIsCaseStudyModalOpen(true)}
+                                                className="bg-white hover:bg-white/90 text-black rounded-none px-8 py-6 text-sm font-black uppercase tracking-widest shadow-xl transition-all"
+                                            >
+                                                Show More Case Study
+                                            </Button>
+
+                                            <button
+                                                onClick={() => setIsVideoModalOpen(true)}
+                                                className="group/play flex items-center gap-3 bg-safety-orange/10 hover:bg-safety-orange/20 border border-safety-orange/30 p-4 transition-all"
+                                                title="Watch Video Demo"
+                                            >
+                                                <Play className="w-6 h-6 text-safety-orange fill-safety-orange group-hover/play:scale-110 transition-transform" />
+                                                <span className="text-xs font-black uppercase tracking-widest text-safety-orange hidden md:inline">Watch Demo</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
