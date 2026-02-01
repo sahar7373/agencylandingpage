@@ -877,7 +877,7 @@ function LandingPage() {
                                         serviceLabel: "Bathroom Renovation Showcase",
                                         work: "/projects/zjc/work.png"
                                     },
-                                    video: "/projects/zjc/zjc-demo-1.mov"
+                                    video: "https://vimeo.com/1160709635"
                                 },
                                 {
                                     id: 'swrp',
@@ -898,7 +898,7 @@ function LandingPage() {
                                         "Manual reporting and paper-based SWMS",
                                         "Need for professional communication channels"
                                     ],
-                                    tags: ["14+ Page Website", "Brand Identity", "Custom SWMS", "Roof Report Template", "Lead Capture Form", "Custom Email Box"],
+                                    tags: ["14+ Page Website", "Brand Identity", "Custom SWMS", "Roof Report Template", "Lead Capture Form", "Custom Email Box", "Roof Report Template"],
                                     images: {
                                         preview: "/projects/SWRP/swrp-homepage.png",
                                         homepage: "/projects/SWRP/swrp-homepage.png",
@@ -906,7 +906,7 @@ function LandingPage() {
                                         serviceLabel: "Roof Reconstruction Showcase",
                                         work: "/projects/SWRP/swrp-work.png"
                                     },
-                                    video: "/projects/SWRP/swrp-demo-1.mov"
+                                    video: "https://vimeo.com/1160712562"
                                 }
                             ].map((project) => (
                                 <div key={project.id} className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500 flex flex-col">

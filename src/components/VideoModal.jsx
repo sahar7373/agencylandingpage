@@ -3,14 +3,23 @@ import { X } from 'lucide-react';
 
 const VideoModal = ({ isOpen, onClose, videoSrc }) => {
     const videoRef = React.useRef(null);
+    const isVimeo = videoSrc?.includes('vimeo.com');
 
     React.useEffect(() => {
-        if (isOpen && videoRef.current) {
+        if (isOpen && videoRef.current && !isVimeo) {
             videoRef.current.playbackRate = 1.35;
         }
-    }, [isOpen]);
+    }, [isOpen, isVimeo]);
 
     if (!isOpen) return null;
+
+    // Extract Vimeo ID from URL: https://vimeo.com/1160709635?share=copy...
+    const getVimeoId = (url) => {
+        const match = url.match(/vimeo\.com\/(\d+)/);
+        return match ? match[1] : null;
+    };
+
+    const vimeoId = isVimeo ? getVimeoId(videoSrc) : null;
 
     return (
         <div className="fixed inset-0 z-[120] flex items-center justify-center p-4">
@@ -32,16 +41,27 @@ const VideoModal = ({ isOpen, onClose, videoSrc }) => {
                 </button>
 
                 <div className="aspect-video w-full bg-black flex items-center justify-center">
-                    <video
-                        ref={videoRef}
-                        src={videoSrc}
-                        className="w-full h-full"
-                        controls
-                        autoPlay
-                        playsInline
-                    >
-                        Your browser does not support the video tag.
-                    </video>
+                    {isVimeo ? (
+                        <iframe
+                            src={`https://player.vimeo.com/video/${vimeoId}?autoplay=1`}
+                            className="w-full h-full"
+                            frameBorder="0"
+                            allow="autoplay; fullscreen; picture-in-picture"
+                            allowFullScreen
+                            title="Video Demo"
+                        ></iframe>
+                    ) : (
+                        <video
+                            ref={videoRef}
+                            src={videoSrc}
+                            className="w-full h-full"
+                            controls
+                            autoPlay
+                            playsInline
+                        >
+                            Your browser does not support the video tag.
+                        </video>
+                    )}
                 </div>
             </div>
         </div>
