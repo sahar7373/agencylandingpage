@@ -176,6 +176,18 @@ const ChatBot = () => {
                                             }`}
                                     >
                                         {m.content}
+                                        {m.role === 'assistant' && (m.content.toLowerCase().includes('book a strategy session') || m.content.toLowerCase().includes('book strategy session')) && (
+                                            <button
+                                                onClick={() => {
+                                                    if (window.Cal) {
+                                                        window.Cal("ui", "openModal", { calLink: "saharsh-patel-fr7cuf/strategy-session" });
+                                                    }
+                                                }}
+                                                className="mt-3 w-full bg-safety-orange hover:bg-safety-orange-hover text-white py-2 px-4 rounded-sm text-xs font-black uppercase tracking-widest transition-colors shadow-lg shadow-safety-orange/20"
+                                            >
+                                                Book Session Now
+                                            </button>
+                                        )}
                                     </div>
                                 </div>
                             ))}

@@ -132,9 +132,11 @@ const MissedJobReviewModal = ({ isOpen, onClose }) => {
                             <Button
                                 onClick={() => {
                                     onClose();
-                                    window.location.href = "#contact";
+                                    if (window.Cal) {
+                                        window.Cal("ui", "openModal", { calLink: "saharsh-patel-fr7cuf/strategy-session" });
+                                    }
                                 }}
-                                className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-8 py-6 text-lg font-black uppercase tracking-widest shadow-xl shadow-safety-orange/20"
+                                className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-8 py-6 text-lg font-black uppercase tracking-widest shadow-xl shadow-safety-orange/20 text-center"
                             >
                                 Book Strategy Session
                             </Button>
