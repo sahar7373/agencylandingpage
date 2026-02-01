@@ -1776,7 +1776,7 @@ function LandingPage() {
                                             className="w-full bg-white/5 border border-white/10 p-2 text-base text-white appearance-none focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
                                         >
                                             <option value="" disabled className="bg-zinc-900">Select...</option>
-                                            <option value="audit" className="bg-zinc-900">Stop Missing Jobs Audit - $89.99 + GST</option>
+                                            <option value="audit" className="bg-zinc-900">Stop Missing Jobs Audit - FREE</option>
                                             <option value="trade-ready" className="bg-zinc-900">Trade-Ready Setup ($1,900)</option>
                                             <option value="core" className="bg-zinc-900">Local Jobs Engine ($3,900)</option>
                                             <option value="growth" className="bg-zinc-900">Growth System ($6,800)</option>

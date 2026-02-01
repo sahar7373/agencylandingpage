@@ -23,7 +23,7 @@ CORE OFFERINGS:
    - "Best for established trades who want consistent enquiries and long-term growth."
    - PRICING NOTE: Varies ($7.5k-$12k typ.) based on pages, locations, and system complexity. Ongoing partnership quoted separately.
 
-NEW OFFER: "STOP MISSING JOBS" STRATEGY SESSION ($89.99 + GST - Fully Credited):
+NEW OFFER: "STOP MISSING JOBS" STRATEGY SESSION (FREE):
 - A paid business check to find where enquiries/confidence are leaking.
 - We review: Website, call handling, trust signals.
 - You get: 3-5 clear improvement points & priority recommendation.
