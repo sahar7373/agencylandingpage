@@ -30,7 +30,7 @@ const MissedJobReviewModal = ({ isOpen, onClose }) => {
                         <h2 className="text-3xl md:text-4xl font-black uppercase italic mb-3">Stop Missing Jobs</h2>
                         <div className="w-16 h-1 bg-safety-orange mx-auto mb-4"></div>
                         <p className="text-lg font-medium text-white/80 max-w-lg mx-auto leading-relaxed">
-                            A quick, paid business check to find where enquiries, calls, and confidence are leaking — and how to fix it.
+                            A quick, free business check to find where enquiries, calls, and confidence are leaking — and how to fix it.
                         </p>
                     </div>
 
@@ -41,7 +41,7 @@ const MissedJobReviewModal = ({ isOpen, onClose }) => {
                         <div className="bg-white/5 p-6 rounded-sm border-l-4 border-safety-orange">
                             <h3 className="font-black uppercase text-white mb-2 text-sm tracking-widest">What This Is</h3>
                             <p className="text-sm font-medium text-white/70 leading-relaxed mb-2">
-                                This is a short, paid consultation where we review how customers actually experience your business before they call or request a quote.
+                                This is a 30-minute free strategy session where we review how customers actually experience your business before they call or request a quote.
                             </p>
                             <p className="text-sm font-bold text-white leading-relaxed">
                                 We look at what’s costing you jobs — not in theory, but in real life.
