@@ -130,12 +130,9 @@ const MissedJobReviewModal = ({ isOpen, onClose }) => {
 
                         <div className="flex flex-col items-center gap-4 pt-4">
                             <Button
-                                onClick={() => {
-                                    onClose();
-                                    if (window.Cal) {
-                                        window.Cal("ui", "openModal", { calLink: "saharsh-patel-fr7cuf/strategy-session" });
-                                    }
-                                }}
+                                data-cal-link="saharsh-patel-fr7cuf/strategy-session"
+                                data-cal-namespace="strategy-session"
+                                data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
                                 className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-8 py-6 text-lg font-black uppercase tracking-widest shadow-xl shadow-safety-orange/20 text-center"
                             >
                                 Book Strategy Session
