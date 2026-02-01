@@ -92,24 +92,9 @@ const MissedJobReviewModal = ({ isOpen, onClose }) => {
                         </div>
 
                         {/* Price & How It Works */}
-                        <div className="grid md:grid-cols-2 gap-8 items-center border-t border-white/10 pt-8">
+                        <div className="flex justify-center border-t border-white/10 pt-8">
 
-                            {/* Price */}
-                            <div className="text-center md:text-left">
-                                <span className="text-xs font-bold uppercase tracking-widest text-white/40 block mb-1">One-time Investment</span>
-                                <div className="text-4xl font-black uppercase text-white mb-3">FREE</div>
-                                <div className="space-y-1">
-                                    <p className="text-xs font-bold text-green-500 flex items-center justify-center md:justify-start gap-2">
-                                        <CheckCircle2 className="w-3 h-3" /> Fully credited if you proceed
-                                    </p>
-                                    <p className="text-xs font-bold text-white/40 flex items-center justify-center md:justify-start gap-2">
-                                        <CheckCircle2 className="w-3 h-3" /> No lock-in
-                                    </p>
-                                    <p className="text-xs font-bold text-white/40 flex items-center justify-center md:justify-start gap-2">
-                                        <CheckCircle2 className="w-3 h-3" /> No sales pressure
-                                    </p>
-                                </div>
-                            </div>
+
 
                             {/* How It Works */}
                             <div className="space-y-3">
@@ -135,7 +120,7 @@ const MissedJobReviewModal = ({ isOpen, onClose }) => {
                                 data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
                                 className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-8 py-6 text-lg font-black uppercase tracking-widest shadow-xl shadow-safety-orange/20 text-center"
                             >
-                                Book Strategy Session
+                                Book a Free Strategy Session
                             </Button>
 
 
