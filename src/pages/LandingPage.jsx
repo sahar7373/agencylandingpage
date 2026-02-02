@@ -97,6 +97,11 @@ function LandingPage() {
         message: ''
     })
 
+    const handleNavClick = (sectionName) => {
+        ReactPixel.trackCustom('NavigationClick', { content_name: sectionName });
+        ReactGA.event({ category: "Navigation", action: "Click_Menu_Item", label: sectionName });
+    };
+
     const toggleFaq = (index) => {
         setOpenFaq(openFaq === index ? null : index)
     }
@@ -449,10 +454,10 @@ function LandingPage() {
                         <span className="text-sm md:text-xl font-black uppercase tracking-tighter">Your Trade Partner<span className="text-safety-orange">.</span></span>
                     </a>
                     <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-                        <a href="#why" className="hover:text-white transition-colors">Why It Matters</a>
-                        <a href="#projects" className="hover:text-white transition-colors">Projects</a>
-                        <a href="#packages" className="hover:text-white transition-colors">Packages</a>
-                        <a href="#guarantee" className="hover:text-white transition-colors">Guarantee</a>
+                        <a href="#why" onClick={() => handleNavClick("Why It Matters")} className="hover:text-white transition-colors">Why It Matters</a>
+                        <a href="#projects" onClick={() => handleNavClick("Projects")} className="hover:text-white transition-colors">Projects</a>
+                        <a href="#packages" onClick={() => handleNavClick("Packages")} className="hover:text-white transition-colors">Packages</a>
+                        <a href="#guarantee" onClick={() => handleNavClick("Guarantee")} className="hover:text-white transition-colors">Guarantee</a>
                     </div>
                     <div className="flex items-center gap-4">
                         <Button
@@ -473,10 +478,10 @@ function LandingPage() {
                     {/* Mobile Menu Overlay */}
                     {isMenuOpen && (
                         <div className="absolute top-full left-0 w-full bg-construction-charcoal border-b border-white/10 p-6 flex flex-col gap-6 lg:hidden shadow-2xl animate-in slide-in-from-top-5 duration-200">
-                            <a href="#why" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Why It Matters</a>
-                            <a href="#projects" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Projects</a>
-                            <a href="#packages" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Packages</a>
-                            <a href="#guarantee" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Guarantee</a>
+                            <a href="#why" onClick={() => { setIsMenuOpen(false); handleNavClick("Why It Matters Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Why It Matters</a>
+                            <a href="#projects" onClick={() => { setIsMenuOpen(false); handleNavClick("Projects Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Projects</a>
+                            <a href="#packages" onClick={() => { setIsMenuOpen(false); handleNavClick("Packages Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Packages</a>
+                            <a href="#guarantee" onClick={() => { setIsMenuOpen(false); handleNavClick("Guarantee Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Guarantee</a>
                         </div>
                     )}
                 </div>
