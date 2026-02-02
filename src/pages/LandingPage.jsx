@@ -450,6 +450,7 @@ function LandingPage() {
                     </a>
                     <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
                         <a href="#why" className="hover:text-white transition-colors">Why It Matters</a>
+                        <a href="#projects" className="hover:text-white transition-colors">Projects</a>
                         <a href="#packages" className="hover:text-white transition-colors">Packages</a>
                         <a href="#guarantee" className="hover:text-white transition-colors">Guarantee</a>
                     </div>
@@ -473,6 +474,7 @@ function LandingPage() {
                     {isMenuOpen && (
                         <div className="absolute top-full left-0 w-full bg-construction-charcoal border-b border-white/10 p-6 flex flex-col gap-6 lg:hidden shadow-2xl animate-in slide-in-from-top-5 duration-200">
                             <a href="#why" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Why It Matters</a>
+                            <a href="#projects" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Projects</a>
                             <a href="#packages" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Packages</a>
                             <a href="#guarantee" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Guarantee</a>
                         </div>
@@ -837,7 +839,7 @@ function LandingPage() {
             </section>
 
             {/* SECTION: SUCCESS STORIES / SHOWCASE */}
-            <section className="pt-[66px] pb-24 md:pt-[98px] md:pb-32 border-b border-white/5 bg-zinc-900/10">
+            <section id="projects" className="pt-[66px] pb-24 md:pt-[98px] md:pb-32 border-b border-white/5 bg-zinc-900/10">
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
                         <div className="text-center mb-16">
