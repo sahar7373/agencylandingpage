@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet-async';
 import { X, Check, ArrowDown, AlertTriangle, Hammer } from 'lucide-react';
 import { Button } from '../components/ui/button';
 
@@ -12,6 +13,14 @@ const Guide = () => {
     return (
         // CANVAS: Deep Charcoal background, forced print settings
         <div className="min-h-screen bg-construction-charcoal text-white font-sans flex justify-center py-8 px-4 md:px-0 print:bg-construction-charcoal print:text-white print:p-0 print:m-0" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
+            <Helmet>
+                <title>The Trade Guide | What Customers Don't Tell You</title>
+                <meta name="description" content="Discover why most trades lose work before the job even starts. A guide to fixing the hidden leaks in your enquiry process." />
+                <meta property="og:title" content="The Trade Guide | What Customers Don't Tell You" />
+                <meta property="og:description" content="Discover why most trades lose work before the job even starts. A guide to fixing the hidden leaks in your enquiry process." />
+                <meta property="og:type" content="article" />
+                <meta property="og:url" content="https://yourtradepartner.com.au/guide" />
+            </Helmet>
             <style>{`
                 @media print {
                     @page { margin: 0; }
