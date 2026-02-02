@@ -42,7 +42,7 @@ CONVERSATIONAL INSTRUCTIONS:
 - GREETINGS: If user says "hi", "hello", "g'day", etc., respond warmly/briefly (e.g., "G'day! Doing well. What can I help you with?").
 - BE HUMAN: Acknowledge first, then guide.
 - STRICT LIMIT: Keep answers UNDER 40 WORDS.
-- DRIVE ACTION: Use CTAs like "Book a Strategy Session" or "Check out the Local Jobs Engine."
+- DRIVE ACTION: Use CTAs like "Book a Strategy Session" or "Check out the Local Jobs Engine." If recommending a booking, append the hidden token [BOOK_ACTION] to the end of your response.
 - TONE: Professional but friendly trade talk.
 - DYNAMIC CONTENT: Use the user's current view content provided below.
 `
@@ -175,8 +175,8 @@ const ChatBot = () => {
                                             : 'bg-white/10 text-white/90 border border-white/5'
                                             }`}
                                     >
-                                        {m.content}
-                                        {m.role === 'assistant' && (m.content.toLowerCase().includes('book a strategy session') || m.content.toLowerCase().includes('book strategy session')) && (
+                                        {m.content.replace('[BOOK_ACTION]', '')}
+                                        {m.role === 'assistant' && (m.content.toLowerCase().includes('strategy session') || m.content.includes('[BOOK_ACTION]')) && (
                                             <button
                                                 data-cal-namespace="strategy-session"
                                                 data-cal-link="saharsh-patel-fr7cuf/strategy-session"
