@@ -879,7 +879,7 @@ function LandingPage() {
                                         serviceLabel: "Bathroom Renovation Showcase",
                                         work: "/projects/zjc/work.png"
                                     },
-                                    video: "https://vimeo.com/1160709635"
+                                    video: "https://vimeo.com/1160983424"
                                 },
                                 {
                                     id: 'swrp',
@@ -908,7 +908,7 @@ function LandingPage() {
                                         serviceLabel: "Roof Reconstruction Showcase",
                                         work: "/projects/SWRP/swrp-work.png"
                                     },
-                                    video: "https://vimeo.com/1160712562"
+                                    video: "https://vimeo.com/1160981021"
                                 }
                             ].map((project) => (
                                 <div key={project.id} className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500 flex flex-col">
