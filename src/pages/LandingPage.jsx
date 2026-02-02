@@ -460,7 +460,7 @@ function LandingPage() {
                                 ReactPixel.track('InitiateCheckout', { content_name: 'Stop Missing Jobs Modal' });
                                 ReactGA.event({ category: "Conversion", action: "Click_Hero_CTA", label: "Stop Missing Jobs" });
                             }}
-                            className="bg-blue-600 hover:bg-blue-700 text-white rounded-none px-2 md:px-3 h-9 md:h-auto md:py-2 text-[9px] md:text-xs font-black uppercase tracking-wider md:tracking-widest shadow-lg shadow-blue-600/20 flex items-center"
+                            className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-2 md:px-3 h-9 md:h-auto md:py-2 text-[9px] md:text-xs font-black uppercase tracking-wider md:tracking-widest shadow-lg shadow-safety-orange/20 flex items-center"
                         >
                             Stop Missing Jobs
                         </Button>
