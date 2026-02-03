@@ -118,7 +118,7 @@ const MissedJobReviewModal = ({ isOpen, onClose }) => {
                                 data-cal-link="saharsh-patel-fr7cuf/strategy-session"
                                 data-cal-namespace="strategy-session"
                                 data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
-                                className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-8 py-6 text-lg font-black uppercase tracking-widest shadow-xl shadow-safety-orange/20 text-center"
+                                className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-4 py-4 md:px-8 md:py-6 text-sm md:text-lg font-black uppercase tracking-widest shadow-xl shadow-safety-orange/20 text-center h-auto whitespace-normal leading-tight"
                             >
                                 Book a Free Strategy Session
                             </Button>
