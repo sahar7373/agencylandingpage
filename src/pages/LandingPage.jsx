@@ -1374,8 +1374,8 @@ function LandingPage() {
                                 Download the guide to see exactly where trades lose money online.
                             </p>
                             <a
-                                href="/Trade_Growth_Guide.pdf"
-                                download
+                                href="/guide"
+                                target="_blank"
                                 className="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 px-6 py-3 font-black uppercase tracking-widest text-xs transition-colors rounded-none cursor-pointer"
                             >
                                 <span className="text-lg">↓</span> Download Free Guide
