@@ -25,7 +25,8 @@ import {
     Menu,
     X,
     Calculator,
-    Play
+    Play,
+    Loader2
 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -82,20 +83,11 @@ function LandingPage() {
     const [formStatus, setFormStatus] = React.useState('idle') // idle, submitting, success
     const [formData, setFormData] = React.useState({
         name: '',
-        businessName: '',
         phone: '',
         email: '',
         trade: '',
         location: '',
-        situation: '',
-        situationOther: '',
-        package: '',
-        hasWebsite: '',
         goal: '',
-        readyToInvest: '',
-        websiteLink: '',
-        referral: '',
-        referralOther: '',
         message: ''
     })
 
@@ -136,17 +128,21 @@ function LandingPage() {
 
         try {
             const sheetUrl = import.meta.env.VITE_GOOGLE_SHEET_URL;
+            console.log("DEBUG: Submit started");
             if (sheetUrl) {
-                console.log("Submitting to:", sheetUrl);
+                console.log("DEBUG: Submitting to:", sheetUrl);
             } else {
-                console.error("Missing VITE_GOOGLE_SHEET_URL");
+                console.error("DEBUG: Missing VITE_GOOGLE_SHEET_URL");
             }
 
             const refinedPayload = {
                 ...formData,
-                phone: `'${formData.phone}`, // Force text format in Sheets to keep leading zero
-                situation: formData.situation === 'Other' ? formData.situationOther : formData.situation,
-                referral: formData.referral === 'Other' ? formData.referralOther : formData.referral,
+                phone: `'${formData.phone}`, // Force text format
+                // specific fields for legacy sheet structure matching
+                businessName: "",
+                package: "",
+                situation: "",
+                referral: "",
                 timestamp: new Date().toISOString()
             };
 
@@ -159,7 +155,10 @@ function LandingPage() {
                 body: JSON.stringify(refinedPayload),
             });
 
+            console.log("DEBUG: Fetch request sent");
+
             setFormStatus('success')
+            console.log("DEBUG: Status set to success");
 
             ReactPixel.track('Lead', {
                 content_name: 'Consultation Form',
@@ -172,8 +171,9 @@ function LandingPage() {
             });
 
         } catch (error) {
-            console.error("Form error:", error);
+            console.error("DEBUG: Form error:", error);
             setFormStatus('success');
+            console.log("DEBUG: Status set to success (fallback)");
         }
     }
 
@@ -491,34 +491,75 @@ function LandingPage() {
             </nav>
 
             {/* 1. HERO SECTION */}
+            {/* 1. HERO SECTION */}
             <header className="relative pt-24 pb-32 md:pt-40 md:pb-52 border-b border-white/5 overflow-hidden">
                 <div className="absolute inset-0 bg-grid-white opacity-20 pointer-events-none"></div>
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
-                        <h1 className="text-5xl md:text-8xl font-black leading-[0.9] mb-8 uppercase italic">
-                            No one tells trades this — <br />
-                            <span className="text-safety-orange">but customers decide before they call.</span>
-                        </h1>
-                        <p className="text-xl md:text-3xl text-white/90 font-bold mb-10 leading-tight">
-                            If your website looks outdated or your enquiries go unanswered, the job usually goes to the next trade on Google. We build the system that stops that from happening to you.
+
+                        {/* Audience Clarifier */}
+                        <p className="text-xs md:text-sm text-white/50 font-bold tracking-[0.2em] uppercase mb-6">
+                            FOR AUSTRALIAN TRADES
                         </p>
 
-                        <div className="inline-flex items-center gap-4 bg-white/5 border border-white/10 px-6 py-4 mb-12 rounded-sm md:text-lg">
-                            <ShieldCheck className="text-safety-orange w-6 h-6 flex-shrink-0" />
-                            <p className="font-bold">
-                                Built by someone with 4+ years in construction project management (and counting) — <span className="text-white/40 italic">actively working in the industry and building this to give trades a real advantage.</span>
+                        {/* Main Headline */}
+                        <h1 className="text-5xl md:text-8xl font-black leading-[0.9] mb-8 uppercase italic">
+                            NO ONE TELLS TRADES THIS — <br />
+                            <span className="text-safety-orange">CUSTOMERS DECIDE BEFORE THEY CALL.</span>
+                        </h1>
+
+                        {/* Sub Headline */}
+                        <p className="text-xl md:text-2xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto">
+                            If your website looks outdated or enquiries go unanswered, customers usually call the next trade on Google.
+                            <br className="hidden md:block my-2" />
+                            We build websites, enquiry systems, and AI call assistants that stop that from happening.
+                        </p>
+
+                        {/* Trust Position Strip */}
+                        <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 mb-10 rounded-full md:text-sm backdrop-blur-sm">
+                            <ShieldCheck className="text-safety-orange w-5 h-5 flex-shrink-0" />
+                            <p className="font-semibold text-white/80">
+                                Built by someone actively working inside the construction industry — <span className="text-white/40">not a marketing agency guessing.</span>
                             </p>
                         </div>
 
+                        {/* Primary CTA */}
                         <div className="flex flex-col items-center gap-4">
-                            <a href="#packages" className="w-full sm:w-auto">
-                                <Button size="xl" className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-12 py-10 text-xl md:text-2xl font-black uppercase tracking-widest group shadow-2xl shadow-safety-orange/30 w-full">
-                                    <span>Let's fix it together</span>
-                                    <ArrowRight className="ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
-                                </Button>
-                            </a>
+                            <Button
+                                onClick={() => {
+                                    setIsReviewModalOpen(true);
+                                    ReactPixel.track('InitiateCheckout', { content_name: 'Hero CTA' });
+                                    ReactGA.event({ category: "Conversion", action: "Click_Hero_CTA", label: "See Losing Jobs" });
+                                }}
+                                size="xl"
+                                className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-12 py-8 text-xl md:text-2xl font-black uppercase tracking-widest group shadow-2xl shadow-safety-orange/30 w-full sm:w-auto transform hover:scale-105 transition-all duration-200"
+                            >
+                                <span>SEE WHERE YOU'RE LOSING JOBS</span>
+                                <ArrowRight className="ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                            </Button>
 
+                            {/* Micro Reassurance */}
+                            <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-widest font-bold">
+                                15-minute review • No pressure • Real improvement plan
+                            </p>
                         </div>
+
+                        {/* Optional Proof Strip */}
+                        <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mt-12 text-sm text-white/60 font-bold uppercase tracking-wider">
+                            <div className="flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                <span>Built for Australian trades</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                <span>Designed to reduce missed enquiries</span>
+                            </div>
+                            <div className="flex items-center gap-2">
+                                <CheckCircle2 className="w-4 h-4 text-green-500" />
+                                <span>Visitors into booked jobs</span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </header>
@@ -1663,10 +1704,10 @@ function LandingPage() {
                         <div className="max-w-xl mx-auto bg-green-950/20 border border-green-500/30 p-8 md:p-12 rounded-sm">
                             <CheckCircle2 className="w-16 h-16 text-green-500 mx-auto mb-6" />
                             <h2 className="text-3xl md:text-4xl font-black uppercase italic mb-4 text-white">
-                                Thanks — you’re all set.
+                                You're in the queue.
                             </h2>
                             <p className="text-lg md:text-xl text-white/80 font-medium mb-6">
-                                We'll look over what you shared and let you know if there's something worth fixing, we'll explain it clearly. If everything's already solid, you'll know that too.
+                                Check your email shortly for your booking options and next steps.
                             </p>
                             <p className="text-xs font-black uppercase tracking-widest text-white/40 border-t border-white/10 pt-4">
                                 No pressure. No hard sell.
@@ -1676,264 +1717,124 @@ function LandingPage() {
                         <div className="max-w-xl mx-auto">
                             <div className="mb-10">
                                 <h2 className="text-3xl md:text-5xl font-black mb-4 uppercase italic leading-none tracking-tighter text-white">
-                                    Let’s work on <br /> <span className="text-safety-orange">building your system.</span>
+                                    Let’s See Where Jobs <br /> <span className="text-safety-orange">Might Be Slipping Through</span>
                                 </h2>
                             </div>
 
                             <form onSubmit={handleSubmit} className="text-left space-y-6 bg-zinc-900/80 p-6 md:p-8 border border-white/10 backdrop-blur-sm shadow-2xl">
 
-                                {/* Basic Details Grid */}
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Full Name <span className="text-safety-orange">*</span></label>
-                                        <input
-                                            required
-                                            type="text"
-                                            name="name"
-                                            value={formData.name}
-                                            onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="Name"
-                                        />
-                                    </div>
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Business <span className="text-safety-orange">*</span></label>
-                                        <input
-                                            required
-                                            type="text"
-                                            name="businessName"
-                                            value={formData.businessName}
-                                            onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="Business Name"
-                                        />
-                                    </div>
+                                {/* Full Name */}
+                                <div className="space-y-1">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Full Name</label>
+                                    <input
+                                        required
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                        placeholder="Your Name"
+                                    />
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4">
+                                {/* Phone & Email Grid */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Phone</label>
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Phone Number</label>
                                         <input
+                                            required
                                             type="tel"
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleInputChange}
-                                            maxLength="10"
-                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="0400..."
+                                            maxLength="12"
+                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            placeholder="Best number to reach you"
                                         />
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Email <span className="text-safety-orange">*</span></label>
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Email</label>
                                         <input
                                             required
                                             type="email"
                                             name="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
                                             placeholder="Email"
                                         />
                                     </div>
                                 </div>
 
-                                {/* Context Grid */}
-                                <div className="grid grid-cols-2 gap-4">
+                                {/* Trade Type & Location Grid */}
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Trade <span className="text-safety-orange">*</span></label>
-                                        <div className="relative">
-                                            <select
-                                                required
-                                                name="trade"
-                                                value={formData.trade}
-                                                onChange={handleInputChange}
-                                                className="w-full bg-white/5 border border-white/10 p-2 text-base text-white appearance-none focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            >
-                                                <option value="" disabled className="bg-zinc-900">Select...</option>
-                                                <option value="roofing" className="bg-zinc-900">Roofing</option>
-                                                <option value="plumbing" className="bg-zinc-900">Plumbing</option>
-                                                <option value="electrical" className="bg-zinc-900">Electrical</option>
-                                                <option value="carpentry" className="bg-zinc-900">Carpentry</option>
-                                                <option value="concreting" className="bg-zinc-900">Concreting</option>
-                                                <option value="landscaping" className="bg-zinc-900">Landscaping</option>
-                                                <option value="other" className="bg-zinc-900">Other</option>
-                                            </select>
-                                        </div>
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Trade Type</label>
+                                        <input
+                                            required
+                                            type="text"
+                                            name="trade"
+                                            value={formData.trade}
+                                            onChange={handleInputChange}
+                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            placeholder="What trade do you run?"
+                                        />
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Location <span className="text-safety-orange">*</span></label>
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Service Area / Location</label>
                                         <input
                                             required
                                             type="text"
                                             name="location"
                                             value={formData.location}
                                             onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="City/Region"
+                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            placeholder="Where do you service?"
                                         />
                                     </div>
                                 </div>
 
-                                <div className="space-y-1">
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Interested Package</label>
-                                    <div className="relative">
-                                        <select
-                                            required
-                                            name="package"
-                                            value={formData.package}
-                                            onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white appearance-none focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                        >
-                                            <option value="" disabled className="bg-zinc-900">Select...</option>
-                                            <option value="audit" className="bg-zinc-900">Stop Missing Jobs Audit - FREE</option>
-                                            <option value="trade-ready" className="bg-zinc-900">Trade-Ready Setup ($1,900)</option>
-                                            <option value="core" className="bg-zinc-900">Local Jobs Engine ($3,900)</option>
-                                            <option value="growth" className="bg-zinc-900">Growth System ($6,800)</option>
-                                            <option value="unsure" className="bg-zinc-900">Unsure / Need Advice</option>
-                                        </select>
-                                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
-                                    </div>
-                                </div>
-
-                                {/* Compact Radios - 2 Columns */}
-                                <div className="space-y-1">
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Current Situation</label>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                                        {[
-                                            "I want more consistent enquiries",
-                                            "I want to look more professional",
-                                            "I’m missing calls / enquiries",
-                                            "I’m ready to grow the business"
-                                        ].map((option) => (
-                                            <label key={option} className="flex items-center gap-2 p-2 border border-white/5 bg-white/5 rounded-sm cursor-pointer hover:border-white/20 transition-colors h-full">
-                                                <input
-                                                    type="radio"
-                                                    name="situation"
-                                                    value={option}
-                                                    checked={formData.situation === option}
-                                                    onChange={handleInputChange}
-                                                    className="accent-safety-orange w-3 h-3 flex-shrink-0"
-                                                />
-                                                <span className="text-xs font-bold text-white/80 leading-tight">{option}</span>
-                                            </label>
-                                        ))}
-                                    </div>
-                                </div>
-
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Already have a website?</label>
-                                        <div className="flex flex-col gap-1">
-                                            {["Yes", "No", "Outdated"].map((option) => (
-                                                <label key={option} className="flex items-center gap-2 cursor-pointer group">
-                                                    <div className={`w-3 h-3 rounded-full border border-white/20 flex items-center justify-center group-hover:border-safety-orange transition-colors ${formData.hasWebsite === option ? 'border-safety-orange' : ''}`}>
-                                                        {formData.hasWebsite === option && <div className="w-1.5 h-1.5 bg-safety-orange rounded-full" />}
-                                                    </div>
-                                                    <input
-                                                        type="radio"
-                                                        name="hasWebsite"
-                                                        value={option}
-                                                        checked={formData.hasWebsite === option}
-                                                        onChange={handleInputChange}
-                                                        className="hidden"
-                                                    />
-                                                    <span className="text-xs font-bold text-white/60 group-hover:text-white transition-colors">{option}</span>
-                                                </label>
-                                            ))}
-                                        </div>
-                                        {formData.hasWebsite === 'Yes' && (
-                                            <div className="mt-2">
-                                                <input
-                                                    type="url"
-                                                    name="websiteLink"
-                                                    value={formData.websiteLink}
-                                                    onChange={handleInputChange}
-                                                    className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                                    placeholder="Paste website link..."
-                                                />
-                                            </div>
-                                        )}
-                                    </div>
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Ready to Invest?</label>
-                                        <div className="flex flex-col gap-1">
-                                            {["Yes", "Possibly"].map((option) => (
-                                                <label key={option} className="flex items-center gap-2 cursor-pointer group">
-                                                    <div className={`w-3 h-3 rounded-full border border-white/20 flex items-center justify-center group-hover:border-safety-orange transition-colors ${formData.readyToInvest === option ? 'border-safety-orange' : ''}`}>
-                                                        {formData.readyToInvest === option && <div className="w-1.5 h-1.5 bg-safety-orange rounded-full" />}
-                                                    </div>
-                                                    <input
-                                                        type="radio"
-                                                        name="readyToInvest"
-                                                        value={option}
-                                                        checked={formData.readyToInvest === option}
-                                                        onChange={handleInputChange}
-                                                        className="hidden"
-                                                    />
-                                                    <span className="text-xs font-bold text-white/60 group-hover:text-white transition-colors">{option}</span>
-                                                </label>
-                                            ))}
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Referral Source */}
-                                <div className="space-y-1">
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Where did you hear about us?</label>
-                                    <div className="relative">
-                                        <select
-                                            name="referral"
-                                            value={formData.referral}
-                                            onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-2 text-base text-white appearance-none focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                        >
-                                            <option value="" disabled className="bg-zinc-900">Select...</option>
-                                            <option value="FB" className="bg-zinc-900">FB</option>
-                                            <option value="Google" className="bg-zinc-900">Google</option>
-                                            <option value="Word of mouth" className="bg-zinc-900">Word of mouth</option>
-                                            <option value="Search" className="bg-zinc-900">Search</option>
-                                            <option value="Other" className="bg-zinc-900">Other</option>
-                                        </select>
-                                        <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40 pointer-events-none" />
-                                    </div>
-                                    {formData.referral === 'Other' && (
-                                        <div className="mt-2">
-                                            <input
-                                                required
-                                                type="text"
-                                                name="referralOther"
-                                                value={formData.referralOther}
-                                                onChange={handleInputChange}
-                                                className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                                placeholder="Please specify..."
-                                            />
-                                        </div>
-                                    )}
-                                </div>
-
-                                {/* Message / Additional Info */}
+                                {/* Message */}
                                 <div className="space-y-1">
                                     <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Message / Additional Info</label>
                                     <textarea
                                         name="message"
                                         value={formData.message}
                                         onChange={handleInputChange}
-                                        className="w-full bg-white/5 border border-white/10 p-2 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium min-h-[100px]"
+                                        className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium min-h-[100px]"
                                         placeholder="Anything else we should know?"
                                     />
                                 </div>
 
-                                <div className="pt-2">
+                                <div className="pt-2 gap-4 flex flex-col items-center">
                                     <Button
                                         type="submit"
                                         disabled={formStatus === 'submitting'}
-                                        className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none py-4 text-base font-black uppercase tracking-widest shadow-lg shadow-safety-orange/20"
+                                        className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none py-6 text-xl font-black uppercase tracking-widest shadow-xl shadow-safety-orange/20"
                                     >
-                                        {formStatus === 'submitting' ? 'Submitting...' : 'Let’s Connect'}
+                                        {formStatus === 'submitting' ? (
+                                            <span className="flex items-center gap-2">
+                                                <Loader2 className="w-6 h-6 animate-spin" /> Sending...
+                                            </span>
+                                        ) : (
+                                            "CHECK MY JOB FLOW"
+                                        )}
                                     </Button>
-                                    <p className="text-center text-xs uppercase font-bold text-white/30 tracking-widest mt-3">
-                                        We review every submission personally.
+
+                                    {/* Updated Reassurance Text */}
+                                    <p className="text-center text-xs md:text-sm font-bold text-white/80 mt-2">
+                                        You’ll receive booking options immediately after submitting.
                                     </p>
+
+                                    {/* Hero-style Micro Copy */}
+                                    <div className="flex flex-col md:flex-row gap-4 mt-2">
+                                        <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-widest font-bold flex items-center gap-2">
+                                            <CheckCircle2 className="w-3 h-3 text-green-500" /> No sales pressure
+                                        </p>
+                                        <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-widest font-bold flex items-center gap-2">
+                                            <CheckCircle2 className="w-3 h-3 text-green-500" /> Real improvement suggestions
+                                        </p>
+                                    </div>
                                 </div>
 
                             </form>
