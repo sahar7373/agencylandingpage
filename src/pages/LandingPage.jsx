@@ -1102,7 +1102,7 @@ function LandingPage() {
                                             <ul className="space-y-3">
                                                 {[
                                                     "EXTRA SERVICE & SUBURB PAGES BUILT AROUND REAL LOCAL SEARCHES",
-                                                    "SETUP DESIGNED TO HELP YOU SHOW UP MORE OFTEN WHEN PEOPLE ARE LOOKING",
+                                                    "SETUP DESIGNED TO HELP YOU SHOW UP MORE OFTEN WHEN PEOPLE ARE SEARCHING LOCALLY AND IN AI",
                                                     {
                                                         text: (
                                                             <CollapsibleDetail title="AFTER-HOURS, MISSED-CALL & RECEPTIONIST HANDLING">
