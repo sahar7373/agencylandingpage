@@ -492,7 +492,7 @@ function LandingPage() {
 
             {/* 1. HERO SECTION */}
             {/* 1. HERO SECTION */}
-            <header className="relative pt-24 pb-32 md:pt-40 md:pb-52 border-b border-white/5 overflow-hidden">
+            <header className="relative pt-16 pb-24 md:pt-32 md:pb-44 border-b border-white/5 overflow-hidden">
                 <div className="absolute inset-0 bg-grid-white opacity-20 pointer-events-none"></div>
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
@@ -945,7 +945,7 @@ function LandingPage() {
                                     ],
                                     challenge: [
                                         "Scaling operations without digital systems",
-                                        "No centralized branding for a 14+ page site",
+                                        "No centralized branding",
                                         "Manual reporting and paper-based SWMS",
                                         "Need for professional communication channels"
                                     ],
@@ -1016,6 +1016,13 @@ function LandingPage() {
                                 </div>
                             ))}
                         </div>
+                        <div className="text-center mt-12">
+                            <div className="inline-block px-6 py-3 rounded-full bg-safety-orange/10 border border-safety-orange/20">
+                                <p className="text-sm font-black uppercase tracking-widest text-safety-orange">
+                                    Most trades decide after seeing how this applies to businesses like theirs.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -1052,7 +1059,7 @@ function LandingPage() {
                             </CardHeader>
                             <div className={`${expandedPackages.includes(1) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
                                 <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
-                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">Best for solo operators & small crews</p>
+                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR TRADES WHO WANT TO LOOK PROFESSIONAL AND STOP LOSING JOBS DUE TO WEAK ONLINE PRESENCE.</p>
 
                                     {/* Website Inclusions */}
                                     <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
@@ -1126,8 +1133,7 @@ function LandingPage() {
                             <div className={`${expandedPackages.includes(3) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
                                 <CardContent className="p-5 md:p-6 space-y-6 flex-grow">
                                     <p className="text-xs font-black uppercase tracking-widest text-safety-orange">
-                                        Best for established trades who want consistent enquiries and long-term growth.
-                                    </p>
+                                        FOR TRADES READY TO CAPTURE MORE OPPORTUNITIES AND RUN A MORE AUTOMATED, RELIABLE JOB FLOW.</p>
 
                                     <div className="space-y-4">
                                         <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
@@ -1220,7 +1226,7 @@ function LandingPage() {
                                                 <p className="text-[10px] uppercase font-bold text-white/40 leading-relaxed animate-in fade-in slide-in-from-top-1 duration-200">
                                                     Not every trade needs the same setup. Pricing depends on how many pages, locations, promotions, and systems are required to get results.
                                                     <br /><br />
-                                                    - Receptionist usage is billed separately based on call volume. We set this up to be cost-effective and scale only when needed.
+                                                    Receptionist usage is billed separately based on call volume. We set this up to be cost-effective and scale only when needed.
                                                 </p>
                                                 <p className="text-[10px] uppercase font-bold text-white/40 mt-2 italic animate-in fade-in slide-in-from-top-1 duration-200 delay-75">We scope this before anything is built — no surprises.</p>
                                             </>
@@ -1231,7 +1237,7 @@ function LandingPage() {
                                         ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 3", value: 7500 });
                                     }}>
                                         <Button className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none h-12 font-black uppercase tracking-widest">
-                                            Apply for Growth System
+                                            Check Growth Availability
                                         </Button>
                                     </a>
                                 </CardFooter>
@@ -1261,7 +1267,7 @@ function LandingPage() {
                             </CardHeader>
                             <div className={`${expandedPackages.includes(2) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
                                 <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
-                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">Don’t miss enquiries. Turn interest into calls.</p>
+                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR TRADES WHO WANT STEADY ENQUIRIES WITHOUT ADDING ADMIN OR MISSED CALLS.</p>
 
                                     {/* Inclusions List - Grouped */}
                                     <div className="space-y-5">
