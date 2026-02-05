@@ -41,8 +41,9 @@ const ChatBot = React.lazy(() => import('../components/ChatBot'))
 const CaseStudyModal = React.lazy(() => import('../components/CaseStudyModal'))
 const VideoModal = React.lazy(() => import('../components/VideoModal'))
 const MissedJobReviewModal = React.lazy(() => import('../components/MissedJobReviewModal'))
-const PrivacyPolicyModal = React.lazy(() => import('../components/PrivacyPolicyModal'))
-const TermsConditionsModal = React.lazy(() => import('../components/TermsConditionsModal'))
+import PrivacyPolicyModal from '../components/PrivacyPolicyModal';
+import TermsConditionsModal from '../components/TermsConditionsModal';
+import LeadMagnetModal from '../components/LeadMagnetModal';
 
 const CollapsibleDetail = ({ title, children }) => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -67,6 +68,7 @@ const CollapsibleDetail = ({ title, children }) => {
 function LandingPage() {
     const [openFaq, setOpenFaq] = React.useState(null)
     const [isReviewModalOpen, setIsReviewModalOpen] = React.useState(false)
+    const [isLeadMagnetOpen, setIsLeadMagnetOpen] = React.useState(false)
     const [isCaseStudyModalOpen, setIsCaseStudyModalOpen] = React.useState(false)
     const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false)
     const [selectedProject, setSelectedProject] = React.useState(null)
@@ -425,6 +427,7 @@ function LandingPage() {
                     onClose={() => setIsVideoModalOpen(false)}
                     videoSrc={selectedProject?.video}
                 />
+                <LeadMagnetModal isOpen={isLeadMagnetOpen} onClose={() => setIsLeadMagnetOpen(false)} />
                 <PrivacyPolicyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
                 <TermsConditionsModal isOpen={isTermsModalOpen} onClose={() => setIsTermsModalOpen(false)} />
                 <ChatBot />
@@ -1373,13 +1376,12 @@ function LandingPage() {
                                 You don't need to pay us to understand why your current setup isn't working.
                                 Download the guide to see exactly where trades lose money online.
                             </p>
-                            <a
-                                href="/guide"
-                                target="_blank"
+                            <button
+                                onClick={() => setIsLeadMagnetOpen(true)}
                                 className="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 px-6 py-3 font-black uppercase tracking-widest text-xs transition-colors rounded-none cursor-pointer"
                             >
                                 <span className="text-lg">↓</span> Download Free Guide
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
