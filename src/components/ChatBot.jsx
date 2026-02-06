@@ -191,22 +191,22 @@ const ChatBot = () => {
                         {messages.length === 1 && (
                             <div className="flex flex-col gap-2 mt-2">
                                 <button
-                                    onClick={() => { setInput("Show me how this works"); handleSend(); }}
+                                    onClick={() => { setInput("Show me how Chatbot works"); handleSend(); }}
                                     className="text-left text-xs font-bold text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-md p-3 transition-colors"
                                 >
-                                    👉 Show me how this works
+                                    👉 Show me how Chatbot works
                                 </button>
                                 <button
-                                    onClick={() => { setInput("How does this stop missed calls?"); handleSend(); }}
+                                    onClick={() => { setInput("How does Chatbot stop missed calls?"); handleSend(); }}
                                     className="text-left text-xs font-bold text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-md p-3 transition-colors"
                                 >
-                                    📞 How does this stop missed calls?
+                                    📞 How does Chatbot stop missed calls?
                                 </button>
                                 <button
-                                    onClick={() => { setInput("Is this included in your packages?"); handleSend(); }}
+                                    onClick={() => { setInput("Is Chatbot included in your packages?"); handleSend(); }}
                                     className="text-left text-xs font-bold text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-md p-3 transition-colors"
                                 >
-                                    💬 Is this included in your packages?
+                                    💬 Is Chatbot included in your packages?
                                 </button>
                             </div>
                         )}

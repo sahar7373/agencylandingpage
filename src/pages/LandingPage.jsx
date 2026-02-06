@@ -1117,9 +1117,9 @@ function LandingPage() {
                                     <div>
                                         <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 3</CardTitle>
                                         <div className="text-xl font-black uppercase mb-4">Growth System</div>
-                                        <div className="text-[35px] font-black italic text-safety-orange">From $6,800 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                        <div className="text-[35px] font-black italic text-safety-orange">From $7,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
                                         <div className="mt-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
-                                            (Most projects land between $7,500 – $12,000)
+                                            (Most projects land between $8,500 – $15,000)
                                         </div>
                                         <div className="mt-2">
                                             <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Ongoing partnership quoted based on your requirements</p>
@@ -1149,65 +1149,84 @@ function LandingPage() {
 
                                         <div>
                                             <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">Everything in Local Jobs Engine, plus:</p>
-                                            <ul className="space-y-3">
-                                                {[
-                                                    "EXTRA SERVICE & SUBURB PAGES BUILT AROUND REAL LOCAL SEARCHES",
-                                                    "SETUP DESIGNED TO HELP YOU SHOW UP MORE OFTEN WHEN PEOPLE ARE SEARCHING LOCALLY AND IN AI",
-                                                    {
-                                                        text: (
-                                                            <CollapsibleDetail title="AFTER-HOURS, MISSED-CALL & RECEPTIONIST HANDLING">
-                                                                <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
-                                                                    <li>HANDLES MULTIPLE CALLERS AT THE SAME TIME (NO HOLD, NO VOICEMAIL)</li>
-                                                                    <li>EVERY CALL ANSWERED, EVEN WHEN YOU’RE ALREADY BUSY</li>
-                                                                </ul>
-                                                            </CollapsibleDetail>
-                                                        )
-                                                    },
-                                                    "ENQUIRIES ROUTED SO NOTHING SLIPS THROUGH THE CRACKS",
-                                                    "LINKEDIN PROFILE SETUP"
-                                                ].map((item, i) => (
-                                                    <li key={i} className="flex items-start gap-3 text-sm font-bold text-white/80">
-                                                        <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                        {typeof item === 'string' ? item : (
+                                            <div className="space-y-4">
+                                                {/* HIGHLIGHTED ITEMS CONTAINER */}
+                                                <div className="border border-safety-orange/80 bg-safety-orange/5 p-4 rounded-md shadow-[0_0_15px_rgba(255,107,0,0.3)] relative overflow-hidden">
+                                                    {/* Pulsing overlay effect */}
+                                                    <div className="absolute inset-0 border-2 border-safety-orange/50 rounded-md animate-pulse pointer-events-none"></div>
+
+                                                    <ul className="space-y-3 relative z-10">
+                                                        {[
+                                                            "SETUP DESIGNED TO HELP YOU SHOW UP MORE OFTEN WHEN PEOPLE ARE SEARCHING LOCALLY AND IN AI",
+                                                            {
+                                                                content: (
+                                                                    <CollapsibleDetail title="AFTER-HOURS, MISSED-CALL & RECEPTIONIST HANDLING">
+                                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                                            <li>HANDLES MULTIPLE CALLERS AT THE SAME TIME (NO HOLD, NO VOICEMAIL)</li>
+                                                                            <li>EVERY CALL ANSWERED, EVEN WHEN YOU’RE ALREADY BUSY</li>
+                                                                        </ul>
+                                                                    </CollapsibleDetail>
+                                                                )
+                                                            },
+                                                            "ENQUIRIES ROUTED SO NOTHING SLIPS THROUGH THE CRACKS",
+                                                            "LINKEDIN PROFILE SETUP",
+                                                            {
+                                                                content: (
+                                                                    <CollapsibleDetail title="PROMOTIONAL VIDEOS OR AI VISUAL CONTENT">
+                                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
+                                                                            <li>USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</li>
+                                                                            <li>3 videos x 10-15 secs included in the package, additional videos quote separately</li>
+                                                                        </ul>
+                                                                    </CollapsibleDetail>
+                                                                )
+                                                            }
+                                                        ].map((item, i) => (
+                                                            <li key={`highlight-${i}`} className="flex items-start gap-3 text-sm font-bold text-white">
+                                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
+                                                                <div>
+                                                                    {item.content || item}
+                                                                </div>
+                                                            </li>
+                                                        ))}
+                                                    </ul>
+                                                </div>
+
+                                                {/* STANDARD ITEMS (BOTTOM) */}
+                                                <ul className="space-y-3 px-1">
+                                                    {[
+                                                        "EXTRA SERVICE & SUBURB PAGES BUILT AROUND REAL LOCAL SEARCHES",
+                                                        {
+                                                            content: (
+                                                                <CollapsibleDetail title="SIMPLE TRACKING TO SEE:">
+                                                                    <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                                        <li>WHERE ENQUIRIES COME FROM</li>
+                                                                        <li>WHICH PAGES BRING CALLS</li>
+                                                                        <li>WHAT’S WORTH SPENDING MONEY ON</li>
+                                                                    </ul>
+                                                                </CollapsibleDetail>
+                                                            )
+                                                        },
+                                                        {
+                                                            content: (
+                                                                <CollapsibleDetail title="SYSTEMS SELECTED BASED ON:">
+                                                                    <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                                        <li>YOUR TRADE</li>
+                                                                        <li>YOUR WORKLOAD</li>
+                                                                        <li>HOW AGGRESSIVE YOU WANT TO GROW</li>
+                                                                    </ul>
+                                                                </CollapsibleDetail>
+                                                            )
+                                                        }
+                                                    ].map((item, i) => (
+                                                        <li key={`standard-${i}`} className="flex items-start gap-3 text-sm font-bold text-white/80">
+                                                            <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
                                                             <div>
-                                                                {item.text}
+                                                                {item.content || item}
                                                             </div>
-                                                        )}
-                                                    </li>
-                                                ))}
-
-                                                <li className="flex items-start gap-3 text-sm font-bold text-white/80">
-                                                    <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                    <CollapsibleDetail title="SIMPLE TRACKING TO SEE:">
-                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
-                                                            <li>WHERE ENQUIRIES COME FROM</li>
-                                                            <li>WHICH PAGES BRING CALLS</li>
-                                                            <li>WHAT’S WORTH SPENDING MONEY ON</li>
-                                                        </ul>
-                                                    </CollapsibleDetail>
-                                                </li>
-
-                                                <li className="flex items-start gap-3 text-sm font-bold text-white/80">
-                                                    <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                    <CollapsibleDetail title="PROMOTIONAL VIDEOS OR AI VISUAL CONTENT">
-                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
-                                                            <li>USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</li>
-                                                            <li>3 videos x 10-15 secs included in the package, additional videos quote separately</li>
-                                                        </ul>
-                                                    </CollapsibleDetail>
-                                                </li>
-
-                                                <li className="flex items-start gap-3 text-sm font-bold text-white/80">
-                                                    <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                    <CollapsibleDetail title="SYSTEMS SELECTED BASED ON:">
-                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
-                                                            <li>YOUR TRADE</li>
-                                                            <li>YOUR WORKLOAD</li>
-                                                            <li>HOW AGGRESSIVE YOU WANT TO GROW</li>
-                                                        </ul>
-                                                    </CollapsibleDetail>
-                                                </li>
-                                            </ul>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
                                         </div>
                                     </div>
                                 </CardContent>
@@ -1376,7 +1395,7 @@ function LandingPage() {
                                     <div className="space-y-4">
                                         <div className="flex justify-between items-center border-b border-white/10 pb-4">
                                             <p className="text-sm font-black uppercase tracking-widest text-white">Growth System setup:</p>
-                                            <p className="text-xl font-black text-white">APPROX. $6,800 <span className="text-sm text-white/40">+ GST</span></p>
+                                            <p className="text-xl font-black text-white">APPROX. $7,900 <span className="text-sm text-white/40">+ GST</span></p>
                                         </div>
                                         <div className="flex justify-between items-center border-b border-white/10 pb-4">
                                             <p className="text-sm font-black uppercase tracking-widest text-white/60">Average job value:</p>
