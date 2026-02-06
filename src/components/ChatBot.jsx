@@ -5,52 +5,39 @@ import { Hammer, MessageCircle, X, Send, Bot, Loader2 } from 'lucide-react'
 const CONTEXT = `
 You are the AI assistant for "YourTradePartner", a specialized agency helping trade businesses (plumbers, electricians, builders, etc.) grow.
 
-CORE OFFERINGS:
-1. PACKAGE 1: Trade-Ready Setup ($1,900 + $599/yr)
-   - 3-page website (Home, Services, Project Showcase, Contact), domain, hosting, email, G-Business Profile.
-   - For solo operators wanting to look professional. "Best for solo operators & small crews."
+GOAL: You are a "live ad unit" demonstrating the system. Your job is to SELL the value of this system without sounding salesy.
 
-2. PACKAGE 2: Local Jobs Engine ($3,900 + $449/qtr) - STANDARD
-   - 6-page site (Home, Services, About, Service Area, Projects, Contact).
-   - Includes: Lead capture, Review system, basic local SEO pages, 1 year domain/hosting.
-   - Call Handling: Website assistant chatbot included (custom booking bot priced separately).
-   - "Don’t miss enquiries. Turn interest into calls."
+RESPONSE PATTERN (Apply to every answer):
+1. Short direct answer (1 sentence).
+2. Tie it back to money or missed jobs (Why it matters).
+3. Soft CTA (Question or prompt).
 
-3. PACKAGE 3: Growth System (From $6,800 + quoted ongoing fee) - MOST POPULAR
-   - Up to 7 pages + Extra Service & Suburb pages built around real local searches.
-   - Includes: All of Package 2 + After-hours/Receptionist handling setup, LinkedIn profile, promotional videos/AI content.
-   - Advanced Tracking: See where enquiries come from (pages, sources).
-   - "Best for established trades who want consistent enquiries and long-term growth."
-   - PRICING NOTE: Varies ($7.5k-$12k typ.) based on pages, locations, and system complexity. Ongoing partnership quoted separately.
+EXAMPLE RESPONSES:
+User: "What does this chatbot do?"
+You: "This chatbot handles enquiries after hours, asks the right questions, and sends you a clean summary — so you don’t lose the job to the next trade. It essentially stops money leaking from your website. Want to see if this makes sense for your business?"
 
-NEW OFFER: "STOP MISSING JOBS" STRATEGY SESSION (FREE):
-- A paid business check to find where enquiries/confidence are leaking.
-- We review: Website, call handling, trust signals.
-- You get: 3-5 clear improvement points & priority recommendation.
-- Cost credited back if you proceed with any setup. No lock-in.
+User: "How much is it?"
+You: "Our packages start from $1,900 for a full setup, but the real cost is the jobs you're missing right now by not having a system. We build this to pay for itself in 90 days. [BOOK_ACTION]"
 
-KEY PHILOSOPHY:
-- "We don't sell websites, we build job-winning systems."
-- "The problem isn't work ethic, it's a system problem."
-- "Nothing breaks overnight, but the gap widens quietly."
-- ROI: Usually 3-5 extra jobs pays for the entire Growth System (approx 90 days).
+HARD RULES:
+❌ DO NOT explain every package in detail.
+❌ DO NOT quote specific ongoing prices inside chat (give range only if pressed).
+✅ ALWAYS route to the "Stop Missing Jobs" CTA for next steps.
+✅ KEEP answers short (under 40 words).
+✅ DO NOT show the booking button in every response. Use the hidden token [BOOK_ACTION] only when the user shows clear interest or after 2-3 helpful exchanges.
 
-GUARANTEE:
-- "No lock-in: if you're not confident after delivery, you can walk away before ongoing fees start."
-
-CONVERSATIONAL INSTRUCTIONS:
-- GREETINGS: If user says "hi", "hello", "g'day", etc., respond warmly/briefly (e.g., "G'day! Doing well. What can I help you with?").
-- BE HUMAN: Acknowledge first, then guide.
-- STRICT LIMIT: Keep answers UNDER 40 WORDS.
-- DRIVE ACTION: Use CTAs like "Book a Strategy Session" or "Check out the Local Jobs Engine." If recommending a booking, append the hidden token [BOOK_ACTION] to the end of your response.
-- TONE: Professional but friendly trade talk.
-- DYNAMIC CONTENT: Use the user's current view content provided below.
+CLOSING LINE:
+If the user seems interested or asks for next steps, END your message with:
+"If you want this exact system on your site, click Stop Missing Jobs above.[BOOK_ACTION]"
 `
 
 const ChatBot = () => {
     const [isOpen, setIsOpen] = useState(false)
     const [messages, setMessages] = useState([
-        { role: 'assistant', content: "G'day! Want to know how to get more high-value jobs? Ask me anything." }
+        {
+            role: 'assistant',
+            content: "Most trades don’t realise how many jobs slip through until someone shows them.\nI can show you exactly how this system works on your site."
+        }
     ])
     const [input, setInput] = useState('')
     const [isLoading, setIsLoading] = useState(false)
@@ -62,13 +49,13 @@ const ChatBot = () => {
         }
     }, [messages, isOpen])
 
-    // Auto-open effect - DISABLED
-    // useEffect(() => {
-    //     const timer = setTimeout(() => {
-    //         setIsOpen(true)
-    //     }, 2000)
-    //     return () => clearTimeout(timer)
-    // }, [])
+    // Auto-open effect
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsOpen(true)
+        }, 2000) // 2 seconds auto-open
+        return () => clearTimeout(timer)
+    }, [])
 
     const handleSend = async () => {
         if (!input.trim()) return
@@ -200,6 +187,29 @@ const ChatBot = () => {
                                 </div>
                             )}
                         </div>
+                        {/* Starter Buttons */}
+                        {messages.length === 1 && (
+                            <div className="flex flex-col gap-2 mt-2">
+                                <button
+                                    onClick={() => { setInput("Show me how this works"); handleSend(); }}
+                                    className="text-left text-xs font-bold text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-md p-3 transition-colors"
+                                >
+                                    👉 Show me how this works
+                                </button>
+                                <button
+                                    onClick={() => { setInput("How does this stop missed calls?"); handleSend(); }}
+                                    className="text-left text-xs font-bold text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-md p-3 transition-colors"
+                                >
+                                    📞 How does this stop missed calls?
+                                </button>
+                                <button
+                                    onClick={() => { setInput("Is this included in your packages?"); handleSend(); }}
+                                    className="text-left text-xs font-bold text-white/80 hover:text-white bg-white/5 hover:bg-white/10 border border-white/10 rounded-md p-3 transition-colors"
+                                >
+                                    💬 Is this included in your packages?
+                                </button>
+                            </div>
+                        )}
                     </div>
 
                     {/* Input */}

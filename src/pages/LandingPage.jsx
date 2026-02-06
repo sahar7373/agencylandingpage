@@ -1875,7 +1875,7 @@ function LandingPage() {
                 </div>
             </footer >
 
-            <ChatBot />
+
 
         </div >
     )
