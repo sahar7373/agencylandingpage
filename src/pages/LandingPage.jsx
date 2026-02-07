@@ -44,6 +44,7 @@ const VideoModal = React.lazy(() => import('../components/VideoModal'))
 const MissedJobReviewModal = React.lazy(() => import('../components/MissedJobReviewModal'))
 import PrivacyPolicyModal from '../components/PrivacyPolicyModal';
 import TermsConditionsModal from '../components/TermsConditionsModal';
+
 import LeadMagnetModal from '../components/LeadMagnetModal';
 import { GOOGLE_SHEET_URL } from '../config';
 
@@ -456,7 +457,7 @@ function LandingPage() {
             </React.Suspense>
 
             {/* MOBILE STICKY FOOTER (Thumb Zone) */}
-            <div className="fixed bottom-0 left-0 w-full bg-construction-charcoal border-t border-white/10 z-50 md:hidden p-4 flex gap-3 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+            <div className="fixed bottom-0 left-0 w-full bg-zinc-950 border-t border-white/10 z-[100] md:hidden p-4 flex gap-3 shadow-[0_-10px_40px_rgba(0,0,0,0.8)]">
                 <a href="tel:0451044751" className="flex-1">
                     <Button className="w-full h-12 bg-white text-black hover:bg-white/90 font-black uppercase tracking-widest rounded-none border border-white/20">
                         Call Now
@@ -554,10 +555,10 @@ function LandingPage() {
                                     ReactGA.event({ category: "Conversion", action: "Click_Hero_CTA", label: "See Losing Jobs" });
                                 }}
                                 size="xl"
-                                className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-12 py-8 text-xl md:text-2xl font-black uppercase tracking-widest group shadow-2xl shadow-safety-orange/30 w-full sm:w-auto transform hover:scale-105 transition-all duration-200"
+                                className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-6 md:px-12 py-6 md:py-8 text-sm md:text-2xl font-black uppercase tracking-widest group shadow-2xl shadow-safety-orange/30 w-full sm:w-auto transform hover:scale-105 transition-all duration-200"
                             >
-                                <span>SEE WHERE YOU'RE LOSING JOBS</span>
-                                <ArrowRight className="ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
+                                <span className="whitespace-normal text-center">SEE WHERE YOU'RE LOSING JOBS</span>
+                                <ArrowRight className="hidden md:block ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
                             </Button>
 
                             {/* Micro Reassurance */}
@@ -1285,6 +1286,7 @@ function LandingPage() {
                             </div>
                         </Card>
 
+
                         {/* PACKAGE 2 (Standard Right) */}
                         <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
                             <CardHeader
@@ -1297,7 +1299,7 @@ function LandingPage() {
                                         <div className="text-xl font-black uppercase mb-4">LOCAL JOBS ENGINE</div>
                                         <div className="text-3xl font-black italic text-safety-orange">$3,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
                                         <div className="mt-2">
-                                            <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $449 / quarter</p>
+                                            <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $399 / quarter</p>
                                             <p className="text-[10px] font-bold text-white/20">(Reviewed annually, subject to AI usage & scope)</p>
                                         </div>
                                     </div>
@@ -1466,17 +1468,17 @@ function LandingPage() {
                             </p>
                             <button
                                 onClick={() => setIsLeadMagnetOpen(true)}
-                                className="inline-flex items-center gap-2 bg-white text-black hover:bg-white/90 px-6 py-3 font-black uppercase tracking-widest text-xs transition-colors rounded-none cursor-pointer"
+                                className="inline-flex items-center gap-2 bg-safety-orange text-white hover:bg-safety-orange/90 px-6 py-3 font-black uppercase tracking-widest text-xs transition-colors rounded-none cursor-pointer"
                             >
                                 <span className="text-lg">↓</span> Download Free Guide
                             </button>
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* NEW SECTION: RESULTS TIMELINE */}
-            <section className="py-24 md:py-32 border-b border-white/5 bg-zinc-900/30">
+            < section className="py-24 md:py-32 border-b border-white/5 bg-zinc-900/30" >
                 <div className="container mx-auto px-6">
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-16">
@@ -1584,10 +1586,10 @@ function LandingPage() {
 
                 </div>
 
-            </section>
+            </section >
 
             {/* 5. GUARANTEE SECTION */}
-            <section id="guarantee" className="py-24 md:py-32 border-b border-white/5 bg-safety-orange text-white">
+            < section id="guarantee" className="py-24 md:py-32 border-b border-white/5 bg-safety-orange text-white" >
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-4xl md:text-7xl font-black mb-8 uppercase italic leading-none text-black">
@@ -1637,7 +1639,7 @@ function LandingPage() {
             </section >
 
             {/* 7. FAQ SECTION */}
-            <section className="py-24 border-b border-white/5 bg-black">
+            < section className="py-24 border-b border-white/5 bg-black" >
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-16">
@@ -1682,10 +1684,10 @@ function LandingPage() {
 
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* GROWTH SYSTEM EFFECT SECTION */}
-            <section className="py-24 border-b border-white/5 bg-zinc-900 border-t border-white/5 relative overflow-hidden">
+            < section className="py-24 border-b border-white/5 bg-zinc-900 border-t border-white/5 relative overflow-hidden" >
                 <div className="absolute inset-0 blueprint-grid opacity-5"></div>
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl mx-auto">
@@ -1740,10 +1742,10 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </section >
 
             {/* 8. FINAL CTA SECTION */}
-            <section id="contact" className="py-20 text-center relative overflow-hidden">
+            < section id="contact" className="py-20 text-center relative overflow-hidden" >
                 <div className="absolute inset-0 blueprint-grid opacity-10"></div>
                 <div className="container mx-auto px-6 relative z-10">
 
@@ -1890,10 +1892,10 @@ function LandingPage() {
                         </div>
                     )}
                 </div>
-            </section>
+            </section >
 
             {/* Footer */}
-            <footer className="bg-black py-20 border-t border-white/10">
+            < footer className="bg-black py-20 border-t border-white/10" >
                 <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-10">
                     <div className="flex gap-10 text-xs font-black uppercase tracking-widest text-white/40 order-2 lg:order-1">
                         <button onClick={() => setIsPrivacyModalOpen(true)} className="hover:text-white transition-colors">Privacy Policy</button>
