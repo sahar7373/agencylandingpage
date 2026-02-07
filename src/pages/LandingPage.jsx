@@ -1833,8 +1833,9 @@ function LandingPage() {
                                         />
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Service Area / Location</label>
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Service Area / Location <span className="text-red-500">*</span></label>
                                         <input
+                                            required
                                             type="text"
                                             name="location"
                                             value={formData.location}
