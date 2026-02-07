@@ -108,14 +108,19 @@ function LandingPage() {
         )
     }
 
+    // Validation State
+    const [phoneError, setPhoneError] = React.useState('');
+
     const handleInputChange = (e) => {
         const { name, value } = e.target
 
         if (name === 'phone') {
-            // Only allow numbers and max 10 digits
+            // Allow numbers only, but let them type up to 15 chars so we can show the "correct number" error
+            // if they type too many (as requested).
             const re = /^[0-9\b]+$/;
-            if ((value === '' || re.test(value)) && value.length <= 10) {
+            if ((value === '' || re.test(value)) && value.length <= 15) {
                 setFormData(prev => ({ ...prev, [name]: value }))
+                setPhoneError('') // Clear error on type
             }
         } else {
             setFormData(prev => ({ ...prev, [name]: value }))
@@ -124,16 +129,28 @@ function LandingPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
+
+        // Validation: Phone must be exactly 10 digits (Australian standard)
+        if (formData.phone.length !== 10) {
+            setPhoneError("Please enter the correct phone number");
+            // Focus the phone input if possible, or just let the error show
+            return;
+        }
+
         setFormStatus('submitting')
 
         try {
             const sheetUrl = import.meta.env.VITE_GOOGLE_SHEET_URL;
             console.log("DEBUG: Submit started");
-            if (sheetUrl) {
-                console.log("DEBUG: Submitting to:", sheetUrl);
-            } else {
+
+            if (!sheetUrl) {
                 console.error("DEBUG: Missing VITE_GOOGLE_SHEET_URL");
+                alert("Configuration error: Google Sheet URL is missing.");
+                setFormStatus('idle'); // Reset to idle instead of success
+                return;
             }
+
+            console.log("DEBUG: Submitting to:", sheetUrl);
 
             const refinedPayload = {
                 ...formData,
@@ -172,8 +189,10 @@ function LandingPage() {
 
         } catch (error) {
             console.error("DEBUG: Form error:", error);
-            setFormStatus('success');
-            console.log("DEBUG: Status set to success (fallback)");
+            // REMOVED: setFormStatus('success'); // Don't show success on error!
+            alert("Something went wrong. Please try again.");
+            setFormStatus('idle'); // Reset to allow retry
+            console.log("DEBUG: Status set to idle (error)");
         }
     }
 
@@ -1750,7 +1769,7 @@ function LandingPage() {
 
                                 {/* Full Name */}
                                 <div className="space-y-1">
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Full Name</label>
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Full Name <span className="text-red-500">*</span></label>
                                     <input
                                         required
                                         type="text"
@@ -1765,7 +1784,7 @@ function LandingPage() {
                                 {/* Phone & Email Grid */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Phone Number</label>
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Phone Number <span className="text-red-500">*</span></label>
                                         <input
                                             required
                                             type="tel"
@@ -1773,12 +1792,15 @@ function LandingPage() {
                                             value={formData.phone}
                                             onChange={handleInputChange}
                                             maxLength="12"
-                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                            className={`w-full bg-white/5 border ${phoneError ? 'border-red-500' : 'border-white/10'} p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium`}
                                             placeholder="Best number to reach you"
                                         />
+                                        {phoneError && (
+                                            <p className="text-red-500 text-xs font-bold mt-1 uppercase tracking-wider">{phoneError}</p>
+                                        )}
                                     </div>
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Email</label>
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Email <span className="text-red-500">*</span></label>
                                         <input
                                             required
                                             type="email"
@@ -1794,7 +1816,7 @@ function LandingPage() {
                                 {/* Trade Type & Location Grid */}
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Trade Type</label>
+                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Trade Type <span className="text-red-500">*</span></label>
                                         <input
                                             required
                                             type="text"

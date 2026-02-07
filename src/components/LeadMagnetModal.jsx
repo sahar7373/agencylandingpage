@@ -18,10 +18,13 @@ const LeadMagnetModal = ({ isOpen, onClose }) => {
         setIsLoading(true);
 
         try {
+            console.log("DEBUG: Env vars:", import.meta.env); // Debugging
             const sheetUrl = import.meta.env.VITE_GOOGLE_SHEET_URL;
+
             if (!sheetUrl) {
                 console.error("Missing Sheet URL");
                 alert("System error. Please contact support.");
+                setIsLoading(false); // Fix infinite spinner
                 return;
             }
 
