@@ -45,6 +45,7 @@ const MissedJobReviewModal = React.lazy(() => import('../components/MissedJobRev
 import PrivacyPolicyModal from '../components/PrivacyPolicyModal';
 import TermsConditionsModal from '../components/TermsConditionsModal';
 import LeadMagnetModal from '../components/LeadMagnetModal';
+import { GOOGLE_SHEET_URL } from '../config';
 
 const CollapsibleDetail = ({ title, children }) => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -127,6 +128,8 @@ function LandingPage() {
         }
     }
 
+
+
     const handleSubmit = async (e) => {
         e.preventDefault()
 
@@ -140,11 +143,11 @@ function LandingPage() {
         setFormStatus('submitting')
 
         try {
-            const sheetUrl = import.meta.env.VITE_GOOGLE_SHEET_URL;
+            const sheetUrl = GOOGLE_SHEET_URL;
             console.log("DEBUG: Submit started");
 
             if (!sheetUrl) {
-                console.error("DEBUG: Missing VITE_GOOGLE_SHEET_URL");
+                console.error("DEBUG: Missing Google Sheet URL");
                 alert("Configuration error: Google Sheet URL is missing.");
                 setFormStatus('idle'); // Reset to idle instead of success
                 return;
@@ -1830,7 +1833,6 @@ function LandingPage() {
                                     <div className="space-y-1">
                                         <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Service Area / Location</label>
                                         <input
-                                            required
                                             type="text"
                                             name="location"
                                             value={formData.location}

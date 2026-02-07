@@ -4,6 +4,8 @@ import { Button } from './ui/button';
 import ReactPixel from 'react-facebook-pixel';
 import ReactGA from 'react-ga4';
 
+import { GOOGLE_SHEET_URL } from '../config';
+
 const LeadMagnetModal = ({ isOpen, onClose }) => {
     const [step, setStep] = useState('form'); // 'form' | 'success'
     const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +21,7 @@ const LeadMagnetModal = ({ isOpen, onClose }) => {
 
         try {
             console.log("DEBUG: Env vars:", import.meta.env); // Debugging
-            const sheetUrl = import.meta.env.VITE_GOOGLE_SHEET_URL;
+            const sheetUrl = GOOGLE_SHEET_URL;
 
             if (!sheetUrl) {
                 console.error("Missing Sheet URL");
@@ -36,12 +38,13 @@ const LeadMagnetModal = ({ isOpen, onClose }) => {
                 timestamp: new Date().toISOString()
             };
 
-            await fetch(sheetUrl, {
+            // Fire and forget - don't wait for Google Sheets
+            fetch(sheetUrl, {
                 method: "POST",
                 mode: "no-cors",
                 headers: { "Content-Type": "text/plain" },
                 body: JSON.stringify(payload),
-            });
+            }).catch(err => console.error("Background submission error:", err));
 
             // Tracking
             ReactPixel.track('Lead', { content_name: 'Lead Magnet Download' });
@@ -49,16 +52,17 @@ const LeadMagnetModal = ({ isOpen, onClose }) => {
 
             setStep('success');
 
-            // Redirect to Guide after short delay
+            // Redirect to Guide almost instantly (small delay for UI transition)
             setTimeout(() => {
                 window.open('/guide', '_blank');
                 onClose();
-            }, 1000);
+            }, 300);
 
         } catch (error) {
             console.error("Submission error:", error);
-            alert("Something went wrong. Please try again.");
-            setIsLoading(false);
+            // Even if something fails locally, try to give them the guide
+            window.open('/guide', '_blank');
+            onClose();
         }
     };
 
