@@ -515,7 +515,7 @@ function LandingPage() {
 
             {/* 1. HERO SECTION */}
             {/* 1. HERO SECTION */}
-            <header className="relative pt-16 pb-24 md:pt-32 md:pb-44 border-b border-white/5 overflow-hidden">
+            <header className="relative pt-8 pb-24 md:pt-24 md:pb-44 border-b border-white/5 overflow-hidden">
                 <div className="absolute inset-0 bg-grid-white opacity-20 pointer-events-none"></div>
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl mx-auto text-center">
@@ -526,16 +526,16 @@ function LandingPage() {
                         </p>
 
                         {/* Main Headline */}
-                        <h1 className="text-5xl md:text-8xl font-black leading-[0.9] mb-8 uppercase italic">
+                        <h1 className="text-[52px] md:text-[100px] font-black leading-[0.9] mb-8 uppercase italic">
                             NO ONE TELLS TRADES THIS — <br />
                             <span className="text-safety-orange">CUSTOMERS DECIDE BEFORE THEY CALL.</span>
                         </h1>
 
                         {/* Sub Headline */}
-                        <p className="text-xl md:text-2xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto">
-                            If your website looks outdated or enquiries go unanswered, customers usually call the next trade on Google.
+                        <p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto">
+
                             <br className="hidden md:block my-2" />
-                            We build websites, enquiry systems, and AI call assistants that stop that from happening.
+                            <span className="text-white/80">We build systems that make sure you’re the trade customers contact first</span> — not the one they skip.
                         </p>
 
                         {/* Trust Position Strip */}
@@ -1180,7 +1180,7 @@ function LandingPage() {
 
                                                     <ul className="space-y-3 relative z-10">
                                                         {[
-                                                            "SETUP DESIGNED TO HELP YOU SHOW UP MORE OFTEN WHEN PEOPLE ARE SEARCHING LOCALLY AND IN AI",
+                                                            "SETUP DESIGNED TO HELP YOU SHOW UP MORE WHEN SEARCHING LOCALLY AND IN AI",
                                                             {
                                                                 content: (
                                                                     <CollapsibleDetail title="AFTER-HOURS, MISSED-CALL & RECEPTIONIST HANDLING">
