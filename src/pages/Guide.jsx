@@ -175,10 +175,7 @@ const Guide = () => {
                 <footer className="bg-white/5 rounded-2xl p-6 md:p-8 flex flex-col md:flex-row justify-between items-center gap-6 break-inside-avoid print:break-inside-avoid">
                     <div className="text-center md:text-left">
                         <p className="text-lg font-bold text-white mb-1">
-                            This isn’t marketing hype.
-                        </p>
-                        <p className="text-sm text-safety-orange font-bold uppercase tracking-wide">
-                            It’s how customers choose trades today.
+                            We build systems that make sure you’re the trade customers contact first — not the one they skip.
                         </p>
                         <div className="mt-4 pt-4 border-t border-white/5 md:hidden">
                             <p className="text-xs text-gray-400 font-bold uppercase tracking-widest leading-relaxed">
@@ -188,11 +185,14 @@ const Guide = () => {
                     </div>
 
                     <div className="flex flex-col items-center md:items-end gap-4">
-                        <a href="tel:0451044751" className="inline-block">
-                            <Button className="bg-white hover:bg-gray-200 text-black font-black uppercase tracking-widest text-sm px-8 py-4 h-auto rounded-full shadow-xl">
-                                Let's set up your system today
-                            </Button>
-                        </a>
+                        <Button
+                            data-cal-link="saharsh-patel-fr7cuf/strategy-session"
+                            data-cal-namespace="strategy-session"
+                            data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                            className="bg-safety-orange hover:bg-safety-orange-hover text-white font-black uppercase tracking-widest text-sm px-8 py-4 h-auto rounded-full shadow-xl"
+                        >
+                            Book Free Strategy Session
+                        </Button>
                         <p className="hidden md:block text-xs text-gray-400 font-bold uppercase tracking-widest leading-relaxed text-right max-w-[300px]">
                             Built by someone with 4+ years (and counting) managing real construction projects.
                         </p>
