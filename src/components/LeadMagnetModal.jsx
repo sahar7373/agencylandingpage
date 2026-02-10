@@ -20,20 +20,12 @@ const LeadMagnetModal = ({ isOpen, onClose }) => {
         setIsLoading(true);
 
         try {
-            console.log("DEBUG: Env vars:", import.meta.env); // Debugging
             const sheetUrl = GOOGLE_SHEET_URL;
-
-            if (!sheetUrl) {
-                console.error("Missing Sheet URL");
-                alert("System error. Please contact support.");
-                setIsLoading(false); // Fix infinite spinner
-                return;
-            }
 
             // Payload for Sheet 2 ("Leads from Guide")
             const payload = {
                 sheetName: "Leads from Guide",
-                email: formData.email,
+                Email: formData.email,
                 phone: "", // Phone removed as per request
                 timestamp: new Date().toISOString()
             };
@@ -63,6 +55,8 @@ const LeadMagnetModal = ({ isOpen, onClose }) => {
             // Even if something fails locally, try to give them the guide
             window.open('/guide', '_blank');
             onClose();
+        } finally {
+            setIsLoading(false);
         }
     };
 

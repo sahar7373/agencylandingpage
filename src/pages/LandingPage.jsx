@@ -117,10 +117,9 @@ function LandingPage() {
         const { name, value } = e.target
 
         if (name === 'phone') {
-            // Allow numbers only, but let them type up to 15 chars so we can show the "correct number" error
-            // if they type too many (as requested).
+            // Limit to exactly 10 digits as requested.
             const re = /^[0-9\b]+$/;
-            if ((value === '' || re.test(value)) && value.length <= 15) {
+            if ((value === '' || re.test(value)) && value.length <= 10) {
                 setFormData(prev => ({ ...prev, [name]: value }))
                 setPhoneError('') // Clear error on type
             }
@@ -137,7 +136,6 @@ function LandingPage() {
         // Validation: Phone must be exactly 10 digits (Australian standard)
         if (formData.phone.length !== 10) {
             setPhoneError("Please enter the correct phone number");
-            // Focus the phone input if possible, or just let the error show
             return;
         }
 
@@ -156,14 +154,15 @@ function LandingPage() {
 
             console.log("DEBUG: Submitting to:", sheetUrl);
 
+            // Payload structure for Google Apps Script
             const refinedPayload = {
-                ...formData,
-                phone: `'${formData.phone}`, // Force text format
-                // specific fields for legacy sheet structure matching
-                businessName: "",
-                package: "",
-                situation: "",
-                referral: "",
+                sheetName: "Leads from form", // Correct sheet name
+                Name: formData.name,
+                Phone: `'${formData.phone}`, // Force text format
+                Email: formData.email,
+                Trade: formData.trade,
+                Location: formData.location,
+                Message: formData.message,
                 timestamp: new Date().toISOString()
             };
 
@@ -191,9 +190,19 @@ function LandingPage() {
                 label: "New Enquiry"
             });
 
+            // Reset form
+            setFormData({
+                name: '',
+                phone: '',
+                email: '',
+                trade: '',
+                location: '',
+                goal: '',
+                message: ''
+            })
+
         } catch (error) {
             console.error("DEBUG: Form error:", error);
-            // REMOVED: setFormStatus('success'); // Don't show success on error!
             alert("Something went wrong. Please try again.");
             setFormStatus('idle'); // Reset to allow retry
             console.log("DEBUG: Status set to idle (error)");
