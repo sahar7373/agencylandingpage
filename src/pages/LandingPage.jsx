@@ -2,6 +2,7 @@ import React from 'react'
 import ReactPixel from 'react-facebook-pixel'
 import ReactGA from 'react-ga4'
 import { Helmet } from 'react-helmet-async'
+import { motion } from 'framer-motion'
 import {
     ArrowRight,
     ArrowDown,
@@ -628,122 +629,135 @@ function LandingPage() {
                 </div>
             </section>
 
-            {/* NEW SECTION: SURVEY RESULT VISUAL (Hard-Coded) */}
-            <section className="py-24 border-b border-white/5 bg-zinc-900/50">
+            {/* NEW SECTION: SURVEY RESULT VISUAL (Compact Redesign) */}
+            <section className="py-12 md:py-16 border-b border-white/5 bg-zinc-900/50">
                 <div className="container mx-auto px-6">
-                    <div className="max-w-4xl mx-auto text-center">
+                    <div className="max-w-5xl mx-auto">
 
-                        {/* Survey Card */}
-                        <div className="bg-white/5 border border-white/10 p-8 md:p-12 rounded-sm mb-12 text-left relative overflow-hidden backdrop-blur-sm">
-                            {/* Card Header */}
-                            <h3 className="text-2xl md:text-3xl font-black uppercase italic tracking-tight mb-10 text-center text-white">
-                                What Homeowners Look For <br /> Before Contacting a Trade
+                        <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-sm relative overflow-hidden backdrop-blur-sm mb-32">
+
+                            <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tight mb-8 text-center text-white">
+                                What Homeowners Look For <br className="md:hidden" /> <span className="text-white/40">Before Contacting a Trade</span>
                             </h3>
 
-                            {/* Bars */}
-                            <div className="space-y-6 mb-12">
-                                {/* Bar 1 */}
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-4 bg-white/5 p-2 rounded-sm border border-white/10">
-                                        <div className="bg-white/10 p-2 rounded-sm">
-                                            <Smartphone className="w-6 h-6 text-safety-orange" />
-                                        </div>
-                                        <div className="flex-grow relative h-12 bg-white/5 rounded-sm border border-white/5 overflow-hidden">
-                                            <div className="h-full bg-safety-orange flex items-center justify-end px-4 font-black text-white text-xl" style={{ width: "78%" }}>
-                                                78%
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p className="text-right text-xs font-bold uppercase tracking-widest text-white/40">Professional website & branding</p>
-                                </div>
-
-                                {/* Bar 2 */}
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-4 bg-white/5 p-2 rounded-sm border border-white/10">
-                                        <div className="bg-white/10 p-2 rounded-sm">
-                                            <Users className="w-6 h-6 text-white" />
-                                        </div>
-                                        <div className="flex-grow relative h-12 bg-white/5 rounded-sm border border-white/5 overflow-hidden">
-                                            <div className="h-full bg-construction-charcoal border border-white/10 flex items-center justify-end px-4 font-black text-white text-xl" style={{ width: "65%" }}>
-                                                65%
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex justify-end items-center gap-2">
-                                        <p className="text-right text-xs font-bold uppercase tracking-widest text-white/40">Google reviews & online presence</p>
-                                    </div>
-                                </div>
-
-                                {/* Bar 3 */}
-                                <div className="space-y-2">
-                                    <div className="flex items-center gap-4 bg-white/5 p-2 rounded-sm border border-white/10">
-                                        <div className="bg-white/10 p-2 rounded-sm">
-                                            <Phone className="w-6 h-6 text-white/60" />
-                                        </div>
-                                        <div className="flex-grow relative h-12 bg-white/5 rounded-sm border border-white/5 overflow-hidden">
-                                            <div className="h-full bg-white/20 flex items-center justify-end px-4 font-black text-white/80 text-xl" style={{ width: "52%" }}>
-                                                52%
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <p className="text-right text-xs font-bold uppercase tracking-widest text-white/40">Clear services and easy contact details</p>
-                                </div>
-                            </div>
-
-                            {/* Comparison Columns */}
-                            <div className="grid md:grid-cols-2 gap-8 pt-8 border-t border-white/10">
+                            <div className="grid md:grid-cols-2 gap-8 md:gap-12 items-start">
+                                {/* Left: Bars */}
                                 <div className="space-y-4">
-                                    <div className="flex items-center gap-3">
-                                        <CheckCircle2 className="w-8 h-8 text-green-500" />
-                                        <h4 className="font-black uppercase text-lg text-green-500">Online Presence</h4>
+                                    {/* Bar 1 */}
+                                    <div className="space-y-1.5">
+                                        <div className="flex items-center gap-3 bg-white/5 p-1.5 rounded-sm border border-white/10">
+                                            <div className="bg-white/10 p-1.5 rounded-sm">
+                                                <Smartphone className="w-4 h-4 text-safety-orange" />
+                                            </div>
+                                            <div className="flex-grow relative h-8 bg-white/5 rounded-sm border border-white/5 overflow-hidden">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: "78%" }}
+                                                    transition={{ duration: 1, ease: "easeOut" }}
+                                                    viewport={{ once: false }}
+                                                    className="h-full bg-safety-orange flex items-center justify-end px-3 font-black text-white text-sm"
+                                                >
+                                                    78%
+                                                </motion.div>
+                                            </div>
+                                        </div>
+                                        <p className="text-right text-[10px] font-bold uppercase tracking-widest text-white/40">Professional website and branding</p>
                                     </div>
-                                    <ul className="space-y-2 pl-11">
-                                        <li className="flex items-start gap-2 text-sm font-bold text-white/60">
-                                            <Check className="w-4 h-4 text-green-500 mt-0.5" />
-                                            More enquiries
-                                        </li>
-                                        <li className="flex items-start gap-2 text-sm font-bold text-white/60">
-                                            <Check className="w-4 h-4 text-green-500 mt-0.5" />
-                                            Higher trust
-                                        </li>
-                                        <li className="flex items-start gap-2 text-sm font-bold text-white/60">
-                                            <Check className="w-4 h-4 text-green-500 mt-0.5" />
-                                            Better clients
-                                        </li>
-                                    </ul>
+
+                                    {/* Bar 2 */}
+                                    <div className="space-y-1.5">
+                                        <div className="flex items-center gap-3 bg-white/5 p-1.5 rounded-sm border border-white/10">
+                                            <div className="bg-white/10 p-1.5 rounded-sm">
+                                                <Users className="w-4 h-4 text-white" />
+                                            </div>
+                                            <div className="flex-grow relative h-8 bg-white/5 rounded-sm border border-white/5 overflow-hidden">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: "65%" }}
+                                                    transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
+                                                    viewport={{ once: false }}
+                                                    className="h-full bg-construction-charcoal border border-white/10 flex items-center justify-end px-3 font-black text-white text-sm"
+                                                >
+                                                    65%
+                                                </motion.div>
+                                            </div>
+                                        </div>
+                                        <div className="flex justify-end items-center gap-2">
+                                            <p className="text-right text-[10px] font-bold uppercase tracking-widest text-white/40">Google review and online presence</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Bar 3 */}
+                                    <div className="space-y-1.5">
+                                        <div className="flex items-center gap-3 bg-white/5 p-1.5 rounded-sm border border-white/10">
+                                            <div className="bg-white/10 p-1.5 rounded-sm">
+                                                <Phone className="w-4 h-4 text-white/60" />
+                                            </div>
+                                            <div className="flex-grow relative h-8 bg-white/5 rounded-sm border border-white/5 overflow-hidden">
+                                                <motion.div
+                                                    initial={{ width: 0 }}
+                                                    whileInView={{ width: "52%" }}
+                                                    transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+                                                    viewport={{ once: false }}
+                                                    className="h-full bg-white/20 flex items-center justify-end px-3 font-black text-white/80 text-sm"
+                                                >
+                                                    52%
+                                                </motion.div>
+                                            </div>
+                                        </div>
+                                        <p className="text-right text-[10px] font-bold uppercase tracking-widest text-white/40">Clear service and easy details</p>
+                                    </div>
                                 </div>
-                                <div className="space-y-4 md:border-l md:border-white/10 md:pl-8">
-                                    <div className="flex items-center gap-3">
-                                        <XCircle className="w-8 h-8 text-red-500/80" />
-                                        <h4 className="font-black uppercase text-lg text-white/40">No Online Presence</h4>
+
+                                {/* Right: Comparison */}
+                                <div className="flex flex-col justify-between md:border-l md:border-white/10 md:pl-8 pt-4 md:pt-0 border-t border-white/10 md:border-t-0 h-full">
+                                    <div className="space-y-3">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <CheckCircle2 className="w-5 h-5 text-green-500" />
+                                            <h4 className="font-black uppercase text-sm text-green-500">Online Presence</h4>
+                                        </div>
+                                        <ul className="space-y-1.5 pl-2 border-l border-green-500/20">
+                                            <li className="flex items-center gap-2 text-xs font-bold text-white/60">
+                                                <Check className="w-3 h-3 text-green-500" /> More enquiries
+                                            </li>
+                                            <li className="flex items-center gap-2 text-xs font-bold text-white/60">
+                                                <Check className="w-3 h-3 text-green-500" /> Higher trust
+                                            </li>
+                                            <li className="flex items-center gap-2 text-xs font-bold text-white/60">
+                                                <Check className="w-3 h-3 text-green-500" /> Better clients
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <ul className="space-y-2 pl-11">
-                                        <li className="flex items-start gap-2 text-sm font-bold text-white/40">
-                                            <span className="text-red-500/50">✕</span>
-                                            Missed calls
-                                        </li>
-                                        <li className="flex items-start gap-2 text-sm font-bold text-white/40">
-                                            <span className="text-red-500/50">✕</span>
-                                            Price shoppers
-                                        </li>
-                                        <li className="flex items-start gap-2 text-sm font-bold text-white/40">
-                                            <span className="text-red-500/50">✕</span>
-                                            Lost opportunities
-                                        </li>
-                                    </ul>
+
+                                    <div className="border-t border-white/5 my-4"></div>
+
+                                    <div className="space-y-3">
+                                        <div className="flex items-center gap-2 mb-2">
+                                            <XCircle className="w-5 h-5 text-red-500/80" />
+                                            <h4 className="font-black uppercase text-sm text-white/40">No Presence</h4>
+                                        </div>
+                                        <ul className="space-y-1.5 pl-2 border-l border-red-500/20">
+                                            <li className="flex items-center gap-2 text-xs font-bold text-white/40">
+                                                <span className="text-red-500/50 text-[10px]">✕</span> Missed calls
+                                            </li>
+                                            <li className="flex items-center gap-2 text-xs font-bold text-white/40">
+                                                <span className="text-red-500/50 text-[10px]">✕</span> Price shoppers
+                                            </li>
+                                            <li className="flex items-center gap-2 text-xs font-bold text-white/40">
+                                                <span className="text-red-500/50 text-[10px]">✕</span> Lost jobs
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
 
-                            {/* Card Footer */}
-                            <div className="mt-12 text-center">
-                                <p className="text-[10px] uppercase font-bold text-white/20 italic">
+                            {/* Footer */}
+                            <div className="mt-8 text-center border-t border-white/5 pt-4">
+                                <p className="text-[9px] uppercase font-bold text-white/20 italic">
                                     Illustrative example based on common consumer behaviour and industry insights
                                 </p>
                             </div>
-                        </div>
-
-                        {/* Supporting Copy */}
-                        <div className="space-y-6">
+                        </div>            <div className="space-y-6">
                             <h3 className="text-2xl md:text-4xl font-black uppercase italic leading-tight">
                                 Most homeowners won’t tell you this — <br />
                                 <span className="text-safety-orange">but they check online before they call.</span>
@@ -756,6 +770,7 @@ function LandingPage() {
                     </div>
                 </div>
             </section>
+
 
             {/* 3. SOLUTION SECTION */}
             <section className="py-24 md:py-32 border-b border-white/5">
@@ -863,57 +878,47 @@ function LandingPage() {
                 </div>
             </section>
 
-            {/* NEW SECTION: WHO THIS IS FOR */}
-            <section className="py-24 md:py-32 border-b border-white/5">
+            {/* NEW SECTION: WHO THIS IS FOR (Compact Reality Check) */}
+            <section className="py-12 md:py-20 border-b border-white/5 bg-zinc-900/50">
                 <div className="container mx-auto px-6">
-                    <div className="max-w-4xl mx-auto">
-                        <div className="text-center mb-12">
-                            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-safety-orange/10 border border-safety-orange/20 text-safety-orange mb-6">
-                                <AlertTriangle className="w-4 h-4" />
-                                <span className="text-xs font-black uppercase tracking-widest">Reality Check</span>
+                    <div className="max-w-5xl mx-auto">
+                        <div className="bg-white/5 border border-white/10 p-6 md:p-10 rounded-sm relative overflow-hidden">
+                            <div className="grid md:grid-cols-2 gap-10 items-center relative z-10">
+                                {/* Left: The Hard Truth */}
+                                <div>
+
+                                    <h2 className="text-2xl md:text-4xl font-black uppercase leading-tight italic mb-6 text-white">
+                                        It doesn’t stay neutral if you wait. <br />
+                                        <span className="text-safety-orange">It quietly gets worse.</span>
+                                    </h2>
+
+                                </div>
+
+                                {/* Right: The Cost of Delay */}
+                                <div className="space-y-6">
+                                    <div className="bg-black/20 p-6 border border-white/5 rounded-sm">
+                                        <h3 className="text-sm font-black uppercase text-white mb-4">Every week you delay:</h3>
+                                        <ul className="space-y-3">
+                                            {[
+                                                "Missed calls don’t magically come back",
+                                                "Competitors keep showing up first",
+                                                "Customers choose whoever feels safer"
+                                            ].map((item, i) => (
+                                                <li key={i} className="flex items-start gap-3">
+                                                    <XCircle className="text-safety-orange w-4 h-4 flex-shrink-0 mt-1" />
+                                                    <span className="text-sm md:text-base font-bold text-white/80">{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="text-center md:text-left">
+                                        <p className="text-sm font-black uppercase tracking-wide text-white">
+                                            The Growth System exists to <span className="text-safety-orange underline decoration-safety-orange/30 underline-offset-4">fix this once</span> — not patch it later.
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
-                            <h2 className="text-3xl md:text-5xl font-black uppercase leading-tight italic mb-6 text-white">
-                                This doesn’t stay neutral if you wait. <br />
-                                <span className="text-safety-orange">It quietly gets worse.</span>
-                            </h2>
-                        </div>
-
-                        <div className="bg-white/5 border border-white/10 p-8 md:p-12 rounded-sm relative overflow-hidden">
-                            {/* Background pattern */}
-                            <div className="absolute top-0 right-0 p-32 bg-safety-orange/5 blur-3xl rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2"></div>
-
-                            <h3 className="text-xl font-black uppercase text-white mb-6 relative z-10">Every week you delay:</h3>
-                            <ul className="space-y-4 mb-10 relative z-10">
-                                {[
-                                    "Missed calls don’t magically come back",
-                                    "Competitors keep showing up first",
-                                    "Customers choose whoever feels easier to trust in the moment"
-                                ].map((item, i) => (
-                                    <li key={i} className="flex items-start gap-4">
-                                        <XCircle className="text-safety-orange w-6 h-6 flex-shrink-0 mt-0.5" />
-                                        <span className="text-lg font-bold text-white/80">{item}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <div className="space-y-6 text-lg font-medium text-white/60 relative z-10 border-t border-white/10 pt-8">
-                                <p>
-                                    <span className="text-white font-bold">Nothing breaks overnight.</span> But the gap between who gets the call and who doesn’t widens quietly.
-                                </p>
-                                <p>
-                                    Most established trades don’t realise there’s a problem until demand slows, enquiries dry up, or price pressure starts.
-                                </p>
-                                <p className="text-safety-orange font-bold italic flex items-center gap-2">
-                                    By then, fixing it costs more — and takes longer.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div className="text-center mt-12">
-                            <p className="text-xl md:text-2xl font-black uppercase tracking-wide text-white">
-                                The Growth System exists for trades who want to <br className="hidden md:block" />
-                                <span className="text-safety-orange underline decoration-safety-orange/30 underline-offset-4">fix this once</span> — not patch it later.
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -992,7 +997,22 @@ function LandingPage() {
                                     video: "https://vimeo.com/1160981021"
                                 }
                             ].map((project) => (
-                                <div key={project.id} className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500 flex flex-col">
+                                <motion.div
+                                    key={project.id}
+                                    initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                                    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+                                    viewport={{ once: false, margin: "-100px" }}
+                                    transition={{ duration: 0.6, ease: "easeOut" }}
+                                    className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500 flex flex-col"
+                                >
+                                    {/* Attention-grabbing flash effect on entry */}
+                                    <motion.div
+                                        initial={{ opacity: 0 }}
+                                        whileInView={{ opacity: [0, 0.3, 0] }}
+                                        viewport={{ once: false }}
+                                        transition={{ duration: 1, times: [0, 0.2, 1], delay: 0.2 }}
+                                        className="absolute inset-0 bg-safety-orange/20 pointer-events-none z-10"
+                                    />
                                     {/* Preview Image (Top Half) */}
                                     <div className="relative h-[250px] md:h-[300px] overflow-hidden border-b border-white/10">
                                         <img
@@ -1045,7 +1065,7 @@ function LandingPage() {
                                             </button>
                                         </div>
                                     </div>
-                                </div>
+                                </motion.div>
                             ))}
                         </div>
                         <div className="text-center mt-12">
@@ -1202,6 +1222,16 @@ function LandingPage() {
                                                             },
                                                             "ENQUIRIES ROUTED SO NOTHING SLIPS THROUGH THE CRACKS",
                                                             "LINKEDIN PROFILE SETUP",
+                                                            {
+                                                                content: (
+                                                                    <CollapsibleDetail title="HIGH-PERFORMANCE GOOGLE & FACEBOOK ADS MANAGEMENT">
+                                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
+                                                                            <li>DONE-FOR-YOU CAMPAIGN SETUP & OPTIMISATION</li>
+                                                                            <li><span className="text-safety-orange font-bold">INCLUDES $89.99 FREE CREDIT</span> ON US WHEN YOU SIGN UP</li>
+                                                                        </ul>
+                                                                    </CollapsibleDetail>
+                                                                )
+                                                            },
                                                             {
                                                                 content: (
                                                                     <CollapsibleDetail title="PROMOTIONAL VIDEOS OR AI VISUAL CONTENT">

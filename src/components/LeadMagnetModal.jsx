@@ -31,12 +31,14 @@ const LeadMagnetModal = ({ isOpen, onClose }) => {
             };
 
             // Fire and forget - don't wait for Google Sheets
-            fetch(sheetUrl, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "text/plain" },
-                body: JSON.stringify(payload),
-            }).catch(err => console.error("Background submission error:", err));
+            await fetch(
+                "http://localhost:5678/webhook/guide-download",
+                {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload),
+                }
+            ).catch(err => console.error("Background submission error:", err));
 
             // Tracking
             ReactPixel.track('Lead', { content_name: 'Lead Magnet Download' });
