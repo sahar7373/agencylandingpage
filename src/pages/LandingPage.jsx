@@ -1102,7 +1102,7 @@ function LandingPage() {
                                         <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 1</CardTitle>
                                         <div className="text-xl font-black uppercase mb-4">Trade-Ready Online Setup</div>
                                         <div className="text-3xl font-black italic text-safety-orange italic">$1,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
-                                        <p className="text-xs font-black uppercase tracking-widest text-white/40 mt-2">+ $599/year partnership</p>
+                                        <p className="text-xs font-black uppercase tracking-widest text-white/40 mt-2">+ $299/quarter</p>
                                     </div>
                                     <div className="md:hidden mt-2">
                                         {expandedPackages.includes(1) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
