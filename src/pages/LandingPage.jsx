@@ -2,7 +2,7 @@ import React from 'react'
 import ReactPixel from 'react-facebook-pixel'
 import ReactGA from 'react-ga4'
 import { Helmet } from 'react-helmet-async'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
     ArrowRight,
     ArrowDown,
@@ -89,6 +89,7 @@ function LandingPage() {
         phone: '',
         email: '',
         trade: '',
+        otherTrade: '',
         location: '',
         goal: '',
         message: ''
@@ -98,6 +99,48 @@ function LandingPage() {
         ReactPixel.trackCustom('NavigationClick', { content_name: sectionName });
         ReactGA.event({ category: "Navigation", action: "Click_Menu_Item", label: sectionName });
     };
+
+    const shouldReduceMotion = useReducedMotion();
+
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { y: 60, opacity: 0, scale: 0.95 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            transition: {
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1]
+            }
+        }
+    };
+
+    const sectionVariants = {
+        hidden: { y: 50, opacity: 0 },
+        visible: {
+            y: 0,
+            opacity: 1,
+            transition: {
+                duration: 0.9,
+                ease: [0.22, 1, 0.36, 1]
+            }
+        }
+    };
+
+    const hoverScale = shouldReduceMotion ? {} : { scale: 1.05 };
+    const hoverLift = shouldReduceMotion ? {} : { y: -10, scale: 1.02 };
+    const hoverTap = shouldReduceMotion ? {} : { scale: 0.98 };
 
     const toggleFaq = (index) => {
         setOpenFaq(openFaq === index ? null : index)
@@ -161,7 +204,7 @@ function LandingPage() {
                 Name: formData.name,
                 Phone: `'${formData.phone}`, // Force text format
                 Email: formData.email,
-                Trade: formData.trade,
+                Trade: formData.trade === 'Other' ? formData.otherTrade : formData.trade,
                 Location: formData.location,
                 Message: formData.message,
                 timestamp: new Date().toISOString()
@@ -197,6 +240,7 @@ function LandingPage() {
                 phone: '',
                 email: '',
                 trade: '',
+                otherTrade: '',
                 location: '',
                 goal: '',
                 message: ''
@@ -528,36 +572,40 @@ function LandingPage() {
             <header className="relative pt-8 pb-24 md:pt-24 md:pb-44 border-b border-white/5 overflow-hidden">
                 <div className="absolute inset-0 bg-grid-white opacity-20 pointer-events-none"></div>
                 <div className="container mx-auto px-6 relative z-10">
-                    <div className="max-w-4xl mx-auto text-center">
+                    <motion.div
+                        className="max-w-4xl mx-auto text-center"
+                        variants={containerVariants}
+                        initial="hidden"
+                        animate="visible"
+                    >
 
                         {/* Audience Clarifier */}
-                        <p className="text-xs md:text-sm text-white/50 font-bold tracking-[0.2em] uppercase mb-6">
+                        <motion.p className="text-xs md:text-sm text-white/50 font-bold tracking-[0.2em] uppercase mb-6" variants={itemVariants}>
                             FOR AUSTRALIAN TRADES
-                        </p>
+                        </motion.p>
 
                         {/* Main Headline */}
-                        <h1 className="text-[52px] md:text-[100px] font-black leading-[0.9] mb-8 uppercase italic">
+                        <motion.h1 className="text-[52px] md:text-[100px] font-black leading-[0.9] mb-8 uppercase italic" variants={itemVariants}>
                             NO ONE TELLS TRADES THIS — <br />
                             <span className="text-safety-orange">CUSTOMERS DECIDE BEFORE THEY CALL.</span>
-                        </h1>
+                        </motion.h1>
 
                         {/* Sub Headline */}
-                        <p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto">
-
+                        <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
                             <br className="hidden md:block my-2" />
                             <span className="text-white/80">We build systems that make sure you’re the trade customers contact first</span> — not the one they skip.
-                        </p>
+                        </motion.p>
 
                         {/* Trust Position Strip */}
-                        <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 mb-10 rounded-full md:text-sm backdrop-blur-sm">
+                        <motion.div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 mb-10 rounded-full md:text-sm backdrop-blur-sm" variants={itemVariants}>
                             <ShieldCheck className="text-safety-orange w-5 h-5 flex-shrink-0" />
                             <p className="font-semibold text-white/80">
                                 Built by someone actively working inside the construction industry — <span className="text-white/40">not a marketing agency guessing.</span>
                             </p>
-                        </div>
+                        </motion.div>
 
                         {/* Primary CTA */}
-                        <div className="flex flex-col items-center gap-4">
+                        <motion.div className="flex flex-col items-center gap-4" variants={itemVariants}>
                             <Button
                                 onClick={() => {
                                     setIsReviewModalOpen(true);
@@ -565,7 +613,9 @@ function LandingPage() {
                                     ReactGA.event({ category: "Conversion", action: "Click_Hero_CTA", label: "See Losing Jobs" });
                                 }}
                                 size="xl"
-                                className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-6 md:px-12 py-6 md:py-8 text-sm md:text-2xl font-black uppercase tracking-widest group shadow-2xl shadow-safety-orange/30 w-full sm:w-auto transform hover:scale-105 transition-all duration-200"
+                                whileHover={hoverLift}
+                                whileTap={hoverTap}
+                                className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-6 md:px-12 py-6 md:py-8 text-sm md:text-2xl font-black uppercase tracking-widest group shadow-2xl shadow-safety-orange/30 w-full sm:w-auto transform-none transition-all duration-200"
                             >
                                 <span className="whitespace-normal text-center">SEE WHERE YOU'RE LOSING JOBS</span>
                                 <ArrowRight className="hidden md:block ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
@@ -575,10 +625,10 @@ function LandingPage() {
                             <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-widest font-bold">
                                 15-minute review • No pressure • Real improvement plan
                             </p>
-                        </div>
+                        </motion.div>
 
                         {/* Optional Proof Strip */}
-                        <div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mt-12 text-sm text-white/60 font-bold uppercase tracking-wider">
+                        <motion.div className="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-8 mt-12 text-sm text-white/60 font-bold uppercase tracking-wider" variants={itemVariants}>
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="w-4 h-4 text-green-500" />
                                 <span>Built for Australian trades</span>
@@ -591,33 +641,42 @@ function LandingPage() {
                                 <CheckCircle2 className="w-4 h-4 text-green-500" />
                                 <span>Visitors into booked jobs</span>
                             </div>
-                        </div>
-
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </header>
 
             {/* 2. PROBLEM AGITATION SECTION */}
-            <section id="why" className="py-24 md:py-32 border-b border-white/5 bg-black/20">
+            <motion.section
+                id="why"
+                className="py-24 md:py-32 border-b border-white/5 bg-black/20"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-5xl mx-auto">
                         <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic text-center md:text-left">
                             What most tradies <br className="hidden md:block" /> don’t realise…
                         </h2>
 
-                        <div className="grid md:grid-cols-2 gap-8 mb-16">
+                        <motion.div
+                            className="grid md:grid-cols-2 gap-8 mb-16"
+                            variants={containerVariants}
+                        >
                             {[
                                 "Missed calls while on site",
                                 "Enquiries coming from multiple places",
                                 "Websites that look fine but don’t convert",
                                 "Work going to whoever answers first"
                             ].map((bullet, i) => (
-                                <div key={i} className="flex items-center gap-6 bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
+                                <motion.div key={i} variants={itemVariants} className="flex items-center gap-6 bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
                                     <AlertCircle className="text-red-500 w-10 h-10 flex-shrink-0" />
                                     <p className="text-xl md:text-2xl font-black uppercase">{bullet}</p>
-                                </div>
+                                </motion.div>
                             ))}
-                        </div>
+                        </motion.div>
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
@@ -627,10 +686,16 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </motion.section>
 
             {/* NEW SECTION: SURVEY RESULT VISUAL (Compact Redesign) */}
-            <section className="py-12 md:py-16 border-b border-white/5 bg-zinc-900/50">
+            <motion.section
+                className="py-12 md:py-16 border-b border-white/5 bg-zinc-900/50"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-5xl mx-auto">
 
@@ -654,7 +719,7 @@ function LandingPage() {
                                                     initial={{ width: 0 }}
                                                     whileInView={{ width: "78%" }}
                                                     transition={{ duration: 1, ease: "easeOut" }}
-                                                    viewport={{ once: false }}
+                                                    viewport={{ once: true }}
                                                     className="h-full bg-safety-orange flex items-center justify-end px-3 font-black text-white text-sm"
                                                 >
                                                     78%
@@ -675,7 +740,7 @@ function LandingPage() {
                                                     initial={{ width: 0 }}
                                                     whileInView={{ width: "65%" }}
                                                     transition={{ duration: 1, ease: "easeOut", delay: 0.2 }}
-                                                    viewport={{ once: false }}
+                                                    viewport={{ once: true }}
                                                     className="h-full bg-construction-charcoal border border-white/10 flex items-center justify-end px-3 font-black text-white text-sm"
                                                 >
                                                     65%
@@ -698,7 +763,7 @@ function LandingPage() {
                                                     initial={{ width: 0 }}
                                                     whileInView={{ width: "52%" }}
                                                     transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
-                                                    viewport={{ once: false }}
+                                                    viewport={{ once: true }}
                                                     className="h-full bg-white/20 flex items-center justify-end px-3 font-black text-white/80 text-sm"
                                                 >
                                                     52%
@@ -769,11 +834,17 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </motion.section>
 
 
             {/* 3. SOLUTION SECTION */}
-            <section className="py-24 md:py-32 border-b border-white/5">
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center md:text-left">
                         <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic leading-none">
@@ -799,10 +870,16 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </motion.section>
 
             {/* NEW SECTION: WHAT WE ACTUALLY FIX */}
-            <section className="py-24 md:py-32 border-b border-white/5 bg-black/40">
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/40"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto">
                         <div className="text-center mb-16">
@@ -814,59 +891,73 @@ function LandingPage() {
                             </p>
                         </div>
 
-                        <div className="grid md:grid-cols-2 gap-6">
-                            <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors">
-                                <CardHeader>
-                                    <Badge className="w-fit bg-white/10 text-white mb-2">Problem 1</Badge>
-                                    <CardTitle className="text-xl font-black uppercase text-white/60">"We’re flat out, but enquiries are inconsistent"</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="flex items-start gap-3">
-                                        <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
-                                        <p className="text-lg font-bold text-white">We build systems that capture demand when it shows up.</p>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                        <motion.div
+                            className="grid md:grid-cols-2 gap-6"
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
+                        >
+                            <motion.div variants={itemVariants} whileHover={hoverLift}>
+                                <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors h-full">
+                                    <CardHeader>
+                                        <Badge className="w-fit bg-white/10 text-white mb-2">Problem 1</Badge>
+                                        <CardTitle className="text-xl font-black uppercase text-white/60">"We’re flat out, but enquiries are inconsistent"</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="flex items-start gap-3">
+                                            <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
+                                            <p className="text-lg font-bold text-white">We build systems that capture demand when it shows up.</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
 
-                            <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors">
-                                <CardHeader>
-                                    <Badge className="w-fit bg-white/10 text-white mb-2">Problem 2</Badge>
-                                    <CardTitle className="text-xl font-black uppercase text-white/60">"People check us out but don’t call"</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="flex items-start gap-3">
-                                        <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
-                                        <p className="text-lg font-bold text-white">We make your business look established, not risky.</p>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                            <motion.div variants={itemVariants} whileHover={hoverLift}>
+                                <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors h-full">
+                                    <CardHeader>
+                                        <Badge className="w-fit bg-white/10 text-white mb-2">Problem 2</Badge>
+                                        <CardTitle className="text-xl font-black uppercase text-white/60">"People check us out but don’t call"</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="flex items-start gap-3">
+                                            <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
+                                            <p className="text-lg font-bold text-white">We make your business look established, not risky.</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
 
-                            <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors">
-                                <CardHeader>
-                                    <Badge className="w-fit bg-white/10 text-white mb-2">Problem 3</Badge>
-                                    <CardTitle className="text-xl font-black uppercase text-white/60">"We miss calls while on the tools"</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="flex items-start gap-3">
-                                        <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
-                                        <p className="text-lg font-bold text-white">AI answers, logs, and follows up so leads don’t die.</p>
-                                    </div>
-                                </CardContent>
-                            </Card>
+                            <motion.div variants={itemVariants} whileHover={hoverLift}>
+                                <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors h-full">
+                                    <CardHeader>
+                                        <Badge className="w-fit bg-white/10 text-white mb-2">Problem 3</Badge>
+                                        <CardTitle className="text-xl font-black uppercase text-white/60">"We miss calls while on the tools"</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="flex items-start gap-3">
+                                            <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
+                                            <p className="text-lg font-bold text-white">AI answers, logs, and follows up so leads don’t die.</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
 
-                            <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors">
-                                <CardHeader>
-                                    <Badge className="w-fit bg-white/10 text-white mb-2">Problem 4</Badge>
-                                    <CardTitle className="text-xl font-black uppercase text-white/60">"Our online stuff is messy or outdated"</CardTitle>
-                                </CardHeader>
-                                <CardContent>
-                                    <div className="flex items-start gap-3">
-                                        <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
-                                        <p className="text-lg font-bold text-white">One clean setup that just works.</p>
-                                    </div>
-                                </CardContent>
-                            </Card>
-                        </div>
+                            <motion.div variants={itemVariants} whileHover={hoverLift}>
+                                <Card className="bg-white/5 border-2 border-white/5 hover:border-safety-orange/50 transition-colors h-full">
+                                    <CardHeader>
+                                        <Badge className="w-fit bg-white/10 text-white mb-2">Problem 4</Badge>
+                                        <CardTitle className="text-xl font-black uppercase text-white/60">"Our online stuff is messy or outdated"</CardTitle>
+                                    </CardHeader>
+                                    <CardContent>
+                                        <div className="flex items-start gap-3">
+                                            <ArrowRight className="text-safety-orange w-6 h-6 flex-shrink-0 mt-1" />
+                                            <p className="text-lg font-bold text-white">One clean setup that just works.</p>
+                                        </div>
+                                    </CardContent>
+                                </Card>
+                            </motion.div>
+                        </motion.div>
 
                         <div className="mt-12 text-center">
                             <p className="text-2xl font-black italic border-l-4 border-safety-orange pl-6 inline-block text-left">
@@ -876,10 +967,16 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </motion.section>
 
             {/* NEW SECTION: WHO THIS IS FOR (Compact Reality Check) */}
-            <section className="py-12 md:py-20 border-b border-white/5 bg-zinc-900/50">
+            <motion.section
+                className="py-12 md:py-20 border-b border-white/5 bg-zinc-900/50"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-5xl mx-auto">
                         <div className="bg-white/5 border border-white/10 p-6 md:p-10 rounded-sm relative overflow-hidden">
@@ -922,10 +1019,17 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </motion.section >
 
             {/* SECTION: SUCCESS STORIES / SHOWCASE */}
-            <section id="projects" className="pt-[66px] pb-24 md:pt-[98px] md:pb-32 border-b border-white/5 bg-zinc-900/10">
+            < motion.section
+                id="projects"
+                className="pt-[66px] pb-24 md:pt-[98px] md:pb-32 border-b border-white/5 bg-zinc-900/10"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
                         <div className="text-center mb-16">
@@ -999,10 +1103,10 @@ function LandingPage() {
                             ].map((project) => (
                                 <motion.div
                                     key={project.id}
-                                    initial={{ opacity: 0, scale: 0.9, y: 50 }}
+                                    initial={{ opacity: 0, scale: 0.85, y: 60 }}
                                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                                    viewport={{ once: false, margin: "-100px" }}
-                                    transition={{ duration: 0.6, ease: "easeOut" }}
+                                    viewport={{ once: false, margin: "-50px" }}
+                                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                                     className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500 flex flex-col"
                                 >
                                     {/* Attention-grabbing flash effect on entry */}
@@ -1077,10 +1181,17 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </motion.section >
 
             {/* 4. PACKAGES SECTION */}
-            <section id="packages" className="py-12 md:py-20 border-b border-white/5 bg-black/40">
+            < motion.section
+                id="packages"
+                className="py-12 md:py-20 border-b border-white/5 bg-black/40"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="text-center mb-10">
                         <h2 className="text-4xl md:text-7xl font-black mb-6 uppercase italic">
@@ -1092,158 +1203,198 @@ function LandingPage() {
                     <div className="grid lg:grid-cols-3 gap-8 items-start mt-2.5">
 
                         {/* PACKAGE 1 */}
-                        <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
-                            <CardHeader
-                                className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
-                                onClick={() => togglePackage(1)}
-                            >
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 1</CardTitle>
-                                        <div className="text-xl font-black uppercase mb-4">Trade-Ready Online Setup</div>
-                                        <div className="text-3xl font-black italic text-safety-orange italic">$1,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
-                                        <p className="text-xs font-black uppercase tracking-widest text-white/40 mt-2">+ $299/quarter</p>
-                                    </div>
-                                    <div className="md:hidden mt-2">
-                                        {expandedPackages.includes(1) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
-                                    </div>
-                                </div>
-                            </CardHeader>
-                            <div className={`${expandedPackages.includes(1) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
-                                <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
-                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR TRADES WHO WANT TO LOOK PROFESSIONAL AND STOP LOSING JOBS DUE TO WEAK ONLINE PRESENCE.</p>
-
-                                    {/* Website Inclusions */}
-                                    <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
-                                        <div className="flex items-center gap-2 mb-2">
-                                            <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
-                                            <p className="text-sm font-black uppercase text-white">Website</p>
+                        <motion.div whileHover={hoverLift} className="h-full">
+                            <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
+                                <CardHeader
+                                    className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
+                                    onClick={() => togglePackage(1)}
+                                >
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 1</CardTitle>
+                                            <div className="text-xl font-black uppercase mb-4">Trade-Ready Online Setup</div>
+                                            <div className="text-3xl font-black italic text-safety-orange italic">$1,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                            <p className="text-xs font-black uppercase tracking-widest text-white/40 mt-2">+ $299/quarter</p>
                                         </div>
-                                        <div className="pl-4 border-l border-white/10 space-y-1">
-                                            <p className="text-sm font-bold text-white uppercase">3-page website included</p>
-                                            <p className="text-xs text-white/50">(Home, Services, Project Showcase, Contact)</p>
+                                        <div className="md:hidden mt-2">
+                                            {expandedPackages.includes(1) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
                                         </div>
                                     </div>
+                                </CardHeader>
+                                <div className={`${expandedPackages.includes(1) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
+                                    <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
+                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR TRADES WHO WANT TO LOOK PROFESSIONAL AND STOP LOSING JOBS DUE TO WEAK ONLINE PRESENCE.</p>
 
-                                    <div className="space-y-4">
-                                        {[
-                                            "Domain + hosting included for Year 1",
-                                            "Professional business email (no more Gmail)",
-                                            "Google Business Profile set up",
-                                            "Business card design (print-ready)",
-                                            "Contact & quote forms that send enquiries to you instantly"
-                                        ].map((item, i) => (
-                                            <div key={i} className="flex gap-3 text-sm font-bold uppercase tracking-tight">
-                                                <Check className="text-safety-orange w-5 h-5 flex-shrink-0" />
-                                                <span>{item}</span>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                                <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
-                                    <div className="bg-white/10 p-4 text-xs font-black uppercase tracking-widest text-center italic w-full">
-                                        "You stop looking like a “maybe” and start looking like a real business people call."
-                                    </div>
-                                    <a href="#contact" className="w-full" onClick={() => {
-                                        ReactPixel.track('AddToCart', { content_name: 'Package 1: Trade-Ready', value: 1900, currency: 'AUD' });
-                                        ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 1", value: 1900 });
-                                    }}>
-                                        <Button className="w-full bg-white text-black hover:bg-white/90 rounded-none h-12 font-black uppercase tracking-widest">
-                                            Check Availability
-                                        </Button>
-                                    </a>
-                                </CardFooter>
-                            </div>
-                        </Card>
-
-                        {/* PACKAGE 3 (Highlighted Middle) */}
-                        <Card className="bg-white/5 border-4 border-safety-orange rounded-none h-full flex flex-col relative scale-105 z-10 shadow-2xl shadow-safety-orange/10">
-                            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-safety-orange text-white px-4 py-1 text-[10px] font-black uppercase tracking-widest whitespace-nowrap italic">
-                                Most Popular
-                            </div>
-                            <CardHeader
-                                className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
-                                onClick={() => togglePackage(3)}
-                            >
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 3</CardTitle>
-                                        <div className="text-xl font-black uppercase mb-4">Growth System</div>
-                                        <div className="text-[35px] font-black italic text-safety-orange">From $7,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
-                                        <div className="mt-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
-                                            (Most projects land between $8,500 – $15,000)
-                                        </div>
-                                        <div className="mt-2">
-                                            <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Ongoing partnership quoted based on your requirements</p>
-                                        </div>
-                                    </div>
-                                    <div className="md:hidden mt-2">
-                                        {expandedPackages.includes(3) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
-                                    </div>
-                                </div>
-                            </CardHeader>
-                            <div className={`${expandedPackages.includes(3) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
-                                <CardContent className="p-5 md:p-6 space-y-6 flex-grow">
-                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange">
-                                        FOR TRADES READY TO CAPTURE MORE OPPORTUNITIES AND RUN A MORE AUTOMATED, RELIABLE JOB FLOW.</p>
-
-                                    <div className="space-y-4">
+                                        {/* Website Inclusions */}
                                         <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
                                             <div className="flex items-center gap-2 mb-2">
                                                 <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
                                                 <p className="text-sm font-black uppercase text-white">Website</p>
                                             </div>
                                             <div className="pl-4 border-l border-white/10 space-y-1">
-                                                <p className="text-sm font-bold text-white uppercase">Up to 7 pages included</p>
-                                                <p className="text-xs text-white/50">(Additional pages: + $250–$400 per page)</p>
+                                                <p className="text-sm font-bold text-white uppercase">3-page website included</p>
+                                                <p className="text-xs text-white/50">(Home, Services, Project Showcase, Contact)</p>
                                             </div>
                                         </div>
 
-                                        <div>
-                                            <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">Everything in Local Jobs Engine, plus:</p>
-                                            <div className="space-y-4">
-                                                {/* HIGHLIGHTED ITEMS CONTAINER */}
-                                                <div className="border border-safety-orange/80 bg-safety-orange/5 p-4 rounded-md shadow-[0_0_15px_rgba(255,107,0,0.3)] relative overflow-hidden">
-                                                    {/* Pulsing overlay effect */}
-                                                    <div className="absolute inset-0 border-2 border-safety-orange/50 rounded-md animate-pulse pointer-events-none"></div>
+                                        <div className="space-y-4">
+                                            {[
+                                                "Domain + hosting included for Year 1",
+                                                "Professional business email (no more Gmail)",
+                                                "Google Business Profile set up",
+                                                "Business card design (print-ready)",
+                                                "Contact & quote forms that send enquiries to you instantly"
+                                            ].map((item, i) => (
+                                                <div key={i} className="flex gap-3 text-sm font-bold uppercase tracking-tight">
+                                                    <Check className="text-safety-orange w-5 h-5 flex-shrink-0" />
+                                                    <span>{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                    <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
+                                        <div className="bg-white/10 p-4 text-xs font-black uppercase tracking-widest text-center italic w-full">
+                                            "You stop looking like a “maybe” and start looking like a real business people call."
+                                        </div>
+                                        <a href="#contact" className="w-full" onClick={() => {
+                                            ReactPixel.track('AddToCart', { content_name: 'Package 1: Trade-Ready', value: 1900, currency: 'AUD' });
+                                            ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 1", value: 1900 });
+                                        }}>
+                                            <Button className="w-full bg-white text-black hover:bg-white/90 rounded-none h-12 font-black uppercase tracking-widest">
+                                                Check Availability
+                                            </Button>
+                                        </a>
+                                    </CardFooter>
+                                </div>
+                            </Card>
+                        </motion.div>
 
-                                                    <ul className="space-y-3 relative z-10">
+                        {/* PACKAGE 3 (Highlighted Middle) */}
+                        <motion.div whileHover={hoverLift} className="h-full relative scale-105 z-10 shadow-2xl shadow-safety-orange/10">
+                            <Card className="bg-white/5 border-4 border-safety-orange rounded-none h-full flex flex-col relative">
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-safety-orange text-white px-4 py-1 text-[10px] font-black uppercase tracking-widest whitespace-nowrap italic">
+                                    Most Popular
+                                </div>
+                                <CardHeader
+                                    className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
+                                    onClick={() => togglePackage(3)}
+                                >
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 3</CardTitle>
+                                            <div className="text-xl font-black uppercase mb-4">Growth System</div>
+                                            <div className="text-[35px] font-black italic text-safety-orange">From $7,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                            <div className="mt-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
+                                                (Most projects land between $8,500 – $15,000)
+                                            </div>
+                                            <div className="mt-2">
+                                                <p className="text-[10px] font-black uppercase tracking-widest text-white/40">Ongoing partnership quoted based on your requirements</p>
+                                            </div>
+                                        </div>
+                                        <div className="md:hidden mt-2">
+                                            {expandedPackages.includes(3) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
+                                        </div>
+                                    </div>
+                                </CardHeader>
+                                <div className={`${expandedPackages.includes(3) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
+                                    <CardContent className="p-5 md:p-6 space-y-6 flex-grow">
+                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange">
+                                            FOR TRADES READY TO CAPTURE MORE OPPORTUNITIES AND RUN A MORE AUTOMATED, RELIABLE JOB FLOW.</p>
+
+                                        <div className="space-y-4">
+                                            <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
+                                                    <p className="text-sm font-black uppercase text-white">Website</p>
+                                                </div>
+                                                <div className="pl-4 border-l border-white/10 space-y-1">
+                                                    <p className="text-sm font-bold text-white uppercase">Up to 7 pages included</p>
+                                                    <p className="text-xs text-white/50">(Additional pages: + $250–$400 per page)</p>
+                                                </div>
+                                            </div>
+
+                                            <div>
+                                                <p className="text-xs font-bold uppercase tracking-widest text-white/40 mb-3">Everything in Local Jobs Engine, plus:</p>
+                                                <div className="space-y-4">
+                                                    {/* HIGHLIGHTED ITEMS CONTAINER */}
+                                                    <div className="border border-safety-orange/80 bg-safety-orange/5 p-4 rounded-md shadow-[0_0_15px_rgba(255,107,0,0.3)] relative overflow-hidden">
+                                                        {/* Pulsing overlay effect */}
+                                                        <div className="absolute inset-0 border-2 border-safety-orange/50 rounded-md animate-pulse pointer-events-none"></div>
+
+                                                        <ul className="space-y-3 relative z-10">
+                                                            {[
+                                                                "SETUP DESIGNED TO HELP YOU SHOW UP MORE WHEN SEARCHING LOCALLY AND IN AI",
+                                                                {
+                                                                    content: (
+                                                                        <CollapsibleDetail title="AFTER-HOURS, MISSED-CALL & RECEPTIONIST HANDLING">
+                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                                                <li>HANDLES MULTIPLE CALLERS AT THE SAME TIME (NO HOLD, NO VOICEMAIL)</li>
+                                                                                <li>EVERY CALL ANSWERED, EVEN WHEN YOU’RE ALREADY BUSY</li>
+                                                                            </ul>
+                                                                        </CollapsibleDetail>
+                                                                    )
+                                                                },
+                                                                "ENQUIRIES ROUTED SO NOTHING SLIPS THROUGH THE CRACKS",
+                                                                "LINKEDIN PROFILE SETUP",
+                                                                {
+                                                                    content: (
+                                                                        <CollapsibleDetail title="HIGH-PERFORMANCE GOOGLE & FACEBOOK ADS MANAGEMENT">
+                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
+                                                                                <li>DONE-FOR-YOU CAMPAIGN SETUP & OPTIMISATION</li>
+                                                                                <li><span className="text-safety-orange font-bold">INCLUDES $89.99 FREE CREDIT</span> ON US WHEN YOU SIGN UP</li>
+                                                                            </ul>
+                                                                        </CollapsibleDetail>
+                                                                    )
+                                                                },
+                                                                {
+                                                                    content: (
+                                                                        <CollapsibleDetail title="PROMOTIONAL VIDEOS OR AI VISUAL CONTENT">
+                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
+                                                                                <li>USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</li>
+                                                                                <li>3 videos x 10-15 secs included in the package, additional videos quote separately</li>
+                                                                            </ul>
+                                                                        </CollapsibleDetail>
+                                                                    )
+                                                                }
+                                                            ].map((item, i) => (
+                                                                <li key={`highlight-${i}`} className="flex items-start gap-3 text-sm font-bold text-white">
+                                                                    <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
+                                                                    <div>
+                                                                        {item.content || item}
+                                                                    </div>
+                                                                </li>
+                                                            ))}
+                                                        </ul>
+                                                    </div>
+
+                                                    {/* STANDARD ITEMS (BOTTOM) */}
+                                                    <ul className="space-y-3 px-1">
                                                         {[
-                                                            "SETUP DESIGNED TO HELP YOU SHOW UP MORE WHEN SEARCHING LOCALLY AND IN AI",
+                                                            "EXTRA SERVICE & SUBURB PAGES BUILT AROUND REAL LOCAL SEARCHES",
                                                             {
                                                                 content: (
-                                                                    <CollapsibleDetail title="AFTER-HOURS, MISSED-CALL & RECEPTIONIST HANDLING">
+                                                                    <CollapsibleDetail title="SIMPLE TRACKING TO SEE:">
                                                                         <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
-                                                                            <li>HANDLES MULTIPLE CALLERS AT THE SAME TIME (NO HOLD, NO VOICEMAIL)</li>
-                                                                            <li>EVERY CALL ANSWERED, EVEN WHEN YOU’RE ALREADY BUSY</li>
-                                                                        </ul>
-                                                                    </CollapsibleDetail>
-                                                                )
-                                                            },
-                                                            "ENQUIRIES ROUTED SO NOTHING SLIPS THROUGH THE CRACKS",
-                                                            "LINKEDIN PROFILE SETUP",
-                                                            {
-                                                                content: (
-                                                                    <CollapsibleDetail title="HIGH-PERFORMANCE GOOGLE & FACEBOOK ADS MANAGEMENT">
-                                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
-                                                                            <li>DONE-FOR-YOU CAMPAIGN SETUP & OPTIMISATION</li>
-                                                                            <li><span className="text-safety-orange font-bold">INCLUDES $89.99 FREE CREDIT</span> ON US WHEN YOU SIGN UP</li>
+                                                                            <li>WHERE ENQUIRIES COME FROM</li>
+                                                                            <li>WHICH PAGES BRING CALLS</li>
+                                                                            <li>WHAT’S WORTH SPENDING MONEY ON</li>
                                                                         </ul>
                                                                     </CollapsibleDetail>
                                                                 )
                                                             },
                                                             {
                                                                 content: (
-                                                                    <CollapsibleDetail title="PROMOTIONAL VIDEOS OR AI VISUAL CONTENT">
-                                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
-                                                                            <li>USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</li>
-                                                                            <li>3 videos x 10-15 secs included in the package, additional videos quote separately</li>
+                                                                    <CollapsibleDetail title="SYSTEMS SELECTED BASED ON:">
+                                                                        <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
+                                                                            <li>YOUR TRADE</li>
+                                                                            <li>YOUR WORKLOAD</li>
+                                                                            <li>HOW AGGRESSIVE YOU WANT TO GROW</li>
                                                                         </ul>
                                                                     </CollapsibleDetail>
                                                                 )
                                                             }
                                                         ].map((item, i) => (
-                                                            <li key={`highlight-${i}`} className="flex items-start gap-3 text-sm font-bold text-white">
+                                                            <li key={`standard-${i}`} className="flex items-start gap-3 text-sm font-bold text-white/80">
                                                                 <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
                                                                 <div>
                                                                     {item.content || item}
@@ -1252,186 +1403,152 @@ function LandingPage() {
                                                         ))}
                                                     </ul>
                                                 </div>
-
-                                                {/* STANDARD ITEMS (BOTTOM) */}
-                                                <ul className="space-y-3 px-1">
-                                                    {[
-                                                        "EXTRA SERVICE & SUBURB PAGES BUILT AROUND REAL LOCAL SEARCHES",
-                                                        {
-                                                            content: (
-                                                                <CollapsibleDetail title="SIMPLE TRACKING TO SEE:">
-                                                                    <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
-                                                                        <li>WHERE ENQUIRIES COME FROM</li>
-                                                                        <li>WHICH PAGES BRING CALLS</li>
-                                                                        <li>WHAT’S WORTH SPENDING MONEY ON</li>
-                                                                    </ul>
-                                                                </CollapsibleDetail>
-                                                            )
-                                                        },
-                                                        {
-                                                            content: (
-                                                                <CollapsibleDetail title="SYSTEMS SELECTED BASED ON:">
-                                                                    <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal">
-                                                                        <li>YOUR TRADE</li>
-                                                                        <li>YOUR WORKLOAD</li>
-                                                                        <li>HOW AGGRESSIVE YOU WANT TO GROW</li>
-                                                                    </ul>
-                                                                </CollapsibleDetail>
-                                                            )
-                                                        }
-                                                    ].map((item, i) => (
-                                                        <li key={`standard-${i}`} className="flex items-start gap-3 text-sm font-bold text-white/80">
-                                                            <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                                            <div>
-                                                                {item.content || item}
-                                                            </div>
-                                                        </li>
-                                                    ))}
-                                                </ul>
                                             </div>
                                         </div>
-                                    </div>
-                                </CardContent>
-                                <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
-                                    <div
-                                        className="bg-white/10 p-4 border border-white/5 cursor-pointer hover:bg-white/15 transition-colors"
-                                        onClick={() => setPricingVariesOpen(!pricingVariesOpen)}
-                                    >
-                                        <div className="flex justify-between items-center mb-2">
-                                            <p className="text-xs font-black uppercase text-white">Why pricing varies</p>
-                                            {pricingVariesOpen ? <ChevronUp className="w-4 h-4 text-white/60" /> : <ChevronDown className="w-4 h-4 text-white/60" />}
-                                        </div>
+                                    </CardContent>
+                                    <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
+                                        <div
+                                            className="bg-white/10 p-4 border border-white/5 cursor-pointer hover:bg-white/15 transition-colors"
+                                            onClick={() => setPricingVariesOpen(!pricingVariesOpen)}
+                                        >
+                                            <div className="flex justify-between items-center mb-2">
+                                                <p className="text-xs font-black uppercase text-white">Why pricing varies</p>
+                                                {pricingVariesOpen ? <ChevronUp className="w-4 h-4 text-white/60" /> : <ChevronDown className="w-4 h-4 text-white/60" />}
+                                            </div>
 
-                                        {pricingVariesOpen && (
-                                            <>
-                                                <p className="text-[10px] uppercase font-bold text-white/40 leading-relaxed animate-in fade-in slide-in-from-top-1 duration-200">
-                                                    Not every trade needs the same setup. Pricing depends on how many pages, locations, promotions, and systems are required to get results.
-                                                    <br /><br />
-                                                    Receptionist usage is billed separately based on call volume. We set this up to be cost-effective and scale only when needed.
-                                                </p>
-                                                <p className="text-[10px] uppercase font-bold text-white/40 mt-2 italic animate-in fade-in slide-in-from-top-1 duration-200 delay-75">We scope this before anything is built — no surprises.</p>
-                                            </>
-                                        )}
-                                    </div>
-                                    <a href="#contact" className="w-full" onClick={() => {
-                                        ReactPixel.track('AddToCart', { content_name: 'Package 3: Growth System', value: 7500, currency: 'AUD' });
-                                        ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 3", value: 7500 });
-                                    }}>
-                                        <Button className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none h-12 font-black uppercase tracking-widest">
-                                            Check Growth Availability
-                                        </Button>
-                                    </a>
-                                </CardFooter>
-                            </div>
-                        </Card>
+                                            {pricingVariesOpen && (
+                                                <>
+                                                    <p className="text-[10px] uppercase font-bold text-white/40 leading-relaxed animate-in fade-in slide-in-from-top-1 duration-200">
+                                                        Not every trade needs the same setup. Pricing depends on how many pages, locations, promotions, and systems are required to get results.
+                                                        <br /><br />
+                                                        Receptionist usage is billed separately based on call volume. We set this up to be cost-effective and scale only when needed.
+                                                    </p>
+                                                    <p className="text-[10px] uppercase font-bold text-white/40 mt-2 italic animate-in fade-in slide-in-from-top-1 duration-200 delay-75">We scope this before anything is built — no surprises.</p>
+                                                </>
+                                            )}
+                                        </div>
+                                        <a href="#contact" className="w-full" onClick={() => {
+                                            ReactPixel.track('AddToCart', { content_name: 'Package 3: Growth System', value: 7500, currency: 'AUD' });
+                                            ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 3", value: 7500 });
+                                        }}>
+                                            <Button className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none h-12 font-black uppercase tracking-widest">
+                                                Check Growth Availability
+                                            </Button>
+                                        </a>
+                                    </CardFooter>
+                                </div>
+                            </Card>
+                        </motion.div>
 
 
                         {/* PACKAGE 2 (Standard Right) */}
-                        <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
-                            <CardHeader
-                                className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
-                                onClick={() => togglePackage(2)}
-                            >
-                                <div className="flex justify-between items-start">
-                                    <div>
-                                        <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">PACKAGE 2</CardTitle>
-                                        <div className="text-xl font-black uppercase mb-4">LOCAL JOBS ENGINE</div>
-                                        <div className="text-3xl font-black italic text-safety-orange">$3,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
-                                        <div className="mt-2">
-                                            <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $399 / quarter</p>
-                                            <p className="text-[10px] font-bold text-white/20">(Reviewed annually, subject to AI usage & scope)</p>
-                                        </div>
-                                    </div>
-                                    <div className="md:hidden mt-2">
-                                        {expandedPackages.includes(2) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
-                                    </div>
-                                </div>
-                            </CardHeader>
-                            <div className={`${expandedPackages.includes(2) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
-                                <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
-                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR TRADES WHO WANT STEADY ENQUIRIES WITHOUT ADDING ADMIN OR MISSED CALLS.</p>
-
-                                    {/* Inclusions List - Grouped */}
-                                    <div className="space-y-5">
-                                        {/* Website */}
-                                        <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
-                                            <div className="flex items-center gap-2 mb-2">
-                                                <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
-                                                <p className="text-sm font-black uppercase text-white">Website</p>
-                                            </div>
-                                            <div className="pl-4 border-l border-white/10 space-y-1">
-                                                <p className="text-sm font-bold text-white uppercase">6-page website included</p>
-                                                <p className="text-xs text-white/50">(Home, Services, About/Trust, Service Area, Projects, Contact)</p>
+                        <motion.div whileHover={hoverLift} className="h-full">
+                            <Card className="bg-white/5 border-2 border-white/10 rounded-none h-full flex flex-col">
+                                <CardHeader
+                                    className="p-5 md:p-6 border-b border-white/10 cursor-pointer md:cursor-default transition-colors hover:bg-white/5 md:hover:bg-transparent"
+                                    onClick={() => togglePackage(2)}
+                                >
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">PACKAGE 2</CardTitle>
+                                            <div className="text-xl font-black uppercase mb-4">LOCAL JOBS ENGINE</div>
+                                            <div className="text-3xl font-black italic text-safety-orange">$3,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                            <div className="mt-2">
+                                                <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $399 / quarter</p>
+                                                <p className="text-[10px] font-bold text-white/20">(Reviewed annually, subject to AI usage & scope)</p>
                                             </div>
                                         </div>
+                                        <div className="md:hidden mt-2">
+                                            {expandedPackages.includes(2) ? <ChevronUp className="w-6 h-6 text-safety-orange" /> : <ChevronDown className="w-6 h-6 text-white/40" />}
+                                        </div>
+                                    </div>
+                                </CardHeader>
+                                <div className={`${expandedPackages.includes(2) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
+                                    <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
+                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR TRADES WHO WANT STEADY ENQUIRIES WITHOUT ADDING ADMIN OR MISSED CALLS.</p>
 
-                                        {/* Other Sections */}
-                                        {[
-                                            {
-                                                title: "Lead capture",
-                                                items: [
-                                                    "Contact & quote forms",
-                                                    "Enquiry tracking (nothing gets lost)"
-                                                ]
-                                            },
-                                            {
-                                                title: "Call handling",
-                                                items: [
-                                                    { text: <span>Website assistance chatbot - <span className="text-[10px] text-white/50 uppercase">(Priced separately for customised chatbot to book the appointments)</span></span> }
-                                                ]
-                                            },
-                                            {
-                                                title: "Report templates",
-                                                items: [
-                                                    "Custom branded trade templates (SWMS / reports)"
-                                                ]
-                                            },
-                                            {
-                                                title: "Local setup",
-                                                items: [
-                                                    "Service & suburb pages (basic)"
-                                                ]
-                                            },
-                                            {
-                                                title: "Support",
-                                                items: [
-                                                    "Ongoing updates & support (within scope)"
-                                                ]
-                                            }
-                                        ].map((section, i) => (
-                                            <div key={i}>
-                                                <div className="space-y-2">
-                                                    {section.items.map((item, j) => {
-                                                        const isNote = typeof item === 'object' && item.isNote;
-                                                        const content = typeof item === 'object' ? item.text : item;
-
-                                                        return (
-                                                            <div key={j} className={`flex gap-3 text-sm font-bold uppercase tracking-tight ${isNote ? 'pl-7 text-white/50' : ''}`}>
-                                                                {!isNote && <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />}
-                                                                <span>{content}</span>
-                                                            </div>
-                                                        );
-                                                    })}
+                                        {/* Inclusions List - Grouped */}
+                                        <div className="space-y-5">
+                                            {/* Website */}
+                                            <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
+                                                <div className="flex items-center gap-2 mb-2">
+                                                    <div className="w-1.5 h-1.5 bg-safety-orange rounded-full"></div>
+                                                    <p className="text-sm font-black uppercase text-white">Website</p>
+                                                </div>
+                                                <div className="pl-4 border-l border-white/10 space-y-1">
+                                                    <p className="text-sm font-bold text-white uppercase">6-page website included</p>
+                                                    <p className="text-xs text-white/50">(Home, Services, About/Trust, Service Area, Projects, Contact)</p>
                                                 </div>
                                             </div>
-                                        ))}
-                                    </div>
-                                </CardContent>
-                                <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
-                                    <div className="bg-white/10 p-4 text-xs font-black uppercase tracking-widest text-center italic w-full">
-                                        "You miss fewer calls, look more established, and turn attention into booked work."
-                                    </div>
-                                    <a href="#contact" className="w-full" onClick={() => {
-                                        ReactPixel.track('AddToCart', { content_name: 'Package 2: Local Jobs Engine', value: 3600, currency: 'AUD' });
-                                        ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 2", value: 3600 });
-                                    }}>
-                                        <Button className="w-full bg-white text-black hover:bg-white/90 rounded-none h-12 font-black uppercase tracking-widest">
-                                            Get The Jobs Engine Ready
-                                        </Button>
-                                    </a>
-                                </CardFooter>
-                            </div>
-                        </Card>
+
+                                            {/* Other Sections */}
+                                            {[
+                                                {
+                                                    title: "Lead capture",
+                                                    items: [
+                                                        "Contact & quote forms",
+                                                        "Enquiry tracking (nothing gets lost)"
+                                                    ]
+                                                },
+                                                {
+                                                    title: "Call handling",
+                                                    items: [
+                                                        { text: <span>Website assistance chatbot - <span className="text-[10px] text-white/50 uppercase">(Priced separately for customised chatbot to book the appointments)</span></span> }
+                                                    ]
+                                                },
+                                                {
+                                                    title: "Report templates",
+                                                    items: [
+                                                        "Custom branded trade templates (SWMS / reports)"
+                                                    ]
+                                                },
+                                                {
+                                                    title: "Local setup",
+                                                    items: [
+                                                        "Service & suburb pages (basic)"
+                                                    ]
+                                                },
+                                                {
+                                                    title: "Support",
+                                                    items: [
+                                                        "Ongoing updates & support (within scope)"
+                                                    ]
+                                                }
+                                            ].map((section, i) => (
+                                                <div key={i}>
+                                                    <div className="space-y-2">
+                                                        {section.items.map((item, j) => {
+                                                            const isNote = typeof item === 'object' && item.isNote;
+                                                            const content = typeof item === 'object' ? item.text : item;
+
+                                                            return (
+                                                                <div key={j} className={`flex gap-3 text-sm font-bold uppercase tracking-tight ${isNote ? 'pl-7 text-white/50' : ''}`}>
+                                                                    {!isNote && <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />}
+                                                                    <span>{content}</span>
+                                                                </div>
+                                                            );
+                                                        })}
+                                                    </div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </CardContent>
+                                    <CardFooter className="p-5 md:p-6 pt-0 flex flex-col gap-4">
+                                        <div className="bg-white/10 p-4 text-xs font-black uppercase tracking-widest text-center italic w-full">
+                                            "You miss fewer calls, look more established, and turn attention into booked work."
+                                        </div>
+                                        <a href="#contact" className="w-full" onClick={() => {
+                                            ReactPixel.track('AddToCart', { content_name: 'Package 2: Local Jobs Engine', value: 3600, currency: 'AUD' });
+                                            ReactGA.event({ category: "Commerce", action: "Select_Package", label: "Package 2", value: 3600 });
+                                        }}>
+                                            <Button className="w-full bg-white text-black hover:bg-white/90 rounded-none h-12 font-black uppercase tracking-widest">
+                                                Get The Jobs Engine Ready
+                                            </Button>
+                                        </a>
+                                    </CardFooter>
+                                </div>
+                            </Card>
+                        </motion.div>
                     </div>
                     {/* DISCLAIMER / EXPLANATION SECTION */}
 
@@ -1514,10 +1631,16 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section >
+            </motion.section >
 
             {/* NEW SECTION: RESULTS TIMELINE */}
-            < section className="py-24 md:py-32 border-b border-white/5 bg-zinc-900/30" >
+            < motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-zinc-900/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-5xl mx-auto">
                         <div className="text-center mb-16">
@@ -1624,11 +1747,17 @@ function LandingPage() {
 
 
                 </div>
-
-            </section >
+            </motion.section >
 
             {/* 5. GUARANTEE SECTION */}
-            < section id="guarantee" className="py-24 md:py-32 border-b border-white/5 bg-safety-orange text-white" >
+            < motion.section
+                id="guarantee"
+                className="py-24 md:py-32 border-b border-white/5 bg-safety-orange text-white"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center">
                         <h2 className="text-4xl md:text-7xl font-black mb-8 uppercase italic leading-none text-black">
@@ -1640,10 +1769,16 @@ function LandingPage() {
                         </p>
                     </div>
                 </div>
-            </section >
+            </motion.section >
 
             {/* 6. REVISION POLICY SECTION */}
-            < section className="py-24 md:py-32 border-b border-white/5" >
+            < motion.section
+                className="py-24 md:py-32 border-b border-white/5"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-16 items-center">
@@ -1675,10 +1810,16 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section >
+            </motion.section >
 
             {/* 7. FAQ SECTION */}
-            < section className="py-24 border-b border-white/5 bg-black" >
+            < motion.section
+                className="py-24 border-b border-white/5 bg-black"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6">
                     <div className="max-w-3xl mx-auto">
                         <div className="text-center mb-16">
@@ -1723,10 +1864,16 @@ function LandingPage() {
 
                     </div>
                 </div>
-            </section >
+            </motion.section >
 
             {/* GROWTH SYSTEM EFFECT SECTION */}
-            < section className="py-24 border-b border-white/5 bg-zinc-900 border-t border-white/5 relative overflow-hidden" >
+            < motion.section
+                className="py-24 border-b border-white/5 bg-zinc-900 border-t border-white/5 relative overflow-hidden"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="absolute inset-0 blueprint-grid opacity-5"></div>
                 <div className="container mx-auto px-6 relative z-10">
                     <div className="max-w-4xl mx-auto">
@@ -1781,10 +1928,17 @@ function LandingPage() {
                         </div>
                     </div>
                 </div>
-            </section >
+            </motion.section >
 
             {/* 8. FINAL CTA SECTION */}
-            < section id="contact" className="py-20 text-center relative overflow-hidden" >
+            < motion.section
+                id="contact"
+                className="py-20 text-center relative overflow-hidden"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="absolute inset-0 blueprint-grid opacity-10"></div>
                 <div className="container mx-auto px-6 relative z-10">
 
@@ -1861,16 +2015,41 @@ function LandingPage() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-1">
                                         <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Trade Type <span className="text-red-500">*</span></label>
-                                        <input
+                                        <select
                                             required
-                                            type="text"
                                             name="trade"
                                             value={formData.trade}
                                             onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="What trade do you run?"
-                                        />
+                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium appearance-none"
+                                        >
+                                            <option value="" disabled className="bg-zinc-900 leading-none">Select your trade</option>
+                                            <option value="Electrician" className="bg-zinc-900 leading-none">Electrician</option>
+                                            <option value="Plumber" className="bg-zinc-900 leading-none">Plumber</option>
+                                            <option value="Carpenter" className="bg-zinc-900 leading-none">Carpenter</option>
+                                            <option value="HVAC" className="bg-zinc-900 leading-none">HVAC</option>
+                                            <option value="Fencer" className="bg-zinc-900 leading-none">Fencer</option>
+                                            <option value="Landscaper" className="bg-zinc-900 leading-none">Landscaper</option>
+                                            <option value="Plasterer" className="bg-zinc-900 leading-none">Plasterer</option>
+                                            <option value="Painter" className="bg-zinc-900 leading-none">Painter</option>
+                                            <option value="Builder" className="bg-zinc-900 leading-none">Builder</option>
+                                            <option value="Other" className="bg-zinc-900 leading-none">Other</option>
+                                        </select>
                                     </div>
+
+                                    {formData.trade === 'Other' && (
+                                        <div className="space-y-1 animate-in fade-in slide-in-from-top-1 duration-200">
+                                            <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Specify Trade <span className="text-red-500">*</span></label>
+                                            <input
+                                                required
+                                                type="text"
+                                                name="otherTrade"
+                                                value={formData.otherTrade}
+                                                onChange={handleInputChange}
+                                                className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
+                                                placeholder="What is your trade?"
+                                            />
+                                        </div>
+                                    )}
                                     <div className="space-y-1">
                                         <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Service Area / Location <span className="text-red-500">*</span></label>
                                         <input
@@ -1932,10 +2111,16 @@ function LandingPage() {
                         </div>
                     )}
                 </div>
-            </section >
+            </motion.section >
 
             {/* Footer */}
-            < footer className="bg-black py-20 border-t border-white/10" >
+            < motion.footer
+                className="bg-black py-20 border-t border-white/10"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
                 <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-10">
                     <div className="flex gap-10 text-xs font-black uppercase tracking-widest text-white/40 order-2 lg:order-1">
                         <button onClick={() => setIsPrivacyModalOpen(true)} className="hover:text-white transition-colors">Privacy Policy</button>
@@ -1958,7 +2143,7 @@ function LandingPage() {
                         &copy; 2026 Your Trade Partner Australian Operations.
                     </p>
                 </div>
-            </footer >
+            </motion.footer >
 
 
 
