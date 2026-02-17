@@ -81,13 +81,27 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
                                 <li>Improve our website, services, and user experience</li>
                                 <li>Measure marketing performance and conversion activity</li>
                                 <li>Communicate service updates or follow-ups</li>
+                                <li>Communicate relevant business insights, system improvements, and service-related updates where you have submitted your details or requested information. You may unsubscribe from marketing communications at any time.</li>
                             </ul>
                             <p className="font-bold text-white">We do NOT sell your personal information to third parties.</p>
                         </section>
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">4.</span> Analytics, Tracking & Advertising
+                                <span className="text-safety-orange">4.</span> Email Communications
+                            </h3>
+                            <p className="mb-3">If you submit your details via our contact forms, booking pages, chatbot, or free guide downloads, you consent to receive email communications from YourTradePartner relating to:</p>
+                            <ul className="list-disc pl-5 space-y-1 text-white/70 mb-4">
+                                <li>Requested information or services</li>
+                                <li>Follow-up insights about enquiry handling and business systems</li>
+                                <li>Relevant updates about our services</li>
+                            </ul>
+                            <p className="mb-4">All marketing emails include a functional unsubscribe link. You may opt out at any time in accordance with the Australian Spam Act 2003.</p>
+                        </section>
+
+                        <section>
+                            <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
+                                <span className="text-safety-orange">5.</span> Analytics, Tracking & Advertising
                             </h3>
                             <p className="mb-3">We use third-party tools to understand how visitors use our website and to improve advertising performance. These may include:</p>
                             <ul className="list-disc pl-5 space-y-1 text-white/70 mb-4">
@@ -103,21 +117,21 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">5.</span> Payments
+                                <span className="text-safety-orange">6.</span> Payments
                             </h3>
                             <p>Payments are processed securely via third-party payment providers (such as Stripe). We do not store or process full credit card details on our servers.</p>
                         </section>
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">6.</span> How We Store & Protect Your Data
+                                <span className="text-safety-orange">7.</span> How We Store & Protect Your Data
                             </h3>
                             <p>We take reasonable steps to protect your information from misuse, loss, unauthorised access, or disclosure. Data is stored securely and access is limited to authorised personnel only.</p>
                         </section>
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">7.</span> Third-Party Services
+                                <span className="text-safety-orange">8.</span> Third-Party Services
                             </h3>
                             <p className="mb-3">We may share limited information with trusted third-party services only when required to:</p>
                             <ul className="list-disc pl-5 space-y-1 text-white/70">
@@ -130,28 +144,28 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">8.</span> Cookies
+                                <span className="text-safety-orange">9.</span> Cookies
                             </h3>
                             <p>Our website may use cookies or similar technologies to improve website functionality, analyse traffic, and support advertising. You can disable cookies in your browser settings if you prefer.</p>
                         </section>
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">9.</span> Your Rights
+                                <span className="text-safety-orange">10.</span> Your Rights
                             </h3>
                             <p className="mb-3">You may request to access, correct, or delete your personal information (subject to legal requirements).</p>
                         </section>
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">10.</span> Changes to This Policy
+                                <span className="text-safety-orange">11.</span> Changes to This Policy
                             </h3>
                             <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
                         </section>
 
                         <section className="bg-white/5 p-6 rounded-sm border border-white/5">
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">11.</span> Contact Us
+                                <span className="text-safety-orange">12.</span> Contact Us
                             </h3>
                             <p className="mb-4">If you have questions about this Privacy Policy or how your information is handled, contact us at:</p>
                             <div className="space-y-1 font-bold text-white">

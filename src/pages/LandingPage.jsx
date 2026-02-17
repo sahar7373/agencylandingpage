@@ -47,6 +47,7 @@ import PrivacyPolicyModal from '../components/PrivacyPolicyModal';
 import TermsConditionsModal from '../components/TermsConditionsModal';
 
 import LeadMagnetModal from '../components/LeadMagnetModal';
+import BlueprintModal from '../components/BlueprintModal';
 import { GOOGLE_SHEET_URL } from '../config';
 
 const CollapsibleDetail = ({ title, children }) => {
@@ -73,6 +74,7 @@ function LandingPage() {
     const [openFaq, setOpenFaq] = React.useState(null)
     const [isReviewModalOpen, setIsReviewModalOpen] = React.useState(false)
     const [isLeadMagnetOpen, setIsLeadMagnetOpen] = React.useState(false)
+    const [isBlueprintModalOpen, setIsBlueprintModalOpen] = React.useState(false)
     const [isCaseStudyModalOpen, setIsCaseStudyModalOpen] = React.useState(false)
     const [isVideoModalOpen, setIsVideoModalOpen] = React.useState(false)
     const [selectedProject, setSelectedProject] = React.useState(null)
@@ -504,7 +506,15 @@ function LandingPage() {
                     onClose={() => setIsVideoModalOpen(false)}
                     videoSrc={selectedProject?.video}
                 />
-                <LeadMagnetModal isOpen={isLeadMagnetOpen} onClose={() => setIsLeadMagnetOpen(false)} />
+                <LeadMagnetModal
+                    isOpen={isLeadMagnetOpen}
+                    onClose={() => setIsLeadMagnetOpen(false)}
+                />
+
+                <BlueprintModal
+                    isOpen={isBlueprintModalOpen}
+                    onClose={() => setIsBlueprintModalOpen(false)}
+                />
                 <PrivacyPolicyModal isOpen={isPrivacyModalOpen} onClose={() => setIsPrivacyModalOpen(false)} />
                 <TermsConditionsModal isOpen={isTermsModalOpen} onClose={() => setIsTermsModalOpen(false)} />
                 <ChatBot />
@@ -585,15 +595,15 @@ function LandingPage() {
                         </motion.p>
 
                         {/* Main Headline */}
-                        <motion.h1 className="text-[52px] md:text-[100px] font-black leading-[0.9] mb-8 uppercase italic" variants={itemVariants}>
-                            NO ONE TELLS TRADES THIS — <br />
-                            <span className="text-safety-orange">CUSTOMERS DECIDE BEFORE THEY CALL.</span>
+                        {/* Main Headline */}
+                        <motion.h1 className="text-[52px] md:text-[80px] font-black leading-[0.9] mb-8 uppercase italic" variants={itemVariants}>
+                            Stop Losing Jobs to <br />
+                            <span className="text-safety-orange">Missed Calls & Slow Response</span>
                         </motion.h1>
 
                         {/* Sub Headline */}
                         <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
-                            <br className="hidden md:block my-2" />
-                            <span className="text-white/80">We build systems that make sure you’re the trade customers contact first</span> — not the one they skip.
+                            Whether they come from Google, referrals, or word of mouth — we make sure every enquiry is captured, responded to, and converted properly.
                         </motion.p>
 
                         {/* Trust Position Strip */}
@@ -617,7 +627,7 @@ function LandingPage() {
                                 whileTap={hoverTap}
                                 className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-6 md:px-12 py-6 md:py-8 text-sm md:text-2xl font-black uppercase tracking-widest group shadow-2xl shadow-safety-orange/30 w-full sm:w-auto transform-none transition-all duration-200"
                             >
-                                <span className="whitespace-normal text-center">SEE WHERE YOU'RE LOSING JOBS</span>
+                                <span className="whitespace-normal text-center">CHECK MY JOB FLOW</span>
                                 <ArrowRight className="hidden md:block ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
                             </Button>
 
@@ -848,25 +858,42 @@ function LandingPage() {
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto text-center md:text-left">
                         <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic leading-none">
-                            We don’t just sell websites. <br />
-                            <span className="text-white/20 font-black">We build job-winning systems.</span>
+                            We don’t just build websites. <br />
+                            <span className="text-white/20 font-black">We strengthen how your business handles enquiries.</span>
                         </h2>
 
-                        <div className="grid md:grid-cols-2 gap-12 text-xl md:text-2xl leading-relaxed font-bold text-white/80">
+                        <div className="max-w-4xl mx-auto text-xl md:text-2xl leading-relaxed font-bold text-white/80 text-center">
                             <div className="space-y-4">
-                                <div className="w-12 h-1 bg-safety-orange mb-6"></div>
+                                <div className="w-12 h-1 bg-safety-orange mb-6 mx-auto"></div>
                                 <p>The system captures enquiries before they're lost and responds automatically so potential clients aren't left waiting.</p>
-                            </div>
-                            <div className="space-y-4">
-                                <div className="w-12 h-1 bg-safety-orange mb-6"></div>
-                                <p>Reduced admin means you spend more time on tools or with family, while the system works to help win more local jobs.</p>
                             </div>
                         </div>
 
-                        <div className="mt-20 p-10 bg-white/5 border-2 border-dashed border-white/10 text-center">
-                            <p className="text-2xl md:text-3xl font-black italic uppercase leading-tight">
-                                "Stop losing 3–5 jobs every month before you even talk to the customer."
-                            </p>
+                        <div className="mt-20 p-8 md:p-12 bg-construction-charcoal border border-white/10 flex flex-col items-center text-center shadow-2xl relative overflow-hidden group">
+
+                            <div className="relative z-10">
+                                <div className="flex items-center justify-center gap-2 text-safety-orange mb-6">
+                                    <span className="text-xs font-black uppercase tracking-[0.2em]">Priority Resource</span>
+                                </div>
+
+                                <h3 className="text-2xl md:text-3xl font-black italic uppercase leading-tight text-white mb-6">
+                                    "Stop losing 3–5 jobs every month <br className="hidden md:block" /> before you even talk to the customer."
+                                </h3>
+
+                                <p className="text-white/60 font-bold uppercase tracking-widest text-sm mb-8">
+                                    Revenue Capture Blueprint for Trades
+                                </p>
+
+                                <Button
+                                    onClick={() => {
+                                        setIsBlueprintModalOpen(true);
+                                        ReactPixel.trackCustom('BlueprintCTAClick', { location: 'SolutionSection' });
+                                    }}
+                                    className="bg-safety-orange hover:bg-safety-orange-hover text-white font-black uppercase tracking-widest text-sm md:text-base px-10 py-8 h-auto rounded-none shadow-xl transform transition-transform hover:scale-105 active:scale-95 shadow-safety-orange/20"
+                                >
+                                    Download the free blueprint <ArrowRight className="ml-3 w-5 h-5" />
+                                </Button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1045,6 +1072,7 @@ function LandingPage() {
                             {[
                                 {
                                     id: 'zjc',
+                                    isLight: true,
                                     title: "ZJC Renovations",
                                     location: "ACT",
                                     testimonial: "The website, logo, and enquiry system made a big difference. Customers now contact us with clearer requests and are more confident.",
@@ -1073,6 +1101,7 @@ function LandingPage() {
                                 },
                                 {
                                     id: 'swrp',
+                                    isLight: true,
                                     title: "SWRP",
                                     location: "NSW",
                                     testimonial: "Building a scaleable roofing business required more than just a website; we needed a full digital infrastructure. From custom SWMS to professional roof reporting, the system now handles our growth without the typical operational headaches.",
@@ -1107,7 +1136,10 @@ function LandingPage() {
                                     whileInView={{ opacity: 1, scale: 1, y: 0 }}
                                     viewport={{ once: false, margin: "-50px" }}
                                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                                    className="group relative bg-white/5 border border-white/10 overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500 flex flex-col"
+                                    className={`group relative overflow-hidden rounded-sm hover:border-safety-orange/50 transition-all duration-500 flex flex-col ${project.isLight
+                                        ? "bg-white border border-transparent shadow-xl"
+                                        : "bg-white/5 border border-white/10"
+                                        }`}
                                 >
                                     {/* Attention-grabbing flash effect on entry */}
                                     <motion.div
@@ -1135,11 +1167,14 @@ function LandingPage() {
 
                                     {/* Content Area (Bottom Half) */}
                                     <div className="p-6 md:p-8 flex flex-col flex-grow">
-                                        <h3 className="text-2xl font-black uppercase italic mb-4">{project.title}</h3>
+                                        <h3 className={`text-2xl font-black uppercase italic mb-4 ${project.isLight ? "text-zinc-900" : "text-white"}`}>{project.title}</h3>
 
                                         <div className="flex flex-wrap gap-2 mb-8">
                                             {project.tags.map((tag, i) => (
-                                                <span key={i} className="text-[9px] font-black uppercase tracking-widest bg-white/10 px-3 py-1.5 text-white border border-white/20 rounded-sm">
+                                                <span key={i} className={`text-[9px] font-black uppercase tracking-widest px-3 py-1.5 border rounded-sm ${project.isLight
+                                                    ? "bg-zinc-100 text-zinc-600 border-zinc-200"
+                                                    : "bg-white/10 text-white border-white/20"
+                                                    }`}>
                                                     {tag}
                                                 </span>
                                             ))}
@@ -1151,7 +1186,10 @@ function LandingPage() {
                                                     setSelectedProject(project);
                                                     setIsCaseStudyModalOpen(true);
                                                 }}
-                                                className="bg-white hover:bg-white/90 text-black rounded-none px-6 py-5 text-[11px] font-black uppercase tracking-widest shadow-xl transition-all"
+                                                className={`rounded-none px-6 py-5 text-[11px] font-black uppercase tracking-widest shadow-xl transition-all ${project.isLight
+                                                    ? "bg-black text-white hover:bg-zinc-800"
+                                                    : "bg-white text-black hover:bg-white/90"
+                                                    }`}
                                             >
                                                 See More
                                             </Button>
@@ -1213,7 +1251,7 @@ function LandingPage() {
                                         <div>
                                             <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 1</CardTitle>
                                             <div className="text-xl font-black uppercase mb-4">Trade-Ready Online Setup</div>
-                                            <div className="text-3xl font-black italic text-safety-orange italic">$1,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                            <div className="text-3xl font-black italic text-safety-orange italic">$1,900</div>
                                             <p className="text-xs font-black uppercase tracking-widest text-white/40 mt-2">+ $299/quarter</p>
                                         </div>
                                         <div className="md:hidden mt-2">
@@ -1283,7 +1321,7 @@ function LandingPage() {
                                         <div>
                                             <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">Package 3</CardTitle>
                                             <div className="text-xl font-black uppercase mb-4">Growth System</div>
-                                            <div className="text-[35px] font-black italic text-safety-orange">From $7,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                            <div className="text-[35px] font-black italic text-safety-orange">From $7,900</div>
                                             <div className="mt-2 text-[10px] font-bold text-white/40 uppercase tracking-widest">
                                                 (Most projects land between $8,500 – $15,000)
                                             </div>
@@ -1452,7 +1490,7 @@ function LandingPage() {
                                         <div>
                                             <CardTitle className="text-xs uppercase font-black tracking-widest text-white/40 mb-2">PACKAGE 2</CardTitle>
                                             <div className="text-xl font-black uppercase mb-4">LOCAL JOBS ENGINE</div>
-                                            <div className="text-3xl font-black italic text-safety-orange">$3,900 <span className="text-sm not-italic text-white/40">+ GST</span></div>
+                                            <div className="text-3xl font-black italic text-safety-orange">$3,900</div>
                                             <div className="mt-2">
                                                 <p className="text-xs font-black uppercase tracking-widest text-white/40">+ $399 / quarter</p>
                                                 <p className="text-[10px] font-bold text-white/20">(Reviewed annually, subject to AI usage & scope)</p>
@@ -1575,7 +1613,7 @@ function LandingPage() {
                                     <div className="space-y-4">
                                         <div className="flex justify-between items-center border-b border-white/10 pb-4">
                                             <p className="text-sm font-black uppercase tracking-widest text-white">Growth System setup:</p>
-                                            <p className="text-xl font-black text-white">APPROX. $7,900 <span className="text-sm text-white/40">+ GST</span></p>
+                                            <p className="text-xl font-black text-white">APPROX. $7,900</p>
                                         </div>
                                         <div className="flex justify-between items-center border-b border-white/10 pb-4">
                                             <p className="text-sm font-black uppercase tracking-widest text-white/60">Average job value:</p>

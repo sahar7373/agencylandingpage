@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import Guide from './pages/Guide';
+import RevenueBlueprint from './pages/RevenueBlueprint';
 import LandingPage from './pages/LandingPage';
 
 function App() {
@@ -39,6 +40,8 @@ function App() {
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/guide" element={<Guide />} />
                     <Route path="/guide-pdf" element={<Guide />} />
+                    <Route path="/blueprint" element={<RevenueBlueprint />} />
+                    <Route path="/blueprint-pdf" element={<RevenueBlueprint />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </BrowserRouter>
