@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import Guide from './pages/Guide';
 import RevenueBlueprint from './pages/RevenueBlueprint';
 import LandingPage from './pages/LandingPage';
+import Unsubscribe from './pages/Unsubscribe';
 
 function App() {
     React.useEffect(() => {
@@ -42,6 +43,7 @@ function App() {
                     <Route path="/guide-pdf" element={<Guide />} />
                     <Route path="/blueprint" element={<RevenueBlueprint />} />
                     <Route path="/blueprint-pdf" element={<RevenueBlueprint />} />
+                    <Route path="/unsubscribe" element={<Unsubscribe />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </BrowserRouter>
