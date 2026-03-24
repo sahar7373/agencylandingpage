@@ -5,6 +5,27 @@ import Guide from './pages/Guide';
 import RevenueBlueprint from './pages/RevenueBlueprint';
 import LandingPage from './pages/LandingPage';
 import Unsubscribe from './pages/Unsubscribe';
+import Resources from './pages/Resources';
+import PlumbingWebsites from './pages/PlumbingWebsites';
+import ElectricianWebsites from './pages/ElectricianWebsites';
+import RooferWebsites from './pages/RooferWebsites';
+import HVACWebsites from './pages/HVACWebsites';
+import BuilderWebsites from './pages/BuilderWebsites';
+import CarpenterWebsites from './pages/CarpenterWebsites';
+import ConcreteLayerWebsites from './pages/ConcreteLayerWebsites';
+import LandscaperWebsites from './pages/LandscaperWebsites';
+import PainterWebsites from './pages/PainterWebsites';
+
+// Blog Articles
+import WhyTradieWebsitesDontGetCalls from './pages/blog/WhyTradieWebsitesDontGetCalls';
+import AIReceptionistForTradies from './pages/blog/AIReceptionistForTradies';
+import GoogleBusinessProfileSetup from './pages/blog/GoogleBusinessProfileSetup';
+import ElectricianWebsiteRequirements from './pages/blog/ElectricianWebsiteRequirements';
+import WebsiteROICalculation from './pages/blog/WebsiteROICalculation';
+import SuburbSEOForTradies from './pages/blog/SuburbSEOForTradies';
+import ProfessionalTrustSignals from './pages/blog/ProfessionalTrustSignals';
+import GoogleAdsVsSEO from './pages/blog/GoogleAdsVsSEO';
+import AEOForTradies from './pages/blog/AEOForTradies';
 
 function App() {
     React.useEffect(() => {
@@ -44,6 +65,30 @@ function App() {
                     <Route path="/blueprint" element={<RevenueBlueprint />} />
                     <Route path="/blueprint-pdf" element={<RevenueBlueprint />} />
                     <Route path="/unsubscribe" element={<Unsubscribe />} />
+                    <Route path="/resources" element={<Resources />} />
+
+                    {/* Blog Articles */}
+                    <Route path="/resources/why-tradie-websites-dont-get-calls" element={<WhyTradieWebsitesDontGetCalls />} />
+                    <Route path="/resources/ai-receptionist-for-tradies" element={<AIReceptionistForTradies />} />
+                    <Route path="/resources/google-business-profile-setup" element={<GoogleBusinessProfileSetup />} />
+                    <Route path="/resources/electrician-website-requirements" element={<ElectricianWebsiteRequirements />} />
+                    <Route path="/resources/website-roi-calculation" element={<WebsiteROICalculation />} />
+                    <Route path="/resources/suburb-seo-for-tradies" element={<SuburbSEOForTradies />} />
+                    <Route path="/resources/professional-trust-signals" element={<ProfessionalTrustSignals />} />
+                    <Route path="/resources/google-ads-vs-seo-tradies" element={<GoogleAdsVsSEO />} />
+                    <Route path="/resources/aeo-for-tradies" element={<AEOForTradies />} />
+
+                    {/* Trade-Specific Landing Pages */}
+                    <Route path="/plumbing-websites" element={<PlumbingWebsites />} />
+                    <Route path="/electrician-websites" element={<ElectricianWebsites />} />
+                    <Route path="/roofer-websites" element={<RooferWebsites />} />
+                    <Route path="/hvac-websites" element={<HVACWebsites />} />
+                    <Route path="/builder-websites" element={<BuilderWebsites />} />
+                    <Route path="/carpenter-websites" element={<CarpenterWebsites />} />
+                    <Route path="/concrete-layer-websites" element={<ConcreteLayerWebsites />} />
+                    <Route path="/landscaper-websites" element={<LandscaperWebsites />} />
+                    <Route path="/painter-websites" element={<PainterWebsites />} />
+
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </BrowserRouter>
