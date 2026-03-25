@@ -16,10 +16,15 @@ const Guide = () => {
             <Helmet>
                 <title>The Trade Guide | What Customers Don't Tell You</title>
                 <meta name="description" content="Discover why most trades lose work before the job even starts. A guide to fixing the hidden leaks in your enquiry process." />
+                <link rel="canonical" href="https://yourtradepartner.com.au/guide" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="The Trade Guide | What Customers Don't Tell You" />
                 <meta property="og:description" content="Discover why most trades lose work before the job even starts. A guide to fixing the hidden leaks in your enquiry process." />
                 <meta property="og:type" content="article" />
                 <meta property="og:url" content="https://yourtradepartner.com.au/guide" />
+                <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
             </Helmet>
             <style>{`
                 @media print {

@@ -99,41 +99,45 @@ const CaseStudyModal = ({ isOpen, onClose, project }) => {
                                 <div className="border border-white/10 rounded-sm overflow-hidden shadow-2xl">
                                     <img
                                         src={project.images.homepage}
-                                        alt={`${project.title} Desktop Homepage`}
+                                        alt={`${project.title} - Professional trade business website homepage design for ${project.location} construction company`}
                                         className="w-full h-auto"
                                     />
                                 </div>
                             </div>
 
                             {/* Service Page */}
-                            <div>
-                                <div className="flex items-center justify-between mb-4 px-2">
-                                    <h4 className="text-lg font-black uppercase italic">Service Specific Pages</h4>
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/20">{project.images.serviceLabel}</span>
+                            {project.images.service && (
+                                <div>
+                                    <div className="flex items-center justify-between mb-4 px-2">
+                                        <h4 className="text-lg font-black uppercase italic">Service Specific Pages</h4>
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-white/20">{project.images.serviceLabel}</span>
+                                    </div>
+                                    <div className="border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+                                        <img
+                                            src={project.images.service}
+                                            alt={`${project.title} - ${project.images.serviceLabel} - Trade service page showcasing ${project.location} construction work`}
+                                            className="w-full h-auto"
+                                        />
+                                    </div>
                                 </div>
-                                <div className="border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-                                    <img
-                                        src={project.images.service}
-                                        alt={`${project.title} Service Page`}
-                                        className="w-full h-auto"
-                                    />
-                                </div>
-                            </div>
+                            )}
 
                             {/* Project Showcase Page */}
-                            <div>
-                                <div className="flex items-center justify-between mb-4 px-2">
-                                    <h4 className="text-lg font-black uppercase italic">Project Showcase</h4>
-                                    <span className="text-[10px] font-black uppercase tracking-widest text-white/20">Our Work Gallery</span>
+                            {project.images.work && (
+                                <div>
+                                    <div className="flex items-center justify-between mb-4 px-2">
+                                        <h4 className="text-lg font-black uppercase italic">Project Showcase</h4>
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-white/20">Our Work Gallery</span>
+                                    </div>
+                                    <div className="border border-white/10 rounded-sm overflow-hidden shadow-2xl">
+                                        <img
+                                            src={project.images.work}
+                                            alt={`${project.title} - Portfolio gallery page displaying completed ${project.location} construction projects and trade work`}
+                                            className="w-full h-auto"
+                                        />
+                                    </div>
                                 </div>
-                                <div className="border border-white/10 rounded-sm overflow-hidden shadow-2xl">
-                                    <img
-                                        src={project.images.work}
-                                        alt={`${project.title} Project Showcase`}
-                                        className="w-full h-auto"
-                                    />
-                                </div>
-                            </div>
+                            )}
                         </div>
                     </div>
 

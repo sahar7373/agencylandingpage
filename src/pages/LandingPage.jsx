@@ -27,7 +27,14 @@ import {
     X,
     Calculator,
     Play,
-    Loader2
+    Loader2,
+    Wrench,
+    Home,
+    Wind,
+    Ruler,
+    Square,
+    Leaf,
+    PaintBucket
 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -81,6 +88,8 @@ function LandingPage() {
     const [isPrivacyModalOpen, setIsPrivacyModalOpen] = React.useState(false)
     const [isTermsModalOpen, setIsTermsModalOpen] = React.useState(false)
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+    const [isTradesDropdownOpen, setIsTradesDropdownOpen] = React.useState(false)
+    const [isTradesMobileOpen, setIsTradesMobileOpen] = React.useState(false)
     const [expandedPackages, setExpandedPackages] = React.useState([3]); // Default Package 3 open
     const [pricingVariesOpen, setPricingVariesOpen] = React.useState(false);
 
@@ -430,8 +439,10 @@ function LandingPage() {
                 <meta property="og:title" content="Your Trade Partner | Growth Systems for Tradies" />
                 <meta property="og:description" content="Your Trade Partner helps Australian trades build a job-winning online presence. Professional websites and lead capture systems built for the industry." />
                 <meta property="og:url" content="https://yourtradepartner.com.au/" />
-                {/* Placeholder Image - replace with actual URL when live */}
                 <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
+                <meta property="og:image:alt" content="Your Trade Partner - Digital Growth Systems for Australian Tradies" />
 
                 {/* Structured Data (JSON-LD) */}
                 <script type="application/ld+json">
@@ -451,6 +462,140 @@ function LandingPage() {
                                 "addressRegion": "SA",
                                 "addressCountry": "AU"
                             },
+                            "areaServed": [
+                                {
+                                    "@type": "State",
+                                    "name": "South Australia"
+                                },
+                                {
+                                    "@type": "State",
+                                    "name": "Victoria"
+                                },
+                                {
+                                    "@type": "State",
+                                    "name": "New South Wales"
+                                },
+                                {
+                                    "@type": "State",
+                                    "name": "Queensland"
+                                },
+                                {
+                                    "@type": "State",
+                                    "name": "Western Australia"
+                                },
+                                {
+                                    "@type": "State",
+                                    "name": "Tasmania"
+                                },
+                                {
+                                    "@type": "State",
+                                    "name": "Australian Capital Territory"
+                                },
+                                {
+                                    "@type": "State",
+                                    "name": "Northern Territory"
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Sydney",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "New South Wales"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Melbourne",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "Victoria"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Brisbane",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "Queensland"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Perth",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "Western Australia"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Adelaide",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "South Australia"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Gold Coast",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "Queensland"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Canberra",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "Australian Capital Territory"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Newcastle",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "New South Wales"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Wollongong",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "New South Wales"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Hobart",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "Tasmania"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Geelong",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "Victoria"
+                                    }
+                                },
+                                {
+                                    "@type": "City",
+                                    "name": "Darwin",
+                                    "containedInPlace": {
+                                        "@type": "State",
+                                        "name": "Northern Territory"
+                                    }
+                                },
+                                {
+                                    "@type": "Country",
+                                    "name": "Australia"
+                                }
+                            ],
                             "priceRange": "$$$",
                             "hasOfferCatalog": {
                                 "@type": "OfferCatalog",
@@ -488,6 +633,98 @@ function LandingPage() {
                                     }
                                 ]
                             }
+                        }
+                    `}
+                </script>
+
+                {/* FAQ Structured Data */}
+                <script type="application/ld+json">
+                    {`
+                        {
+                            "@context": "https://schema.org",
+                            "@type": "FAQPage",
+                            "mainEntity": [
+                                {
+                                    "@type": "Question",
+                                    "name": "Will this actually make me more money?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "Yes — but not overnight. This is not a 'boost a post and hope' service. We build the online structure that makes homeowners trust you enough to call, choose you, and pay properly. Think of it like this: You don't pour a slab and expect a finished house the next day. This is the same — foundations first, results compound over time."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "How long before I see results?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "Most trades start seeing better quality enquiries within the first 30–90 days once everything is live. Real growth (rankings, reviews, authority, repeat leads) usually builds over 3–6 months. If someone promises instant SEO or instant leads without structure — they're selling paint, not concrete."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "Is this just a website?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "No. A website alone is just a signboard. We build a lead-producing system, which can include: Professional trade-ready website, Google Business Profile optimisation, Voice agent & enquiry capture, Clear service positioning, Follow-up foundations, and AI-assisted visibility across search and answers. The goal is simple: more calls from better clients."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "Do I need ads for this to work?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "No — but ads can speed things up. This system works with or without ads. Ads are optional and paid directly by you so you stay in control. If you do run ads, we help set the structure so the money isn't wasted."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "Why can't I just use a cheap agency or website builder?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "You can — and many trades do. The problem is: Generic websites, no industry understanding, no trust signals, and no system behind it. That's why they get price-shoppers, tyre-kickers, or no calls at all. We design this specifically for trades, using real-world construction logic — not marketing fluff."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "What makes you different from other agencies?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "We don't sell 'marketing'. We sell outcomes trades care about. Built for construction businesses, written in trade language, designed to make you look established, and structured so leads actually convert. Most agencies sell tools. We build the whole structure."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "Is this a long-term contract?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "No lock-in tricks. One-time setup fee, clear yearly partnership fee for hosting & maintenance, and advanced AI or growth systems are scoped clearly. You know exactly what you're paying for — upfront."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "What do I need to provide?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "Very little. We'll ask for: Business details, services you offer, service areas, and logo (if you have one). Everything else is handled for you."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "What if I already have a website or branding?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "That's fine. We can: Improve what you have, rebuild only what's holding you back, or layer AI systems on top. You're not forced into a one-size-fits-all package."
+                                    }
+                                },
+                                {
+                                    "@type": "Question",
+                                    "name": "Is this suitable for established trades or only new businesses?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "Both. New trades use this to look established fast. Established trades use it to scale, systemise, and stop relying on word-of-mouth only. Different starting point — same goal: more predictable growth."
+                                    }
+                                }
+                            ]
                         }
                     `}
                 </script>
@@ -548,6 +785,32 @@ function LandingPage() {
                         <a href="#projects" onClick={() => handleNavClick("Projects")} className="hover:text-white transition-colors">Projects</a>
                         <a href="#packages" onClick={() => handleNavClick("Packages")} className="hover:text-white transition-colors">Packages</a>
                         <a href="#guarantee" onClick={() => handleNavClick("Guarantee")} className="hover:text-white transition-colors">Guarantee</a>
+                        <a href="/resources" className="hover:text-white transition-colors">Free Resources</a>
+                        <div
+                            className="relative"
+                            onMouseEnter={() => setIsTradesDropdownOpen(true)}
+                            onMouseLeave={() => setIsTradesDropdownOpen(false)}
+                        >
+                            <button className="hover:text-white transition-colors flex items-center gap-1">
+                                TRADES
+                                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isTradesDropdownOpen ? 'rotate-180' : ''}`} />
+                            </button>
+                            {isTradesDropdownOpen && (
+                                <div className="absolute top-full right-0 bg-construction-charcoal border border-white/10 rounded-lg pt-6 px-4 pb-4 min-w-[200px] shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <div className="flex flex-col gap-3">
+                                        <a href="/plumbing-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Plumbers</a>
+                                        <a href="/electrician-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Electricians</a>
+                                        <a href="/roofer-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Roofers</a>
+                                        <a href="/hvac-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">HVAC</a>
+                                        <a href="/builder-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Builders</a>
+                                        <a href="/carpenter-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Carpenters</a>
+                                        <a href="/concrete-layer-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Concrete Layers</a>
+                                        <a href="/landscaper-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Landscapers</a>
+                                        <a href="/painter-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Painters</a>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className="flex items-center gap-4">
                         <Button
@@ -572,6 +835,29 @@ function LandingPage() {
                             <a href="#projects" onClick={() => { setIsMenuOpen(false); handleNavClick("Projects Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Projects</a>
                             <a href="#packages" onClick={() => { setIsMenuOpen(false); handleNavClick("Packages Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Packages</a>
                             <a href="#guarantee" onClick={() => { setIsMenuOpen(false); handleNavClick("Guarantee Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Guarantee</a>
+                            <a href="/resources" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Free Resources</a>
+                            <div>
+                                <button
+                                    onClick={() => setIsTradesMobileOpen(!isTradesMobileOpen)}
+                                    className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors flex items-center gap-2 w-full"
+                                >
+                                    Trades
+                                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isTradesMobileOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                {isTradesMobileOpen && (
+                                    <div className="mt-4 ml-4 flex flex-col gap-3 animate-in fade-in slide-in-from-top-1 duration-200">
+                                        <a href="/plumbing-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Plumbers</a>
+                                        <a href="/electrician-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Electricians</a>
+                                        <a href="/roofer-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Roofers</a>
+                                        <a href="/hvac-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">HVAC</a>
+                                        <a href="/builder-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Builders</a>
+                                        <a href="/carpenter-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Carpenters</a>
+                                        <a href="/concrete-layer-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Concrete Layers</a>
+                                        <a href="/landscaper-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Landscapers</a>
+                                        <a href="/painter-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Painters</a>
+                                    </div>
+                                )}
+                            </div>
                         </div>
                     )}
                 </div>
@@ -1068,8 +1354,37 @@ function LandingPage() {
                             </p>
                         </div>
 
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
                             {[
+                                {
+                                    id: 'rovina',
+                                    isLight: true,
+                                    title: "Rovina's Painting",
+                                    location: "SA",
+                                    testimonial: "The professional website and Google Business Profile setup transformed how customers find and contact us. We've seen a significant increase in quality enquiries from homeowners who are already sold on our credentials before they even call.",
+                                    attribution: "Rovina's Painting — Adelaide, SA",
+                                    delivered: [
+                                        "Professional 6-page website with SEO optimization",
+                                        "Google Business Profile created from scratch",
+                                        "Custom SEO-rich FAQs on every page",
+                                        "Licensing & credentials prominently displayed (BLD 328101)",
+                                        "UV-resistant coating & heritage restoration showcased",
+                                        "Mobile-responsive design with trust signals"
+                                    ],
+                                    challenge: [
+                                        "15+ years experience but low online visibility",
+                                        "850+ projects completed with no digital showcase",
+                                        "Competitors ranking higher for local searches",
+                                        "Builder's license BLD 328101 not visible to searchers"
+                                    ],
+                                    tags: ["6-Page Website", "GBP Creation", "SEO FAQs", "Trust Signals", "Local SEO"],
+                                    images: {
+                                        preview: "/projects/Rovinas/homepage-rovina.png",
+                                        homepage: "/projects/Rovinas/homepage-rovina.png"
+                                    },
+                                    video: "https://vimeo.com/1175704266",
+                                    website: "https://www.rovinaspainting.com.au/"
+                                },
                                 {
                                     id: 'zjc',
                                     isLight: true,
@@ -1097,7 +1412,8 @@ function LandingPage() {
                                         serviceLabel: "Bathroom Renovation Showcase",
                                         work: "/projects/zjc/work.png"
                                     },
-                                    video: "https://vimeo.com/1160983424"
+                                    video: "https://vimeo.com/1160983424",
+                                    website: "https://www.zjcrenovations.com.au/"
                                 },
                                 {
                                     id: 'swrp',
@@ -1127,7 +1443,8 @@ function LandingPage() {
                                         serviceLabel: "Roof Reconstruction Showcase",
                                         work: "/projects/SWRP/swrp-work.png"
                                     },
-                                    video: "https://vimeo.com/1160981021"
+                                    video: "https://vimeo.com/1160981021",
+                                    website: null
                                 }
                             ].map((project) => (
                                 <motion.div
@@ -1153,7 +1470,7 @@ function LandingPage() {
                                     <div className="relative h-[250px] md:h-[300px] overflow-hidden border-b border-white/10">
                                         <img
                                             src={project.images.preview}
-                                            alt={`${project.title} Showcase`}
+                                            alt={`${project.title} ${project.location} - Professional trade website design case study for Australian construction business`}
                                             loading="lazy"
                                             className="w-full h-full object-cover object-top grayscale-[50%] group-hover:grayscale-0 transition-all duration-700"
                                         />
@@ -1167,7 +1484,18 @@ function LandingPage() {
 
                                     {/* Content Area (Bottom Half) */}
                                     <div className="p-6 md:p-8 flex flex-col flex-grow">
-                                        <h3 className={`text-2xl font-black uppercase italic mb-4 ${project.isLight ? "text-zinc-900" : "text-white"}`}>{project.title}</h3>
+                                        {project.website ? (
+                                            <a
+                                                href={project.website}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className={`text-2xl font-black uppercase italic mb-4 hover:text-safety-orange transition-colors ${project.isLight ? "text-zinc-900" : "text-white"}`}
+                                            >
+                                                <h3>{project.title}</h3>
+                                            </a>
+                                        ) : (
+                                            <h3 className={`text-2xl font-black uppercase italic mb-4 ${project.isLight ? "text-zinc-900" : "text-white"}`}>{project.title}</h3>
+                                        )}
 
                                         <div className="flex flex-wrap gap-2 mb-8">
                                             {project.tags.map((tag, i) => (
@@ -1180,7 +1508,7 @@ function LandingPage() {
                                             ))}
                                         </div>
 
-                                        <div className="mt-auto flex items-center gap-3">
+                                        <div className="mt-auto flex items-center gap-3 flex-wrap">
                                             <Button
                                                 onClick={() => {
                                                     setSelectedProject(project);
@@ -1194,17 +1522,19 @@ function LandingPage() {
                                                 See More
                                             </Button>
 
-                                            <button
-                                                onClick={() => {
-                                                    setSelectedProject(project);
-                                                    setIsVideoModalOpen(true);
-                                                }}
-                                                className="group/play flex items-center gap-3 bg-safety-orange/10 hover:bg-safety-orange/20 border border-safety-orange/30 p-3.5 transition-all"
-                                                title="Watch Video Demo"
-                                            >
-                                                <Play className="w-4 h-4 text-safety-orange fill-safety-orange group-hover/play:scale-110 transition-transform" />
-                                                <span className="text-[10px] font-black uppercase tracking-widest text-safety-orange">Watch Demo</span>
-                                            </button>
+                                            {project.video && (
+                                                <button
+                                                    onClick={() => {
+                                                        setSelectedProject(project);
+                                                        setIsVideoModalOpen(true);
+                                                    }}
+                                                    className="group/play flex items-center gap-3 bg-safety-orange/10 hover:bg-safety-orange/20 border border-safety-orange/30 p-3.5 transition-all"
+                                                    title="Watch Video Demo"
+                                                >
+                                                    <Play className="w-4 h-4 text-safety-orange fill-safety-orange group-hover/play:scale-110 transition-transform" />
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-safety-orange">Watch Demo</span>
+                                                </button>
+                                            )}
                                         </div>
                                     </div>
                                 </motion.div>
@@ -1787,6 +2117,7 @@ function LandingPage() {
                 </div>
             </motion.section >
 
+
             {/* 5. GUARANTEE SECTION */}
             < motion.section
                 id="guarantee"
@@ -2151,6 +2482,7 @@ function LandingPage() {
                 </div>
             </motion.section >
 
+            {/* Services by Trade Section */}
             {/* Footer */}
             < motion.footer
                 className="bg-black py-20 border-t border-white/10"
@@ -2159,27 +2491,55 @@ function LandingPage() {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
             >
-                <div className="container mx-auto px-6 flex flex-col lg:flex-row justify-between items-center gap-10">
-                    <div className="flex gap-10 text-xs font-black uppercase tracking-widest text-white/40 order-2 lg:order-1">
-                        <button onClick={() => setIsPrivacyModalOpen(true)} className="hover:text-white transition-colors">Privacy Policy</button>
-                        <button onClick={() => setIsTermsModalOpen(true)} className="hover:text-white transition-colors">Terms & Conditions</button>
-                    </div>
-                    <div className="flex flex-col items-center gap-4 order-1 lg:order-2">
-                        <div className="flex items-center gap-2">
-                            <Hammer className="text-safety-orange w-6 h-6" />
-                            <span className="text-2xl font-black uppercase tracking-tighter">Your Trade Partner<span className="text-safety-orange">.</span></span>
+                <div className="container mx-auto px-6">
+                    {/* Trade-Specific Pages Links */}
+                    <div className="mb-12 pb-12 border-b border-white/10">
+                        <h3 className="text-sm font-black uppercase tracking-widest text-white/40 mb-6 text-center">Trade-Specific Pages</h3>
+                        <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-black uppercase tracking-widest">
+                            <a href="/plumbing-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Plumbers</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/electrician-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Electricians</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/roofer-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Roofers</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/hvac-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">HVAC</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/builder-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Builders</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/carpenter-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Carpenters</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/concrete-layer-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Concrete Layers</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/landscaper-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Landscapers</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/painter-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Painters</a>
                         </div>
-                        <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 text-xs font-black uppercase tracking-widest text-white/60 items-center text-center w-full justify-center">
-                            <a href="tel:0451044751" className="hover:text-safety-orange transition-colors whitespace-nowrap">0451 044 751</a>
-                            <span className="hidden lg:inline text-safety-orange select-none">•</span>
-                            <a href="mailto:hello@yourtradepartner.com.au" className="hover:text-safety-orange transition-colors whitespace-nowrap text-center">hello@yourtradepartner.com.au</a>
-                            <span className="hidden lg:inline text-safety-orange select-none">•</span>
-                            <span className="whitespace-nowrap">Adelaide, Australia</span>
-                        </div>
                     </div>
-                    <p className="text-[10px] uppercase font-bold tracking-widest text-white/20 order-3 lg:order-3">
-                        &copy; 2026 Your Trade Partner Australian Operations.
-                    </p>
+
+                    {/* Main Footer Content */}
+                    <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
+                        <div className="flex gap-10 text-xs font-black uppercase tracking-widest text-white/40 order-2 lg:order-1">
+                            <a href="/resources" className="hover:text-white transition-colors">Free Resources</a>
+                            <button onClick={() => setIsPrivacyModalOpen(true)} className="hover:text-white transition-colors">Privacy Policy</button>
+                            <button onClick={() => setIsTermsModalOpen(true)} className="hover:text-white transition-colors">Terms & Conditions</button>
+                        </div>
+                        <div className="flex flex-col items-center gap-4 order-1 lg:order-2">
+                            <div className="flex items-center gap-2">
+                                <Hammer className="text-safety-orange w-6 h-6" />
+                                <span className="text-2xl font-black uppercase tracking-tighter">Your Trade Partner<span className="text-safety-orange">.</span></span>
+                            </div>
+                            <div className="flex flex-col lg:flex-row gap-3 lg:gap-4 text-xs font-black uppercase tracking-widest text-white/60 items-center text-center w-full justify-center">
+                                <a href="tel:0451044751" className="hover:text-safety-orange transition-colors whitespace-nowrap">0451 044 751</a>
+                                <span className="hidden lg:inline text-safety-orange select-none">•</span>
+                                <a href="mailto:hello@yourtradepartner.com.au" className="hover:text-safety-orange transition-colors whitespace-nowrap text-center">hello@yourtradepartner.com.au</a>
+                                <span className="hidden lg:inline text-safety-orange select-none">•</span>
+                                <span className="whitespace-nowrap">Adelaide, Australia</span>
+                            </div>
+                        </div>
+                        <p className="text-[10px] uppercase font-bold tracking-widest text-white/20 order-3 lg:order-3">
+                            &copy; 2026 Your Trade Partner Australian Operations.
+                        </p>
+                    </div>
                 </div>
             </motion.footer >
 

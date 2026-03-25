@@ -25,6 +25,7 @@ const Unsubscribe = () => {
         <div className="min-h-screen bg-construction-charcoal flex flex-col items-center justify-center p-6 font-sans text-white">
             <Helmet>
                 <title>Unsubscribe Confirmation | Your Trade Partner</title>
+                <link rel="canonical" href="https://yourtradepartner.com.au/unsubscribe" />
                 <meta name="robots" content="noindex, nofollow" />
             </Helmet>
 

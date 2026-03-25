@@ -304,7 +304,7 @@ const ProfessionalTrustSignals = () => {
                                     <p className="font-black mb-2 flex items-center gap-2">
                                         <span className="text-red-400">7.</span> Slow Loading (3+ Seconds)
                                     </p>
-                                    <p className="text-sm text-white/60">53% of mobile users abandon sites that take >3 seconds to load</p>
+                                    <p className="text-sm text-white/60">53% of mobile users abandon sites that take &gt;3 seconds to load</p>
                                 </div>
 
                                 <div className="bg-white/5 border border-white/10 p-5">

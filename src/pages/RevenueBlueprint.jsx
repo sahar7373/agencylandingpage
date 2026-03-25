@@ -25,6 +25,15 @@ const RevenueBlueprint = () => {
             <Helmet>
                 <title>Revenue Capture Blueprint | YourTradePartner</title>
                 <meta name="description" content="The Local Visibility & Revenue Capture Blueprint for Trades. Stop losing enquiries and double your revenue." />
+                <link rel="canonical" href="https://yourtradepartner.com.au/blueprint" />
+                <meta name="robots" content="index, follow" />
+                <meta property="og:title" content="Revenue Capture Blueprint | YourTradePartner" />
+                <meta property="og:description" content="The Local Visibility & Revenue Capture Blueprint for Trades. Stop losing enquiries and double your revenue." />
+                <meta property="og:type" content="website" />
+                <meta property="og:url" content="https://yourtradepartner.com.au/blueprint" />
+                <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
+                <meta property="og:image:width" content="1200" />
+                <meta property="og:image:height" content="630" />
             </Helmet>
 
             <style>{`
