@@ -3,6 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Clock } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedReads from '../../components/RelatedReads';
+
+const relatedReads = [
+    {
+        href: '/resources/ai-receptionist-for-tradies',
+        title: 'AI Receptionist for Tradies',
+        description: 'Use AI for both discovery and enquiry handling so attention turns into booked work.'
+    },
+    {
+        href: '/resources/google-business-profile-setup',
+        title: 'Google Business Profile Setup Guide',
+        description: 'Structured local signals still help answer engines understand and recommend your business.'
+    },
+    {
+        href: '/resources/suburb-seo-for-tradies',
+        title: 'Suburb SEO for Tradies',
+        description: 'Location clarity gives both search engines and AI tools better data to cite.'
+    }
+];
 
 const AEOForTradies = () => {
     return (
@@ -12,9 +32,21 @@ const AEOForTradies = () => {
                 <meta name="description" content="42% of Australians now use ChatGPT to find tradies. Learn Answer Engine Optimization (AEO) strategies to get your plumbing, electrical, or building business featured in AI search results and capture this growing market." />
                 <meta name="keywords" content="AEO for tradies, answer engine optimization, ChatGPT marketing, AI search optimization, Perplexity search, Google AI overviews, tradie AI marketing, plumber ChatGPT, electrician AI search, builder Perplexity, Australian tradie AEO, AI-powered search, voice search optimization, conversational AI marketing, tradie marketing 2026" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/aeo-for-tradies" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="AEO for Tradies: Get Featured in ChatGPT & AI Search Results" />
                 <meta property="og:description" content="42% of Australians use ChatGPT to find tradies. Master Answer Engine Optimization to capture this exploding market." />
                 <meta property="og:type" content="article" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": "AEO for Tradies: How to Get Featured in ChatGPT & AI Search | Australian Trade Business Marketing 2026",
+                    "description": "42% of Australians now use ChatGPT to find tradies. Learn Answer Engine Optimization (AEO) strategies to get your plumbing, electrical, or building business featured in AI search results and capture this growing market.",
+                    "url": "https://yourtradepartner.com.au/resources/aeo-for-tradies",
+                    "datePublished": "2026-03-18",
+                    "dateModified": "2026-03-18",
+                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
+                })}</script>
             </Helmet>
 
             {/* Header */}
@@ -23,6 +55,15 @@ const AEOForTradies = () => {
                     <a href="/resources" className="inline-flex items-center gap-2 text-white hover:text-safety-orange transition-colors">
                         <span className="text-xl md:text-2xl font-black uppercase tracking-tight">← Back to Resources</span>
                     </a>
+                    <Breadcrumbs
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: 'Resources', href: '/resources' }
+                        ]}
+                        currentLabel="AEO For Tradies"
+                        currentPath="/resources/aeo-for-tradies"
+                        className="mt-5"
+                    />
                 </div>
             </header>
 
@@ -498,6 +539,8 @@ const AEOForTradies = () => {
                                 You don't need to be a tech genius. You just need a website built for how people <strong className="text-safety-orange">actually search</strong> in 2026.
                             </p>
                         </div>
+
+                        <RelatedReads items={relatedReads} />
 
                     </div>
                 </div>

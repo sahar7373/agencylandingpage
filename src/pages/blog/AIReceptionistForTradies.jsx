@@ -3,6 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Phone, PhoneOff, Clock, DollarSign, CheckCircle2, Zap } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedReads from '../../components/RelatedReads';
+
+const relatedReads = [
+    {
+        href: '/resources/website-roi-calculation',
+        title: 'How Many Jobs Does a Website Need to Pay for Itself?',
+        description: 'Run the numbers on lead capture, conversion improvements, and break-even timing.'
+    },
+    {
+        href: '/resources/aeo-for-tradies',
+        title: 'AEO for Tradies',
+        description: 'Pair missed-call recovery with AI search visibility so more prospects find you first.'
+    },
+    {
+        href: '/resources/why-tradie-websites-dont-get-calls',
+        title: "Why Most Tradie Websites Don't Get Calls",
+        description: 'Fix the website gaps that waste leads even when every call gets answered.'
+    }
+];
 
 const AIReceptionistForTradies = () => {
     return (
@@ -12,9 +32,21 @@ const AIReceptionistForTradies = () => {
                 <meta name="description" content="The average Australian trade business misses 60% of calls while on the tools. Learn how AI receptionist systems answer every call, book appointments, and qualify leads—without wages or sick days." />
                 <meta name="keywords" content="ai receptionist, missed calls tradies, tradie automation, call answering service, trade business, Australian tradies, lead capture, appointment booking" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/ai-receptionist-for-tradies" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="How to Handle Missed Calls Without Hiring Staff" />
                 <meta property="og:description" content="AI receptionist systems for Australian tradies—answer every call, book jobs, qualify leads automatically." />
                 <meta property="og:type" content="article" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": "How to Handle Missed Calls Without Hiring Staff | AI Receptionist for Australian Tradies",
+                    "description": "The average Australian trade business misses 60% of calls while on the tools. Learn how AI receptionist systems answer every call, book appointments, and qualify leads—without wages or sick days.",
+                    "url": "https://yourtradepartner.com.au/resources/ai-receptionist-for-tradies",
+                    "datePublished": "2026-03-18",
+                    "dateModified": "2026-03-18",
+                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
+                })}</script>
             </Helmet>
 
             {/* Header */}
@@ -23,6 +55,15 @@ const AIReceptionistForTradies = () => {
                     <a href="/resources" className="inline-flex items-center gap-2 text-white hover:text-safety-orange transition-colors">
                         <span className="text-xl md:text-2xl font-black uppercase tracking-tight">← Back to Resources</span>
                     </a>
+                    <Breadcrumbs
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: 'Resources', href: '/resources' }
+                        ]}
+                        currentLabel="AI Receptionist For Tradies"
+                        currentPath="/resources/ai-receptionist-for-tradies"
+                        className="mt-5"
+                    />
                 </div>
             </header>
 
@@ -398,6 +439,8 @@ const AIReceptionistForTradies = () => {
                                 AI receptionists cost less than a single job, answer 24/7, and never take a sick day. It's not fancy tech for tech's sake—it's the difference between running a $300k business and a $400k business.
                             </p>
                         </div>
+
+                        <RelatedReads items={relatedReads} />
 
                     </div>
                 </div>

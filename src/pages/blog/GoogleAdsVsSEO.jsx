@@ -3,6 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Zap, TrendingUp, DollarSign, Clock, Target, Search } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedReads from '../../components/RelatedReads';
+
+const relatedReads = [
+    {
+        href: '/resources/google-business-profile-setup',
+        title: 'Google Business Profile Setup Guide',
+        description: 'Build your local visibility foundation before spending harder on traffic.'
+    },
+    {
+        href: '/resources/suburb-seo-for-tradies',
+        title: 'Suburb SEO for Tradies',
+        description: 'Create location relevance that compounds long after your ad spend stops.'
+    },
+    {
+        href: '/resources/website-roi-calculation',
+        title: 'Website ROI Calculation',
+        description: 'Measure whether ads, SEO, and site improvements are producing profitable jobs.'
+    }
+];
 
 const GoogleAdsVsSEO = () => {
     return (
@@ -12,9 +32,21 @@ const GoogleAdsVsSEO = () => {
                 <meta name="description" content="Ads bring leads this week. SEO brings leads forever. Most successful Australian tradies do both. Here's how to decide what to invest in first." />
                 <meta name="keywords" content="google ads, seo, tradie marketing, australian tradies, ppc, organic search, lead generation, digital marketing" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/google-ads-vs-seo-tradies" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="Google Ads vs Organic SEO: What Actually Works for Tradies" />
                 <meta property="og:description" content="Complete comparison for Australian trade businesses—when to use ads, when to use SEO, and how to combine both." />
                 <meta property="og:type" content="article" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": "Google Ads vs Organic SEO: What Actually Works for Tradies | Australian Trade Marketing Guide",
+                    "description": "Ads bring leads this week. SEO brings leads forever. Most successful Australian tradies do both. Here's how to decide what to invest in first.",
+                    "url": "https://yourtradepartner.com.au/resources/google-ads-vs-seo-tradies",
+                    "datePublished": "2026-03-18",
+                    "dateModified": "2026-03-18",
+                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
+                })}</script>
             </Helmet>
 
             {/* Header */}
@@ -23,6 +55,15 @@ const GoogleAdsVsSEO = () => {
                     <a href="/resources" className="inline-flex items-center gap-2 text-white hover:text-safety-orange transition-colors">
                         <span className="text-xl md:text-2xl font-black uppercase tracking-tight">← Back to Resources</span>
                     </a>
+                    <Breadcrumbs
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: 'Resources', href: '/resources' }
+                        ]}
+                        currentLabel="Google Ads Vs SEO For Tradies"
+                        currentPath="/resources/google-ads-vs-seo-tradies"
+                        className="mt-5"
+                    />
                 </div>
             </header>
 
@@ -392,6 +433,8 @@ const GoogleAdsVsSEO = () => {
                                 <strong className="text-safety-orange">The smart play:</strong> Use ads to fill your schedule while SEO builds. After 12 months, SEO carries most of the load—and you dial ads up or down as needed.
                             </p>
                         </div>
+
+                        <RelatedReads items={relatedReads} />
 
                     </div>
                 </div>

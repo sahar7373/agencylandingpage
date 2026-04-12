@@ -3,6 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, AlertCircle, CheckCircle2, Phone, Search, Clock } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedReads from '../../components/RelatedReads';
+
+const relatedReads = [
+    {
+        href: '/resources/professional-trust-signals',
+        title: 'Professional Trust Signals for Tradies',
+        description: 'See the visual cues and proof points that make homeowners feel safe to call.'
+    },
+    {
+        href: '/resources/electrician-website-requirements',
+        title: 'Electrician Website Requirements',
+        description: 'A concrete example of the pages, proof, and calls to action a trade site needs.'
+    },
+    {
+        href: '/resources/website-roi-calculation',
+        title: 'Website ROI Calculation for Tradies',
+        description: 'Work out how many extra jobs a better website needs to pay for itself.'
+    }
+];
 
 const WhyTradieWebsitesDontGetCalls = () => {
     return (
@@ -12,9 +32,21 @@ const WhyTradieWebsitesDontGetCalls = () => {
                 <meta name="description" content="78% of Australian homeowners research tradies online before calling. Learn why most tradie websites fail to convert visitors into phone calls and how to fix it." />
                 <meta name="keywords" content="tradie website, plumber website, electrician website, trade business marketing, Australian tradies, website conversions, lead generation" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/why-tradie-websites-dont-get-calls" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="Why Most Tradie Websites Don't Get Calls" />
                 <meta property="og:description" content="78% of Australian homeowners research tradies online before calling. Learn why most tradie websites fail to convert." />
                 <meta property="og:type" content="article" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": "Why Most Tradie Websites Don't Get Calls | Australian Trade Business Marketing",
+                    "description": "78% of Australian homeowners research tradies online before calling. Learn why most tradie websites fail to convert visitors into phone calls and how to fix it.",
+                    "url": "https://yourtradepartner.com.au/resources/why-tradie-websites-dont-get-calls",
+                    "datePublished": "2026-03-18",
+                    "dateModified": "2026-03-18",
+                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
+                })}</script>
             </Helmet>
 
             {/* Header */}
@@ -23,6 +55,15 @@ const WhyTradieWebsitesDontGetCalls = () => {
                     <a href="/resources" className="inline-flex items-center gap-2 text-white hover:text-safety-orange transition-colors">
                         <span className="text-xl md:text-2xl font-black uppercase tracking-tight">← Back to Resources</span>
                     </a>
+                    <Breadcrumbs
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: 'Resources', href: '/resources' }
+                        ]}
+                        currentLabel="Why Tradie Websites Don't Get Calls"
+                        currentPath="/resources/why-tradie-websites-dont-get-calls"
+                        className="mt-5"
+                    />
                 </div>
             </header>
 
@@ -291,6 +332,8 @@ const WhyTradieWebsitesDontGetCalls = () => {
                                 Get those four right, and your phone will ring.
                             </p>
                         </div>
+
+                        <RelatedReads items={relatedReads} />
 
                     </div>
                 </div>

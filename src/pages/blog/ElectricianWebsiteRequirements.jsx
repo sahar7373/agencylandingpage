@@ -3,6 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Zap, Shield, FileText, CheckCircle2, Clock } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedReads from '../../components/RelatedReads';
+
+const relatedReads = [
+    {
+        href: '/resources/professional-trust-signals',
+        title: 'Professional Trust Signals',
+        description: 'Strengthen the credibility cues homeowners look for before they call an electrician.'
+    },
+    {
+        href: '/resources/why-tradie-websites-dont-get-calls',
+        title: "Why Most Tradie Websites Don't Get Calls",
+        description: 'See how missing proof, suburb signals, and mobile friction kill enquiries.'
+    },
+    {
+        href: '/resources/suburb-seo-for-tradies',
+        title: 'Suburb SEO for Tradies',
+        description: 'Add location pages and service-area clarity to bring in higher-intent local traffic.'
+    }
+];
 
 const ElectricianWebsiteRequirements = () => {
     return (
@@ -12,9 +32,21 @@ const ElectricianWebsiteRequirements = () => {
                 <meta name="description" content="Every Australian trade has specific trust signals and licensing requirements. Generic websites miss these details—and lose customers because of it. Complete guide for electricians." />
                 <meta name="keywords" content="electrician website, electrical contractor, Australian electrician, trade website, licensing requirements, electrical safety, trust signals" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/electrician-website-requirements" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="What Electricians Need on Their Website (That Plumbers Don't)" />
                 <meta property="og:description" content="Trade-specific website requirements for Australian electricians." />
                 <meta property="og:type" content="article" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": "What Electricians Need on Their Website (That Plumbers Don't) | Trade-Specific Requirements",
+                    "description": "Every Australian trade has specific trust signals and licensing requirements. Generic websites miss these details—and lose customers because of it. Complete guide for electricians.",
+                    "url": "https://yourtradepartner.com.au/resources/electrician-website-requirements",
+                    "datePublished": "2026-03-18",
+                    "dateModified": "2026-03-18",
+                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
+                })}</script>
             </Helmet>
 
             {/* Header */}
@@ -23,6 +55,15 @@ const ElectricianWebsiteRequirements = () => {
                     <a href="/resources" className="inline-flex items-center gap-2 text-white hover:text-safety-orange transition-colors">
                         <span className="text-xl md:text-2xl font-black uppercase tracking-tight">← Back to Resources</span>
                     </a>
+                    <Breadcrumbs
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: 'Resources', href: '/resources' }
+                        ]}
+                        currentLabel="Electrician Website Requirements"
+                        currentPath="/resources/electrician-website-requirements"
+                        className="mt-5"
+                    />
                 </div>
             </header>
 
@@ -423,6 +464,8 @@ const ElectricianWebsiteRequirements = () => {
                                 Generic templates don't cover this. Trade-specific websites do—and that's why they convert.
                             </p>
                         </div>
+
+                        <RelatedReads items={relatedReads} />
 
                     </div>
                 </div>

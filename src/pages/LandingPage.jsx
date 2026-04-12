@@ -429,7 +429,7 @@ function LandingPage() {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
             <Helmet>
-                <title>Your Trade Partner | Digital Growth Systems</title>
+                <title>Tradie Website Design & Marketing Australia | Your Trade Partner</title>
                 <meta name="description" content="Your Trade Partner provides high-converting websites and automated enquiry systems for Australian trade businesses. Stop missing jobs and start scaling." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/" />
                 <meta name="robots" content="index, follow" />
@@ -449,190 +449,211 @@ function LandingPage() {
                     {`
                         {
                             "@context": "https://schema.org",
-                            "@type": "ProfessionalService",
-                            "name": "Your Trade Partner",
-                            "alternateName": "YOURTRADEPARTNER.",
-                            "description": "Digital growth systems, websites, and automation for Australian trade businesses. Specializing in clear-cut packages for plumbers, electricians, and builders.",
-                            "url": "https://yourtradepartner.com.au",
-                            "telephone": "0451044751",
-                            "email": "hello@yourtradepartner.com.au",
-                            "address": {
-                                "@type": "PostalAddress",
-                                "addressLocality": "Adelaide",
-                                "addressRegion": "SA",
-                                "addressCountry": "AU"
-                            },
-                            "areaServed": [
+                            "@graph": [
                                 {
-                                    "@type": "State",
-                                    "name": "South Australia"
+                                    "@type": "Organization",
+                                    "@id": "https://yourtradepartner.com.au/#organization",
+                                    "name": "Your Trade Partner",
+                                    "alternateName": "YOURTRADEPARTNER.",
+                                    "url": "https://yourtradepartner.com.au",
+                                    "telephone": "0451044751",
+                                    "email": "hello@yourtradepartner.com.au"
                                 },
                                 {
-                                    "@type": "State",
-                                    "name": "Victoria"
-                                },
-                                {
-                                    "@type": "State",
-                                    "name": "New South Wales"
-                                },
-                                {
-                                    "@type": "State",
-                                    "name": "Queensland"
-                                },
-                                {
-                                    "@type": "State",
-                                    "name": "Western Australia"
-                                },
-                                {
-                                    "@type": "State",
-                                    "name": "Tasmania"
-                                },
-                                {
-                                    "@type": "State",
-                                    "name": "Australian Capital Territory"
-                                },
-                                {
-                                    "@type": "State",
-                                    "name": "Northern Territory"
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Sydney",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "New South Wales"
+                                    "@type": ["LocalBusiness", "ProfessionalService"],
+                                    "@id": "https://yourtradepartner.com.au/#localbusiness",
+                                    "name": "Your Trade Partner",
+                                    "description": "Digital growth systems, websites, and automation for Australian trade businesses. Specializing in clear-cut packages for plumbers, electricians, and builders.",
+                                    "url": "https://yourtradepartner.com.au",
+                                    "telephone": "0451044751",
+                                    "email": "hello@yourtradepartner.com.au",
+                                    "address": {
+                                        "@type": "PostalAddress",
+                                        "addressLocality": "Adelaide",
+                                        "addressRegion": "SA",
+                                        "addressCountry": "AU"
+                                    },
+                                    "areaServed": [
+                                        {
+                                            "@type": "State",
+                                            "name": "South Australia"
+                                        },
+                                        {
+                                            "@type": "State",
+                                            "name": "Victoria"
+                                        },
+                                        {
+                                            "@type": "State",
+                                            "name": "New South Wales"
+                                        },
+                                        {
+                                            "@type": "State",
+                                            "name": "Queensland"
+                                        },
+                                        {
+                                            "@type": "State",
+                                            "name": "Western Australia"
+                                        },
+                                        {
+                                            "@type": "State",
+                                            "name": "Tasmania"
+                                        },
+                                        {
+                                            "@type": "State",
+                                            "name": "Australian Capital Territory"
+                                        },
+                                        {
+                                            "@type": "State",
+                                            "name": "Northern Territory"
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Sydney",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "New South Wales"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Melbourne",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "Victoria"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Brisbane",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "Queensland"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Perth",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "Western Australia"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Adelaide",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "South Australia"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Gold Coast",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "Queensland"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Canberra",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "Australian Capital Territory"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Newcastle",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "New South Wales"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Wollongong",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "New South Wales"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Hobart",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "Tasmania"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Geelong",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "Victoria"
+                                            }
+                                        },
+                                        {
+                                            "@type": "City",
+                                            "name": "Darwin",
+                                            "containedInPlace": {
+                                                "@type": "State",
+                                                "name": "Northern Territory"
+                                            }
+                                        },
+                                        {
+                                            "@type": "Country",
+                                            "name": "Australia"
+                                        }
+                                    ],
+                                    "serviceType": "Tradie Website Design and Digital Marketing",
+                                    "serviceArea": {
+                                        "@type": "Country",
+                                        "name": "Australia"
+                                    },
+                                    "priceRange": "$$$",
+                                    "parentOrganization": {
+                                        "@id": "https://yourtradepartner.com.au/#organization"
+                                    },
+                                    "hasOfferCatalog": {
+                                        "@type": "OfferCatalog",
+                                        "name": "Trade Growth Packages",
+                                        "itemListElement": [
+                                            {
+                                                "@type": "Offer",
+                                                "itemOffered": {
+                                                    "@type": "Service",
+                                                    "name": "Package 1: Trade-Ready Setup",
+                                                    "description": "Professional 3-page website, G-Business Profile, and domain setup for solo operators."
+                                                },
+                                                "price": "1900.00",
+                                                "priceCurrency": "AUD"
+                                            },
+                                            {
+                                                "@type": "Offer",
+                                                "itemOffered": {
+                                                    "@type": "Service",
+                                                    "name": "Package 2: Local Jobs Engine",
+                                                    "description": "6-page site, enquiry tracking, local SEO pages, and AI lead capture."
+                                                },
+                                                "price": "3600.00",
+                                                "priceCurrency": "AUD"
+                                            },
+                                            {
+                                                "@type": "Offer",
+                                                "itemOffered": {
+                                                    "@type": "Service",
+                                                    "name": "Package 3: Growth System",
+                                                    "description": "Full-scale digital dominance (12+ pages), advanced CRM integration, receptionist handling, and aggressive local SEO."
+                                                },
+                                                "price": "7500.00",
+                                                "priceCurrency": "AUD"
+                                            }
+                                        ]
                                     }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Melbourne",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "Victoria"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Brisbane",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "Queensland"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Perth",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "Western Australia"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Adelaide",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "South Australia"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Gold Coast",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "Queensland"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Canberra",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "Australian Capital Territory"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Newcastle",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "New South Wales"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Wollongong",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "New South Wales"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Hobart",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "Tasmania"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Geelong",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "Victoria"
-                                    }
-                                },
-                                {
-                                    "@type": "City",
-                                    "name": "Darwin",
-                                    "containedInPlace": {
-                                        "@type": "State",
-                                        "name": "Northern Territory"
-                                    }
-                                },
-                                {
-                                    "@type": "Country",
-                                    "name": "Australia"
                                 }
-                            ],
-                            "priceRange": "$$$",
-                            "hasOfferCatalog": {
-                                "@type": "OfferCatalog",
-                                "name": "Trade Growth Packages",
-                                "itemListElement": [
-                                    {
-                                        "@type": "Offer",
-                                        "itemOffered": {
-                                            "@type": "Service",
-                                            "name": "Package 1: Trade-Ready Setup",
-                                            "description": "Professional 3-page website, G-Business Profile, and domain setup for solo operators."
-                                        },
-                                        "price": "1900.00",
-                                        "priceCurrency": "AUD"
-                                    },
-                                    {
-                                        "@type": "Offer",
-                                        "itemOffered": {
-                                            "@type": "Service",
-                                            "name": "Package 2: Local Jobs Engine",
-                                            "description": "6-page site, enquiry tracking, local SEO pages, and AI lead capture."
-                                        },
-                                        "price": "3600.00",
-                                        "priceCurrency": "AUD"
-                                    },
-                                    {
-                                        "@type": "Offer",
-                                        "itemOffered": {
-                                            "@type": "Service",
-                                            "name": "Package 3: Growth System",
-                                            "description": "Full-scale digital dominance (12+ pages), advanced CRM integration, receptionist handling, and aggressive local SEO."
-                                        },
-                                        "price": "7500.00",
-                                        "priceCurrency": "AUD"
-                                    }
-                                ]
-                            }
+                            ]
                         }
                     `}
                 </script>
@@ -728,6 +749,28 @@ function LandingPage() {
                         }
                     `}
                 </script>
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": ["LocalBusiness", "ProfessionalService"],
+                    "name": "Your Trade Partner",
+                    "description": "Website design and digital marketing for Australian trade businesses.",
+                    "url": "https://yourtradepartner.com.au",
+                    "telephone": "0451044751",
+                    "email": "hello@yourtradepartner.com.au",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "addressLocality": "Adelaide",
+                        "addressRegion": "SA",
+                        "addressCountry": "AU"
+                    },
+                    "areaServed": "Australia",
+                    "serviceType": [
+                        "Tradie Website Design and Digital Marketing",
+                        "Business Automation",
+                        "AI Workflow Automation",
+                        "ServiceM8 Automation"
+                    ]
+                })}</script>
             </Helmet>
 
             <React.Suspense fallback={null}>
@@ -886,6 +929,10 @@ function LandingPage() {
                             Stop Losing Jobs to <br />
                             <span className="text-safety-orange">Missed Calls & Slow Response</span>
                         </motion.h1>
+
+                        <motion.p className="text-sm md:text-base text-safety-orange/90 font-black uppercase tracking-[0.18em] mb-6 max-w-3xl mx-auto" variants={itemVariants}>
+                            Professional website design and digital marketing for Australian trade businesses — plumbers, electricians, roofers, builders and more.
+                        </motion.p>
 
                         {/* Sub Headline */}
                         <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>

@@ -4,6 +4,7 @@ import { motion, useReducedMotion } from 'framer-motion';
 import { CheckCircle2, Ruler, ArrowRight, ArrowLeft, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import { Badge } from '../components/ui/badge';
+import Breadcrumbs from '../components/Breadcrumbs';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 
 const CollapsibleDetail = ({ title, children }) => {
@@ -135,13 +136,13 @@ const CarpenterWebsites = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
             <Helmet>
-                <title>Professional Carpenter Websites | Get More Local Jobs | Your Trade Partner</title>
+                <title>Carpenter Website Design Australia | Get More Local Jobs | Your Trade Partner</title>
                 <meta name="description" content="Custom websites built specifically for Australian carpenters. Stop missing local jobs. Get a professional site that brings in quality enquiries and builds trust with homeowners." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/carpenter-websites" />
                 <meta name="robots" content="index, follow" />
 
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="Professional Carpenter Websites | Your Trade Partner" />
+                <meta property="og:title" content="Carpenter Website Design Australia | Your Trade Partner" />
                 <meta property="og:description" content="Custom websites for Australian carpenters. Professional sites that convert local enquiries into jobs." />
                 <meta property="og:url" content="https://yourtradepartner.com.au/carpenter-websites" />
                 <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
@@ -169,6 +170,17 @@ const CarpenterWebsites = () => {
                         }
                     `}
                 </script>
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "FAQPage",
+                    "mainEntity": [
+                        { "@type": "Question", "name": "How long does it take to build a carpenter's website?", "acceptedAnswer": { "@type": "Answer", "text": "Depending on the package, most carpenter websites are live within 2-4 weeks. The Local Jobs Engine (Package 2) typically takes 2-3 weeks, while the Growth System (Package 3) with advanced features can take 3-4 weeks. We'll give you a clear timeline during the scoping call." } },
+                        { "@type": "Question", "name": "Will my carpenter website show up on Google?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every website we build is optimised for local search from day one. This includes proper page structure, fast loading speeds, mobile responsiveness, and suburb-specific service pages. For Package 3, we also implement advanced local SEO and AI visibility strategies to help you rank higher for 'carpenter near me' searches." } },
+                        { "@type": "Question", "name": "Do I need to provide content and photos?", "acceptedAnswer": { "@type": "Answer", "text": "We make it easy. You provide your business details, service info, and any existing photos. We'll handle the rest—writing professional copy, sourcing additional images if needed, and structuring everything for maximum impact. If you have great project photos, even better." } },
+                        { "@type": "Question", "name": "What if I need changes after the website is live?", "acceptedAnswer": { "@type": "Answer", "text": "That's included. Package 2 and 3 both include ongoing updates and support within scope. Need to add a new service? Update your service area? Change a phone number? We handle it. Major redesigns or additional pages may be quoted separately." } },
+                        { "@type": "Question", "name": "Can I get more leads without running ads?", "acceptedAnswer": { "@type": "Answer", "text": "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months." } }
+                    ]
+                })}</script>
             </Helmet>
 
             {/* Simple Header - Same as before */}
@@ -191,6 +203,12 @@ const CarpenterWebsites = () => {
             <header className="relative pt-8 pb-24 md:pt-24 md:pb-44 border-b border-white/5 overflow-hidden">
                 <div className="absolute inset-0 bg-grid-white opacity-20 pointer-events-none"></div>
                 <div className="container mx-auto px-6 relative z-10">
+                    <Breadcrumbs
+                        items={[{ label: 'Home', href: '/' }]}
+                        currentLabel="Carpenter Websites"
+                        currentPath="/carpenter-websites"
+                        className="mb-8"
+                    />
                     <motion.div
                         className="max-w-4xl mx-auto text-center"
                         variants={containerVariants}

@@ -3,6 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Calculator, DollarSign, TrendingUp, Clock } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedReads from '../../components/RelatedReads';
+
+const relatedReads = [
+    {
+        href: '/resources/why-tradie-websites-dont-get-calls',
+        title: "Why Most Tradie Websites Don't Get Calls",
+        description: 'Find the specific conversion leaks that make the ROI on your site look worse than it should.'
+    },
+    {
+        href: '/resources/ai-receptionist-for-tradies',
+        title: 'AI Receptionist for Tradies',
+        description: 'See how better call handling changes the maths on missed leads and revenue.'
+    },
+    {
+        href: '/resources/google-ads-vs-seo-tradies',
+        title: 'Google Ads vs SEO for Tradies',
+        description: 'Compare where your budget should go once you know the numbers behind each job.'
+    }
+];
 
 const WebsiteROICalculation = () => {
     return (
@@ -12,9 +32,21 @@ const WebsiteROICalculation = () => {
                 <meta name="description" content="Break-even math for Australian trade businesses. If your average job is $2,500, you need 2-3 extra jobs to cover a $3,900 website. Most get that in the first month." />
                 <meta name="keywords" content="website roi, tradie marketing, business growth, Australian tradies, website cost, return on investment, lead generation" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/website-roi-calculation" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="How Many Jobs Does a Website Need to Pay for Itself?" />
                 <meta property="og:description" content="Simple ROI calculator for tradie websites—break-even math that makes sense." />
                 <meta property="og:type" content="article" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": "How Many Jobs Does a Website Need to Pay for Itself? | ROI Calculator for Australian Tradies",
+                    "description": "Break-even math for Australian trade businesses. If your average job is $2,500, you need 2-3 extra jobs to cover a $3,900 website. Most get that in the first month.",
+                    "url": "https://yourtradepartner.com.au/resources/website-roi-calculation",
+                    "datePublished": "2026-03-18",
+                    "dateModified": "2026-03-18",
+                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
+                })}</script>
             </Helmet>
 
             {/* Header */}
@@ -23,6 +55,15 @@ const WebsiteROICalculation = () => {
                     <a href="/resources" className="inline-flex items-center gap-2 text-white hover:text-safety-orange transition-colors">
                         <span className="text-xl md:text-2xl font-black uppercase tracking-tight">← Back to Resources</span>
                     </a>
+                    <Breadcrumbs
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: 'Resources', href: '/resources' }
+                        ]}
+                        currentLabel="Website ROI Calculation"
+                        currentPath="/resources/website-roi-calculation"
+                        className="mt-5"
+                    />
                 </div>
             </header>
 
@@ -336,6 +377,8 @@ const WebsiteROICalculation = () => {
                                 The real question isn't "Is it worth it?" It's "How much am I losing by waiting?"
                             </p>
                         </div>
+
+                        <RelatedReads items={relatedReads} />
 
                     </div>
                 </div>

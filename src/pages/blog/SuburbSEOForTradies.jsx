@@ -3,6 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, MapPin, Search, TrendingUp, CheckCircle2, Clock } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedReads from '../../components/RelatedReads';
+
+const relatedReads = [
+    {
+        href: '/resources/google-business-profile-setup',
+        title: 'Google Business Profile Setup Guide',
+        description: 'Back up your suburb pages with stronger map pack relevance and service-area signals.'
+    },
+    {
+        href: '/resources/google-ads-vs-seo-tradies',
+        title: 'Google Ads vs SEO for Tradies',
+        description: 'Decide when local SEO should carry the load and when to supplement it with ads.'
+    },
+    {
+        href: '/resources/aeo-for-tradies',
+        title: 'AEO for Tradies',
+        description: 'Location-specific content also helps AI tools understand where and who you serve.'
+    }
+];
 
 const SuburbSEOForTradies = () => {
     return (
@@ -12,9 +32,21 @@ const SuburbSEOForTradies = () => {
                 <meta name="description" content="Local SEO for Australian tradies: suburb-specific pages, Google Maps optimization, and content that matches what homeowners actually search for." />
                 <meta name="keywords" content="local seo, suburb seo, tradie seo, plumber near me, electrician sydney, australian trades, google maps, local rankings" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/suburb-seo-for-tradies" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="How to Rank for 'Tradie + Your Suburb' Searches" />
                 <meta property="og:description" content="Complete local SEO guide for Australian trade businesses—rank for suburb-specific searches." />
                 <meta property="og:type" content="article" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": "How to Rank for 'Tradie + Your Suburb' Searches | Local SEO Guide for Australian Tradies",
+                    "description": "Local SEO for Australian tradies: suburb-specific pages, Google Maps optimization, and content that matches what homeowners actually search for.",
+                    "url": "https://yourtradepartner.com.au/resources/suburb-seo-for-tradies",
+                    "datePublished": "2026-03-18",
+                    "dateModified": "2026-03-18",
+                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
+                })}</script>
             </Helmet>
 
             {/* Header */}
@@ -23,6 +55,15 @@ const SuburbSEOForTradies = () => {
                     <a href="/resources" className="inline-flex items-center gap-2 text-white hover:text-safety-orange transition-colors">
                         <span className="text-xl md:text-2xl font-black uppercase tracking-tight">← Back to Resources</span>
                     </a>
+                    <Breadcrumbs
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: 'Resources', href: '/resources' }
+                        ]}
+                        currentLabel="Suburb SEO For Tradies"
+                        currentPath="/resources/suburb-seo-for-tradies"
+                        className="mt-5"
+                    />
                 </div>
             </header>
 
@@ -473,6 +514,8 @@ const SuburbSEOForTradies = () => {
                                 Do this, and you'll dominate local searches—while your competitors still say "We service Sydney."
                             </p>
                         </div>
+
+                        <RelatedReads items={relatedReads} />
 
                     </div>
                 </div>

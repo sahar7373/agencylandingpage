@@ -3,6 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, MapPin, Star, CheckCircle2, AlertTriangle, Clock, Search } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedReads from '../../components/RelatedReads';
+
+const relatedReads = [
+    {
+        href: '/resources/suburb-seo-for-tradies',
+        title: 'How to Rank for Tradie + Suburb Searches',
+        description: 'Turn your service areas into pages and signals Google can actually rank.'
+    },
+    {
+        href: '/resources/why-tradie-websites-dont-get-calls',
+        title: "Why Most Tradie Websites Don't Get Calls",
+        description: 'Fix the trust and conversion issues that waste the traffic your profile earns.'
+    },
+    {
+        href: '/resources/google-ads-vs-seo-tradies',
+        title: 'Google Ads vs SEO for Tradies',
+        description: 'See how local SEO and paid traffic work together when you need enquiries now.'
+    }
+];
 
 const GoogleBusinessProfileSetup = () => {
     return (
@@ -12,9 +32,73 @@ const GoogleBusinessProfileSetup = () => {
                 <meta name="description" content="Step-by-step guide to setting up and optimizing your Google Business Profile. Show up when customers search 'plumber near me' or 'electrician [your suburb]' in Australia." />
                 <meta name="keywords" content="google business profile, google my business, tradie marketing, local SEO, Australian tradies, near me searches, google maps, local business" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/google-business-profile-setup" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="Google My Business Setup Guide for Tradies" />
                 <meta property="og:description" content="Complete guide to setting up Google Business Profile for Australian trade businesses." />
                 <meta property="og:type" content="article" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "HowTo",
+                    "name": "How to Set Up Google Business Profile for Australian Tradies",
+                    "description": "Step-by-step guide to setting up and optimizing your Google Business Profile so Australian customers can find you in local searches and the Google Maps pack.",
+                    "totalTime": "PT30M",
+                    "estimatedCost": { "@type": "MonetaryAmount", "currency": "AUD", "value": "0" },
+                    "step": [
+                        {
+                            "@type": "HowToStep",
+                            "position": 1,
+                            "name": "Create Your Profile",
+                            "text": "Go to google.com/business and sign in with your business Gmail account. Enter your exact business name, select your trade category (e.g. Plumber, Electrician), and add your service area. If you work from a ute, select 'I deliver goods and services to my customers' — do not use your home address."
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "position": 2,
+                            "name": "Verify Your Business",
+                            "text": "Google will send a postcard with a 5-digit verification code to your business address, or offer instant phone verification for some categories. Enter the code in your dashboard once received. Your listing goes live within 24 hours — fill out the rest of your profile while you wait."
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "position": 3,
+                            "name": "Set Your Service Areas",
+                            "text": "Add 10–20 individual suburbs you actually service (e.g. Parramatta NSW, Blacktown NSW, Penrith NSW). Do not use broad areas like 'Greater Sydney' — Google ignores them. Google checks your listed suburbs against customer searches, so if a suburb isn't listed you won't appear for that area."
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "position": 4,
+                            "name": "Add Services and Pricing",
+                            "text": "List specific services rather than generic labels (e.g. 'Blocked drain clearing' and 'Hot water system installation' instead of just 'Plumbing Services'). Add pricing ranges where possible — even 'From $150' helps your listing stand out and filters unqualified enquiries."
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "position": 5,
+                            "name": "Upload Real Photos",
+                            "text": "Upload at least 20 real photos: your ute with signage, your team on site, completed before/after projects, certificates and licences. Avoid stock photos — Google penalises generic imagery. Aim for 100+ photos over time; listings with 100+ photos receive 520% more calls than those with none."
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "position": 6,
+                            "name": "Write a Killer Business Description",
+                            "text": "Use all 750 characters. Include your trade, the suburbs you service, your licence number, years of experience, key services, and trust signals like 'fully insured', 'upfront pricing', and 'workmanship guarantee'. Incorporate keywords customers actually search, such as your suburbs and licence type."
+                        },
+                        {
+                            "@type": "HowToStep",
+                            "position": 7,
+                            "name": "Get Your First 10 Reviews",
+                            "text": "Create a short Google review link and text it to happy customers the same day you finish the job. Reviews drop off sharply after 24 hours. Never offer incentives for reviews — it violates Google's Terms of Service and can get your profile suspended. Aim for 10 reviews in your first month."
+                        }
+                    ]
+                })}</script>
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": "Google My Business Setup Guide for Australian Tradies | Complete 2026 Tutorial",
+                    "description": "Step-by-step guide to setting up and optimizing your Google Business Profile. Show up when customers search 'plumber near me' or 'electrician [your suburb]' in Australia.",
+                    "url": "https://yourtradepartner.com.au/resources/google-business-profile-setup",
+                    "datePublished": "2026-03-18",
+                    "dateModified": "2026-03-18",
+                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
+                })}</script>
             </Helmet>
 
             {/* Header */}
@@ -23,6 +107,15 @@ const GoogleBusinessProfileSetup = () => {
                     <a href="/resources" className="inline-flex items-center gap-2 text-white hover:text-safety-orange transition-colors">
                         <span className="text-xl md:text-2xl font-black uppercase tracking-tight">← Back to Resources</span>
                     </a>
+                    <Breadcrumbs
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: 'Resources', href: '/resources' }
+                        ]}
+                        currentLabel="Google Business Profile Setup"
+                        currentPath="/resources/google-business-profile-setup"
+                        className="mt-5"
+                    />
                 </div>
             </header>
 
@@ -504,6 +597,8 @@ const GoogleBusinessProfileSetup = () => {
                                 Set it up properly once (30 minutes), maintain it weekly (15 minutes), and watch "near me" searches turn into booked jobs.
                             </p>
                         </div>
+
+                        <RelatedReads items={relatedReads} />
 
                     </div>
                 </div>

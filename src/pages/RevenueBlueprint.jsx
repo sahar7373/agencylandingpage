@@ -23,7 +23,7 @@ const RevenueBlueprint = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans flex justify-center py-12 px-4 md:px-8 print:bg-white print:text-black print:p-0" style={{ printColorAdjust: 'exact', WebkitPrintColorAdjust: 'exact' }}>
             <Helmet>
-                <title>Revenue Capture Blueprint | YourTradePartner</title>
+                <title>Free Trade Business Revenue Blueprint | Stop Losing Jobs | Your Trade Partner</title>
                 <meta name="description" content="The Local Visibility & Revenue Capture Blueprint for Trades. Stop losing enquiries and double your revenue." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/blueprint" />
                 <meta name="robots" content="index, follow" />

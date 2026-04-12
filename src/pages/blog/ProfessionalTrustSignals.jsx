@@ -3,6 +3,26 @@ import { Helmet } from 'react-helmet-async';
 import { ArrowRight, Shield, Star, Award, CheckCircle2, Clock, Camera } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import { Badge } from '../../components/ui/badge';
+import Breadcrumbs from '../../components/Breadcrumbs';
+import RelatedReads from '../../components/RelatedReads';
+
+const relatedReads = [
+    {
+        href: '/resources/why-tradie-websites-dont-get-calls',
+        title: "Why Most Tradie Websites Don't Get Calls",
+        description: 'See how weak trust signals directly turn traffic into lost enquiries.'
+    },
+    {
+        href: '/resources/electrician-website-requirements',
+        title: 'Electrician Website Requirements',
+        description: 'A practical example of how trust signals should appear across a trade website.'
+    },
+    {
+        href: '/resources/google-business-profile-setup',
+        title: 'Google Business Profile Setup Guide',
+        description: 'Carry the same trust cues into your map listing so local searchers choose you faster.'
+    }
+];
 
 const ProfessionalTrustSignals = () => {
     return (
@@ -12,9 +32,21 @@ const ProfessionalTrustSignals = () => {
                 <meta name="description" content="Homeowners judge your Australian trade business in 3 seconds. A DIY Wix site vs a professional setup can be the difference between a $4,000 job and getting ghosted." />
                 <meta name="keywords" content="professional website, trust signals, tradie website, australian tradies, credibility, business branding, first impressions" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/professional-trust-signals" />
+                <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="Why Looking 'Professional' Online Actually Matters" />
                 <meta property="og:description" content="How Australian homeowners judge tradie professionalism in 3 seconds—and what to fix." />
                 <meta property="og:type" content="article" />
+                <script type="application/ld+json">{JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "BlogPosting",
+                    "headline": "Why Looking 'Professional' Online Actually Matters | Trust Signals for Australian Tradies",
+                    "description": "Homeowners judge your Australian trade business in 3 seconds. A DIY Wix site vs a professional setup can be the difference between a $4,000 job and getting ghosted.",
+                    "url": "https://yourtradepartner.com.au/resources/professional-trust-signals",
+                    "datePublished": "2026-03-18",
+                    "dateModified": "2026-03-18",
+                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
+                })}</script>
             </Helmet>
 
             {/* Header */}
@@ -23,6 +55,15 @@ const ProfessionalTrustSignals = () => {
                     <a href="/resources" className="inline-flex items-center gap-2 text-white hover:text-safety-orange transition-colors">
                         <span className="text-xl md:text-2xl font-black uppercase tracking-tight">← Back to Resources</span>
                     </a>
+                    <Breadcrumbs
+                        items={[
+                            { label: 'Home', href: '/' },
+                            { label: 'Resources', href: '/resources' }
+                        ]}
+                        currentLabel="Professional Trust Signals"
+                        currentPath="/resources/professional-trust-signals"
+                        className="mt-5"
+                    />
                 </div>
             </header>
 
@@ -368,6 +409,8 @@ const ProfessionalTrustSignals = () => {
                                 Get those five things right, and homeowners will trust you enough to call—even if your competitor's site has fancier animations.
                             </p>
                         </div>
+
+                        <RelatedReads items={relatedReads} />
 
                     </div>
                 </div>

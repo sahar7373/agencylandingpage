@@ -100,7 +100,7 @@ const Resources = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>Free Resources for Australian Tradies | Your Trade Partner</title>
+                <title>Free Tradie Marketing Resources & Guides | Your Trade Partner</title>
                 <meta name="description" content="Practical guides, tips, and resources to help Australian trade businesses get more leads, handle calls better, and grow smarter." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources" />
             </Helmet>
