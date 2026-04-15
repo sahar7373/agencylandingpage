@@ -1491,7 +1491,7 @@ function LandingPage() {
                                         work: "/projects/SWRP/swrp-work.png"
                                     },
                                     video: "https://vimeo.com/1160981021",
-                                    website: null
+                                    website: "https://swrp.com.au/"
                                 }
                             ].map((project) => (
                                 <motion.div
