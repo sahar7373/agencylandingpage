@@ -26,6 +26,7 @@ import SuburbSEOForTradies from './pages/blog/SuburbSEOForTradies';
 import ProfessionalTrustSignals from './pages/blog/ProfessionalTrustSignals';
 import GoogleAdsVsSEO from './pages/blog/GoogleAdsVsSEO';
 import AEOForTradies from './pages/blog/AEOForTradies';
+import GoogleAIOverviewsTradieLeads from './pages/blog/GoogleAIOverviewsTradieLeads';
 
 function App() {
     React.useEffect(() => {
@@ -77,6 +78,7 @@ function App() {
                     <Route path="/resources/professional-trust-signals" element={<ProfessionalTrustSignals />} />
                     <Route path="/resources/google-ads-vs-seo-tradies" element={<GoogleAdsVsSEO />} />
                     <Route path="/resources/aeo-for-tradies" element={<AEOForTradies />} />
+                    <Route path="/resources/google-ai-overviews-tradie-leads" element={<GoogleAIOverviewsTradieLeads />} />
 
                     {/* Trade-Specific Landing Pages */}
                     <Route path="/plumbing-websites" element={<PlumbingWebsites />} />

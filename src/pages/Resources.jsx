@@ -87,6 +87,15 @@ const Resources = () => {
             readTime: "10 min read",
             slug: "aeo-for-tradies",
             comingSoon: false
+        },
+        {
+            id: 'google-ai-overviews-tradie-leads',
+            title: "How Google's AI Is Stealing Your Tradie Leads (And What To Do About It)",
+            description: "Google AI Overviews now intercept 47% of Australian searches before users click. Find out why tradies are losing leads to AI — and the exact steps to get cited instead.",
+            category: "AI Search",
+            readTime: "6 min read",
+            slug: "google-ai-overviews-tradie-leads",
+            comingSoon: false
         }
     ];
 

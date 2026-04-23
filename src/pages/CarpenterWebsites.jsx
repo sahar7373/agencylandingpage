@@ -694,16 +694,6 @@ const CarpenterWebsites = () => {
                                                                 "LINKEDIN PROFILE SETUP",
                                                                 {
                                                                     content: (
-                                                                        <CollapsibleDetail title="HIGH-PERFORMANCE GOOGLE & FACEBOOK ADS MANAGEMENT">
-                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
-                                                                                <li>DONE-FOR-YOU CAMPAIGN SETUP & OPTIMISATION</li>
-                                                                                <li><span className="text-safety-orange font-bold">INCLUDES $89.99 FREE CREDIT</span> ON US WHEN YOU SIGN UP</li>
-                                                                            </ul>
-                                                                        </CollapsibleDetail>
-                                                                    )
-                                                                },
-                                                                {
-                                                                    content: (
                                                                         <CollapsibleDetail title="PROMOTIONAL VIDEOS OR AI VISUAL CONTENT">
                                                                             <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
                                                                                 <li>USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</li>
