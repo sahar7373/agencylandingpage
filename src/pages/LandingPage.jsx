@@ -34,7 +34,8 @@ import {
     Ruler,
     Square,
     Leaf,
-    PaintBucket
+    PaintBucket,
+    LinkedinIcon
 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -2573,9 +2574,23 @@ function LandingPage() {
                                 <span className="whitespace-nowrap">Adelaide, Australia</span>
                             </div>
                         </div>
-                        <p className="text-[10px] uppercase font-bold tracking-widest text-white/20 order-3 lg:order-3">
-                            &copy; 2026 Your Trade Partner Australian Operations.
-                        </p>
+                        <div className="flex flex-col items-end gap-3 order-3 lg:order-3">
+                            <div className="flex flex-col items-end gap-1.5">
+                                <p className="text-[9px] uppercase font-bold tracking-widest text-white/30">Follow us</p>
+                                <a
+                                    href="https://www.linkedin.com/company/yourtradepartner/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-white/40 hover:text-safety-orange transition-colors"
+                                    aria-label="LinkedIn"
+                                >
+                                    <LinkedinIcon className="w-5 h-5" />
+                                </a>
+                            </div>
+                            <p className="text-[10px] uppercase font-bold tracking-widest text-white/20">
+                                &copy; 2026 Your Trade Partner Australian Operations.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </motion.footer >
