@@ -932,7 +932,7 @@ function LandingPage() {
                         </motion.h1>
 
                         <motion.p className="text-sm md:text-base text-safety-orange/90 font-black uppercase tracking-[0.18em] mb-6 max-w-3xl mx-auto" variants={itemVariants}>
-                            Professional website design and digital marketing for Australian trade businesses — plumbers, electricians, roofers, builders and more.
+                            Tradie websites and digital marketing for Australian tradies — plumbers, electricians, roofers, builders and more.
                         </motion.p>
 
                         {/* Sub Headline */}
@@ -2551,6 +2551,16 @@ function LandingPage() {
                             <a href="/landscaper-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Landscapers</a>
                             <span className="text-white/20">•</span>
                             <a href="/painter-websites" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Painters</a>
+                        </div>
+                    </div>
+
+                    {/* Services Pages Links */}
+                    <div className="mb-12 pb-12 border-b border-white/10">
+                        <h3 className="text-sm font-black uppercase tracking-widest text-white/40 mb-6 text-center">Services</h3>
+                        <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-black uppercase tracking-widest">
+                            <a href="/marketing-for-tradies" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Marketing for Tradies</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/seo-for-tradies" className="text-safety-orange hover:text-safety-orange-hover transition-colors">SEO for Tradies</a>
                         </div>
                     </div>
 

@@ -217,7 +217,7 @@ const BuilderWebsites = () => {
                     >
                         {/* Audience Clarifier */}
                         <motion.p className="text-xs md:text-sm text-white/50 font-bold tracking-[0.2em] uppercase mb-6" variants={itemVariants}>
-                            FOR AUSTRALIAN ELECTRICIANS
+                            FOR AUSTRALIAN BUILDERS
                         </motion.p>
 
                         {/* Main Headline - EXACT same typography scale */}
@@ -226,9 +226,14 @@ const BuilderWebsites = () => {
                             <span className="text-safety-orange">That Get You Booked</span>
                         </motion.h1>
 
+                        {/* SEO Keyword Subtitle */}
+                        <motion.p className="text-xs text-white/35 font-bold tracking-widest mb-2 -mt-4" variants={itemVariants}>
+                            Professional builder website design for Australian construction businesses
+                        </motion.p>
+
                         {/* Sub Headline */}
                         <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
-                            When a homeowner has a sparking outlet or power outage, they're calling the builder who looks trustworthy online — not the cheapest one. Your website makes that first impression.
+                            When a homeowner is ready to renovate or build, they shortlist the builder with the most professional online presence — not whoever answers the phone first. Your website wins that shortlist.
                         </motion.p>
 
                         {/* Trust Position Strip - EXACT same as landing page */}

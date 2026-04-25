@@ -217,18 +217,23 @@ const ConcreteLayerWebsites = () => {
                     >
                         {/* Audience Clarifier */}
                         <motion.p className="text-xs md:text-sm text-white/50 font-bold tracking-[0.2em] uppercase mb-6" variants={itemVariants}>
-                            FOR AUSTRALIAN ELECTRICIANS
+                            FOR AUSTRALIAN CONCRETERS
                         </motion.p>
 
                         {/* Main Headline - EXACT same typography scale */}
                         <motion.h1 className="text-[52px] md:text-[80px] font-black leading-[0.9] mb-8 uppercase italic" variants={itemVariants}>
-                            ConcreteLayer Websites <br />
+                            Concreter Websites <br />
                             <span className="text-safety-orange">That Get You Booked</span>
                         </motion.h1>
 
+                        {/* SEO Keyword Subtitle */}
+                        <motion.p className="text-xs text-white/35 font-bold tracking-widest mb-2 -mt-4" variants={itemVariants}>
+                            Professional concrete layer website design for Australian concreting businesses
+                        </motion.p>
+
                         {/* Sub Headline */}
                         <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
-                            When a homeowner has a sparking outlet or power outage, they're calling the concreter who looks trustworthy online — not the cheapest one. Your website makes that first impression.
+                            When a homeowner is getting quotes for a driveway, slab, or outdoor entertaining area, they pick the concreter who looks established and credible online. Your website gets you on that shortlist.
                         </motion.p>
 
                         {/* Trust Position Strip - EXACT same as landing page */}

@@ -217,7 +217,7 @@ const CarpenterWebsites = () => {
                     >
                         {/* Audience Clarifier */}
                         <motion.p className="text-xs md:text-sm text-white/50 font-bold tracking-[0.2em] uppercase mb-6" variants={itemVariants}>
-                            FOR AUSTRALIAN ELECTRICIANS
+                            FOR AUSTRALIAN CARPENTERS
                         </motion.p>
 
                         {/* Main Headline - EXACT same typography scale */}
@@ -226,9 +226,14 @@ const CarpenterWebsites = () => {
                             <span className="text-safety-orange">That Get You Booked</span>
                         </motion.h1>
 
+                        {/* SEO Keyword Subtitle */}
+                        <motion.p className="text-xs text-white/35 font-bold tracking-widest mb-2 -mt-4" variants={itemVariants}>
+                            Professional carpenter website design for Australian carpentry and joinery businesses
+                        </motion.p>
+
                         {/* Sub Headline */}
                         <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
-                            When a homeowner has a sparking outlet or power outage, they're calling the carpenter who looks trustworthy online — not the cheapest one. Your website makes that first impression.
+                            When a homeowner needs custom cabinetry, a deck, or a fit-out, they go with the carpenter whose work looks polished online — not the one with no web presence. Your website showcases the craftsmanship that closes the job.
                         </motion.p>
 
                         {/* Trust Position Strip - EXACT same as landing page */}
@@ -539,6 +544,113 @@ const CarpenterWebsites = () => {
                                     Get Started — No Obligation Chat
                                 </Button>
                             </a>
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* SUCCESS STORY — ZJC Renovations */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-zinc-950 relative overflow-hidden"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="absolute inset-0 bg-safety-orange/5 pointer-events-none" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-safety-orange pointer-events-none" />
+
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="text-center mb-12">
+                            <div className="inline-flex items-center gap-2 bg-safety-orange px-4 py-2 mb-6">
+                                <span className="text-[10px] font-black uppercase tracking-widest text-white">✓ Real Client Result — Carpenter</span>
+                            </div>
+                            <h2 className="text-4xl md:text-6xl font-black uppercase italic mb-4">
+                                See What We Built for a <span className="text-safety-orange">Real Carpenter</span>
+                            </h2>
+                            <p className="text-white/50 font-bold uppercase tracking-widest text-sm">
+                                ZJC Renovations — ACT
+                            </p>
+                        </div>
+
+                        <motion.div
+                            variants={itemVariants}
+                            className="bg-white overflow-hidden shadow-[0_0_60px_rgba(255,102,0,0.25)] border-2 border-safety-orange/60"
+                        >
+                            <div className="grid md:grid-cols-2">
+                                <div className="relative h-[280px] md:h-auto min-h-[420px] overflow-hidden">
+                                    <img
+                                        src="/projects/zjc/homepage.png"
+                                        alt="ZJC Renovations website — ACT carpenter case study by Your Trade Partner"
+                                        className="w-full h-full object-cover object-top"
+                                        loading="lazy"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
+                                    <div className="absolute top-4 left-4 bg-safety-orange px-3 py-1.5">
+                                        <span className="text-[10px] font-black uppercase tracking-widest text-white">Live Website ↗</span>
+                                    </div>
+                                </div>
+
+                                <div className="p-8 md:p-12 flex flex-col justify-between bg-white">
+                                    <div>
+                                        <div className="text-7xl text-safety-orange/15 font-serif leading-none -mb-4">"</div>
+                                        <p className="text-zinc-800 font-bold text-lg md:text-xl leading-relaxed mb-6 italic">
+                                            The website, logo, and enquiry system made a big difference. Customers now contact us with clearer requests and are more confident in choosing us before we even pick up the phone.
+                                        </p>
+                                        <div className="flex items-center gap-3 mb-10">
+                                            <div className="w-8 h-0.5 bg-safety-orange flex-shrink-0" />
+                                            <span className="text-xs font-black uppercase tracking-widest text-zinc-400">ZJC Renovations — ACT</span>
+                                        </div>
+                                    </div>
+
+                                    <div className="mb-8">
+                                        <p className="text-[10px] font-black uppercase tracking-widest text-zinc-400 mb-4">What We Delivered</p>
+                                        <ul className="space-y-2.5">
+                                            {[
+                                                "8-page professional website built for local customers",
+                                                "Custom business logo design",
+                                                "Lead capture system with clear enquiry forms",
+                                                "Google Business Profile setup for local visibility"
+                                            ].map((item, i) => (
+                                                <li key={i} className="flex items-start gap-3">
+                                                    <div className="w-1.5 h-1.5 bg-safety-orange rounded-full mt-2 flex-shrink-0" />
+                                                    <span className="text-sm font-bold text-zinc-700">{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+
+                                    <div className="flex flex-col sm:flex-row gap-3">
+                                        <a
+                                            href="https://www.zjcrenovations.com.au/"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center bg-safety-orange hover:bg-safety-orange-hover text-white px-6 py-4 text-sm font-black uppercase tracking-widest transition-colors"
+                                        >
+                                            View Live Website →
+                                        </a>
+                                        <a
+                                            href="#contact"
+                                            className="inline-flex items-center justify-center border-2 border-zinc-900 text-zinc-900 hover:bg-zinc-900 hover:text-white px-6 py-4 text-sm font-black uppercase tracking-widest transition-colors"
+                                        >
+                                            Get One Like This
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        <div className="mt-10 text-center">
+                            <p className="text-white/30 text-xs font-black uppercase tracking-widest mb-4">Also See Our Work For</p>
+                            <div className="flex justify-center gap-8">
+                                <a href="/painter-websites" className="text-sm font-black uppercase tracking-widest text-white/50 hover:text-safety-orange transition-colors border-b border-white/20 hover:border-safety-orange pb-1">
+                                    Painters →
+                                </a>
+                                <a href="/roofer-websites" className="text-sm font-black uppercase tracking-widest text-white/50 hover:text-safety-orange transition-colors border-b border-white/20 hover:border-safety-orange pb-1">
+                                    Roofers →
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

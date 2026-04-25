@@ -226,6 +226,11 @@ const PlumbingWebsites = () => {
                             <span className="text-safety-orange">Plumbers With Better Websites</span>
                         </motion.h1>
 
+                        {/* SEO Keyword Subtitle */}
+                        <motion.p className="text-xs text-white/35 font-bold tracking-widest mb-2 -mt-4" variants={itemVariants}>
+                            Professional plumber website design for Australian plumbing businesses
+                        </motion.p>
+
                         {/* Sub Headline */}
                         <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
                             When a homeowner has a burst pipe at 2 AM, they're calling the plumber who looks trustworthy online — not the cheapest one. Your website makes that first impression.
