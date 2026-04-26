@@ -1,10 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle2, Wrench, ArrowRight, ArrowLeft, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, Wrench, ArrowRight, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
 import Breadcrumbs from '../components/Breadcrumbs';
+import TradeNavDropdown from '../components/TradeNavDropdown';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 
 const CollapsibleDetail = ({ title, children }) => {
@@ -136,8 +136,8 @@ const PlumbingWebsites = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
             <Helmet>
-                <title>Plumber Website Design Australia | Get More Local Jobs | Your Trade Partner</title>
-                <meta name="description" content="Custom websites built specifically for Australian plumbers. Stop missing local jobs. Get a professional site that brings in quality enquiries and builds trust with homeowners." />
+                <title>Plumber Website Design Australia | Websites That Get More Calls | Your Trade Partner</title>
+                <meta name="description" content="We build websites for Australian plumbers that rank on Google and turn visitors into calls. Blocked drains, hot water, gas fitting — we know your trade. Clear pricing, 2–4 week turnaround." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/plumbing-websites" />
                 <meta name="robots" content="index, follow" />
 
@@ -178,26 +178,15 @@ const PlumbingWebsites = () => {
                         { "@type": "Question", "name": "Will my plumbing website show up on Google?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every website we build is optimised for local search from day one. This includes proper page structure, fast loading speeds, mobile responsiveness, and suburb-specific service pages. For Package 3, we also implement advanced local SEO and AI visibility strategies to help you rank higher for 'plumber near me' searches." } },
                         { "@type": "Question", "name": "Do I need to provide content and photos?", "acceptedAnswer": { "@type": "Answer", "text": "We make it easy. You provide your business details, service info, and any existing photos. We'll handle the rest—writing professional copy, sourcing additional images if needed, and structuring everything for maximum impact. If you have great project photos, even better." } },
                         { "@type": "Question", "name": "What if I need changes after the website is live?", "acceptedAnswer": { "@type": "Answer", "text": "That's included. Package 2 and 3 both include ongoing updates and support within scope. Need to add a new service? Update your service area? Change a phone number? We handle it. Major redesigns or additional pages may be quoted separately." } },
-                        { "@type": "Question", "name": "Can I get more leads without running ads?", "acceptedAnswer": { "@type": "Answer", "text": "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months." } }
+                        { "@type": "Question", "name": "Can I get more leads without running ads?", "acceptedAnswer": { "@type": "Answer", "text": "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months." } },
+                        { "@type": "Question", "name": "How much does a plumber website cost in Australia?", "acceptedAnswer": { "@type": "Answer", "text": "A professional plumber website in Australia typically costs between $1,900 and $7,900+ depending on the number of pages, features, and ongoing support required. Our Package 1 (Trade-Ready Online Setup) starts at $1,900, Package 2 (Local Jobs Engine) is $3,900, and Package 3 (Growth System) starts from $7,900 for a full digital growth setup including SEO, ads management, and an AI receptionist." } },
+                        { "@type": "Question", "name": "What is the best website platform for a plumbing business?", "acceptedAnswer": { "@type": "Answer", "text": "For Australian plumbers, the best website platform depends on your goals. We build custom websites using React and modern frameworks that load fast, rank well on Google, and convert visitors into calls. Unlike WordPress templates, our builds are lean, mobile-first, and designed specifically for trades businesses — with click-to-call, suburb pages, and licence displays built in from the start." } },
+                        { "@type": "Question", "name": "Do I need a separate page for each suburb I work in?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — and it makes a significant difference. Google ranks pages, not websites. If you want to show up for 'plumber Parramatta' and 'plumber Penrith', you need dedicated pages for each suburb. Our Package 2 and 3 include suburb pages built around real local search terms so you capture customers in every area you service, not just your postcode." } }
                     ]
                 })}</script>
             </Helmet>
 
-            {/* Simple Header - Same as before */}
-            <nav className="border-b border-white/10 bg-construction-charcoal/95 backdrop-blur-sm sticky top-0 z-50">
-                <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <a href="/" className="flex items-center gap-3 text-white hover:text-safety-orange transition-colors group">
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                            <span className="text-xs font-black uppercase tracking-widest">Your Trade Partner</span>
-                        </a>
-                        <Badge className="bg-safety-orange/10 text-safety-orange border-safety-orange/20 hover:bg-safety-orange/10 pointer-events-none">
-                            <Wrench className="w-3 h-3 mr-1" />
-                            For Plumbers
-                        </Badge>
-                    </div>
-                </div>
-            </nav>
+            <TradeNavDropdown />
 
             {/* Hero Section - COPIED EXACT STRUCTURE FROM LANDING PAGE */}
             <header className="relative pt-8 pb-24 md:pt-24 md:pb-44 border-b border-white/5 overflow-hidden">
@@ -420,6 +409,106 @@ const PlumbingWebsites = () => {
                 </div>
             </motion.section>
 
+            {/* Plumbing Services Section */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/20"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            Websites Built for <span className="text-safety-orange">Every Plumbing Service</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            We know what homeowners search when they need a plumber. We build pages that match.
+                        </p>
+
+                        <motion.div
+                            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+                            variants={containerVariants}
+                        >
+                            {[
+                                { icon: "🚰", service: "Blocked Drains" },
+                                { icon: "🔥", service: "Hot Water Systems" },
+                                { icon: "🔧", service: "Pipe Repair & Replacement" },
+                                { icon: "🔥", service: "Gas Fitting & Repairs" },
+                                { icon: "🚿", service: "Bathroom Renovations" },
+                                { icon: "🏠", service: "New Home Plumbing" },
+                                { icon: "💧", service: "Leak Detection" },
+                                { icon: "🌧️", service: "Stormwater & Drainage" },
+                                { icon: "🚽", service: "Toilet Repairs" },
+                                { icon: "🔩", service: "Tap & Fixture Installation" },
+                                { icon: "🏭", service: "Commercial Plumbing" },
+                                { icon: "🚨", service: "Emergency Plumbing" }
+                            ].map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    variants={itemVariants}
+                                    className="bg-white/5 p-5 border border-white/5 hover:border-safety-orange/30 transition-all text-center"
+                                >
+                                    <div className="text-3xl mb-3">{item.icon}</div>
+                                    <p className="text-sm font-black uppercase tracking-tight">{item.service}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        <p className="text-center text-white/30 font-bold uppercase tracking-widest text-xs mt-10">
+                            Each service gets its own dedicated page — optimised for local search in your area.
+                        </p>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* Service Areas Section */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            We Help Plumbers Across <span className="text-safety-orange">All of Australia</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            From suburban Brisbane to inner-city Melbourne — your website works in your service area.
+                        </p>
+
+                        <motion.div
+                            className="grid grid-cols-2 md:grid-cols-3 gap-6"
+                            variants={containerVariants}
+                        >
+                            {[
+                                { city: "Sydney", note: "Northern Beaches, Inner West, Western Sydney, Hills District" },
+                                { city: "Melbourne", note: "Eastern Suburbs, South East, Bayside, Northern Suburbs" },
+                                { city: "Brisbane", note: "Northside, Southside, Gold Coast, Logan, Ipswich" },
+                                { city: "Perth", note: "Northern Corridor, Southern Suburbs, Hills, Swan Valley" },
+                                { city: "Adelaide", note: "Hills, Beachside, Northern & Southern Metro" },
+                                { city: "Regional & Rural", note: "Toowoomba, Ballarat, Bendigo, Newcastle, Cairns & more" }
+                            ].map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    variants={itemVariants}
+                                    className="bg-white/5 p-6 border border-white/5 hover:border-safety-orange/30 transition-all"
+                                >
+                                    <h3 className="text-xl font-black uppercase text-safety-orange mb-2">{item.city}</h3>
+                                    <p className="text-xs text-white/50 font-bold">{item.note}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        <p className="text-center text-white/30 font-bold uppercase tracking-widest text-xs mt-10">
+                            Not on this list? We work with plumbers everywhere in Australia — <a href="#contact" className="text-safety-orange hover:underline">get in touch.</a>
+                        </p>
+                    </div>
+                </div>
+            </motion.section>
+
             {/* FAQ Section */}
             <motion.section
                 className="py-24 md:py-32 border-b border-white/5 bg-black/20"
@@ -455,6 +544,18 @@ const PlumbingWebsites = () => {
                                 {
                                     question: "Can I get more leads without running ads?",
                                     answer: "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months."
+                                },
+                                {
+                                    question: "How much does a plumber website cost in Australia?",
+                                    answer: "A professional plumber website in Australia typically costs between $1,900 and $7,900+ depending on the number of pages, features, and ongoing support required. Our Package 1 (Trade-Ready Online Setup) starts at $1,900, Package 2 (Local Jobs Engine) is $3,900, and Package 3 (Growth System) starts from $7,900 for a full digital growth setup including SEO, ads management, and an AI receptionist."
+                                },
+                                {
+                                    question: "What is the best website platform for a plumbing business?",
+                                    answer: "For Australian plumbers, the best website platform depends on your goals. We build custom websites using React and modern frameworks that load fast, rank well on Google, and convert visitors into calls. Unlike WordPress templates, our builds are lean, mobile-first, and designed specifically for trades businesses — with click-to-call, suburb pages, and licence displays built in from the start."
+                                },
+                                {
+                                    question: "Do I need a separate page for each suburb I work in?",
+                                    answer: "Yes — and it makes a significant difference. Google ranks pages, not websites. If you want to show up for 'plumber Parramatta' and 'plumber Penrith', you need dedicated pages for each suburb. Our Package 2 and 3 include suburb pages built around real local search terms so you capture customers in every area you service, not just your postcode."
                                 }
                             ].map((faq, i) => {
                                 const isOpen = openFaqIndex === i;

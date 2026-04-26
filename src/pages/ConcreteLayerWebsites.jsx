@@ -1,10 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle2, Square, ArrowRight, ArrowLeft, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, Square, ArrowRight, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
 import Breadcrumbs from '../components/Breadcrumbs';
+import TradeNavDropdown from '../components/TradeNavDropdown';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 
 const CollapsibleDetail = ({ title, children }) => {
@@ -183,21 +183,7 @@ const ConcreteLayerWebsites = () => {
                 })}</script>
             </Helmet>
 
-            {/* Simple Header - Same as before */}
-            <nav className="border-b border-white/10 bg-construction-charcoal/95 backdrop-blur-sm sticky top-0 z-50">
-                <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <a href="/" className="flex items-center gap-3 text-white hover:text-safety-orange transition-colors group">
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                            <span className="text-xs font-black uppercase tracking-widest">Your Trade Partner</span>
-                        </a>
-                        <Badge className="bg-safety-orange/10 text-safety-orange border-safety-orange/20 hover:bg-safety-orange/10 pointer-events-none">
-                            <Square className="w-3 h-3 mr-1" />
-                            For ConcreteLayers
-                        </Badge>
-                    </div>
-                </div>
-            </nav>
+            <TradeNavDropdown />
 
             {/* Hero Section - COPIED EXACT STRUCTURE FROM LANDING PAGE */}
             <header className="relative pt-8 pb-24 md:pt-24 md:pb-44 border-b border-white/5 overflow-hidden">

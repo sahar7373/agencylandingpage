@@ -1,10 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle2, Home, ArrowRight, ArrowLeft, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, Home, ArrowRight, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
 import Breadcrumbs from '../components/Breadcrumbs';
+import TradeNavDropdown from '../components/TradeNavDropdown';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 
 const CollapsibleDetail = ({ title, children }) => {
@@ -136,14 +136,14 @@ const RooferWebsites = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
             <Helmet>
-                <title>Roofer Website Design Australia | Get More Local Jobs | Your Trade Partner</title>
-                <meta name="description" content="Custom websites built specifically for Australian roofers. Stop missing local jobs. Get a professional site that brings in quality enquiries and builds trust with homeowners." />
+                <title>Roofer Website Design Australia | Websites That Get More Calls | Your Trade Partner</title>
+                <meta name="description" content="We build websites for Australian roofers that rank on Google and turn visitors into calls. Roof repairs, replacements, gutters, storm damage — we know your trade. Clear pricing, 2–4 week turnaround." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/roofer-websites" />
                 <meta name="robots" content="index, follow" />
 
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="Roofer Website Design Australia | Your Trade Partner" />
-                <meta property="og:description" content="Custom websites for Australian roofers. Professional sites that convert local enquiries into jobs." />
+                <meta property="og:description" content="We build websites for Australian roofers that rank on Google and turn visitors into calls." />
                 <meta property="og:url" content="https://yourtradepartner.com.au/roofer-websites" />
                 <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
                 <meta property="og:image:width" content="1200" />
@@ -178,26 +178,15 @@ const RooferWebsites = () => {
                         { "@type": "Question", "name": "Will my roofing website show up on Google?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every website we build is optimised for local search from day one. This includes proper page structure, fast loading speeds, mobile responsiveness, and suburb-specific service pages. For Package 3, we also implement advanced local SEO and AI visibility strategies to help you rank higher for 'roofer near me' searches." } },
                         { "@type": "Question", "name": "Do I need to provide content and photos?", "acceptedAnswer": { "@type": "Answer", "text": "We make it easy. You provide your business details, service info, and any existing photos. We'll handle the rest—writing professional copy, sourcing additional images if needed, and structuring everything for maximum impact. If you have great project photos, even better." } },
                         { "@type": "Question", "name": "What if I need changes after the website is live?", "acceptedAnswer": { "@type": "Answer", "text": "That's included. Package 2 and 3 both include ongoing updates and support within scope. Need to add a new service? Update your service area? Change a phone number? We handle it. Major redesigns or additional pages may be quoted separately." } },
-                        { "@type": "Question", "name": "Can I get more leads without running ads?", "acceptedAnswer": { "@type": "Answer", "text": "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months." } }
+                        { "@type": "Question", "name": "Can I get more leads without running ads?", "acceptedAnswer": { "@type": "Answer", "text": "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months." } },
+                        { "@type": "Question", "name": "How much does a roofer website cost in Australia?", "acceptedAnswer": { "@type": "Answer", "text": "A professional roofing website in Australia typically costs between $1,900 and $7,900+ depending on the package and complexity. Our Package 1 starts at $1,900 for a solid trade-ready presence, while Package 2 at $3,900 includes a full local SEO setup and suburb pages. When you consider that a single roofing job averages $3,000–$8,000, the website pays for itself quickly." } },
+                        { "@type": "Question", "name": "What should a roofing website include?", "acceptedAnswer": { "@type": "Answer", "text": "A roofing website should prominently display your licence and insurance details, photos of completed projects (especially after storm damage repairs), service area information, clear contact details, and customer testimonials. Emergency contact options are essential since many homeowners contact roofers urgently after storm damage." } },
+                        { "@type": "Question", "name": "Do roofers need suburb pages on their website?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — suburb pages are one of the highest-ROI additions to a roofing website. When someone searches 'roofer in [suburb]' Google looks for a page specifically about that area. Suburb pages signal to Google that you actively serve that location, improving your chances of appearing in local search results." } }
                     ]
                 })}</script>
             </Helmet>
 
-            {/* Simple Header - Same as before */}
-            <nav className="border-b border-white/10 bg-construction-charcoal/95 backdrop-blur-sm sticky top-0 z-50">
-                <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <a href="/" className="flex items-center gap-3 text-white hover:text-safety-orange transition-colors group">
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                            <span className="text-xs font-black uppercase tracking-widest">Your Trade Partner</span>
-                        </a>
-                        <Badge className="bg-safety-orange/10 text-safety-orange border-safety-orange/20 hover:bg-safety-orange/10 pointer-events-none">
-                            <Home className="w-3 h-3 mr-1" />
-                            For Roofers
-                        </Badge>
-                    </div>
-                </div>
-            </nav>
+            <TradeNavDropdown />
 
             {/* Hero Section - COPIED EXACT STRUCTURE FROM LANDING PAGE */}
             <header className="relative pt-8 pb-24 md:pt-24 md:pb-44 border-b border-white/5 overflow-hidden">
@@ -420,6 +409,72 @@ const RooferWebsites = () => {
                 </div>
             </motion.section>
 
+            {/* Roofing Services Grid */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            Websites Built for Every <span className="text-safety-orange">Roofing Service</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            We know the roofing trade — your website will speak your customers' language.
+                        </p>
+                        <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" variants={containerVariants}>
+                            {[
+                                "Roof Repairs", "Roof Replacements", "Metal Roofing", "Tile Roofing",
+                                "Colorbond Roofing", "Gutters & Downpipes", "Roof Inspections", "Storm Damage Repairs",
+                                "Skylights & Ventilation", "New Home Roofing", "Commercial Roofing", "Emergency Roofing"
+                            ].map((service, i) => (
+                                <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 p-4 text-center hover:border-safety-orange/30 transition-all">
+                                    <p className="text-sm font-black uppercase tracking-wide text-white/80">{service}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* Service Areas */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/20"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            We Help Roofers <span className="text-safety-orange">Across All of Australia</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            Whether you're in a major city or regional area — we build websites that win local work.
+                        </p>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {[
+                                { city: "Sydney", suburbs: "Parramatta, Chatswood, Penrith, Liverpool, Bondi" },
+                                { city: "Melbourne", suburbs: "Dandenong, Frankston, Geelong, Ringwood, Werribee" },
+                                { city: "Brisbane", suburbs: "Ipswich, Gold Coast, Sunshine Coast, Logan, Redlands" },
+                                { city: "Perth", suburbs: "Fremantle, Joondalup, Rockingham, Mandurah, Armadale" },
+                                { city: "Adelaide", suburbs: "Salisbury, Port Adelaide, Marion, Onkaparinga, Tea Tree Gully" },
+                                { city: "Regional & Rural", suburbs: "Cairns, Toowoomba, Ballarat, Bendigo, Canberra, Darwin & more" }
+                            ].map((area, i) => (
+                                <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 p-6 hover:border-safety-orange/30 transition-all">
+                                    <h3 className="text-xl font-black uppercase text-safety-orange mb-3">{area.city}</h3>
+                                    <p className="text-sm text-white/60 font-bold leading-relaxed">{area.suburbs}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
             {/* FAQ Section */}
             <motion.section
                 className="py-24 md:py-32 border-b border-white/5 bg-black/20"
@@ -455,6 +510,18 @@ const RooferWebsites = () => {
                                 {
                                     question: "Can I get more leads without running ads?",
                                     answer: "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months."
+                                },
+                                {
+                                    question: "How much does a roofer website cost in Australia?",
+                                    answer: "A professional roofing website in Australia typically costs between $1,900 and $7,900+ depending on the package and complexity. Our Package 1 starts at $1,900 for a solid trade-ready presence, while Package 2 at $3,900 includes a full local SEO setup and suburb pages. When you consider that a single roofing job averages $3,000–$8,000, the website pays for itself quickly."
+                                },
+                                {
+                                    question: "What should a roofing website include?",
+                                    answer: "A roofing website should prominently display your licence and insurance details, photos of completed projects (especially after storm damage repairs), service area information, clear contact details, and customer testimonials. Emergency contact options are essential since many homeowners contact roofers urgently after storm damage."
+                                },
+                                {
+                                    question: "Do roofers need suburb pages on their website?",
+                                    answer: "Yes — suburb pages are one of the highest-ROI additions to a roofing website. When someone searches 'roofer in [suburb]' Google looks for a page specifically about that area. Suburb pages signal to Google that you actively serve that location, improving your chances of appearing in local search results."
                                 }
                             ].map((faq, i) => {
                                 const isOpen = openFaqIndex === i;

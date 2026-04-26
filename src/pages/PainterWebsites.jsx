@@ -1,10 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle2, PaintBucket, ArrowRight, ArrowLeft, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, PaintBucket, ArrowRight, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
-import { Badge } from '../components/ui/badge';
 import Breadcrumbs from '../components/Breadcrumbs';
+import TradeNavDropdown from '../components/TradeNavDropdown';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 
 const CollapsibleDetail = ({ title, children }) => {
@@ -136,14 +136,14 @@ const PainterWebsites = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
             <Helmet>
-                <title>Painter Website Design Australia | Get More Local Jobs | Your Trade Partner</title>
-                <meta name="description" content="Custom websites built specifically for Australian painters. Stop missing local jobs. Get a professional site that brings in quality enquiries and builds trust with homeowners." />
+                <title>Painter Website Design Australia | Websites That Get More Calls | Your Trade Partner</title>
+                <meta name="description" content="We build websites for Australian painters that rank on Google and turn visitors into calls. Interior painting, exterior, commercial, decorating — we know your trade. Clear pricing, 2–4 week turnaround." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/painter-websites" />
                 <meta name="robots" content="index, follow" />
 
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="Painter Website Design Australia | Your Trade Partner" />
-                <meta property="og:description" content="Custom websites for Australian painters. Professional sites that convert local enquiries into jobs." />
+                <meta property="og:description" content="We build websites for Australian painters that rank on Google and turn visitors into calls." />
                 <meta property="og:url" content="https://yourtradepartner.com.au/painter-websites" />
                 <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
                 <meta property="og:image:width" content="1200" />
@@ -165,7 +165,7 @@ const PainterWebsites = () => {
                             },
                             "audience": {
                                 "@type": "Audience",
-                                "name": "Painters and Electrical Businesses in Australia"
+                                "name": "Painters and Painting Businesses in Australia"
                             }
                         }
                     `}
@@ -178,26 +178,15 @@ const PainterWebsites = () => {
                         { "@type": "Question", "name": "Will my painting website show up on Google?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Every website we build is optimised for local search from day one. This includes proper page structure, fast loading speeds, mobile responsiveness, and suburb-specific service pages. For Package 3, we also implement advanced local SEO and AI visibility strategies to help you rank higher for 'painter near me' searches." } },
                         { "@type": "Question", "name": "Do I need to provide content and photos?", "acceptedAnswer": { "@type": "Answer", "text": "We make it easy. You provide your business details, service info, and any existing photos. We'll handle the rest—writing professional copy, sourcing additional images if needed, and structuring everything for maximum impact. If you have great project photos, even better." } },
                         { "@type": "Question", "name": "What if I need changes after the website is live?", "acceptedAnswer": { "@type": "Answer", "text": "That's included. Package 2 and 3 both include ongoing updates and support within scope. Need to add a new service? Update your service area? Change a phone number? We handle it. Major redesigns or additional pages may be quoted separately." } },
-                        { "@type": "Question", "name": "Can I get more leads without running ads?", "acceptedAnswer": { "@type": "Answer", "text": "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months." } }
+                        { "@type": "Question", "name": "Can I get more leads without running ads?", "acceptedAnswer": { "@type": "Answer", "text": "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months." } },
+                        { "@type": "Question", "name": "How much does a painter website cost in Australia?", "acceptedAnswer": { "@type": "Answer", "text": "A professional painting website in Australia typically costs between $1,900 and $7,900+ depending on the package. Our Package 1 starts at $1,900 for a trade-ready presence, while Package 2 at $3,900 includes full local SEO and suburb pages. With interior repaints averaging $2,000–$5,000 and exterior jobs often $4,000–$10,000, a single extra job from your website pays for the whole setup." } },
+                        { "@type": "Question", "name": "What should a painting website include?", "acceptedAnswer": { "@type": "Answer", "text": "A painting website should showcase your work with high-quality before-and-after photos, list your specific painting services (interior, exterior, commercial), display your licence number and insurance details, and make it easy for homeowners to request a quote. Colour consultation and portfolio sections help position you above competitors." } },
+                        { "@type": "Question", "name": "Do painters need suburb pages on their website?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — suburb pages are highly effective for painting businesses. When homeowners search 'painter in [suburb]' they want someone local. Suburb-specific pages signal to Google that you actively work in that area, improving your local search rankings and making it easier for nearby customers to find you." } }
                     ]
                 })}</script>
             </Helmet>
 
-            {/* Simple Header - Same as before */}
-            <nav className="border-b border-white/10 bg-construction-charcoal/95 backdrop-blur-sm sticky top-0 z-50">
-                <div className="container mx-auto px-6 py-4">
-                    <div className="flex items-center justify-between">
-                        <a href="/" className="flex items-center gap-3 text-white hover:text-safety-orange transition-colors group">
-                            <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                            <span className="text-xs font-black uppercase tracking-widest">Your Trade Partner</span>
-                        </a>
-                        <Badge className="bg-safety-orange/10 text-safety-orange border-safety-orange/20 hover:bg-safety-orange/10 pointer-events-none">
-                            <PaintBucket className="w-3 h-3 mr-1" />
-                            For Painters
-                        </Badge>
-                    </div>
-                </div>
-            </nav>
+            <TradeNavDropdown />
 
             {/* Hero Section - COPIED EXACT STRUCTURE FROM LANDING PAGE */}
             <header className="relative pt-8 pb-24 md:pt-24 md:pb-44 border-b border-white/5 overflow-hidden">
@@ -420,6 +409,72 @@ const PainterWebsites = () => {
                 </div>
             </motion.section>
 
+            {/* Painting Services Grid */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            Websites Built for Every <span className="text-safety-orange">Painting Service</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            We know the painting trade — your website will speak your customers' language.
+                        </p>
+                        <motion.div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" variants={containerVariants}>
+                            {[
+                                "Interior Painting", "Exterior Painting", "Commercial Painting", "Residential Painting",
+                                "Roof Painting", "Feature Walls", "Texture Coating", "Wallpaper Installation",
+                                "Deck & Fence Staining", "New Build Painting", "Industrial Painting", "Line Marking"
+                            ].map((service, i) => (
+                                <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 p-4 text-center hover:border-safety-orange/30 transition-all">
+                                    <p className="text-sm font-black uppercase tracking-wide text-white/80">{service}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* Service Areas */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/20"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            We Help Painters <span className="text-safety-orange">Across All of Australia</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            Whether you're in a major city or regional area — we build websites that win local work.
+                        </p>
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {[
+                                { city: "Sydney", suburbs: "Parramatta, Chatswood, Penrith, Liverpool, Bondi" },
+                                { city: "Melbourne", suburbs: "Dandenong, Frankston, Geelong, Ringwood, Werribee" },
+                                { city: "Brisbane", suburbs: "Ipswich, Gold Coast, Sunshine Coast, Logan, Redlands" },
+                                { city: "Perth", suburbs: "Fremantle, Joondalup, Rockingham, Mandurah, Armadale" },
+                                { city: "Adelaide", suburbs: "Salisbury, Port Adelaide, Marion, Onkaparinga, Tea Tree Gully" },
+                                { city: "Regional & Rural", suburbs: "Cairns, Toowoomba, Ballarat, Bendigo, Canberra, Darwin & more" }
+                            ].map((area, i) => (
+                                <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 p-6 hover:border-safety-orange/30 transition-all">
+                                    <h3 className="text-xl font-black uppercase text-safety-orange mb-3">{area.city}</h3>
+                                    <p className="text-sm text-white/60 font-bold leading-relaxed">{area.suburbs}</p>
+                                </motion.div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
             {/* FAQ Section */}
             <motion.section
                 className="py-24 md:py-32 border-b border-white/5 bg-black/20"
@@ -437,7 +492,7 @@ const PainterWebsites = () => {
                         <motion.div className="space-y-6" variants={containerVariants}>
                             {[
                                 {
-                                    question: "How long does it take to build an painter's website?",
+                                    question: "How long does it take to build a painter's website?",
                                     answer: "Depending on the package, most painter websites are live within 2-4 weeks. The Local Jobs Engine (Package 2) typically takes 2-3 weeks, while the Growth System (Package 3) with advanced features can take 3-4 weeks. We'll give you a clear timeline during the scoping call."
                                 },
                                 {
@@ -455,6 +510,18 @@ const PainterWebsites = () => {
                                 {
                                     question: "Can I get more leads without running ads?",
                                     answer: "Organic leads are possible, but they take time and consistent effort beyond just having a website. SEO, content updates, and Google Business Profile management all require ongoing work—and even then, results aren't guaranteed. If you want predictable, scalable lead flow without waiting months, ads are the faster path. Package 3 includes Google & Facebook Ads management with a $89.99 free ad credit, so you can start getting calls within days, not months."
+                                },
+                                {
+                                    question: "How much does a painter website cost in Australia?",
+                                    answer: "A professional painting website in Australia typically costs between $1,900 and $7,900+ depending on the package. Our Package 1 starts at $1,900 for a trade-ready presence, while Package 2 at $3,900 includes full local SEO and suburb pages. With interior repaints averaging $2,000–$5,000 and exterior jobs often $4,000–$10,000, a single extra job from your website pays for the whole setup."
+                                },
+                                {
+                                    question: "What should a painting website include?",
+                                    answer: "A painting website should showcase your work with high-quality before-and-after photos, list your specific painting services (interior, exterior, commercial), display your licence number and insurance details, and make it easy for homeowners to request a quote. Colour consultation and portfolio sections help position you above competitors."
+                                },
+                                {
+                                    question: "Do painters need suburb pages on their website?",
+                                    answer: "Yes — suburb pages are highly effective for painting businesses. When homeowners search 'painter in [suburb]' they want someone local. Suburb-specific pages signal to Google that you actively work in that area, improving your local search rankings and making it easier for nearby customers to find you."
                                 }
                             ].map((faq, i) => {
                                 const isOpen = openFaqIndex === i;
@@ -695,7 +762,7 @@ const PainterWebsites = () => {
                                 </CardHeader>
                                 <div className={`${expandedPackages.includes(1) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
                                     <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
-                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR ELECTRICIANS WHO WANT TO LOOK PROFESSIONAL AND STOP LOSING JOBS DUE TO WEAK ONLINE PRESENCE.</p>
+                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR PAINTERS WHO WANT TO LOOK PROFESSIONAL AND STOP LOSING JOBS DUE TO WEAK ONLINE PRESENCE.</p>
 
                                         <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
                                             <div className="flex items-center gap-2 mb-2">
@@ -919,7 +986,7 @@ const PainterWebsites = () => {
                                 </CardHeader>
                                 <div className={`${expandedPackages.includes(2) ? 'block' : 'hidden'} md:block flex-grow flex flex-col`}>
                                     <CardContent className="p-5 md:p-6 space-y-4 flex-grow">
-                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR ELECTRICIANS WHO WANT STEADY ENQUIRIES WITHOUT ADDING ADMIN OR MISSED CALLS.</p>
+                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-4">FOR PAINTERS WHO WANT STEADY ENQUIRIES WITHOUT ADDING ADMIN OR MISSED CALLS.</p>
 
                                         <div className="bg-white/5 p-4 border border-white/5 rounded-sm">
                                             <div className="flex items-center gap-2 mb-2">
@@ -994,7 +1061,7 @@ const PainterWebsites = () => {
                         <div className="max-w-xl mx-auto">
                             <div className="mb-10">
                                 <h2 className="text-3xl md:text-5xl font-black mb-4 uppercase italic leading-none tracking-tighter text-white">
-                                    Ready To Get More <br /> <span className="text-safety-orange">Quality Electrical Jobs?</span>
+                                    Ready To Get More <br /> <span className="text-safety-orange">Quality Painting Jobs?</span>
                                 </h2>
                             </div>
 

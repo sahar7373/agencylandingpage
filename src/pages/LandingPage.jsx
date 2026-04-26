@@ -931,20 +931,20 @@ function LandingPage() {
                             <span className="text-safety-orange">Missed Calls & Slow Response</span>
                         </motion.h1>
 
-                        <motion.p className="text-sm md:text-base text-safety-orange/90 font-black uppercase tracking-[0.18em] mb-6 max-w-3xl mx-auto" variants={itemVariants}>
-                            Tradie websites and digital marketing for Australian tradies — plumbers, electricians, roofers, builders and more.
-                        </motion.p>
-
-                        {/* Sub Headline */}
-                        <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
+                        <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-6 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
                             Whether they come from Google, referrals, or word of mouth — we make sure every enquiry is captured, responded to, and converted properly.
                         </motion.p>
 
+                        {/* Sub Headline */}
+                        <motion.p className="text-sm md:text-base text-safety-orange/90 font-black uppercase tracking-[0.18em] mb-10 max-w-3xl mx-auto" variants={itemVariants}>
+                            Tradie websites and digital marketing for Australian tradies — plumbers, electricians, roofers, builders and more.
+                        </motion.p>
+
                         {/* Trust Position Strip */}
-                        <motion.div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 mb-10 rounded-full md:text-sm backdrop-blur-sm" variants={itemVariants}>
+                        <motion.div className="inline-flex items-center gap-3 bg-safety-orange/15 border border-safety-orange/60 px-6 py-4 mb-10 rounded-full text-sm font-bold backdrop-blur-sm shadow-[0_0_24px_rgba(234,88,12,0.25)]" variants={itemVariants}>
                             <ShieldCheck className="text-safety-orange w-5 h-5 flex-shrink-0" />
-                            <p className="font-semibold text-white/80">
-                                Built by someone actively working inside the construction industry — <span className="text-white/40">not a marketing agency guessing.</span>
+                            <p className="font-bold text-white">
+                                Built by someone actively working inside the construction industry — <span className="text-safety-orange">not a marketing agency guessing.</span>
                             </p>
                         </motion.div>
 

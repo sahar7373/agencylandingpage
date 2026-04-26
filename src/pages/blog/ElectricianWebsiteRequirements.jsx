@@ -28,19 +28,19 @@ const ElectricianWebsiteRequirements = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>What Electricians Need on Their Website (That Plumbers Don't) | Trade-Specific Requirements</title>
-                <meta name="description" content="Every Australian trade has specific trust signals and licensing requirements. Generic websites miss these details—and lose customers because of it. Complete guide for electricians." />
-                <meta name="keywords" content="electrician website, electrical contractor, Australian electrician, trade website, licensing requirements, electrical safety, trust signals" />
+                <title>Electrician Website Checklist: 7 Must-Haves to Get More Calls in Australia</title>
+                <meta name="description" content="Is your electrician website losing jobs to competitors? See the 7 trust signals, licence displays, and page elements Australian homeowners look for before they call — with real examples." />
+                <meta name="keywords" content="electrician website checklist, electrician website requirements, Australian electrician website, electrical contractor website, trade website trust signals" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/electrician-website-requirements" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="What Electricians Need on Their Website (That Plumbers Don't)" />
-                <meta property="og:description" content="Trade-specific website requirements for Australian electricians." />
+                <meta property="og:title" content="Electrician Website Checklist: 7 Must-Haves to Get More Calls in Australia" />
+                <meta property="og:description" content="Is your electrician website losing jobs to competitors? See the 7 trust signals and page elements Australian homeowners look for before they call." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "BlogPosting",
-                    "headline": "What Electricians Need on Their Website (That Plumbers Don't) | Trade-Specific Requirements",
-                    "description": "Every Australian trade has specific trust signals and licensing requirements. Generic websites miss these details—and lose customers because of it. Complete guide for electricians.",
+                    "headline": "Electrician Website Checklist: 7 Must-Haves to Get More Calls in Australia",
+                    "description": "Is your electrician website losing jobs to competitors? See the 7 trust signals, licence displays, and page elements Australian homeowners look for before they call — with real examples.",
                     "url": "https://yourtradepartner.com.au/resources/electrician-website-requirements",
                     "datePublished": "2026-03-18",
                     "dateModified": "2026-03-18",
