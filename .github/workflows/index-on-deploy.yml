@@ -1,0 +1,46 @@
+name: Index pages after Cloudflare deploy
+
+# Fires when Cloudflare Pages posts a deployment_status back to GitHub.
+# Only runs when the Production deployment succeeds.
+on:
+  deployment_status:
+
+jobs:
+  index:
+    name: Submit sitemap URLs to Google Indexing API
+    if: |
+      github.event.deployment_status.state == 'success' &&
+      (
+        github.event.deployment_status.environment == 'Production' ||
+        github.event.deployment_status.environment == 'production'
+      )
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install --quiet google-auth google-auth-oauthlib requests
+
+      - name: Write credentials from secrets
+        run: |
+          mkdir -p ~/keys
+          printf '%s' '${{ secrets.INDEXING_CLIENT_SECRET }}' > ~/keys/indexing_client_secret.json
+          printf '%s' '${{ secrets.INDEXING_TOKEN }}'         > ~/keys/indexing_token.json
+
+      - name: Run indexing script
+        run: python scripts/index_pages.py
+
+      - name: Upload indexing log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: indexing-log-${{ github.run_number }}
+          path: scripts/indexing_log.json
+          retention-days: 30

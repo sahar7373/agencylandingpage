@@ -23,3 +23,15 @@ dist-ssr
 *.sln
 *.sw?
 .env
+
+# Google service account keys — never commit
+*.json
+!package.json
+!tsconfig*.json
+!vite.config*.json
+!jsconfig.json
+!components.json
+
+# Script output logs
+scripts/indexing_log.json
+scripts/gsc_report.json
