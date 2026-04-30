@@ -830,6 +830,7 @@ function LandingPage() {
                         <a href="#free-audit" onClick={() => handleNavClick("Free Audit")} className="hover:text-white transition-colors">Free Audit</a>
                         <a href="#packages" onClick={() => handleNavClick("Packages")} className="hover:text-white transition-colors">Packages</a>
                         <a href="/resources" className="hover:text-white transition-colors">Free Resources</a>
+                        <a href="/automation" className="text-safety-orange/80 hover:text-safety-orange transition-colors">AI Automation</a>
                         <div
                             className="relative"
                             onMouseEnter={() => setIsTradesDropdownOpen(true)}
@@ -880,6 +881,7 @@ function LandingPage() {
                             <a href="#free-audit" onClick={() => { setIsMenuOpen(false); handleNavClick("Free Audit Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Free Audit</a>
                             <a href="#packages" onClick={() => { setIsMenuOpen(false); handleNavClick("Packages Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Packages</a>
                             <a href="/resources" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Free Resources</a>
+                            <a href="/automation" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-safety-orange hover:text-safety-orange-hover transition-colors">AI Automation ↗</a>
                             <div>
                                 <button
                                     onClick={() => setIsTradesMobileOpen(!isTradesMobileOpen)}
@@ -989,6 +991,36 @@ function LandingPage() {
                     </motion.div>
                 </div>
             </header>
+
+            {/* AUTOMATION TEASER STRIP */}
+            <motion.section
+                className="py-10 border-b border-white/5 bg-safety-orange/5"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-6 max-w-5xl mx-auto">
+                        <div className="flex flex-col gap-1 text-center md:text-left">
+                            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-safety-orange/70">New Service</p>
+                            <p className="text-lg md:text-xl font-black uppercase text-white">
+                                AI Automation for Australian Trades
+                            </p>
+                            <p className="text-white/50 text-sm max-w-xl">
+                                We connect ServiceM8, SafetyCulture, Fergus, Prime, and Xero so your business runs without manual effort.
+                            </p>
+                        </div>
+                        <a
+                            href="/automation"
+                            className="flex-shrink-0 inline-flex items-center gap-2 bg-safety-orange hover:bg-safety-orange-hover text-white font-black uppercase tracking-widest text-xs px-6 py-3 transition-colors"
+                        >
+                            See How It Works
+                            <ArrowRight className="w-4 h-4" />
+                        </a>
+                    </div>
+                </div>
+            </motion.section>
 
             {/* 2. PROBLEM AGITATION SECTION */}
             <motion.section
