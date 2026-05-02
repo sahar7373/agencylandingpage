@@ -1,10 +1,10 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { Hammer, ArrowRight, CheckCircle2, Zap, ChevronDown, Menu, X } from 'lucide-react'
+import { Hammer, ArrowRight, CheckCircle2, Zap, Menu, X } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { AnimatedBeam } from '@/components/ui/animated-beam'
+import { MarqueeLogoScroller } from '@/components/ui/marquee-logo-scroller'
 
 // ─── Logo Node ────────────────────────────────────────────────────────────────
 // Each node is a circle with a logo image (or placeholder until logos are provided).
@@ -27,105 +27,6 @@ const LogoNode = React.forwardRef(({ label, src, size = 'md' }, ref) => {
   )
 })
 LogoNode.displayName = 'LogoNode'
-
-// ─── Animated Connection Diagram ─────────────────────────────────────────────
-function ConnectionDiagram() {
-  const containerRef = useRef(null)
-  const centerRef = useRef(null)
-
-  // Left column — inputs
-  const serviceM8Ref = useRef(null)
-  const safetyCultureRef = useRef(null)
-  const fergusRef = useRef(null)
-  const primeRef = useRef(null)
-
-  // Right column — inputs
-  const xeroRef = useRef(null)
-  const gmailRef = useRef(null)
-  const gbpRef = useRef(null)
-
-  // Beam configs: slight curvature variation so they fan out naturally
-  const leftBeams = [
-    { ref: serviceM8Ref, curvature: 60, delay: 0, duration: 5 },
-    { ref: safetyCultureRef, curvature: 20, delay: 0.8, duration: 4.5 },
-    { ref: fergusRef, curvature: -20, delay: 1.4, duration: 5.2 },
-    { ref: primeRef, curvature: -60, delay: 0.4, duration: 4.8 },
-  ]
-  const rightBeams = [
-    { ref: xeroRef, curvature: -60, delay: 1.0, duration: 4.6 },
-    { ref: gmailRef, curvature: -20, delay: 0.2, duration: 5.1 },
-    { ref: gbpRef, curvature: 20, delay: 1.6, duration: 4.3 },
-  ]
-
-  return (
-    <div
-      ref={containerRef}
-      className="relative flex items-center justify-between gap-4 w-full max-w-2xl mx-auto py-8 px-4"
-      style={{ minHeight: 280 }}
-    >
-      {/* Left column */}
-      <div className="flex flex-col gap-5 z-10">
-        {/* REPLACE src with actual logo files once provided */}
-        {/* e.g. src="/logos/servicem8.png" */}
-        <LogoNode ref={serviceM8Ref} label="ServiceM8" />
-        <LogoNode ref={safetyCultureRef} label="Safety Culture" />
-        <LogoNode ref={fergusRef} label="Fergus" />
-        <LogoNode ref={primeRef} label="Prime Eco" />
-      </div>
-
-      {/* Centre hub */}
-      <div className="z-10 flex flex-col items-center gap-2">
-        <div
-          ref={centerRef}
-          className="w-20 h-20 rounded-full bg-safety-orange/20 border-2 border-safety-orange flex items-center justify-center shadow-[0_0_32px_rgba(255,107,0,0.4)]"
-        >
-          <Hammer className="w-8 h-8 text-safety-orange" />
-        </div>
-        <span className="text-[9px] font-black uppercase tracking-widest text-safety-orange/70">Your Workflow</span>
-      </div>
-
-      {/* Right column */}
-      <div className="flex flex-col gap-5 z-10">
-        {/* REPLACE src with actual logo files once provided */}
-        {/* e.g. src="/logos/xero.png" */}
-        <LogoNode ref={xeroRef} label="Xero" />
-        <LogoNode ref={gmailRef} label="Gmail / Outlook" />
-        <LogoNode ref={gbpRef} label="Google Business" />
-      </div>
-
-      {/* Animated beams — left to centre */}
-      {leftBeams.map((b, i) => (
-        <AnimatedBeam
-          key={`left-${i}`}
-          containerRef={containerRef}
-          fromRef={b.ref}
-          toRef={centerRef}
-          curvature={b.curvature}
-          delay={b.delay}
-          duration={b.duration}
-          gradientStartColor="#ff6b00"
-          gradientStopColor="#ffd700"
-        />
-      ))}
-
-      {/* Animated beams — right to centre (reverse direction) */}
-      {rightBeams.map((b, i) => (
-        <AnimatedBeam
-          key={`right-${i}`}
-          containerRef={containerRef}
-          fromRef={b.ref}
-          toRef={centerRef}
-          curvature={b.curvature}
-          delay={b.delay}
-          duration={b.duration}
-          reverse
-          gradientStartColor="#ff6b00"
-          gradientStopColor="#ffd700"
-        />
-      ))}
-    </div>
-  )
-}
 
 // ─── Software Section ─────────────────────────────────────────────────────────
 function SoftwareSection({ id, title, label, description, items, delay = 0 }) {
@@ -160,7 +61,99 @@ function SoftwareSection({ id, title, label, description, items, delay = 0 }) {
 // ─── Page ─────────────────────────────────────────────────────────────────────
 export default function AutomationPage() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
-  const shouldReduceMotion = useReducedMotion()
+
+  const toolsData = [
+    {
+      name: 'ServiceM8',
+      src: '/logos/servicem8logo.png',
+      gradient: { from: '#00A651', to: '#006B35' },
+      bullets: [
+        'Emails auto-create job cards — zero manual entry',
+        'Job completion triggers invoices & client follow-ups',
+        'Completed photos post to Google Business Profile',
+      ],
+    },
+    {
+      name: 'SafetyCulture',
+      src: '/logos/safetyculturelogo.webp',
+      gradient: { from: '#00B5AD', to: '#006B66' },
+      bullets: [
+        'Inspections auto-generate compliance reports',
+        'Docs distributed to stakeholders instantly',
+        'Audit trails maintained without manual follow-up',
+      ],
+    },
+    {
+      name: 'Fergus',
+      src: '/logos/Ferguslogo.png',
+      gradient: { from: '#1B5FBB', to: '#0D3575' },
+      bullets: [
+        'Auto-dispatch jobs by location & availability',
+        'Quote accepted → project created, no double entry',
+        'Real-time notifications to clients & subs',
+      ],
+    },
+    {
+      name: 'Prime',
+      src: '/logos/primeecosystemlogo.png',
+      gradient: { from: '#2E1065', to: '#0A0220' },
+      bullets: [
+        'Real-time data sync across connected platforms',
+        'Cost codes & budgets update without manual input',
+        'Document control flows through project stages',
+      ],
+    },
+    {
+      name: 'Xero',
+      src: '/logos/Xero_software_logo.svg.png',
+      gradient: { from: '#13B5EA', to: '#0877A3' },
+      bullets: [
+        'Invoices sync automatically from ServiceM8 & Fergus',
+        'Expenses reconciled without manual entry',
+        'Bank feeds matched and coded automatically',
+      ],
+    },
+    {
+      name: 'QuickBooks',
+      src: '/logos/quickbooklogo.svg',
+      gradient: { from: '#2CA01C', to: '#1A6011' },
+      bullets: [
+        'Invoices and expenses sync without manual entry',
+        'Payroll data flows in automatically each period',
+        'Real-time P&L always current across your jobs',
+      ],
+    },
+    {
+      name: 'Gmail',
+      src: '/logos/gmaillogo.png',
+      gradient: { from: '#EA4335', to: '#961F15' },
+      bullets: [
+        'Inbound enquiries become job cards automatically',
+        'Automated replies sent on job status changes',
+        'Follow-up sequences triggered without action',
+      ],
+    },
+    {
+      name: 'Outlook',
+      src: '/logos/outlooklogo.png',
+      gradient: { from: '#0078D4', to: '#004A8C' },
+      bullets: [
+        'Inbound enquiries become job cards automatically',
+        'Automated replies sent on job status changes',
+        'Follow-up sequences triggered without action',
+      ],
+    },
+    {
+      name: 'Google Business',
+      src: '/logos/gbplogo.jpeg',
+      gradient: { from: '#4285F4', to: '#1A56C4' },
+      bullets: [
+        'Completed job photos posted automatically',
+        'Review requests triggered after job completion',
+        'Profile kept current without manual updates',
+      ],
+    },
+  ]
 
   const sectionData = [
     {
@@ -304,14 +297,6 @@ export default function AutomationPage() {
               Built for Australian trades. Ready to deploy.
             </p>
 
-            {/* Animated connection diagram */}
-            <div className="bg-white/3 border border-white/8 rounded-2xl p-4 md:p-8 mb-8">
-              <ConnectionDiagram />
-              <p className="text-xs text-white/30 font-bold uppercase tracking-[0.2em] mt-2">
-                We connect the tools your business already uses
-              </p>
-            </div>
-
             <Button
               asChild
               className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-10 py-6 text-base md:text-lg font-black uppercase tracking-widest shadow-2xl shadow-safety-orange/30 group"
@@ -328,9 +313,49 @@ export default function AutomationPage() {
         </div>
       </header>
 
+      {/* ── Tools Marquee ── */}
+      <motion.div
+        className="relative py-20 overflow-hidden bg-white"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
+      >
+        {/* Subtle warm tint */}
+        <div
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse 80% 50% at 50% 100%, rgba(255,107,0,0.06) 0%, transparent 70%)',
+          }}
+        />
+
+        {/* Section heading */}
+        <div className="relative z-10 container mx-auto px-6 max-w-5xl mb-12 text-center">
+          <div className="inline-flex items-center gap-2.5 bg-safety-orange/10 border border-safety-orange/25 rounded-full px-5 py-2 mb-6">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-safety-orange opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-safety-orange" />
+            </span>
+            <span className="text-[11px] font-black uppercase tracking-[0.25em] text-safety-orange">Tools We Automate</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-black uppercase text-black leading-[1.05] tracking-tight mb-4">
+            Every app you use —<br className="hidden sm:block" /> running on autopilot.
+          </h2>
+          <p className="text-black/45 text-lg max-w-lg mx-auto leading-relaxed">
+            Hover any tool to see what we automate for you.
+          </p>
+        </div>
+
+        <MarqueeLogoScroller
+          logos={toolsData}
+          speed="normal"
+          lightBg
+          className="relative z-10"
+        />
+      </motion.div>
+
       {/* ── Software Sections ── */}
       <div className="bg-black/10">
-        {sectionData.map((s, i) => (
+        {sectionData.map((s) => (
           <SoftwareSection key={s.id} {...s} delay={0} />
         ))}
       </div>
