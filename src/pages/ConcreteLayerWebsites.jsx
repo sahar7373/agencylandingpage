@@ -6,6 +6,7 @@ import { Button } from '../components/ui/button';
 import Breadcrumbs from '../components/Breadcrumbs';
 import TradeNavDropdown from '../components/TradeNavDropdown';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
+import { GOOGLE_SHEET_URL } from '../config';
 
 const CollapsibleDetail = ({ title, children }) => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -118,8 +119,23 @@ const ConcreteLayerWebsites = () => {
 
         setFormStatus('submitting');
 
-        // Simulate submission (replace with actual submission logic)
-        setTimeout(() => {
+        try {
+            await fetch(GOOGLE_SHEET_URL, {
+                method: "POST",
+                mode: "no-cors",
+                headers: { "Content-Type": "text/plain" },
+                body: JSON.stringify({
+                    sheetName: "Leads from form",
+                    Name: formData.name,
+                    Phone: `'${formData.phone}`,
+                    Email: formData.email,
+                    Business: formData.business,
+                    Trade: formData.trade,
+                    Location: formData.location,
+                    Message: formData.message,
+                    timestamp: new Date().toISOString()
+                }),
+            });
             setFormStatus('success');
             setFormData({
                 name: '',
@@ -130,7 +146,10 @@ const ConcreteLayerWebsites = () => {
                 trade: 'ConcreteLayer',
                 message: ''
             });
-        }, 1500);
+        } catch (error) {
+            console.error("Form submission error:", error);
+            setFormStatus('idle');
+        }
     };
 
     return (
