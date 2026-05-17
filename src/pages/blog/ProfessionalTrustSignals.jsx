@@ -28,22 +28,22 @@ const ProfessionalTrustSignals = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>Why Looking 'Professional' Online Actually Matters | Trust Signals for Australian Tradies</title>
-                <meta name="description" content="Homeowners judge your Australian trade business in 3 seconds. A DIY Wix site vs a professional setup can be the difference between a $4,000 job and getting ghosted." />
-                <meta name="keywords" content="professional website, trust signals, tradie website, australian tradies, credibility, business branding, first impressions" />
+                <title>Tradie Trust Signals Australia: Licence, Reviews & 5 More Things That Make Homeowners Call</title>
+                <meta name="description" content="Australian homeowners check your licence, read your reviews, and look for real job photos before they call. Here's the full checklist of trust signals — and what's costing you jobs if they're missing." />
+                <meta name="keywords" content="tradie trust signals, professional tradie website, trust signals Australia, tradie credibility, tradie website checklist" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/professional-trust-signals" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Why Looking 'Professional' Online Actually Matters" />
-                <meta property="og:description" content="How Australian homeowners judge tradie professionalism in 3 seconds—and what to fix." />
+                <meta property="og:title" content="Tradie Trust Signals Australia: Licence, Reviews & 5 More Things That Make Homeowners Call" />
+                <meta property="og:description" content="Australian homeowners check your licence, read your reviews, and look for real job photos before they call. Here's the full checklist — and what's costing you jobs if it's missing." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "BlogPosting",
-                    "headline": "Why Looking 'Professional' Online Actually Matters | Trust Signals for Australian Tradies",
-                    "description": "Homeowners judge your Australian trade business in 3 seconds. A DIY Wix site vs a professional setup can be the difference between a $4,000 job and getting ghosted.",
+                    "headline": "Tradie Trust Signals Australia: Licence, Reviews & 5 More Things That Make Homeowners Call",
+                    "description": "Australian homeowners check your licence, read your reviews, and look for real job photos before they call. Here's the full checklist of trust signals — and what's costing you jobs if they're missing.",
                     "url": "https://yourtradepartner.com.au/resources/professional-trust-signals",
                     "datePublished": "2026-03-18",
-                    "dateModified": "2026-03-18",
+                    "dateModified": "2026-05-17",
                     "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
                     "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
                 })}</script>

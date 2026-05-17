@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle2, Hammer, ArrowRight, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import Breadcrumbs from '../components/Breadcrumbs';
 import TradeNavDropdown from '../components/TradeNavDropdown';
@@ -557,7 +557,7 @@ const BuilderWebsites = () => {
 
             {/* How We're Different Section */}
             <motion.section
-                className="py-24 md:py-32 border-b border-white/5 bg-black/40"
+                className="py-24 md:py-32 border-b border-white/5 bg-black/20"
                 variants={sectionVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -569,49 +569,74 @@ const BuilderWebsites = () => {
                             How We're <span className="text-safety-orange">Different</span>
                         </h2>
                         <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
-                            Built by people who understand tradies — not generic web agencies.
+                            Not every web agency understands what a builder actually needs to win contracts.
                         </p>
 
-                        <motion.div
-                            className="grid md:grid-cols-3 gap-8"
-                            variants={containerVariants}
-                        >
-                            {[
-                                {
-                                    icon: <Hammer className="w-12 h-12 text-safety-orange" />,
-                                    title: "We Understand Tradies",
-                                    description: "We're not a corporate agency pushing cookie-cutter templates. We've worked with trades businesses across Australia and understand what actually brings in calls—not just pretty designs."
-                                },
-                                {
-                                    icon: <CheckCircle2 className="w-12 h-12 text-safety-orange" />,
-                                    title: "Fast Turnaround",
-                                    description: "No 3-month timelines or endless revision rounds. We scope your project clearly, build it efficiently, and get you live fast so you can start generating leads. Most projects are done within 2-4 weeks."
-                                },
-                                {
-                                    icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
-                                    title: "No Lock-In Contracts",
-                                    description: "We don't trap you in 12-month agreements. Our ongoing support is quarterly and reviewed annually. If it's not working, you're free to walk away. We earn your business every quarter."
-                                }
-                            ].map((item, i) => (
-                                <motion.div
-                                    key={i}
-                                    variants={itemVariants}
-                                    className="bg-white/5 p-8 border border-white/5 hover:border-safety-orange/30 transition-all text-center"
-                                >
-                                    <div className="flex justify-center mb-6">{item.icon}</div>
-                                    <h3 className="text-2xl font-black uppercase mb-4">{item.title}</h3>
-                                    <p className="text-sm text-white/70 font-bold leading-relaxed">{item.description}</p>
-                                </motion.div>
-                            ))}
-                        </motion.div>
-
-                        <div className="mt-16 text-center">
-                            <a href="#contact">
-                                <Button className="bg-safety-orange hover:bg-safety-orange-hover text-white px-8 py-6 text-lg font-black uppercase tracking-widest rounded-none">
-                                    Get Started — No Obligation Chat
-                                </Button>
-                            </a>
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th className="text-left p-4 text-white/40 font-black uppercase text-xs tracking-widest w-2/5"></th>
+                                        <th className="p-4 text-center bg-safety-orange/10 border-t-4 border-safety-orange">
+                                            <p className="text-safety-orange font-black uppercase text-sm tracking-widest">Your Trade Partner</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-sm tracking-widest">Generic Agency</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-sm tracking-widest">DIY (Wix / Squarespace)</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {[
+                                        { label: "Built for Australian builders", ytp: true, agency: false, diy: false },
+                                        { label: "State licensing compliance copy", ytp: true, agency: false, diy: false },
+                                        { label: "Project portfolio & stage photos", ytp: true, agency: "varies", diy: "maybe" },
+                                        { label: "Suburb-specific SEO pages", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "Mobile-first click-to-call", ytp: true, agency: "varies", diy: "maybe" },
+                                        { label: "Ongoing updates included", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "AI visibility (schema + AEO)", ytp: true, agency: false, diy: false },
+                                        { label: "No lock-in contract", ytp: true, agency: false, diy: true },
+                                    ].map((row, i) => (
+                                        <tr key={i} className={`border-t border-white/5 ${i % 2 === 0 ? 'bg-white/[0.02]' : ''}`}>
+                                            <td className="p-4 text-sm font-bold text-white/70">{row.label}</td>
+                                            <td className="p-4 text-center bg-safety-orange/5">
+                                                {row.ytp === true ? (
+                                                    <Check className="w-5 h-5 text-green-400 mx-auto" />
+                                                ) : row.ytp === false ? (
+                                                    <span className="text-red-400 font-black">✗</span>
+                                                ) : (
+                                                    <span className="text-yellow-400 font-bold text-xs">{row.ytp}</span>
+                                                )}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.agency === true ? (
+                                                    <Check className="w-5 h-5 text-green-400 mx-auto" />
+                                                ) : row.agency === false ? (
+                                                    <span className="text-red-400 font-black">✗</span>
+                                                ) : (
+                                                    <span className="text-yellow-400 font-bold text-xs">{row.agency}</span>
+                                                )}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.diy === true ? (
+                                                    <Check className="w-5 h-5 text-green-400 mx-auto" />
+                                                ) : row.diy === false ? (
+                                                    <span className="text-red-400 font-black">✗</span>
+                                                ) : (
+                                                    <span className="text-yellow-400 font-bold text-xs">{row.diy}</span>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
+
+                        <p className="text-center text-white/30 font-bold uppercase tracking-widest text-xs mt-10">
+                            We build websites and automation systems — not lead generation retainers. You own your foundation.
+                        </p>
                     </div>
                 </div>
             </motion.section>

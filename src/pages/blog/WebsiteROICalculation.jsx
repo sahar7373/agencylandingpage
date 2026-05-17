@@ -43,7 +43,7 @@ const WebsiteROICalculation = () => {
                     "description": "Break-even math for Australian trade businesses. If your average job is $2,500, you need 2-3 extra jobs to cover a $3,900 website. Most get that in the first month.",
                     "url": "https://yourtradepartner.com.au/resources/website-roi-calculation",
                     "datePublished": "2026-03-18",
-                    "dateModified": "2026-03-18",
+                    "dateModified": "2026-05-17",
                     "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
                     "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
                 })}</script>

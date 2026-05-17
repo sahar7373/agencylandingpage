@@ -43,7 +43,7 @@ const GoogleAdsVsSEO = () => {
                     "description": "Ads bring leads this week. SEO brings leads forever. Most successful Australian tradies do both. Here's how to decide what to invest in first.",
                     "url": "https://yourtradepartner.com.au/resources/google-ads-vs-seo-tradies",
                     "datePublished": "2026-03-18",
-                    "dateModified": "2026-03-18",
+                    "dateModified": "2026-05-17",
                     "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
                     "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
                 })}</script>
@@ -82,7 +82,7 @@ const GoogleAdsVsSEO = () => {
                                 <Clock className="w-4 h-4" />
                                 <span>9 min read</span>
                             </div>
-                            <div>March 2026</div>
+                            <div>March 2026 • Updated May 2026</div>
                         </div>
                         <p className="text-xl md:text-2xl text-white/80 font-bold leading-relaxed">
                             Ads bring leads this week. SEO brings leads forever. Most successful Australian tradies do both. Here's how to decide what to invest in first.
@@ -374,6 +374,63 @@ const GoogleAdsVsSEO = () => {
                             <p className="text-lg font-black text-safety-orange mt-6">
                                 Ads = short-term fuel. SEO = long-term engine. Use both, then taper ads as SEO takes over.
                             </p>
+                        </div>
+
+                        {/* Australian Trade Market Reality */}
+                        <div>
+                            <h2 className="text-2xl md:text-3xl font-black uppercase italic mb-6 border-b-2 border-safety-orange pb-2 inline-block">
+                                What This Looks Like in the Australian Trade Market
+                            </h2>
+
+                            <p className="text-lg text-white/80 font-bold leading-relaxed mb-6">
+                                Most generic marketing advice ignores how competitive Australian trade keywords actually are. Here's what tradies are dealing with in real terms:
+                            </p>
+
+                            <div className="bg-white/5 border border-white/10 overflow-hidden mb-6">
+                                <table className="w-full text-sm">
+                                    <thead className="bg-black/40">
+                                        <tr>
+                                            <th className="text-left p-4 font-black uppercase">Keyword (Google Ads AU)</th>
+                                            <th className="text-left p-4 font-black uppercase">Avg. CPC</th>
+                                            <th className="text-left p-4 font-black uppercase">Competition</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-white/10">
+                                        <tr>
+                                            <td className="p-4 font-bold text-white/80">emergency plumber Sydney</td>
+                                            <td className="p-4 text-safety-orange font-black">$18–$28</td>
+                                            <td className="p-4 text-white/60">Very High</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-4 font-bold text-white/80">electrician Melbourne</td>
+                                            <td className="p-4 text-safety-orange font-black">$12–$22</td>
+                                            <td className="p-4 text-white/60">High</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-4 font-bold text-white/80">roof repairs Brisbane</td>
+                                            <td className="p-4 text-safety-orange font-black">$8–$16</td>
+                                            <td className="p-4 text-white/60">Medium</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-4 font-bold text-white/80">carpenter Perth</td>
+                                            <td className="p-4 text-safety-orange font-black">$6–$12</td>
+                                            <td className="p-4 text-white/60">Medium</td>
+                                        </tr>
+                                        <tr>
+                                            <td className="p-4 font-bold text-white/80">HVAC installation Adelaide</td>
+                                            <td className="p-4 text-safety-orange font-black">$9–$18</td>
+                                            <td className="p-4 text-white/60">Medium-High</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                            <div className="bg-black/40 border-l-4 border-safety-orange p-6">
+                                <p className="font-black mb-2 text-safety-orange">The Australian Advantage:</p>
+                                <p className="text-white/80 font-bold">
+                                    Unlike the US or UK, Australian local markets are less saturated in most suburbs outside the CBDs. A tradie in Wollongong, Geelong, or Cairns can rank organically for high-value keywords in 3–4 months — far faster than in Sydney or Melbourne. If you're outside a capital city, SEO often wins on pure economics.
+                                </p>
+                            </div>
                         </div>
 
                         {/* Quick Decision Matrix */}

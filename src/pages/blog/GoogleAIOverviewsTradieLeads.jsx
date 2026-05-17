@@ -29,21 +29,21 @@ const GoogleAIOverviewsTradieLeads = () => {
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
                 <title>How Google's AI Is Stealing Your Tradie Leads (And What To Do About It) | Your Trade Partner</title>
-                <meta name="description" content="Google AI Overviews now intercept 47% of Australian searches before users click. Find out why tradies are losing leads to AI — and the exact steps to get cited instead." />
+                <meta name="description" content="Google AI Overviews now answer local service searches before users click through. Find out why Australian tradies are losing leads to AI — and the exact steps to get cited instead." />
                 <meta name="keywords" content="Google AI Overviews tradies, AI search local SEO Australia, tradie leads 2026" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/google-ai-overviews-tradie-leads" />
                 <meta name="robots" content="index, follow" />
                 <meta property="og:title" content="How Google's AI Is Stealing Your Tradie Leads (And What To Do About It)" />
-                <meta property="og:description" content="Google AI Overviews now intercept 47% of Australian searches before users click. Find out why tradies are losing leads to AI — and the exact steps to get cited instead." />
+                <meta property="og:description" content="Google AI Overviews now answer local service searches before users click through. Find out why Australian tradies are losing leads to AI — and the exact steps to get cited instead." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "BlogPosting",
                     "headline": "How Google's AI Is Stealing Your Tradie Leads (And What To Do About It)",
-                    "description": "Google AI Overviews now intercept 47% of Australian searches before users click. Find out why tradies are losing leads to AI — and the exact steps to get cited instead.",
+                    "description": "Google AI Overviews now answer local service searches before users click through. Find out why Australian tradies are losing leads to AI — and the exact steps to get cited instead.",
                     "url": "https://yourtradepartner.com.au/resources/google-ai-overviews-tradie-leads",
                     "datePublished": "2026-04-23",
-                    "dateModified": "2026-04-23",
+                    "dateModified": "2026-05-17",
                     "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
                     "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
                 })}</script>

@@ -28,22 +28,22 @@ const ElectricianWebsiteRequirements = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>Electrician Website Checklist: 7 Must-Haves to Get More Calls in Australia</title>
-                <meta name="description" content="Is your electrician website losing jobs to competitors? See the 7 trust signals, licence displays, and page elements Australian homeowners look for before they call — with real examples." />
+                <title>Electrician Website Requirements Australia: Licence Display, Reviews & 5 More Must-Haves</title>
+                <meta name="description" content="Australian homeowners check 7 specific things before calling an electrician online. Licence number visible? Safety certificates shown? See the full checklist — and fix what's costing you jobs." />
                 <meta name="keywords" content="electrician website checklist, electrician website requirements, Australian electrician website, electrical contractor website, trade website trust signals" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/electrician-website-requirements" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Electrician Website Checklist: 7 Must-Haves to Get More Calls in Australia" />
-                <meta property="og:description" content="Is your electrician website losing jobs to competitors? See the 7 trust signals and page elements Australian homeowners look for before they call." />
+                <meta property="og:title" content="Electrician Website Requirements Australia: Licence Display, Reviews & 5 More Must-Haves" />
+                <meta property="og:description" content="Australian homeowners check 7 specific things before calling an electrician online. See the full checklist — and fix what's costing you jobs." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({
                     "@context": "https://schema.org",
                     "@type": "BlogPosting",
-                    "headline": "Electrician Website Checklist: 7 Must-Haves to Get More Calls in Australia",
-                    "description": "Is your electrician website losing jobs to competitors? See the 7 trust signals, licence displays, and page elements Australian homeowners look for before they call — with real examples.",
+                    "headline": "Electrician Website Requirements Australia: Licence Display, Reviews & 5 More Must-Haves",
+                    "description": "Australian homeowners check 7 specific things before calling an electrician online. Licence number visible? Safety certificates shown? See the full checklist — and fix what's costing you jobs.",
                     "url": "https://yourtradepartner.com.au/resources/electrician-website-requirements",
                     "datePublished": "2026-03-18",
-                    "dateModified": "2026-03-18",
+                    "dateModified": "2026-05-17",
                     "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
                     "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
                 })}</script>

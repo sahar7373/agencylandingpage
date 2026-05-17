@@ -555,9 +555,186 @@ const PainterWebsites = () => {
                 </div>
             </motion.section>
 
-            {/* How We're Different Section */}
+            {/* ── Licensing Section ── */}
             <motion.section
                 className="py-24 md:py-32 border-b border-white/5 bg-black/40"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <span className="text-xs font-black uppercase tracking-widest text-safety-orange border border-safety-orange/30 px-4 py-1.5 inline-block mb-6">
+                            Australian Compliance Guide
+                        </span>
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic">
+                            What Your Painter Website Must Display{" "}
+                            <span className="text-safety-orange">(By Australian Law)</span>
+                        </h2>
+                        <p className="text-white/40 font-bold uppercase tracking-widest mb-16 max-w-2xl">
+                            Painting is a licensed trade in every Australian state. Your website must display the right credentials — or you risk fines and losing work.
+                        </p>
+
+                        {/* 3 Licence Type Cards */}
+                        <h3 className="text-2xl md:text-3xl font-black uppercase italic mb-8">
+                            The 3 Painter Licence <span className="text-safety-orange">Types</span>
+                        </h3>
+                        <div className="grid md:grid-cols-3 gap-6 mb-16">
+                            {[
+                                {
+                                    title: "Certificate III (CPC30620)",
+                                    desc: "Certificate III in Painting & Decorating — the base trade qualification required in every state before you can apply for a contractor licence. Completed via apprenticeship or RPL."
+                                },
+                                {
+                                    title: "Painting Contractor Licence",
+                                    desc: "Allows you to contract directly with homeowners and run your own painting business. Required in NSW, VIC, QLD, SA and ACT once your job values exceed the state threshold."
+                                },
+                                {
+                                    title: "Owner-Builder Permit",
+                                    desc: "For homeowners completing painting as part of a larger owner-builder project. Separate from a contractor licence — rules and value thresholds vary significantly by state."
+                                }
+                            ].map((card, i) => (
+                                <div key={i} className="bg-white/5 border border-white/10 p-6">
+                                    <ShieldCheck className="w-8 h-8 text-safety-orange mb-4" />
+                                    <h4 className="font-black uppercase text-sm tracking-widest mb-3">{card.title}</h4>
+                                    <p className="text-xs text-white/60 font-bold leading-relaxed">{card.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* 6 State Cards */}
+                        <h3 className="text-2xl md:text-3xl font-black uppercase italic mb-8">
+                            State-by-State <span className="text-safety-orange">Requirements</span>
+                        </h3>
+                        <motion.div
+                            className="grid md:grid-cols-3 gap-6 mb-16"
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
+                        >
+                            {[
+                                {
+                                    state: "NSW",
+                                    authority: "NSW Fair Trading",
+                                    act: "Home Building Act 1989",
+                                    licence: "Contractor Licence (Painting)",
+                                    threshold: "Work over $5,000 (incl. GST) requires a licence",
+                                    tip: "Your contractor licence number must appear on all quotes, invoices and your website."
+                                },
+                                {
+                                    state: "VIC",
+                                    authority: "Victorian Building Authority (VBA)",
+                                    act: "Building Act 1993",
+                                    licence: "Domestic Builder Limited (Painting)",
+                                    threshold: "Work over $10,000 requires a registered builder licence",
+                                    tip: "VBA registration number is mandatory on contracts and any advertising including your website."
+                                },
+                                {
+                                    state: "QLD",
+                                    authority: "QBCC",
+                                    act: "QBCC Act 1991",
+                                    licence: "Painting Trade Licence",
+                                    threshold: "Work over $3,300 (incl. GST) requires a QBCC licence",
+                                    tip: "QBCC licence number must be on all advertising — including your website and social media."
+                                },
+                                {
+                                    state: "WA",
+                                    authority: "DMIRS / Building Services Board",
+                                    act: "Building Services (Registration) Act 2011",
+                                    licence: "Painter and Decorator Registration",
+                                    threshold: "Certificate III (CPC30620) required; contractor work needs registration",
+                                    tip: "WA painters must display their registration number on all business documents and advertising."
+                                },
+                                {
+                                    state: "SA",
+                                    authority: "Consumer & Business Services (CBS)",
+                                    act: "Building Work Contractors Act 1995",
+                                    licence: "Building Work Contractor Licence (Painting)",
+                                    threshold: "Work over $12,000 requires a contractor licence",
+                                    tip: "CBS licence number must appear on all quotes, contracts and your website homepage."
+                                },
+                                {
+                                    state: "ACT",
+                                    authority: "Access Canberra",
+                                    act: "Construction Occupations (Licensing) Act 2004",
+                                    licence: "Construction Occupation Licence (Painter)",
+                                    threshold: "Residential painting over $12,000 requires a licence",
+                                    tip: "Licence number display is mandatory on all advertising and business documentation in the ACT."
+                                }
+                            ].map((s, i) => (
+                                <motion.div
+                                    key={i}
+                                    variants={itemVariants}
+                                    className="bg-white/5 border border-white/10 hover:border-safety-orange/30 transition-all p-6 flex flex-col gap-4"
+                                >
+                                    <div className="flex items-center gap-4">
+                                        <div className="w-12 h-12 bg-safety-orange/10 border border-safety-orange/30 flex items-center justify-center flex-shrink-0">
+                                            <span className="text-safety-orange font-black text-sm">{s.state}</span>
+                                        </div>
+                                        <div>
+                                            <p className="font-black uppercase text-xs tracking-widest text-white">{s.authority}</p>
+                                            <p className="text-white/40 text-xs font-bold">{s.act}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-1">Licence Type</p>
+                                        <p className="text-sm font-bold text-white/80">{s.licence}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-black uppercase tracking-widest text-white/40 mb-1">When Required</p>
+                                        <p className="text-sm font-bold text-white/70">{s.threshold}</p>
+                                    </div>
+                                    <div className="mt-auto pt-4 border-t border-white/5 flex items-start gap-2">
+                                        <ShieldCheck className="w-4 h-4 text-safety-orange flex-shrink-0 mt-0.5" />
+                                        <p className="text-xs text-white/50 font-bold leading-relaxed">{s.tip}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        {/* Universal Requirements */}
+                        <h3 className="text-2xl md:text-3xl font-black uppercase italic mb-8">
+                            Plus These <span className="text-safety-orange">Everywhere</span>
+                        </h3>
+                        <div className="grid md:grid-cols-3 gap-6 mb-16">
+                            {[
+                                {
+                                    title: "Public Liability Insurance",
+                                    desc: "Minimum $5M–$10M PLI is required or strongly recommended in all states. Your insurer's name and cover amount should appear on your website to build trust with homeowners."
+                                },
+                                {
+                                    title: "White Card",
+                                    desc: "Construction Induction Training (White Card) is mandatory for all painters working on any Australian building or construction site — residential or commercial."
+                                },
+                                {
+                                    title: "Cert III in Painting & Decorating",
+                                    desc: "CPC30620 is the national standard qualification for painters. Completing it via apprenticeship or RPL is the prerequisite for a contractor licence in every state."
+                                }
+                            ].map((req, i) => (
+                                <div key={i} className="bg-white/5 border border-white/10 p-6">
+                                    <ShieldCheck className="w-8 h-8 text-safety-orange mb-4" />
+                                    <h4 className="font-black uppercase text-sm tracking-widest mb-3">{req.title}</h4>
+                                    <p className="text-xs text-white/60 font-bold leading-relaxed">{req.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="text-left">
+                            <a href="#contact">
+                                <Button className="bg-safety-orange hover:bg-safety-orange/90 text-black font-black uppercase tracking-wider px-8 py-4 text-sm rounded-none">
+                                    Get a Compliant Painter Website <ArrowRight className="w-4 h-4 ml-2 inline" />
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* ── Comparison Table ── */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/20"
                 variants={sectionVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -569,46 +746,138 @@ const PainterWebsites = () => {
                             How We're <span className="text-safety-orange">Different</span>
                         </h2>
                         <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
-                            Built by people who understand tradies — not generic web agencies.
+                            Not every web agency understands what a painter actually needs to win jobs.
+                        </p>
+
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th className="text-left p-4 text-white/40 font-black uppercase text-xs tracking-widest w-2/5"></th>
+                                        <th className="p-4 text-center bg-safety-orange/10 border-t-4 border-safety-orange">
+                                            <p className="text-safety-orange font-black uppercase text-sm tracking-widest">Your Trade Partner</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-sm tracking-widest">Generic Agency</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-sm tracking-widest">DIY (Wix / Squarespace)</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {[
+                                        { label: "Built for Australian painters", ytp: true, agency: false, diy: false },
+                                        { label: "State licensing compliance copy", ytp: true, agency: false, diy: false },
+                                        { label: "Colour & before/after portfolio", ytp: true, agency: "varies", diy: "maybe" },
+                                        { label: "Suburb-specific SEO pages", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "Mobile-first click-to-call", ytp: true, agency: "varies", diy: "maybe" },
+                                        { label: "Ongoing updates included", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "AI visibility (schema + AEO)", ytp: true, agency: false, diy: false },
+                                        { label: "No lock-in contract", ytp: true, agency: false, diy: true },
+                                    ].map((row, i) => (
+                                        <tr key={i} className={`border-t border-white/5 ${i % 2 === 0 ? 'bg-white/[0.02]' : ''}`}>
+                                            <td className="p-4 text-sm font-bold text-white/70">{row.label}</td>
+                                            <td className="p-4 text-center bg-safety-orange/5">
+                                                {row.ytp === true ? (
+                                                    <Check className="w-5 h-5 text-green-400 mx-auto" />
+                                                ) : row.ytp === false ? (
+                                                    <span className="text-red-400 font-black">✗</span>
+                                                ) : (
+                                                    <span className="text-yellow-400 font-bold text-xs">{row.ytp}</span>
+                                                )}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.agency === true ? (
+                                                    <Check className="w-5 h-5 text-green-400 mx-auto" />
+                                                ) : row.agency === false ? (
+                                                    <span className="text-red-400 font-black">✗</span>
+                                                ) : (
+                                                    <span className="text-yellow-400 font-bold text-xs">{row.agency}</span>
+                                                )}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.diy === true ? (
+                                                    <Check className="w-5 h-5 text-green-400 mx-auto" />
+                                                ) : row.diy === false ? (
+                                                    <span className="text-red-400 font-black">✗</span>
+                                                ) : (
+                                                    <span className="text-yellow-400 font-bold text-xs">{row.diy}</span>
+                                                )}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p className="text-center text-white/30 font-bold uppercase tracking-widest text-xs mt-10">
+                            We build websites and automation systems — not lead generation retainers. You own your foundation.
+                        </p>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* ── How It Works ── */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            How It <span className="text-safety-orange">Works</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            From first chat to live website — clear, fast, no surprises.
                         </p>
 
                         <motion.div
-                            className="grid md:grid-cols-3 gap-8"
+                            className="grid md:grid-cols-4 gap-8 relative mb-16"
                             variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
                         >
                             {[
                                 {
-                                    icon: <PaintBucket className="w-12 h-12 text-safety-orange" />,
-                                    title: "We Understand Tradies",
-                                    description: "We're not a corporate agency pushing cookie-cutter templates. We've worked with trades businesses across Australia and understand what actually brings in calls—not just pretty designs."
+                                    step: "01",
+                                    title: "Quick Chat",
+                                    desc: "Tell us about your painting business — the suburbs you work in, the jobs you want more of, and what's not working with your current online presence."
                                 },
                                 {
-                                    icon: <CheckCircle2 className="w-12 h-12 text-safety-orange" />,
-                                    title: "Fast Turnaround",
-                                    description: "No 3-month timelines or endless revision rounds. We scope your project clearly, build it efficiently, and get you live fast so you can start generating leads. Most projects are done within 2-4 weeks."
+                                    step: "02",
+                                    title: "We Scope & Build",
+                                    desc: "We map out your site structure, write your content, build suburb SEO pages, and design everything to convert visitors into quote requests — not just look nice."
                                 },
                                 {
-                                    icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
-                                    title: "No Lock-In Contracts",
-                                    description: "We don't trap you in 12-month agreements. Our ongoing support is quarterly and reviewed annually. If it's not working, you're free to walk away. We earn your business every quarter."
+                                    step: "03",
+                                    title: "You Review & Launch",
+                                    desc: "You review the site before it goes live. We handle hosting, SSL, Google Business Profile setup and Search Console submission — everything is done for you."
+                                },
+                                {
+                                    step: "04",
+                                    title: "Ongoing Partnership",
+                                    desc: "Quarterly check-ins, content updates, and performance reporting. As your painting business grows, your website grows with it — no lock-in, no surprises."
                                 }
-                            ].map((item, i) => (
-                                <motion.div
-                                    key={i}
-                                    variants={itemVariants}
-                                    className="bg-white/5 p-8 border border-white/5 hover:border-safety-orange/30 transition-all text-center"
-                                >
-                                    <div className="flex justify-center mb-6">{item.icon}</div>
-                                    <h3 className="text-2xl font-black uppercase mb-4">{item.title}</h3>
-                                    <p className="text-sm text-white/70 font-bold leading-relaxed">{item.description}</p>
+                            ].map((s, i) => (
+                                <motion.div key={i} variants={itemVariants} className="text-center">
+                                    <div className="w-20 h-20 bg-safety-orange/10 border-2 border-safety-orange/30 flex items-center justify-center mx-auto mb-6">
+                                        <span className="text-3xl font-black text-safety-orange">{s.step}</span>
+                                    </div>
+                                    <h3 className="text-lg font-black uppercase tracking-widest mb-3">{s.title}</h3>
+                                    <p className="text-sm text-white/60 font-bold leading-relaxed">{s.desc}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
 
-                        <div className="mt-16 text-center">
+                        <div className="text-center">
                             <a href="#contact">
                                 <Button className="bg-safety-orange hover:bg-safety-orange-hover text-white px-8 py-6 text-lg font-black uppercase tracking-widest rounded-none">
-                                    Get Started — No Obligation Chat
+                                    Book Your Free Strategy Call
                                 </Button>
                             </a>
                         </div>

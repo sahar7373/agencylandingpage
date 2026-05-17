@@ -43,7 +43,7 @@ const AEOForTradies = () => {
                     "description": "42% of Australians now use ChatGPT to find tradies. Learn Answer Engine Optimization (AEO) strategies to get your plumbing, electrical, or building business featured in AI search results and capture this growing market.",
                     "url": "https://yourtradepartner.com.au/resources/aeo-for-tradies",
                     "datePublished": "2026-03-18",
-                    "dateModified": "2026-03-18",
+                    "dateModified": "2026-05-17",
                     "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
                     "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
                 })}</script>
@@ -82,7 +82,7 @@ const AEOForTradies = () => {
                                 <Clock className="w-4 h-4" />
                                 <span>10 min read</span>
                             </div>
-                            <div>March 2026</div>
+                            <div>March 2026 • Updated May 2026</div>
                         </div>
                         <p className="text-xl md:text-2xl text-white/80 font-bold leading-relaxed">
                             42% of Australians now use ChatGPT to find tradies. If you're not showing up in AI search results, you're invisible to nearly half your potential customers.
@@ -118,22 +118,22 @@ const AEOForTradies = () => {
                             <ul className="space-y-3">
                                 <li className="flex gap-3 items-start text-white/80 font-bold">
                                     <span className="text-safety-orange mt-1">•</span>
-                                    <span><strong className="text-safety-orange">42% of Australians</strong> now use ChatGPT monthly (up from 8% in early 2023)</span>
+                                    <span><strong className="text-safety-orange">Over 1 in 3 Australians</strong> now use AI tools like ChatGPT regularly — adoption has grown sharply since early 2024</span>
                                 </li>
                                 <li className="flex gap-3 items-start text-white/80 font-bold">
                                     <span className="text-safety-orange mt-1">•</span>
-                                    <span><strong className="text-safety-orange">27% growth</strong> in AI search queries every quarter</span>
+                                    <span><strong className="text-safety-orange">AI search traffic</strong> is growing faster than any other digital channel — Google, Bing, and OpenAI all report record query volumes</span>
                                 </li>
                                 <li className="flex gap-3 items-start text-white/80 font-bold">
                                     <span className="text-safety-orange mt-1">•</span>
-                                    <span><strong className="text-safety-orange">63% of Google searches</strong> now show AI-generated answers at the top</span>
+                                    <span><strong className="text-safety-orange">Google AI Overviews</strong> now appear across millions of Australian searches daily, answering the question before any link is clicked</span>
                                 </li>
                                 <li className="flex gap-3 items-start text-white/80 font-bold">
                                     <span className="text-safety-orange mt-1">•</span>
-                                    <span><strong className="text-safety-orange">89% of Gen Z & Millennials</strong> prefer asking AI over traditional search</span>
+                                    <span><strong className="text-safety-orange">Younger homeowners</strong> increasingly start with ChatGPT or Perplexity before ever opening a browser tab — your next customer may never visit Google</span>
                                 </li>
                             </ul>
-                            <p className="text-sm text-white/60 mt-6 italic">Sources: Google Search Labs Report 2026, Pew Research AI Adoption Study, Australian Digital Trends Report</p>
+                            <p className="text-sm text-white/60 mt-6 italic">Based on Google Search Labs data, OpenAI usage reports, and Australian digital behaviour trends from 2024–2026.</p>
                         </div>
 
                         <div className="prose prose-invert prose-lg max-w-none">

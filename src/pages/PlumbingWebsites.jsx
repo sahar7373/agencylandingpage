@@ -589,7 +589,171 @@ const PlumbingWebsites = () => {
                 </div>
             </motion.section>
 
-            {/* How We're Different Section */}
+            {/* Australian Licensing Requirements Section */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            What Your Plumbing Website <span className="text-safety-orange">Must Display</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-4">
+                            By Australian Law — State by State
+                        </p>
+                        <p className="text-white/60 text-center font-bold max-w-3xl mx-auto mb-16 leading-relaxed">
+                            Every Australian state requires licensed plumbers to display their licence number on advertising and websites. Missing this doesn't just lose you jobs — it can trigger a compliance notice. Here's exactly what's required, by state.
+                        </p>
+
+                        {/* State-by-state grid */}
+                        <motion.div
+                            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
+                        >
+                            {[
+                                {
+                                    state: "NSW",
+                                    authority: "NSW Fair Trading",
+                                    licenceType: "Contractor Licence (Plumbing, Draining & Gas Fitting)",
+                                    act: "Home Building Act 1989",
+                                    requirement: "Licence number must appear on all advertising, quotes, and websites. Trading without display is a fineable offence.",
+                                    tip: "Display it in your site footer and on every contact/quote page."
+                                },
+                                {
+                                    state: "VIC",
+                                    authority: "Victorian Building Authority (VBA)",
+                                    licenceType: "Plumbing Industry Commission Registration",
+                                    act: "Plumbing Regulations 2018",
+                                    requirement: "Registration number and class (e.g. Mechanical Services, Sanitary) must be displayed. Required on all advertising including websites.",
+                                    tip: "List your registration class — customers and builders check it."
+                                },
+                                {
+                                    state: "QLD",
+                                    authority: "QBCC (Queensland Building & Construction Commission)",
+                                    licenceType: "QBCC Contractor Licence",
+                                    act: "Queensland Building and Construction Commission Act 1991",
+                                    requirement: "Mandatory for all plumbing work and contracts over $3,300. Licence number required on all advertising.",
+                                    tip: "Add your QBCC number to your site header — it builds instant trust with homeowners."
+                                },
+                                {
+                                    state: "WA",
+                                    authority: "WA Building & Energy (Department of Energy, Mines, Industry Regulation and Safety)",
+                                    licenceType: "Plumbing Contractor's Licence",
+                                    act: "Plumbers Licensing and Plumbing Standards Regulations 2000",
+                                    requirement: "Licence number and expiry must be displayed. Unlicensed advertising attracts significant penalties.",
+                                    tip: "WA audits advertising regularly — ensure your expiry date is current."
+                                },
+                                {
+                                    state: "SA",
+                                    authority: "Consumer & Business Services (CBS)",
+                                    licenceType: "Plumbing Contractor Licence",
+                                    act: "Plumbers, Gas Fitters and Electricians Act 1995",
+                                    requirement: "Licence number required on all advertising and documentation. Separate gas fitting licence must also be displayed if applicable.",
+                                    tip: "SA requires both plumbing and gas fitting numbers if you hold both."
+                                },
+                                {
+                                    state: "ACT",
+                                    authority: "Access Canberra",
+                                    licenceType: "Plumbing & Drainage Licence",
+                                    act: "Construction Occupations (Licensing) Act 2004",
+                                    requirement: "Licence number must appear on all advertising. ACT also requires a Certificate of Compliance for each job — mention this on your website to stand out.",
+                                    tip: "ACT homeowners often ask about COCs — address it proactively on your site."
+                                }
+                            ].map((item, i) => (
+                                <motion.div
+                                    key={i}
+                                    variants={itemVariants}
+                                    className="bg-white/5 border border-white/10 hover:border-safety-orange/30 transition-colors p-6 flex flex-col gap-4"
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-12 h-12 bg-safety-orange/10 border border-safety-orange/30 flex items-center justify-center flex-shrink-0">
+                                            <span className="text-safety-orange font-black text-sm">{item.state}</span>
+                                        </div>
+                                        <div>
+                                            <p className="font-black uppercase text-white text-sm tracking-tight">{item.authority}</p>
+                                            <p className="text-xs text-white/40 font-bold">{item.act}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-1">Licence Type</p>
+                                        <p className="text-sm text-white/70 font-bold">{item.licenceType}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-black uppercase tracking-widest text-white/50 mb-1">What to Display</p>
+                                        <p className="text-xs text-white/60 leading-relaxed">{item.requirement}</p>
+                                    </div>
+                                    <div className="mt-auto pt-4 border-t border-white/5 flex items-start gap-2">
+                                        <ShieldCheck className="w-4 h-4 text-safety-orange flex-shrink-0 mt-0.5" />
+                                        <p className="text-xs text-white/50 italic">{item.tip}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        {/* Additional universal requirements */}
+                        <div className="mb-12">
+                            <h3 className="text-2xl md:text-3xl font-black uppercase italic text-center mb-8">
+                                Plus These <span className="text-safety-orange">Everywhere</span>
+                            </h3>
+                            <motion.div
+                                className="grid md:grid-cols-3 gap-6"
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-50px" }}
+                            >
+                                {[
+                                    {
+                                        title: "Public Liability Insurance",
+                                        description: "Minimum $5M PLI is required for most commercial work and all insurance-referred jobs. Display a clear statement on your website — and make your certificate available on request. Homeowners increasingly ask before booking.",
+                                        icon: <ShieldCheck className="w-6 h-6 text-safety-orange" />
+                                    },
+                                    {
+                                        title: "Gas Fitting Licence",
+                                        description: "Gas fitting is a separate endorsement or licence class in every Australian state. If you perform gas work, this must be listed independently — not bundled under your general plumbing licence. Google surfaces this for 'gas plumber' searches.",
+                                        icon: <AlertCircle className="w-6 h-6 text-safety-orange" />
+                                    },
+                                    {
+                                        title: "Backflow Prevention Certification",
+                                        description: "If you hold a backflow prevention endorsement, display it. Council testing requirements are tightening across Australia and more property managers are specifically seeking certified backflow specialists. A dedicated callout on your site captures this growing niche.",
+                                        icon: <CheckCircle2 className="w-6 h-6 text-safety-orange" />
+                                    }
+                                ].map((item, i) => (
+                                    <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 p-6">
+                                        <div className="mb-4">{item.icon}</div>
+                                        <h4 className="font-black uppercase text-white mb-3 text-sm tracking-tight">{item.title}</h4>
+                                        <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+
+                        {/* CTA callout */}
+                        <div className="bg-safety-orange/5 border border-safety-orange/20 p-8 md:p-10 text-center">
+                            <p className="text-xl md:text-2xl font-black uppercase italic mb-3 text-white">
+                                We Build All of This In, Automatically
+                            </p>
+                            <p className="text-white/60 font-bold max-w-2xl mx-auto mb-6 leading-relaxed">
+                                Your licence number, insurance declaration, and certification badges are formatted and placed exactly where Google and homeowners expect to see them — in the footer, on your contact page, and in your site schema. No compliance headaches.
+                            </p>
+                            <a href="#contact">
+                                <Button className="bg-safety-orange hover:bg-safety-orange/90 text-black font-black uppercase tracking-wider px-8 py-4 text-sm">
+                                    Get a Compliant Plumbing Website <ArrowRight className="w-4 h-4 ml-2 inline" />
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* Comparison Section */}
             <motion.section
                 className="py-24 md:py-32 border-b border-white/5 bg-black/40"
                 variants={sectionVariants}
@@ -600,41 +764,122 @@ const PlumbingWebsites = () => {
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
                         <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
-                            How We're <span className="text-safety-orange">Different</span>
+                            How We Stack Up <span className="text-safety-orange">Against The Rest</span>
                         </h2>
                         <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
                             Built by people who understand tradies — not generic web agencies.
                         </p>
 
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th className="text-left p-4 text-sm font-black uppercase tracking-widest text-white/40 w-2/5"></th>
+                                        <th className="p-4 text-center bg-safety-orange/10 border-t-4 border-safety-orange">
+                                            <p className="text-safety-orange font-black uppercase text-sm tracking-widest">Your Trade Partner</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-sm tracking-widest">Generic Agency</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-xs tracking-widest">DIY (Wix / Squarespace)</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {[
+                                        { label: "Understands the trades industry", ytp: true, agency: false, diy: false },
+                                        { label: "Custom-built — not a template", ytp: true, agency: "varies", diy: false },
+                                        { label: "Live in 2–4 weeks (not 3 months)", ytp: true, agency: false, diy: "maybe" },
+                                        { label: "Local SEO built in from day one", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "Suburb & service pages included", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "No 12-month lock-in contracts", ytp: true, agency: false, diy: true },
+                                        { label: "Automation & AI receptionist ready", ytp: true, agency: false, diy: false },
+                                        { label: "Plumbing-specific copy & structure", ytp: true, agency: false, diy: false },
+                                        { label: "We earn your business every quarter", ytp: true, agency: false, diy: false },
+                                    ].map((row, i) => (
+                                        <tr key={i} className={`border-t border-white/5 ${i % 2 === 0 ? 'bg-white/[0.02]' : ''}`}>
+                                            <td className="p-4 text-sm font-bold text-white/70 uppercase tracking-tight">{row.label}</td>
+                                            <td className="p-4 text-center bg-safety-orange/5">
+                                                {row.ytp === true ? <Check className="w-5 h-5 text-green-500 mx-auto" /> :
+                                                 row.ytp === false ? <span className="text-red-500 font-black text-lg">✗</span> :
+                                                 <span className="text-yellow-500 text-xs font-black uppercase">{row.ytp}</span>}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.agency === true ? <Check className="w-5 h-5 text-green-500 mx-auto" /> :
+                                                 row.agency === false ? <span className="text-red-500 font-black text-lg">✗</span> :
+                                                 <span className="text-yellow-500 text-xs font-black uppercase">{row.agency}</span>}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.diy === true ? <Check className="w-5 h-5 text-green-500 mx-auto" /> :
+                                                 row.diy === false ? <span className="text-red-500 font-black text-lg">✗</span> :
+                                                 <span className="text-yellow-500 text-xs font-black uppercase">{row.diy}</span>}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p className="text-center text-white/30 font-bold uppercase tracking-widest text-xs mt-10">
+                            We build websites and automation systems — not lead generation retainers. You own your foundation.
+                        </p>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* How It Works Section */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/20"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            How It <span className="text-safety-orange">Works</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            From first chat to live website — clear, fast, no surprises.
+                        </p>
+
                         <motion.div
-                            className="grid md:grid-cols-3 gap-8"
+                            className="grid md:grid-cols-4 gap-8 relative"
                             variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
                         >
                             {[
                                 {
-                                    icon: <Wrench className="w-12 h-12 text-safety-orange" />,
-                                    title: "We Understand Tradies",
-                                    description: "We're not a corporate agency pushing cookie-cutter templates. We've worked with trades businesses across Australia and understand what actually brings in calls—not just pretty designs."
+                                    step: "01",
+                                    title: "Quick Chat",
+                                    description: "15 minutes. No sales pitch. We learn your business, your services, and where you want to be in 12 months. If it's not a fit, we'll tell you straight."
                                 },
                                 {
-                                    icon: <CheckCircle2 className="w-12 h-12 text-safety-orange" />,
-                                    title: "Fast Turnaround",
-                                    description: "No 3-month timelines or endless revision rounds. We scope your project clearly, build it efficiently, and get you live fast so you can start generating leads. Most projects are done within 2-4 weeks."
+                                    step: "02",
+                                    title: "We Scope & Build",
+                                    description: "Clear timeline, clear deliverables. We write the copy, build the pages, and wire up everything. You don't project-manage us — we handle it."
                                 },
                                 {
-                                    icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
-                                    title: "No Lock-In Contracts",
-                                    description: "We don't trap you in 12-month agreements. Our ongoing support is quarterly and reviewed annually. If it's not working, you're free to walk away. We earn your business every quarter."
+                                    step: "03",
+                                    title: "You Review & Launch",
+                                    description: "You get to review before anything goes live. Once you're happy, we hit publish. Most sites are live within 2–4 weeks of kickoff."
+                                },
+                                {
+                                    step: "04",
+                                    title: "Ongoing Partnership",
+                                    description: "Updates and support within scope — reviewed quarterly. Need automation added later? Available when you're ready. Scale it as your business grows."
                                 }
                             ].map((item, i) => (
-                                <motion.div
-                                    key={i}
-                                    variants={itemVariants}
-                                    className="bg-white/5 p-8 border border-white/5 hover:border-safety-orange/30 transition-all text-center"
-                                >
-                                    <div className="flex justify-center mb-6">{item.icon}</div>
-                                    <h3 className="text-2xl font-black uppercase mb-4">{item.title}</h3>
-                                    <p className="text-sm text-white/70 font-bold leading-relaxed">{item.description}</p>
+                                <motion.div key={i} variants={itemVariants} className="text-center">
+                                    <div className="w-20 h-20 bg-safety-orange/10 border-2 border-safety-orange/30 flex items-center justify-center mx-auto mb-6">
+                                        <span className="text-3xl font-black text-safety-orange">{item.step}</span>
+                                    </div>
+                                    <h3 className="text-xl font-black uppercase mb-4">{item.title}</h3>
+                                    <p className="text-sm text-white/60 font-bold leading-relaxed">{item.description}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
@@ -642,7 +887,7 @@ const PlumbingWebsites = () => {
                         <div className="mt-16 text-center">
                             <a href="#contact">
                                 <Button className="bg-safety-orange hover:bg-safety-orange-hover text-white px-8 py-6 text-lg font-black uppercase tracking-widest rounded-none">
-                                    Get Started — No Obligation Chat
+                                    Book Your Free Chat
                                 </Button>
                             </a>
                         </div>
@@ -954,6 +1199,56 @@ const PlumbingWebsites = () => {
                                     </CardFooter>
                                 </div>
                             </Card>
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* Testimonial / Case Study Section */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic text-center">
+                            Real Results, <span className="text-safety-orange">Real Plumbers</span>
+                        </h2>
+
+                        <motion.div
+                            className="bg-white/5 border-l-4 border-safety-orange p-8 md:p-12"
+                            variants={itemVariants}
+                        >
+                            <div className="flex items-start gap-4 md:gap-6">
+                                <div className="text-6xl md:text-8xl text-safety-orange font-black leading-none flex-shrink-0 -mt-2">"</div>
+                                <div>
+                                    <p className="text-lg md:text-2xl font-black italic leading-relaxed mb-8 text-white/90">
+                                        Before the new site, we were getting maybe 2 enquiries a month — mostly from word of mouth.
+                                        Within 90 days of launch, we were averaging 14 a month. The phone started ringing from suburbs
+                                        we didn't even know were looking for a plumber.
+                                    </p>
+                                    <div className="border-t border-white/10 pt-6 mb-8">
+                                        <p className="font-black uppercase tracking-widest text-safety-orange">Jason M.</p>
+                                        <p className="text-sm text-white/50 font-bold uppercase tracking-widest">Licensed Plumber — Western Sydney</p>
+                                    </div>
+                                    <motion.div className="grid grid-cols-3 gap-4" variants={containerVariants}>
+                                        {[
+                                            { before: "2/mo", after: "14/mo", label: "Monthly Enquiries" },
+                                            { before: "1 area", after: "9 suburbs", label: "Ranking Areas" },
+                                            { before: "—", after: "90 days", label: "Time to Results" }
+                                        ].map((stat, i) => (
+                                            <motion.div key={i} variants={itemVariants} className="text-center bg-white/5 p-4 border border-white/5">
+                                                <p className="text-2xl font-black text-safety-orange">{stat.after}</p>
+                                                <p className="text-[10px] text-white/40 font-black uppercase tracking-widest mt-1">{stat.label}</p>
+                                                {stat.before !== "—" && <p className="text-[10px] text-white/20 font-bold mt-1">was {stat.before}</p>}
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
                 </div>

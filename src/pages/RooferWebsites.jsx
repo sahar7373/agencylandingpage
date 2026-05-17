@@ -555,7 +555,196 @@ const RooferWebsites = () => {
                 </div>
             </motion.section>
 
-            {/* How We're Different Section */}
+            {/* Australian Roofing Licensing Requirements Section */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            What Your Roofing Website <span className="text-safety-orange">Must Display</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-4">
+                            By Australian Law — State by State
+                        </p>
+                        <p className="text-white/60 text-center font-bold max-w-3xl mx-auto mb-16 leading-relaxed">
+                            Australian roofing has three distinct licence categories — and displaying the wrong one (or none) on your website loses you insurance work, strata jobs, and the trust of homeowners who check.
+                        </p>
+
+                        {/* Three licence types */}
+                        <motion.div
+                            className="grid md:grid-cols-3 gap-6 mb-16"
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
+                        >
+                            {[
+                                {
+                                    type: "Roof Plumbing",
+                                    description: "Metal roofing, gutters, downpipes, and flashings. Requires a separate plumbing-category licence in most states. Without it, your roof plumbing work is unlicensed — a serious liability.",
+                                    states: "NSW · VIC · QLD · WA · SA · ACT"
+                                },
+                                {
+                                    type: "Roof Tiling",
+                                    description: "Concrete and terracotta tile installation. Often a separate trade category from roof plumbing. If you tile, display this licence separately — insurance assessors look for it.",
+                                    states: "NSW · VIC · QLD · WA · SA"
+                                },
+                                {
+                                    type: "General Roofing / Cladding",
+                                    description: "Asphalt shingles, Colorbond, and other non-tile cladding systems. Licensing varies most by state for this category — if you're unsure, your regulator can confirm your coverage.",
+                                    states: "QLD · WA · SA · ACT (varies)"
+                                }
+                            ].map((item, i) => (
+                                <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 p-6">
+                                    <div className="mb-4"><ShieldCheck className="w-6 h-6 text-safety-orange" /></div>
+                                    <h3 className="font-black uppercase text-white text-lg mb-3 tracking-tight">{item.type}</h3>
+                                    <p className="text-xs text-white/60 leading-relaxed mb-4">{item.description}</p>
+                                    <p className="text-xs text-safety-orange font-black uppercase tracking-widest">{item.states}</p>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        {/* State by state grid */}
+                        <motion.div
+                            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16"
+                            variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
+                        >
+                            {[
+                                {
+                                    state: "NSW",
+                                    authority: "NSW Fair Trading",
+                                    licenceType: "Contractor Licence — Roof Plumbing / Roof Tiling",
+                                    act: "Home Building Act 1989",
+                                    requirement: "Licence number and category must appear on all advertising, contracts, and websites. Roof plumbing and roof tiling are separate licence classes — display the correct one for the work you perform.",
+                                    tip: "If you do both tiling and metal roofing, display both licence numbers. Fair Trading audits websites regularly."
+                                },
+                                {
+                                    state: "VIC",
+                                    authority: "Victorian Building Authority (VBA)",
+                                    licenceType: "Roofing Registration + Plumbing Licence (if roof plumbing)",
+                                    act: "Building Act 1993 / Plumbing Regulations 2018",
+                                    requirement: "VBA registration number required on all advertising. If you perform roof plumbing (gutters, downpipes, flashings), a separate plumbing registration is also required and must be displayed.",
+                                    tip: "Many Victorian roofers hold both VBA and plumbing registrations — list both clearly with their categories."
+                                },
+                                {
+                                    state: "QLD",
+                                    authority: "QBCC (Queensland Building & Construction Commission)",
+                                    licenceType: "QBCC Contractor Licence — Roofing",
+                                    act: "Queensland Building and Construction Commission Act 1991",
+                                    requirement: "QBCC licence number mandatory on all advertising. Queensland separates roof tiling, roof plumbing, and general roofing into distinct licence classes — display only the classes you hold.",
+                                    tip: "Storm damage work is high-volume in QLD — display your QBCC number prominently in your header for insurance assessors."
+                                },
+                                {
+                                    state: "WA",
+                                    authority: "WA Building & Energy (DEMIRS)",
+                                    licenceType: "Roof Plumbing Licence / Building Contractor Licence",
+                                    act: "Plumbers Licensing and Plumbing Standards Regulations 2000",
+                                    requirement: "Licence number and expiry must appear on advertising. Roof plumbing requires a plumbing licence; other roofing requires a building contractor registration. Both numbers must be visible if you hold both.",
+                                    tip: "WA audits advertising aggressively — ensure your licence expiry date is current before publishing."
+                                },
+                                {
+                                    state: "SA",
+                                    authority: "Consumer & Business Services (CBS)",
+                                    licenceType: "Building Work Contractors Licence — Roofing",
+                                    act: "Building Work Contractors Act 1995",
+                                    requirement: "Contractor licence number required on all advertising including websites. Roof plumbing work also requires a CBS plumbing licence. Display both if applicable.",
+                                    tip: "SA homeowners increasingly verify licences online via the CBS portal — make your number easy to find and copy."
+                                },
+                                {
+                                    state: "ACT",
+                                    authority: "Access Canberra",
+                                    licenceType: "Construction Occupations Licence — Roofing",
+                                    act: "Construction Occupations (Licensing) Act 2004",
+                                    requirement: "Licence number must be displayed on all advertising and websites. ACT requires separate endorsements for roof plumbing versus general roofing — display the correct endorsement.",
+                                    tip: "ACT strata managers frequently request licence details — having them front-and-centre on your website speeds up strata approval."
+                                }
+                            ].map((item, i) => (
+                                <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 hover:border-safety-orange/30 transition-colors p-6 flex flex-col gap-4">
+                                    <div className="flex items-center gap-3">
+                                        <div className="w-12 h-12 bg-safety-orange/10 border border-safety-orange/30 flex items-center justify-center flex-shrink-0">
+                                            <span className="text-safety-orange font-black text-sm">{item.state}</span>
+                                        </div>
+                                        <div>
+                                            <p className="font-black uppercase text-white text-sm tracking-tight">{item.authority}</p>
+                                            <p className="text-xs text-white/40 font-bold">{item.act}</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-1">Licence Type</p>
+                                        <p className="text-sm text-white/70 font-bold">{item.licenceType}</p>
+                                    </div>
+                                    <div>
+                                        <p className="text-xs font-black uppercase tracking-widest text-white/50 mb-1">What to Display</p>
+                                        <p className="text-xs text-white/60 leading-relaxed">{item.requirement}</p>
+                                    </div>
+                                    <div className="mt-auto pt-4 border-t border-white/5 flex items-start gap-2">
+                                        <ShieldCheck className="w-4 h-4 text-safety-orange flex-shrink-0 mt-0.5" />
+                                        <p className="text-xs text-white/50 italic">{item.tip}</p>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </motion.div>
+
+                        {/* Universal requirements */}
+                        <div className="mb-12">
+                            <h3 className="text-2xl md:text-3xl font-black uppercase italic text-center mb-8">
+                                Plus These <span className="text-safety-orange">Everywhere</span>
+                            </h3>
+                            <motion.div
+                                className="grid md:grid-cols-3 gap-6"
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-50px" }}
+                            >
+                                {[
+                                    {
+                                        title: "Public Liability Insurance",
+                                        description: "Minimum $5M–$10M PLI is expected for commercial and strata roofing work. Display your insurer and coverage amount — insurance assessors and body corporates check this before approving contractors.",
+                                        icon: <ShieldCheck className="w-6 h-6 text-safety-orange" />
+                                    },
+                                    {
+                                        title: "White Card (General Induction)",
+                                        description: "All workers on construction sites in Australia must hold a valid White Card. Displaying this on your website signals to builders and strata managers that your team is site-compliant.",
+                                        icon: <CheckCircle2 className="w-6 h-6 text-safety-orange" />
+                                    },
+                                    {
+                                        title: "Insurance-Approved Contractor",
+                                        description: "Being listed on insurer panels (Suncorp, IAG, RACQ) is a major trust signal for storm damage work. If you're approved with any insurers, display their logos — homeowners specifically search for approved contractors.",
+                                        icon: <AlertCircle className="w-6 h-6 text-safety-orange" />
+                                    }
+                                ].map((item, i) => (
+                                    <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 p-6">
+                                        <div className="mb-4">{item.icon}</div>
+                                        <h4 className="font-black uppercase text-white mb-3 text-sm tracking-tight">{item.title}</h4>
+                                        <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+
+                        <div className="bg-safety-orange/5 border border-safety-orange/20 p-8 md:p-10 text-center">
+                            <p className="text-xl md:text-2xl font-black uppercase italic mb-3 text-white">We Build All of This In, Automatically</p>
+                            <p className="text-white/60 font-bold mb-6 max-w-2xl mx-auto">Licence display, insurance credentials, trust signals — they go in the right places from day one. No guesswork, no compliance gaps.</p>
+                            <a href="#contact">
+                                <Button className="bg-safety-orange hover:bg-safety-orange/90 text-black font-black uppercase tracking-wider px-8 py-4 text-sm">
+                                    Get a Compliant Roofing Website <ArrowRight className="w-4 h-4 ml-2 inline" />
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* Comparison Table */}
             <motion.section
                 className="py-24 md:py-32 border-b border-white/5 bg-black/40"
                 variants={sectionVariants}
@@ -566,41 +755,122 @@ const RooferWebsites = () => {
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
                         <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
-                            How We're <span className="text-safety-orange">Different</span>
+                            How We Stack Up <span className="text-safety-orange">Against the Alternatives</span>
                         </h2>
                         <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
-                            Built by people who understand tradies — not generic web agencies.
+                            Generic agencies don't know your trade. DIY takes months. We're purpose-built for roofers.
+                        </p>
+
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th className="text-left p-4 text-sm font-black uppercase tracking-widest text-white/40 w-2/5"></th>
+                                        <th className="p-4 text-center bg-safety-orange/10 border-t-4 border-safety-orange">
+                                            <p className="text-safety-orange font-black uppercase text-sm tracking-widest">Your Trade Partner</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-sm tracking-widest">Generic Agency</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-xs tracking-widest">DIY (Wix / Squarespace)</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {[
+                                        { label: "Understands the roofing industry", ytp: true, agency: false, diy: false },
+                                        { label: "Licence & compliance display built in", ytp: true, agency: "varies", diy: false },
+                                        { label: "Storm damage emergency contact", ytp: true, agency: false, diy: false },
+                                        { label: "Live in 2–4 weeks (not 3 months)", ytp: true, agency: false, diy: "maybe" },
+                                        { label: "Local SEO built in from day one", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "Suburb & service pages included", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "No 12-month lock-in contracts", ytp: true, agency: false, diy: true },
+                                        { label: "Roofing-specific copy & structure", ytp: true, agency: false, diy: false },
+                                        { label: "We earn your business every quarter", ytp: true, agency: false, diy: false },
+                                    ].map((row, i) => (
+                                        <tr key={i} className={`border-t border-white/5 ${i % 2 === 0 ? 'bg-white/[0.02]' : ''}`}>
+                                            <td className="p-4 text-sm font-bold text-white/70 uppercase tracking-tight">{row.label}</td>
+                                            <td className="p-4 text-center bg-safety-orange/5">
+                                                {row.ytp === true ? <Check className="w-5 h-5 text-green-500 mx-auto" /> :
+                                                 row.ytp === false ? <span className="text-red-500 font-black text-lg">✗</span> :
+                                                 <span className="text-yellow-500 text-xs font-black uppercase">{row.ytp}</span>}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.agency === true ? <Check className="w-5 h-5 text-green-500 mx-auto" /> :
+                                                 row.agency === false ? <span className="text-red-500 font-black text-lg">✗</span> :
+                                                 <span className="text-yellow-500 text-xs font-black uppercase">{row.agency}</span>}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.diy === true ? <Check className="w-5 h-5 text-green-500 mx-auto" /> :
+                                                 row.diy === false ? <span className="text-red-500 font-black text-lg">✗</span> :
+                                                 <span className="text-yellow-500 text-xs font-black uppercase">{row.diy}</span>}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p className="text-center text-white/30 font-bold uppercase tracking-widest text-xs mt-10">
+                            We build websites and automation systems — not lead generation retainers. You own your foundation.
+                        </p>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* How It Works */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/20"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                            How It <span className="text-safety-orange">Works</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            From first chat to live website — clear, fast, no surprises.
                         </p>
 
                         <motion.div
-                            className="grid md:grid-cols-3 gap-8"
+                            className="grid md:grid-cols-4 gap-8 relative"
                             variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
                         >
                             {[
                                 {
-                                    icon: <Home className="w-12 h-12 text-safety-orange" />,
-                                    title: "We Understand Tradies",
-                                    description: "We're not a corporate agency pushing cookie-cutter templates. We've worked with trades businesses across Australia and understand what actually brings in calls—not just pretty designs."
+                                    step: "01",
+                                    title: "Quick Chat",
+                                    description: "15 minutes. No sales pitch. We learn your business, your services, and where you want to be in 12 months. If it's not a fit, we'll tell you straight."
                                 },
                                 {
-                                    icon: <CheckCircle2 className="w-12 h-12 text-safety-orange" />,
-                                    title: "Fast Turnaround",
-                                    description: "No 3-month timelines or endless revision rounds. We scope your project clearly, build it efficiently, and get you live fast so you can start generating leads. Most projects are done within 2-4 weeks."
+                                    step: "02",
+                                    title: "We Scope & Build",
+                                    description: "Clear timeline, clear deliverables. We write the copy, build the pages, and wire up everything. You don't project-manage us — we handle it."
                                 },
                                 {
-                                    icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
-                                    title: "No Lock-In Contracts",
-                                    description: "We don't trap you in 12-month agreements. Our ongoing support is quarterly and reviewed annually. If it's not working, you're free to walk away. We earn your business every quarter."
+                                    step: "03",
+                                    title: "You Review & Launch",
+                                    description: "You get to review before anything goes live. Once you're happy, we hit publish. Most sites are live within 2–4 weeks of kickoff."
+                                },
+                                {
+                                    step: "04",
+                                    title: "Ongoing Partnership",
+                                    description: "Updates and support within scope — reviewed quarterly. Need automation added later? Available when you're ready. Scale it as your business grows."
                                 }
                             ].map((item, i) => (
-                                <motion.div
-                                    key={i}
-                                    variants={itemVariants}
-                                    className="bg-white/5 p-8 border border-white/5 hover:border-safety-orange/30 transition-all text-center"
-                                >
-                                    <div className="flex justify-center mb-6">{item.icon}</div>
-                                    <h3 className="text-2xl font-black uppercase mb-4">{item.title}</h3>
-                                    <p className="text-sm text-white/70 font-bold leading-relaxed">{item.description}</p>
+                                <motion.div key={i} variants={itemVariants} className="text-center">
+                                    <div className="w-20 h-20 bg-safety-orange/10 border-2 border-safety-orange/30 flex items-center justify-center mx-auto mb-6">
+                                        <span className="text-3xl font-black text-safety-orange">{item.step}</span>
+                                    </div>
+                                    <h3 className="text-xl font-black uppercase mb-4">{item.title}</h3>
+                                    <p className="text-sm text-white/60 font-bold leading-relaxed">{item.description}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
@@ -608,7 +878,7 @@ const RooferWebsites = () => {
                         <div className="mt-16 text-center">
                             <a href="#contact">
                                 <Button className="bg-safety-orange hover:bg-safety-orange-hover text-white px-8 py-6 text-lg font-black uppercase tracking-widest rounded-none">
-                                    Get Started — No Obligation Chat
+                                    Book Your Free Strategy Call
                                 </Button>
                             </a>
                         </div>

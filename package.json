@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prerender": "node scripts/prerender.js",
+    "build:ssg": "vite build && node scripts/prerender.js"
   },
   "devDependencies": {
     "@vitejs/plugin-legacy": "^7.2.1",

@@ -555,7 +555,7 @@ const CarpenterWebsites = () => {
                 </div>
             </motion.section>
 
-            {/* How We're Different Section */}
+            {/* ── Licensing Section ── */}
             <motion.section
                 className="py-24 md:py-32 border-b border-white/5 bg-black/40"
                 variants={sectionVariants}
@@ -565,51 +565,323 @@ const CarpenterWebsites = () => {
             >
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
-                        <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
+                        <div className="text-center mb-4">
+                            <span className="text-xs font-black uppercase tracking-widest text-safety-orange border border-safety-orange/30 px-4 py-1.5 inline-block mb-6">
+                                Australian Compliance Guide
+                            </span>
+                        </div>
+                        <h2 className="text-4xl md:text-5xl font-black uppercase italic text-center mb-4">
+                            What Your Carpentry Website Must Display <span className="text-safety-orange">(By Australian Law)</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16 max-w-2xl mx-auto">
+                            Licensing rules vary by state. Displaying the right credentials builds trust and keeps you legally covered.
+                        </p>
+
+                        {/* 3 Licence Type Cards */}
+                        <div className="mb-12">
+                            <h3 className="text-2xl md:text-3xl font-black uppercase italic text-center mb-8">
+                                The 3 Carpenter Licence <span className="text-safety-orange">Types</span>
+                            </h3>
+                            <motion.div
+                                className="grid md:grid-cols-3 gap-6"
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-50px" }}
+                            >
+                                {[
+                                    {
+                                        title: "Trade Certificate",
+                                        description: "Proves you completed your apprenticeship and hold a Certificate III in Carpentry. Required to work as a qualified carpenter anywhere in Australia. This is your baseline credential — display it upfront.",
+                                    },
+                                    {
+                                        title: "Contractor Licence",
+                                        description: "Required to quote and contract independently. Different from your trade certificate. Each state sets its own dollar threshold — from $5,000 in NSW to $20,000 in WA. This is what clients look for when hiring a sole trader or small carpentry business.",
+                                    },
+                                    {
+                                        title: "Owner-Builder Permit",
+                                        description: "What homeowners use to do their own building work. Showing you hold a proper Contractor Licence — not an owner-builder permit — is a major trust signal. Clients want a qualified professional, not someone operating under an exemption.",
+                                    },
+                                ].map((item, i) => (
+                                    <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 p-6">
+                                        <div className="mb-4"><ShieldCheck className="w-6 h-6 text-safety-orange" /></div>
+                                        <h4 className="font-black uppercase text-white mb-3 text-sm tracking-tight">{item.title}</h4>
+                                        <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+
+                        {/* State Cards */}
+                        <div className="mb-12">
+                            <h3 className="text-2xl md:text-3xl font-black uppercase italic text-center mb-8">
+                                State-by-State <span className="text-safety-orange">Requirements</span>
+                            </h3>
+                            <motion.div
+                                className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-50px" }}
+                            >
+                                {[
+                                    {
+                                        state: "NSW",
+                                        authority: "NSW Fair Trading",
+                                        act: "Home Building Act 1989",
+                                        licenceType: "Contractor Licence (Carpentry)",
+                                        requirement: "Work over $5,000 (incl. GST) requires a licence. Display your licence number on your website, quotes, invoices, and all advertising.",
+                                        tip: "A Contractor Licence (Carpentry) also covers joinery — useful if you do fit-outs alongside framing work.",
+                                    },
+                                    {
+                                        state: "VIC",
+                                        authority: "Victorian Building Authority (VBA)",
+                                        act: "Building Act 1993",
+                                        licenceType: "Domestic Builder (Limited / Unlimited)",
+                                        requirement: "Domestic building work over $10,000 requires VBA registration. Display your registration number on all advertising and documentation.",
+                                        tip: "Structural framing, floor, or roof work as part of a larger domestic job may require Domestic Builder registration — not just a trade cert.",
+                                    },
+                                    {
+                                        state: "QLD",
+                                        authority: "Queensland Building & Construction Commission",
+                                        act: "QBCC Act 1991",
+                                        licenceType: "Carpenter / Joiner Trade Licence",
+                                        requirement: "QBCC licence number must appear on all advertising including your website. Required for any residential or commercial carpentry work.",
+                                        tip: "QBCC also requires a Minimum Financial Requirements (MFR) report — showing clients you meet this standard adds an extra credibility layer.",
+                                    },
+                                    {
+                                        state: "WA",
+                                        authority: "DMIRS / Building Services Board",
+                                        act: "Building Services (Registration) Act 2011",
+                                        licenceType: "Building Contractor (Carpentry Specialty)",
+                                        requirement: "Work over $20,000 requires registration. Registration number must be displayed on all advertising and signage.",
+                                        tip: "No specific carpenter's licence is needed if employed by a registered builder — but contracting independently over $20,000 triggers full registration.",
+                                    },
+                                    {
+                                        state: "SA",
+                                        authority: "Consumer & Business Services (CBS)",
+                                        act: "Building Work Contractors Act 1995",
+                                        licenceType: "Building Work Contractor Licence (Carpentry)",
+                                        requirement: "Work over $12,000 requires a licence. Licence number on all advertising and contracts. Non-compliance can result in significant fines.",
+                                        tip: "SA distinguishes between general and specialist contractor licences — confirm which class covers your scope of work before advertising.",
+                                    },
+                                    {
+                                        state: "ACT",
+                                        authority: "Access Canberra (ACT Planning)",
+                                        act: "Construction Occupations (Licensing) Act 2004",
+                                        licenceType: "Construction Occupation Licence",
+                                        requirement: "All building work requires an occupational licence. Licence class and number must be displayed on all advertising materials.",
+                                        tip: "ACT is the strictest — even minor structural carpentry may need a licensed builder to sign off. Keep your credentials clearly visible on your site.",
+                                    },
+                                ].map((item, i) => (
+                                    <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 hover:border-safety-orange/30 transition-colors p-6 flex flex-col gap-4">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-12 h-12 bg-safety-orange/10 border border-safety-orange/30 flex items-center justify-center flex-shrink-0">
+                                                <span className="text-safety-orange font-black text-sm">{item.state}</span>
+                                            </div>
+                                            <div>
+                                                <p className="font-black uppercase text-white text-sm tracking-tight">{item.authority}</p>
+                                                <p className="text-xs text-white/40 font-bold">{item.act}</p>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-1">Licence Type</p>
+                                            <p className="text-sm text-white/70 font-bold">{item.licenceType}</p>
+                                        </div>
+                                        <div>
+                                            <p className="text-xs font-black uppercase tracking-widest text-white/50 mb-1">What to Display</p>
+                                            <p className="text-xs text-white/60 leading-relaxed">{item.requirement}</p>
+                                        </div>
+                                        <div className="mt-auto pt-4 border-t border-white/5 flex items-start gap-2">
+                                            <ShieldCheck className="w-4 h-4 text-safety-orange flex-shrink-0 mt-0.5" />
+                                            <p className="text-xs text-white/50 italic">{item.tip}</p>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+
+                        {/* Universal Requirements */}
+                        <div className="mb-12">
+                            <h3 className="text-2xl md:text-3xl font-black uppercase italic text-center mb-8">
+                                Plus These <span className="text-safety-orange">Everywhere</span>
+                            </h3>
+                            <motion.div
+                                className="grid md:grid-cols-3 gap-6"
+                                variants={containerVariants}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, margin: "-50px" }}
+                            >
+                                {[
+                                    {
+                                        icon: <ShieldCheck className="w-6 h-6 text-safety-orange" />,
+                                        title: "Public Liability Insurance",
+                                        description: "Minimum $5M–$20M coverage required by most builders and clients before a carpenter sets foot on site. Display your insurer and policy number — clients ask for this before signing off any job.",
+                                    },
+                                    {
+                                        icon: <ShieldCheck className="w-6 h-6 text-safety-orange" />,
+                                        title: "White Card (Construction Induction)",
+                                        description: "Mandatory for all construction site workers across Australia. Reference your White Card on your website to show clients you operate to worksite safety standards — not every carpenter does.",
+                                    },
+                                    {
+                                        icon: <ShieldCheck className="w-6 h-6 text-safety-orange" />,
+                                        title: "Certificate III in Carpentry",
+                                        description: "Your trade qualification. Displaying it prominently separates you from unlicensed operators who cut corners on price. Clients use it to verify you're a qualified professional — not a DIY cowboy.",
+                                    },
+                                ].map((item, i) => (
+                                    <motion.div key={i} variants={itemVariants} className="bg-white/5 border border-white/10 p-6">
+                                        <div className="mb-4">{item.icon}</div>
+                                        <h4 className="font-black uppercase text-white mb-3 text-sm tracking-tight">{item.title}</h4>
+                                        <p className="text-xs text-white/60 leading-relaxed">{item.description}</p>
+                                    </motion.div>
+                                ))}
+                            </motion.div>
+                        </div>
+
+                        <div className="text-center mt-4">
+                            <a href="#contact">
+                                <Button className="bg-safety-orange hover:bg-safety-orange/90 text-black font-black uppercase tracking-wider px-8 py-4 text-sm">
+                                    Get a Compliant Carpentry Website <ArrowRight className="w-4 h-4 ml-2 inline" />
+                                </Button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* ── Comparison Table ── */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/20"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-4xl md:text-5xl font-black uppercase italic text-center mb-4">
                             How We're <span className="text-safety-orange">Different</span>
                         </h2>
                         <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
                             Built by people who understand tradies — not generic web agencies.
                         </p>
 
+                        <div className="overflow-x-auto">
+                            <table className="w-full border-collapse">
+                                <thead>
+                                    <tr>
+                                        <th className="text-left p-4 text-sm font-black uppercase tracking-widest text-white/40 w-2/5"></th>
+                                        <th className="p-4 text-center bg-safety-orange/10 border-t-4 border-safety-orange">
+                                            <p className="text-safety-orange font-black uppercase text-sm tracking-widest">Your Trade Partner</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-sm tracking-widest">Generic Agency</p>
+                                        </th>
+                                        <th className="p-4 text-center">
+                                            <p className="text-white/40 font-black uppercase text-xs tracking-widest">DIY (Wix / Squarespace)</p>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {[
+                                        { label: "Built for Australian carpenters", ytp: true, agency: false, diy: false },
+                                        { label: "State licensing compliance copy", ytp: true, agency: false, diy: false },
+                                        { label: "Project portfolio / before-after", ytp: true, agency: "varies", diy: "maybe" },
+                                        { label: "Suburb-specific SEO pages", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "Mobile-first, click-to-call", ytp: true, agency: "varies", diy: "maybe" },
+                                        { label: "Ongoing updates included", ytp: true, agency: "extra cost", diy: false },
+                                        { label: "AI visibility (schema + AEO)", ytp: true, agency: false, diy: false },
+                                        { label: "No lock-in contract", ytp: true, agency: false, diy: false },
+                                    ].map((row, i) => (
+                                        <tr key={i} className={`border-t border-white/5 ${i % 2 === 0 ? 'bg-white/[0.02]' : ''}`}>
+                                            <td className="p-4 text-sm font-bold text-white/70 uppercase tracking-tight">{row.label}</td>
+                                            <td className="p-4 text-center bg-safety-orange/5">
+                                                {row.ytp === true ? <Check className="w-5 h-5 text-green-500 mx-auto" /> :
+                                                 row.ytp === false ? <span className="text-red-500 font-black text-lg">✗</span> :
+                                                 <span className="text-yellow-500 text-xs font-black uppercase">{row.ytp}</span>}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.agency === true ? <Check className="w-5 h-5 text-green-500 mx-auto" /> :
+                                                 row.agency === false ? <span className="text-red-500 font-black text-lg">✗</span> :
+                                                 <span className="text-yellow-500 text-xs font-black uppercase">{row.agency}</span>}
+                                            </td>
+                                            <td className="p-4 text-center">
+                                                {row.diy === true ? <Check className="w-5 h-5 text-green-500 mx-auto" /> :
+                                                 row.diy === false ? <span className="text-red-500 font-black text-lg">✗</span> :
+                                                 <span className="text-yellow-500 text-xs font-black uppercase">{row.diy}</span>}
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                            <p className="text-center text-white/30 font-bold uppercase tracking-widest text-xs mt-10">
+                                We build websites and automation systems — not lead generation retainers. You own your foundation.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
+            {/* ── How It Works ── */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-5xl mx-auto">
+                        <h2 className="text-4xl md:text-5xl font-black uppercase italic text-center mb-4">
+                            How It <span className="text-safety-orange">Works</span>
+                        </h2>
+                        <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
+                            From first chat to live website — clear, fast, no surprises.
+                        </p>
+
                         <motion.div
-                            className="grid md:grid-cols-3 gap-8"
+                            className="grid md:grid-cols-4 gap-8 relative"
                             variants={containerVariants}
+                            initial="hidden"
+                            whileInView="visible"
+                            viewport={{ once: true, margin: "-50px" }}
                         >
                             {[
                                 {
-                                    icon: <Ruler className="w-12 h-12 text-safety-orange" />,
-                                    title: "We Understand Tradies",
-                                    description: "We're not a corporate agency pushing cookie-cutter templates. We've worked with trades businesses across Australia and understand what actually brings in calls—not just pretty designs."
+                                    step: "01",
+                                    title: "Quick Chat",
+                                    description: "15-minute call to understand your trade, the services you offer, and the suburbs you want to dominate.",
                                 },
                                 {
-                                    icon: <CheckCircle2 className="w-12 h-12 text-safety-orange" />,
-                                    title: "Fast Turnaround",
-                                    description: "No 3-month timelines or endless revision rounds. We scope your project clearly, build it efficiently, and get you live fast so you can start generating leads. Most projects are done within 2-4 weeks."
+                                    step: "02",
+                                    title: "We Scope & Build",
+                                    description: "We write the copy, handle the design, and build your site around your carpentry services — no templates.",
                                 },
                                 {
-                                    icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
-                                    title: "No Lock-In Contracts",
-                                    description: "We don't trap you in 12-month agreements. Our ongoing support is quarterly and reviewed annually. If it's not working, you're free to walk away. We earn your business every quarter."
-                                }
+                                    step: "03",
+                                    title: "You Review & Launch",
+                                    description: "One clear round of feedback. You approve, we publish. Most carpenter sites go live within 2–4 weeks.",
+                                },
+                                {
+                                    step: "04",
+                                    title: "Ongoing Partnership",
+                                    description: "Updates, SEO monitoring, and performance tracking. Your site keeps working as your business grows.",
+                                },
                             ].map((item, i) => (
-                                <motion.div
-                                    key={i}
-                                    variants={itemVariants}
-                                    className="bg-white/5 p-8 border border-white/5 hover:border-safety-orange/30 transition-all text-center"
-                                >
-                                    <div className="flex justify-center mb-6">{item.icon}</div>
-                                    <h3 className="text-2xl font-black uppercase mb-4">{item.title}</h3>
-                                    <p className="text-sm text-white/70 font-bold leading-relaxed">{item.description}</p>
+                                <motion.div key={i} variants={itemVariants} className="text-center">
+                                    <div className="w-20 h-20 bg-safety-orange/10 border-2 border-safety-orange/30 flex items-center justify-center mx-auto mb-6">
+                                        <span className="text-3xl font-black text-safety-orange">{item.step}</span>
+                                    </div>
+                                    <h3 className="text-xl font-black uppercase mb-4">{item.title}</h3>
+                                    <p className="text-sm text-white/60 font-bold leading-relaxed">{item.description}</p>
                                 </motion.div>
                             ))}
                         </motion.div>
 
                         <div className="mt-16 text-center">
                             <a href="#contact">
-                                <Button className="bg-safety-orange hover:bg-safety-orange-hover text-white px-8 py-6 text-lg font-black uppercase tracking-widest rounded-none">
-                                    Get Started — No Obligation Chat
-                                </Button>
+                                <Button className="bg-safety-orange hover:bg-safety-orange-hover text-white px-8 py-6 text-lg font-black uppercase tracking-widest rounded-none">Book Your Free Strategy Call</Button>
                             </a>
                         </div>
                     </div>
