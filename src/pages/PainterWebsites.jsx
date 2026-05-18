@@ -942,9 +942,6 @@ const PainterWebsites = () => {
                                         loading="lazy"
                                     />
                                     <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-                                    <div className="absolute top-4 left-4 bg-safety-orange px-3 py-1.5">
-                                        <span className="text-[10px] font-black uppercase tracking-widest text-white">Live Website ↗</span>
-                                    </div>
                                 </div>
 
                                 <div className="p-8 md:p-12 flex flex-col justify-between bg-white">

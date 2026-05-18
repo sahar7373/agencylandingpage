@@ -44,7 +44,12 @@ const AEOForTradies = () => {
                     "url": "https://yourtradepartner.com.au/resources/aeo-for-tradies",
                     "datePublished": "2026-03-18",
                     "dateModified": "2026-05-17",
-                    "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
+                    "author": {
+                        "@type": "Person",
+                        "name": "Harley",
+                        "jobTitle": "Director, StateWide Roof Plumbing",
+                        "description": "Harley is the founder and director of StateWide Roof Plumbing (SWRP), a professional roofing company operating across NSW. With years of hands-on experience running and scaling a trade business, he provides first-hand insight into what Australian tradies actually need from their digital presence."
+                    },
                     "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
                 })}</script>
             </Helmet>
@@ -112,6 +117,20 @@ const AEOForTradies = () => {
                             </p>
                         </div>
 
+                        {/* Expert Contributor */}
+                        <div className="flex items-start gap-4 bg-white/5 border border-white/10 p-6">
+                            <div className="flex-shrink-0 w-12 h-12 bg-safety-orange/20 border border-safety-orange/40 flex items-center justify-center">
+                                <span className="text-safety-orange font-black text-lg">H</span>
+                            </div>
+                            <div>
+                                <p className="text-xs font-black uppercase tracking-widest text-safety-orange mb-1">Expert Contributor</p>
+                                <p className="font-black text-white">Harley — Director, StateWide Roof Plumbing (NSW)</p>
+                                <p className="text-sm text-white/60 font-bold mt-1 leading-relaxed">
+                                    Harley has scaled a professional roofing operation across New South Wales. He provides first-hand perspective on what actually moves the needle for trade businesses trying to win work online.
+                                </p>
+                            </div>
+                        </div>
+
                         {/* Statistics Callout */}
                         <div className="bg-safety-orange/10 border-l-4 border-safety-orange p-8">
                             <h2 className="text-2xl font-black uppercase italic mb-4">The Shift Is Real:</h2>
@@ -149,36 +168,30 @@ const AEOForTradies = () => {
                             </h2>
 
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-6">
-                                <strong className="text-safety-orange">AEO (Answer Engine Optimization)</strong> is the new SEO. Instead of optimizing to rank on Google's page 1, you're optimizing to be the answer AI engines recommend.
+                                <strong className="text-safety-orange">AEO (Answer Engine Optimization)</strong> is the practice of optimizing your business to be recommended by AI tools like ChatGPT, Perplexity, and Google AI Overviews — not just ranked on a list of links.
                             </p>
 
-                            <div className="grid md:grid-cols-2 gap-6 mb-8">
-                                <div className="bg-white/5 border border-white/10 p-6">
-                                    <h3 className="text-xl font-black uppercase mb-4 text-white">Old SEO (2010-2023)</h3>
-                                    <ul className="space-y-2 text-white/70 text-sm">
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> Keywords in title tags</li>
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> Backlinks from other sites</li>
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> Fast page speed</li>
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> Mobile-friendly design</li>
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> Goal: Rank on page 1</li>
-                                    </ul>
-                                </div>
+                            <div className="bg-safety-orange/10 border border-safety-orange p-6 mb-6">
+                                <p className="font-black text-safety-orange mb-3">Here's what most agencies won't tell you:</p>
+                                <p className="text-white/80 font-bold leading-relaxed">
+                                    Google has officially confirmed there's no special AEO playbook separate from SEO. The signals that make AI recommend your business — E-E-A-T, structured data, clear answers, verified reviews — are the same fundamentals that have driven good SEO for years. What's changed is that AI systems raise the bar: they reward businesses that do these fundamentals <em>exceptionally well</em>.
+                                </p>
+                            </div>
 
-                                <div className="bg-safety-orange/10 border border-safety-orange p-6">
-                                    <h3 className="text-xl font-black uppercase mb-4 text-safety-orange">New AEO (2024+)</h3>
-                                    <ul className="space-y-2 text-white/80 text-sm">
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> All of traditional SEO, PLUS:</li>
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> Conversational, question-based content</li>
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> Direct, concise answers to common questions</li>
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> Structured data markup (schema.org)</li>
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> E-E-A-T signals (Experience, Expertise, Authority, Trust)</li>
-                                        <li className="flex gap-2"><span className="text-safety-orange">✓</span> Goal: <strong>Be the AI's recommended answer</strong></li>
-                                    </ul>
-                                </div>
+                            <div className="bg-white/5 border border-white/10 p-6 mb-6">
+                                <h3 className="text-xl font-black uppercase mb-4 text-white">What AI-Ready SEO Looks Like for Tradies</h3>
+                                <ul className="space-y-2 text-white/70 text-sm">
+                                    <li className="flex gap-2"><span className="text-safety-orange">✓</span> Keywords, title tags, backlinks, fast load speed — the SEO basics still matter</li>
+                                    <li className="flex gap-2"><span className="text-safety-orange">✓</span> Conversational, question-based content that answers what customers actually ask</li>
+                                    <li className="flex gap-2"><span className="text-safety-orange">✓</span> Structured data markup (schema.org) so AI can read your site like a data table</li>
+                                    <li className="flex gap-2"><span className="text-safety-orange">✓</span> E-E-A-T signals: real experience, verified expertise, industry authority, and trust</li>
+                                    <li className="flex gap-2"><span className="text-safety-orange">✓</span> Real projects, real reviews, and specific proof of completed work</li>
+                                    <li className="flex gap-2"><span className="text-safety-orange">✓</span> Goal: Rank well on Google <strong>and</strong> be recommended by AI — they're achieved the same way</li>
+                                </ul>
                             </div>
 
                             <p className="text-lg text-white/80 font-bold leading-relaxed">
-                                The difference? SEO gets you seen. <strong className="text-safety-orange">AEO gets you recommended.</strong>
+                                AI search doesn't replace the search engine game. It raises the stakes: instead of showing 10 links, AI tools recommend <strong className="text-safety-orange">2–5 businesses with reasons</strong>. The ones that make the cut are the ones that have done their SEO properly.
                             </p>
                         </div>
 
@@ -203,7 +216,7 @@ const AEOForTradies = () => {
                                 <div className="bg-white/5 border-l-4 border-safety-orange p-6">
                                     <h3 className="text-lg font-black uppercase mb-3">2. AI Evaluates Trustworthiness</h3>
                                     <p className="text-white/70 font-bold mb-3">
-                                        Unlike Google's algorithm, AI models prioritize <strong>E-E-A-T signals</strong>:
+                                        Like Google, AI models heavily weigh <strong>E-E-A-T signals</strong>:
                                     </p>
                                     <ul className="space-y-2 text-white/60 text-sm">
                                         <li className="flex gap-2"><span className="text-safety-orange">•</span> <strong>Experience:</strong> Do you show real completed projects?</li>
@@ -232,11 +245,11 @@ const AEOForTradies = () => {
                         {/* The 7 Pillars of AEO */}
                         <div>
                             <h2 className="text-2xl md:text-3xl font-black uppercase italic mb-6 border-b-2 border-safety-orange pb-2 inline-block">
-                                The 7 Pillars of AEO for Tradies
+                                7 SEO Fundamentals That Drive AI Visibility
                             </h2>
 
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-8">
-                                Here's exactly how to optimize your tradie business for AI search engines:
+                                These aren't AI-specific tricks — they're the SEO fundamentals that AI systems evaluate most heavily. Get these right and you win on Google <em>and</em> in AI recommendations:
                             </p>
 
                             {/* Pillar 1 */}
@@ -444,7 +457,7 @@ const AEOForTradies = () => {
                         {/* Real-World Example */}
                         <div>
                             <h2 className="text-2xl md:text-3xl font-black uppercase italic mb-6 border-b-2 border-safety-orange pb-2 inline-block">
-                                Real-World Example: How AEO Helped a Roofing Business Scale
+                                Real-World Example: How Getting SEO Right Helped a Roofing Business Scale
                             </h2>
 
                             <div className="bg-gradient-to-br from-zinc-800 to-black border border-white/10 p-8 mb-6">
@@ -461,7 +474,7 @@ const AEOForTradies = () => {
 
                                     <p className="pt-4"><strong>What We Delivered:</strong></p>
                                     <ul className="space-y-1 text-white/70 ml-6">
-                                        <li className="flex gap-2"><span className="text-safety-orange">1.</span> 14+ page AEO-optimized website with FAQ schema</li>
+                                        <li className="flex gap-2"><span className="text-safety-orange">1.</span> 14+ page website with structured data, FAQ schema, and full SEO foundation</li>
                                         <li className="flex gap-2"><span className="text-safety-orange">2.</span> Company logo & professional branding</li>
                                         <li className="flex gap-2"><span className="text-safety-orange">3.</span> Custom SWMS (Safe Work Method Statements) integration</li>
                                         <li className="flex gap-2"><span className="text-safety-orange">4.</span> Roof report templates for professional client communication</li>
@@ -471,7 +484,7 @@ const AEOForTradies = () => {
 
                                     <p className="pt-4"><strong>The Result:</strong></p>
                                     <p className="text-white/70 ml-6">
-                                        SWRP now has a full digital infrastructure that handles their growth without operational headaches. The AEO-optimized website positions them as industry experts, making them discoverable when potential clients ask AI: <em>"Who's a professional roofing company in NSW with proper safety systems?"</em>
+                                        SWRP now has a full digital infrastructure that handles their growth without operational headaches. Their site's structured data, credentials, and FAQ content position them as clear industry experts — the kind of signals that get you recommended when someone asks AI: <em>"Who's a professional roofing company in NSW with proper safety systems?"</em>
                                     </p>
                                 </div>
 
@@ -487,7 +500,7 @@ const AEOForTradies = () => {
                         {/* Quick Wins */}
                         <div>
                             <h2 className="text-2xl md:text-3xl font-black uppercase italic mb-6 border-b-2 border-safety-orange pb-2 inline-block">
-                                5 Quick AEO Wins You Can Implement This Week
+                                5 Quick Wins You Can Implement This Week
                             </h2>
 
                             <div className="space-y-4">
@@ -528,15 +541,15 @@ const AEOForTradies = () => {
                             <h2 className="text-2xl font-black uppercase italic mb-4">The Bottom Line</h2>
 
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-4">
-                                AI search isn't coming—it's already here. 42% of Australians are using it right now to find tradies.
+                                AI search isn't coming — it's already here. And it rewards the same thing Google has always rewarded: real expertise, clear answers, and a trustworthy business presence.
                             </p>
 
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-4">
-                                The businesses that optimize for AEO today will dominate their local markets tomorrow. The ones that ignore it will wonder why their phones stopped ringing.
+                                The businesses getting recommended by ChatGPT and Google AI Overviews aren't using secret AI tricks. They have solid SEO fundamentals — a well-structured site, verified reviews, clear credentials, and content that answers real questions. That's it.
                             </p>
 
                             <p className="text-lg text-white/80 font-bold leading-relaxed">
-                                You don't need to be a tech genius. You just need a website built for how people <strong className="text-safety-orange">actually search</strong> in 2026.
+                                You don't need to learn a whole new discipline. You need a website built on the fundamentals that have always mattered — done <strong className="text-safety-orange">properly this time</strong>.
                             </p>
                         </div>
 
@@ -554,7 +567,7 @@ const AEOForTradies = () => {
                             Want a Website <span className="text-safety-orange">Built for AI Search?</span>
                         </h2>
                         <p className="text-xl text-white/70 font-bold mb-8 max-w-2xl mx-auto">
-                            We build tradie websites with built-in AEO optimization—FAQ schema, conversational content, structured data, and AI-ready architecture from day one.
+                            We build tradie websites on the SEO fundamentals that get you found on Google and recommended by AI — FAQ schema, structured data, conversational content, and real proof of your expertise, all from day one.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
                             <a href="/#packages">
