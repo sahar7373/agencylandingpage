@@ -986,9 +986,42 @@ function LandingPage() {
                                 <span>Visitors into booked jobs</span>
                             </div>
                         </motion.div>
+
                     </motion.div>
                 </div>
             </header>
+
+            {/* Client Proof Band */}
+            <div className="w-full border-y border-white/5 bg-black/40 -mt-5">
+                <div className="container mx-auto px-6 py-3 flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 flex-wrap">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-white flex-shrink-0">
+                        Verified trades we've built for
+                    </span>
+                    <div className="flex flex-wrap justify-center items-center gap-3">
+                        {[
+                            { name: "Rovina's Painting", location: "Adelaide, SA" },
+                            { name: "ZJC Renovations", location: "ACT" },
+                            { name: "State Wide Roof Plumbing", location: "NSW" },
+                        ].map((client) => (
+                            <a
+                                key={client.name}
+                                href="#projects"
+                                className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/8 hover:border-safety-orange/40 hover:bg-white/8 transition-all rounded-sm group"
+                            >
+                                <div className="w-1.5 h-1.5 bg-safety-orange rounded-full flex-shrink-0"></div>
+                                <span className="text-[10px] font-black uppercase tracking-wider text-white/60 group-hover:text-white transition-colors">{client.name}</span>
+                                <span className="text-[8px] font-bold text-white/25 uppercase tracking-widest">{client.location}</span>
+                            </a>
+                        ))}
+                        <a
+                            href="#projects"
+                            className="text-[9px] font-black uppercase tracking-widest text-safety-orange hover:text-white transition-colors flex items-center gap-1"
+                        >
+                            See results <ArrowRight className="w-2.5 h-2.5" />
+                        </a>
+                    </div>
+                </div>
+            </div>
 
             {/* 2. PROBLEM AGITATION SECTION */}
             <motion.section
@@ -1972,6 +2005,30 @@ function LandingPage() {
                                                                             </ul>
                                                                         </CollapsibleDetail>
                                                                     )
+                                                                },
+                                                                {
+                                                                    content: (
+                                                                        <CollapsibleDetail title="GOOGLE ADS MANAGEMENT">
+                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
+                                                                                <li>SEARCH ADS TARGETING PEOPLE ACTIVELY LOOKING FOR YOUR TRADE</li>
+                                                                                <li>LOCAL SERVICE ADS TO DOMINATE YOUR SUBURB</li>
+                                                                                <li>AD COPY WRITTEN IN TRADE LANGUAGE THAT CONVERTS</li>
+                                                                                <li>MONTHLY OPTIMISATION INCLUDED</li>
+                                                                            </ul>
+                                                                        </CollapsibleDetail>
+                                                                    )
+                                                                },
+                                                                {
+                                                                    content: (
+                                                                        <CollapsibleDetail title="META ADS MANAGEMENT (FACEBOOK & INSTAGRAM)">
+                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
+                                                                                <li>REACH HOMEOWNERS IN YOUR SERVICE AREA BEFORE THEY SEARCH</li>
+                                                                                <li>RETARGETING SO WARM LEADS DON'T FORGET YOU</li>
+                                                                                <li>CREATIVES BUILT AROUND YOUR PAST WORK</li>
+                                                                                <li>MONTHLY REPORTING ON WHAT'S WORKING</li>
+                                                                            </ul>
+                                                                        </CollapsibleDetail>
+                                                                    )
                                                                 }
                                                             ].map((item, i) => (
                                                                 <li key={`highlight-${i}`} className="flex items-start gap-3 text-sm font-bold text-white">
@@ -2547,6 +2604,77 @@ function LandingPage() {
                     </div>
                 </div>
             </motion.section >
+
+            {/* BLOG RESOURCES TEASER */}
+            <motion.section
+                className="py-20 border-b border-white/5 bg-zinc-900/20"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-4">
+                            <div>
+                                <div className="inline-block px-4 py-2 rounded-full bg-safety-orange/10 border border-safety-orange/20 mb-4">
+                                    <p className="text-xs font-black uppercase tracking-widest text-safety-orange">Free Resources</p>
+                                </div>
+                                <h2 className="text-3xl md:text-5xl font-black uppercase italic leading-none">
+                                    Built for Trades.<br /><span className="text-white/30">Worth Reading.</span>
+                                </h2>
+                            </div>
+                            <a href="/resources" className="text-sm font-black uppercase tracking-widest text-safety-orange hover:text-white transition-colors flex items-center gap-2 flex-shrink-0">
+                                View All Resources <ArrowRight className="w-4 h-4" />
+                            </a>
+                        </div>
+
+                        <div className="grid md:grid-cols-3 gap-6">
+                            {[
+                                {
+                                    tag: "Websites",
+                                    title: "Why Tradie Websites Don't Get Calls",
+                                    teaser: "Most trade websites look fine but quietly send visitors to your competitors. Here are the exact things stopping yours from converting.",
+                                    href: "/resources/why-tradie-websites-dont-get-calls"
+                                },
+                                {
+                                    tag: "Lead Generation",
+                                    title: "Google Ads vs SEO for Tradies",
+                                    teaser: "Paid ads stop the moment you do. SEO compounds. Which channel should you invest in first — and when does it make sense to run both?",
+                                    href: "/resources/google-ads-vs-seo-tradies"
+                                },
+                                {
+                                    tag: "AI Systems",
+                                    title: "AI Receptionist for Tradies",
+                                    teaser: "You can't answer every call when you're on the tools. An AI receptionist captures those jobs 24/7 so nothing slips through the cracks.",
+                                    href: "/resources/ai-receptionist-for-tradies"
+                                }
+                            ].map((post) => (
+                                <a
+                                    key={post.href}
+                                    href={post.href}
+                                    className="group flex flex-col bg-white/5 border border-white/10 hover:border-safety-orange/40 transition-all duration-300 rounded-sm overflow-hidden"
+                                >
+                                    <div className="p-6 flex flex-col flex-grow">
+                                        <div className="inline-block px-3 py-1 bg-safety-orange/10 border border-safety-orange/20 rounded-sm mb-4 self-start">
+                                            <span className="text-[9px] font-black uppercase tracking-widest text-safety-orange">{post.tag}</span>
+                                        </div>
+                                        <h3 className="text-lg font-black uppercase italic leading-tight mb-3 group-hover:text-safety-orange transition-colors">
+                                            {post.title}
+                                        </h3>
+                                        <p className="text-sm font-medium text-white/60 leading-relaxed flex-grow">
+                                            {post.teaser}
+                                        </p>
+                                        <div className="mt-6 flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-safety-orange">
+                                            Read Article <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                                        </div>
+                                    </div>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
 
             {/* 8. FINAL CTA SECTION */}
             < motion.section
