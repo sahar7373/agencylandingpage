@@ -1,6 +1,6 @@
 import React from 'react'
 import { Helmet } from 'react-helmet-async'
-import { motion, useInView, animate } from 'framer-motion'
+import { motion, useInView, animate, AnimatePresence } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import { Hammer, ArrowRight, CheckCircle2, Zap, Menu, X, ChevronDown, ChevronUp } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -28,35 +28,6 @@ const LogoNode = React.forwardRef(({ label, src, size = 'md' }, ref) => {
 })
 LogoNode.displayName = 'LogoNode'
 
-// ─── Software Section ─────────────────────────────────────────────────────────
-function SoftwareSection({ id, title, label, description, items, delay = 0 }) {
-  return (
-    <motion.div
-      id={id}
-      className="py-16 border-b border-white/5"
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-80px' }}
-      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay }}
-    >
-      <div className="container mx-auto px-6 max-w-4xl">
-        <p className="text-xs font-black uppercase tracking-[0.25em] text-safety-orange/60 mb-2">{label}</p>
-        <h2 className="text-3xl md:text-4xl font-black uppercase italic mb-4">{title}</h2>
-        <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-2xl">{description}</p>
-        {items && (
-          <ul className="flex flex-col gap-3">
-            {items.map((item, i) => (
-              <li key={i} className="flex items-start gap-3 text-white/60">
-                <CheckCircle2 className="w-4 h-4 text-safety-orange flex-shrink-0 mt-0.5" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </motion.div>
-  )
-}
 
 // ─── Count-Up Stat ────────────────────────────────────────────────────────────
 function CountUpStat({ prefix = '', from, to, suffix = '', duration = 1.4 }) {
@@ -86,6 +57,13 @@ function CountUpStat({ prefix = '', from, to, suffix = '', duration = 1.4 }) {
 export default function AutomationPage() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false)
   const [openFaq, setOpenFaq] = React.useState(null)
+  const [activeTab, setActiveTab] = React.useState('servicem8')
+
+  React.useEffect(() => {
+    const hash = window.location.hash.replace('#', '')
+    const ids = ['servicem8', 'safetyculture', 'fergus', 'prime', 'sync']
+    if (ids.includes(hash)) setActiveTab(hash)
+  }, [])
 
   const toolsData = [
     {
@@ -276,8 +254,12 @@ export default function AutomationPage() {
 
   const faqData = [
     {
-      q: 'What trades do you work with?',
-      a: 'Plumbers, electricians, builders, HVAC techs, concreters, painters, landscapers — any trade running ServiceM8, Fergus, SafetyCulture, Prime or Xero. If your business runs on these platforms, we can automate it.',
+      q: 'What does it cost?',
+      a: 'Book a free audit first. We map what is worth automating and show you what it will save before you spend a cent. No commitment, no sales pressure — just an honest look at your stack.',
+    },
+    {
+      q: 'How much admin time can I actually save?',
+      a: 'Industry data puts tradie admin at 10–15 hours per week. Tradies we work with typically recover 8–12 of those hours within the first month of automation going live.',
     },
     {
       q: 'Do I need to learn new software?',
@@ -288,24 +270,20 @@ export default function AutomationPage() {
       a: 'Most setups are done in 2–4 weeks. You do not need to do anything — we handle the build, the testing, and the handover.',
     },
     {
-      q: 'Will this work if I run a small operation?',
-      a: "That's exactly who this is built for. Solo tradies and small crews waste the most time on admin because there's no one else to handle it. Automation fixes that without hiring.",
+      q: 'Is this the same as hiring a VA?',
+      a: 'A VA needs managing, takes sick days, and goes home at 5pm. Automation runs 24/7 with no oversight — and it does not miss enquiries at 9pm on a Sunday.',
     },
     {
-      q: 'How much admin time can I actually save?',
-      a: 'Industry data puts tradie admin at 10–15 hours per week. Tradies we work with typically recover 8–12 of those hours within the first month of automation going live.',
+      q: 'Will this work if I run a small operation?',
+      a: "That's exactly who this is built for. Solo tradies and small crews waste the most time on admin because there's no one else to handle it. Automation fixes that without hiring.",
     },
     {
       q: 'I already use ServiceM8 — do I need all five tools?',
       a: 'No. We start with what you have got. Most businesses begin with one platform and expand the automation as they see what is possible. ServiceM8 automation alone is a full project.',
     },
     {
-      q: 'Is this the same as hiring a VA?',
-      a: 'A VA needs managing, takes sick days, and goes home at 5pm. Automation runs 24/7 with no oversight — and it does not miss enquiries at 9pm on a Sunday.',
-    },
-    {
-      q: 'What does it cost?',
-      a: 'Book a free audit first. We map what is worth automating and show you what it will save before you spend a cent. No commitment, no sales pressure — just an honest look at your stack.',
+      q: 'What trades do you work with?',
+      a: 'Plumbers, electricians, builders, HVAC techs, concreters, painters, landscapers — any trade running ServiceM8, Fergus, SafetyCulture, Prime or Xero. If your business runs on these platforms, we can automate it.',
     },
   ]
 
@@ -331,11 +309,9 @@ export default function AutomationPage() {
             </span>
           </Link>
           <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-            <a href="#servicem8" className="hover:text-white transition-colors">ServiceM8</a>
-            <a href="#safetyculture" className="hover:text-white transition-colors">SafetyCulture</a>
-            <a href="#fergus" className="hover:text-white transition-colors">Fergus</a>
-            <a href="#prime" className="hover:text-white transition-colors">Prime</a>
-            <a href="#sync" className="hover:text-white transition-colors">Full Stack</a>
+            <a href="#voice" className="hover:text-white transition-colors">Voice AI</a>
+            <a href="#tools" className="hover:text-white transition-colors">Softwares</a>
+            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
             <Link to="/" className="hover:text-white transition-colors">Homepage</Link>
           </div>
           <div className="flex items-center gap-4">
@@ -343,7 +319,7 @@ export default function AutomationPage() {
               asChild
               className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-3 h-9 text-[9px] md:text-xs font-black uppercase tracking-wider shadow-lg shadow-safety-orange/20"
             >
-              <a href="#cta">Book Free Audit</a>
+              <a href="https://cal.com/saharsh-patel-fr7cuf/strategy-session" target="_blank" rel="noopener noreferrer">Book Free Audit</a>
             </Button>
             <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="lg:hidden text-white hover:text-safety-orange transition-colors">
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -351,12 +327,11 @@ export default function AutomationPage() {
           </div>
           {isMenuOpen && (
             <div className="absolute top-full left-0 w-full bg-construction-charcoal border-b border-white/10 p-6 flex flex-col gap-6 lg:hidden shadow-2xl animate-in slide-in-from-top-5 duration-200">
-              <a href="#servicem8" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">ServiceM8</a>
-              <a href="#safetyculture" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">SafetyCulture</a>
-              <a href="#fergus" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Fergus</a>
-              <a href="#prime" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Prime</a>
-              <a href="#sync" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Full Stack</a>
+              <a href="#voice" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Voice AI</a>
+              <a href="#tools" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Softwares</a>
+              <a href="#faq" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">FAQ</a>
               <Link to="/" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">← Homepage</Link>
+              <a href="tel:+61451044751" className="text-sm font-black uppercase tracking-[0.2em] text-safety-orange hover:text-white transition-colors">0451 044 751</a>
             </div>
           )}
         </div>
@@ -380,11 +355,28 @@ export default function AutomationPage() {
               <span className="text-safety-orange">Manually.</span>
             </h1>
             <p className="text-lg md:text-xl text-white/80 font-medium mb-4 leading-relaxed max-w-2xl mx-auto">
-              Plumbers, electricians, builders, concreters — if you are still manually chasing quotes, typing up jobs and updating three different apps, you are losing 10–15 hours a week. We connect ServiceM8, SafetyCulture, Fergus, Prime, and Xero and build the automations between them so your business runs without you.
+              You didn't start a trade business to do data entry. Built for Australian trades — we wire up the software you already run so you can knock off on time and actually be there for the people waiting at home.
             </p>
-            <p className="text-sm text-safety-orange/80 font-black uppercase tracking-[0.18em] mb-12">
+            <p className="text-sm text-safety-orange/80 font-black uppercase tracking-[0.18em] mb-8">
               AI automation for Australian tradies. Ready to deploy.
             </p>
+
+            <div className="flex flex-col items-center gap-3 mb-12">
+              <div className="flex flex-col sm:flex-row items-center justify-center gap-5">
+                <Button
+                  asChild
+                  className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-10 py-6 text-base md:text-lg font-black uppercase tracking-widest shadow-2xl shadow-safety-orange/30 group w-full sm:w-auto"
+                >
+                  <a href="https://cal.com/saharsh-patel-fr7cuf/strategy-session" target="_blank" rel="noopener noreferrer">
+                    Get My Hours Back
+                    <ArrowRight className="ml-3 w-5 h-5 group-hover:translate-x-1.5 transition-transform" />
+                  </a>
+                </Button>
+              </div>
+              <p className="text-[10px] text-white/25 uppercase tracking-[0.18em] font-bold">
+                8 hours back in 30 days — or we keep building at no extra charge
+              </p>
+            </div>
           </motion.div>
 
           {/* ── Tools Marquee (inside hero) ── */}
@@ -418,6 +410,33 @@ export default function AutomationPage() {
           </motion.div>
         </div>
       </header>
+
+      {/* ── Social proof primer ── */}
+      <div className="border-b border-white/5 bg-black/30">
+        <div className="container mx-auto px-6 max-w-4xl py-8">
+          <motion.div
+            className="flex flex-col sm:flex-row sm:items-center gap-5"
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <span className="text-4xl font-black text-safety-orange/20 leading-none select-none flex-shrink-0">"</span>
+            <p className="text-white/65 text-[15px] leading-relaxed italic flex-1">
+              ServiceM8 used to run me. Now it runs itself. Quotes go out, jobs get booked, Google reviews come in — I'm not touching any of it. Recovered nine hours in the first month.
+            </p>
+            <div className="flex items-center gap-3 flex-shrink-0">
+              <div className="w-8 h-8 rounded-full bg-safety-orange/15 border border-safety-orange/30 flex items-center justify-center">
+                <span className="text-[11px] font-black text-safety-orange">L</span>
+              </div>
+              <div>
+                <p className="text-white text-xs font-black uppercase tracking-wide leading-none mb-0.5">Liam P.</p>
+                <p className="text-white/35 text-[10px] uppercase tracking-wider">Plumbing & Gas · Brisbane QLD</p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
 
       {/* ── The Real Cost ── */}
       <section className="py-16 md:py-20 bg-black/20 border-b border-white/5">
@@ -461,49 +480,32 @@ export default function AutomationPage() {
             Ten hours a week on admin is ten hours not on the tools, not billing, not growing. Automation does not change what your business does — it removes what your business was never meant to be doing in the first place.
           </motion.p>
 
-          {/* Stats — staggered cards with count-up numbers */}
+          {/* Stats — ledger rows */}
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 md:gap-6"
+            className="flex flex-col border-t border-t-white/[0.08] mt-2"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-60px' }}
-            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.15, delayChildren: 0.25 } } }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.14, delayChildren: 0.2 } } }}
           >
-            {/* Stat 1 */}
-            <motion.div
-              className="border border-white/10 bg-white/3 p-6 border-l-2 border-l-safety-orange/60 sm:border-l-[1px] sm:border-l-white/10 sm:border-t-2 sm:border-t-safety-orange/60"
-              variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
-              whileHover={{ scale: 1.02, borderColor: 'rgba(255,107,0,0.4)', transition: { duration: 0.2 } }}
-            >
-              <p className="text-4xl font-black text-safety-orange uppercase mb-2">
-                <CountUpStat to={24} suffix="/7" />
-              </p>
-              <p className="text-white/60 text-sm leading-relaxed">automation running around the clock — not just business hours</p>
-            </motion.div>
-
-            {/* Stat 2 */}
-            <motion.div
-              className="border border-white/10 bg-white/3 p-6 border-l-2 border-l-safety-orange/60 sm:border-l-[1px] sm:border-l-white/10 sm:border-t-2 sm:border-t-safety-orange/60"
-              variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
-              whileHover={{ scale: 1.02, borderColor: 'rgba(255,107,0,0.4)', transition: { duration: 0.2 } }}
-            >
-              <p className="text-4xl font-black text-safety-orange uppercase mb-2">
-                10–<CountUpStat from={10} to={15} suffix=" HRS" />
-              </p>
-              <p className="text-white/60 text-sm leading-relaxed">lost to admin every week — on average across Australian trades</p>
-            </motion.div>
-
-            {/* Stat 3 */}
-            <motion.div
-              className="border border-white/10 bg-white/3 p-6 border-l-2 border-l-safety-orange/60 sm:border-l-[1px] sm:border-l-white/10 sm:border-t-2 sm:border-t-safety-orange/60"
-              variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
-              whileHover={{ scale: 1.02, borderColor: 'rgba(255,107,0,0.4)', transition: { duration: 0.2 } }}
-            >
-              <p className="text-4xl font-black text-safety-orange uppercase mb-2">
-                8–<CountUpStat from={8} to={12} suffix=" HRS" />
-              </p>
-              <p className="text-white/60 text-sm leading-relaxed">recovered per week by tradies we have automated</p>
-            </motion.div>
+            {[
+              { to: 15, suffix: ' HRS', label: 'lost to admin every week — on average across Australian trades' },
+              { to: 12, suffix: ' HRS', label: 'recovered per week by tradies we have automated' },
+              { to: 24, suffix: '/7',   label: 'automation running around the clock — not just business hours' },
+            ].map(({ to, suffix, label }, i) => (
+              <motion.div
+                key={i}
+                className="flex flex-col md:flex-row md:items-end md:justify-between gap-1 md:gap-10 py-6 md:py-5 border-b border-b-white/[0.08] last:border-b-0"
+                variants={{ hidden: { opacity: 0, y: 22 }, visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
+              >
+                <span className="text-[80px] md:text-[96px] lg:text-[112px] font-black leading-none text-safety-orange tabular-nums whitespace-nowrap shrink-0">
+                  <CountUpStat to={to} suffix={suffix} />
+                </span>
+                <span className="text-[10px] md:text-[11px] font-black uppercase tracking-[0.22em] text-white/35 leading-relaxed md:text-right md:max-w-[240px] md:pb-2.5">
+                  {label}
+                </span>
+              </motion.div>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -550,15 +552,601 @@ export default function AutomationPage() {
         </div>
       </section>
 
-      {/* ── Software Sections ── */}
-      <div className="bg-black/10">
-        {sectionData.map((s) => (
-          <SoftwareSection key={s.id} {...s} delay={0} />
-        ))}
-      </div>
+      {/* ── Social Proof ── */}
+      <section className="py-16 md:py-24 border-b border-white/5 bg-black/30">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-12"
+          >
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-safety-orange/60 mb-2">Results From the Field</p>
+            <h2 className="text-3xl md:text-4xl font-black uppercase italic">
+              Australian Tradies. <span className="text-safety-orange">Real Time Back.</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } } }}
+          >
+            {[
+              {
+                quote: "ServiceM8 used to run me. Now it runs itself. Quotes go out, jobs get booked, Google reviews come in — I'm not touching any of it. Recovered nine hours in the first month.",
+                name: 'Liam P.',
+                meta: 'Plumbing & Gas · Brisbane QLD',
+              },
+              {
+                quote: "The invoicing alone paid for everything. Jobs close and Xero's already handled it. No more end-of-week catch-up. My accountant noticed before I did.",
+                name: 'Sarah M.',
+                meta: 'Electrical Contractor · Sydney NSW',
+              },
+              {
+                quote: "SafetyCulture reports filed themselves from day one. Compliance backlog cleared in week one. The site team has not chased a single document since.",
+                name: 'Danny W.',
+                meta: 'Commercial Builder · Melbourne VIC',
+              },
+              {
+                quote: "We were losing after-hours jobs every week. Phone gets answered now, leads get qualified, bookings come through. Did not hire anyone — just turned the automation on.",
+                name: 'Kristen F.',
+                meta: 'HVAC & Refrigeration · Perth WA',
+              },
+            ].map(({ quote, name, meta }) => (
+              <motion.div
+                key={name}
+                className="group relative border border-white/8 bg-white/[0.02] p-7 hover:border-safety-orange/30 hover:bg-white/[0.04] transition-all duration-300"
+                variants={{ hidden: { opacity: 0, y: 28 }, visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } } }}
+              >
+                <span className="absolute top-5 right-6 text-5xl font-black text-safety-orange/10 leading-none select-none group-hover:text-safety-orange/20 transition-colors duration-300">"</span>
+                <p className="text-white/75 text-[15px] leading-relaxed mb-6 relative z-10">{quote}</p>
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-full bg-safety-orange/15 border border-safety-orange/30 flex items-center justify-center flex-shrink-0">
+                    <span className="text-[11px] font-black text-safety-orange">{name.charAt(0)}</span>
+                  </div>
+                  <div>
+                    <p className="text-white text-sm font-black uppercase tracking-wide leading-none mb-0.5">{name}</p>
+                    <p className="text-white/35 text-[11px] font-medium uppercase tracking-wider">{meta}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── AI Voice Receptionist ── */}
+      <section id="voice" className="py-16 md:py-24 border-b border-white/5">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+            {/* ── Copy ── */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-safety-orange/60 mb-2">AI Voice & Phone Automation for Trades</p>
+              <h2 className="text-3xl md:text-4xl font-black uppercase italic mb-5 leading-[1.05]">
+                Your Phone Answered.<br /><span className="text-safety-orange">While You're On the Tools.</span>
+              </h2>
+              <p className="text-white/65 text-[15px] leading-relaxed mb-8 max-w-md">
+                Every missed call from a trade business is a job that went to a competitor. AI voice agents answer, qualify, and book — day or night — without you lifting a finger. No hold music. No voicemail black holes. Just a lead handled.
+              </p>
+
+              <ul className="flex flex-col gap-3.5 mb-10">
+                {[
+                  'After-hours calls converted, not lost to voicemail',
+                  'Leads qualified and routed before they reach your inbox',
+                  'Bookings confirmed without anyone picking up the phone',
+                  'Every call logged and synced to your job management stack',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3 text-white/60 text-sm">
+                    <CheckCircle2 className="w-4 h-4 text-safety-orange flex-shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="flex items-center gap-3 flex-wrap">
+                <span className="text-[9px] font-black uppercase tracking-[0.22em] text-white/25">Powered by</span>
+                {['Retell AI', 'ElevenLabs', 'Twilio'].map((tool) => (
+                  <span key={tool} className="text-[9px] font-black uppercase tracking-[0.18em] text-white/45 border border-white/10 px-3 py-1.5">
+                    {tool}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* ── Live Call Feed ── */}
+            <motion.div
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.18 }}
+              className="bg-black/50 border border-white/8 p-6"
+            >
+              <div className="flex items-center justify-between mb-5 pb-4 border-b border-white/8">
+                <div className="flex items-center gap-2">
+                  <span className="relative flex h-2 w-2">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-60" />
+                    <span className="relative inline-flex rounded-full h-2 w-2 bg-green-400" />
+                  </span>
+                  <span className="text-[10px] font-black uppercase tracking-[0.25em] text-green-400">Live</span>
+                </div>
+                <span className="text-[9px] font-black uppercase tracking-[0.2em] text-white/20">AI Receptionist Active</span>
+              </div>
+
+              <motion.div
+                className="flex flex-col gap-5"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.11, delayChildren: 0.35 } } }}
+              >
+                {[
+                  { time: '11:47 PM', call: 'Inbound — "Need a plumber urgently"', result: 'Lead qualified · Callback booked' },
+                  { time: '6:14 AM',  call: 'Web enquiry — quote for bathroom reno', result: 'Details captured · Sent to ServiceM8' },
+                  { time: '9:33 PM',  call: '"Do you do weekends?"', result: 'Availability confirmed · Job booked' },
+                  { time: '2:18 AM',  call: 'Missed call — no message left', result: 'AI answered · Follow-up scheduled' },
+                ].map(({ time, call, result }) => (
+                  <motion.div
+                    key={time}
+                    className="flex gap-4 group"
+                    variants={{ hidden: { opacity: 0, x: 10 }, visible: { opacity: 1, x: 0, transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] } } }}
+                  >
+                    <span className="text-[11px] font-black text-white/20 w-[52px] flex-shrink-0 pt-0.5 tabular-nums leading-snug">{time}</span>
+                    <div className="flex-1 border-l border-white/8 pl-4 group-hover:border-safety-orange/25 transition-colors duration-200">
+                      <p className="text-white/65 text-[13px] leading-snug mb-1">{call}</p>
+                      <p className="text-safety-orange/65 text-[10px] font-black uppercase tracking-wider">{result} ✓</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              <div className="mt-6 pt-4 border-t border-white/8 flex items-center justify-between">
+                <span className="text-[9px] text-white/20 uppercase tracking-wider font-bold">This month</span>
+                <span className="text-[10px] font-black text-white/40 uppercase tracking-wide">247 calls handled · 0 missed</span>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── Before / After ── */}
+      <section className="py-16 md:py-24 border-b border-white/5 bg-black/30">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-10"
+          >
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-safety-orange/80 mb-2">Tradie Admin vs Automation</p>
+            <h2 className="text-3xl md:text-4xl font-black uppercase italic leading-[1.05]">
+              Your Morning Without Automation.<br />
+              <span className="text-safety-orange">Your Morning With It.</span>
+            </h2>
+          </motion.div>
+
+          {/* Desktop column headers */}
+          <div className="hidden md:grid grid-cols-[220px_1fr_1fr] gap-px mb-px">
+            <div className="bg-white/[0.06] px-5 py-3.5" />
+            <div className="bg-rose-500/[0.14] border-t-2 border-rose-400/60 px-5 py-3.5 flex items-center gap-2.5">
+              <span className="text-rose-400 text-xs font-black">✕</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.22em] text-rose-300">Without Automation</span>
+            </div>
+            <div className="bg-safety-orange/[0.14] border-t-2 border-safety-orange/70 px-5 py-3.5 flex items-center gap-2.5">
+              <span className="text-safety-orange text-xs font-black">✓</span>
+              <span className="text-[10px] font-black uppercase tracking-[0.22em] text-safety-orange">With Your Trade Partner</span>
+            </div>
+          </div>
+
+          {/* Mobile headers */}
+          <div className="md:hidden grid grid-cols-2 gap-px mb-px">
+            <div className="bg-rose-500/[0.14] border-t-2 border-rose-400/60 px-4 py-3 flex items-center justify-center gap-2">
+              <span className="text-rose-400 text-xs font-black">✕</span>
+              <span className="text-[9px] font-black uppercase tracking-[0.18em] text-rose-300">Without</span>
+            </div>
+            <div className="bg-safety-orange/[0.14] border-t-2 border-safety-orange/70 px-4 py-3 flex items-center justify-center gap-2">
+              <span className="text-safety-orange text-xs font-black">✓</span>
+              <span className="text-[9px] font-black uppercase tracking-[0.18em] text-safety-orange">With YTP</span>
+            </div>
+          </div>
+
+          <motion.div
+            className="flex flex-col gap-px"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.09, delayChildren: 0.2 } } }}
+          >
+            {[
+              {
+                trigger: 'Customer calls while you\'re on the tools',
+                without: 'Goes to voicemail. They call the next tradie on the list.',
+                with: 'AI voice agent answers, qualifies the job, and books a callback — automatically.',
+              },
+              {
+                trigger: 'Quote request comes in at 8pm',
+                without: 'Sits in your inbox overnight. Lead goes cold.',
+                with: 'Quote details captured, job scoped, sent to ServiceM8 before you\'re off the tools.',
+              },
+              {
+                trigger: 'Job closes at end of day',
+                without: 'You sit down to type up the invoice after dinner.',
+                with: 'Invoice hits Xero the moment the job status changes. Done.',
+              },
+              {
+                trigger: 'SafetyCulture inspection completed on site',
+                without: 'Report stays on your phone. Someone has to file it manually.',
+                with: 'Report distributed, filed, compliance status updated — while the crew is still packing up.',
+              },
+              {
+                trigger: 'New enquiry lands on your website',
+                without: 'Whoever checks email first handles it. Or doesn\'t.',
+                with: 'Captured, scored, routed to your CRM and job management stack automatically.',
+              },
+              {
+                trigger: 'End of week catch-up',
+                without: '4 hours reconciling financials across apps that don\'t talk to each other.',
+                with: 'Everything already synced. No catch-up required.',
+              },
+            ].map(({ trigger, without, with: withText }, i) => (
+              <motion.div
+                key={i}
+                className="group"
+                variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+              >
+                {/* Desktop: 3-column */}
+                <div className="hidden md:grid grid-cols-[220px_1fr_1fr] gap-px">
+                  <div className="bg-white/[0.05] px-5 py-5 flex items-start border-b border-white/[0.08] group-hover:bg-white/[0.08] transition-colors duration-200">
+                    <span className="text-[12px] text-white/65 font-semibold leading-snug">{trigger}</span>
+                  </div>
+                  <div className="bg-rose-500/[0.08] px-5 py-5 flex items-start gap-3 border-b border-white/[0.07] group-hover:bg-rose-500/[0.14] transition-colors duration-200">
+                    <span className="text-rose-400 text-sm font-black leading-none flex-shrink-0 mt-0.5">✕</span>
+                    <span className="text-white/60 text-[13px] leading-relaxed">{without}</span>
+                  </div>
+                  <div className="bg-safety-orange/[0.09] px-5 py-5 flex items-start gap-3 border-b border-safety-orange/[0.12] group-hover:bg-safety-orange/[0.16] transition-colors duration-200">
+                    <span className="text-safety-orange text-sm font-black leading-none flex-shrink-0 mt-0.5">✓</span>
+                    <span className="text-white/80 text-[13px] leading-relaxed">{withText}</span>
+                  </div>
+                </div>
+
+                {/* Mobile: stacked */}
+                <div className="md:hidden border border-white/12 mb-2 overflow-hidden group-hover:border-safety-orange/30 transition-colors duration-200">
+                  <div className="bg-white/[0.05] px-4 py-3 border-b border-white/10">
+                    <span className="text-[11px] text-white/65 font-black uppercase tracking-wide">{trigger}</span>
+                  </div>
+                  <div className="grid grid-cols-2">
+                    <div className="bg-rose-500/[0.09] px-4 py-3.5 flex items-start gap-2 border-r border-white/[0.08]">
+                      <span className="text-rose-400 text-sm font-black leading-none flex-shrink-0 mt-0.5">✕</span>
+                      <span className="text-white/60 text-[12px] leading-relaxed">{without}</span>
+                    </div>
+                    <div className="bg-safety-orange/[0.1] px-4 py-3.5 flex items-start gap-2">
+                      <span className="text-safety-orange text-[12px] font-black leading-none flex-shrink-0 mt-0.5">✓</span>
+                      <span className="text-white/78 text-[12px] leading-relaxed">{withText}</span>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.p
+            className="text-[11px] text-white/45 uppercase tracking-[0.22em] font-bold mt-8 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.8, duration: 0.5 }}
+          >
+            Same tools you already use · Zero new software to learn
+          </motion.p>
+        </div>
+      </section>
+
+      {/* ── Mid-page CTA ── */}
+      <section className="py-10 md:py-12 border-b border-white/5 bg-safety-orange/[0.07] border-l-0">
+        <div className="container mx-auto px-6 max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-safety-orange/70 mb-1.5">Seen enough?</p>
+            <p className="text-xl md:text-2xl font-black uppercase italic text-white leading-tight">
+              Book a free audit. We'll show you <span className="text-safety-orange">exactly what to automate.</span>
+            </p>
+          </div>
+          <Button
+            asChild
+            className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-8 py-5 text-sm font-black uppercase tracking-widest shadow-xl shadow-safety-orange/20 group flex-shrink-0 w-full sm:w-auto"
+          >
+            <a href="https://cal.com/saharsh-patel-fr7cuf/strategy-session" target="_blank" rel="noopener noreferrer">
+              Book Free Audit
+              <ArrowRight className="ml-3 w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+            </a>
+          </Button>
+        </div>
+      </section>
+
+      {/* ── What We Automate ── */}
+      <section className="py-16 md:py-24 border-b border-white/5">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-12"
+          >
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-safety-orange/80 mb-2">What We Automate</p>
+            <h2 className="text-3xl md:text-4xl font-black uppercase italic leading-[1.05]">
+              Six Functions.<br className="sm:hidden" /> <span className="text-safety-orange">Zero Manual Steps.</span>
+            </h2>
+            <p className="text-white/60 text-base leading-relaxed mt-4 max-w-xl">
+              Every hour a tradie loses to admin falls inside one of these. We automate all of them.
+            </p>
+          </motion.div>
+
+          {/* Gap-px matrix grid — container bg becomes the 1px separator line */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/[0.07]"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-60px' }}
+            variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.07, delayChildren: 0.1 } } }}
+          >
+            {[
+              {
+                num: '01',
+                title: 'Lead Capture',
+                body: 'Every enquiry actioned before it cools. Web form, missed call, or direct message — handled, logged, sent to your stack without you in the middle.',
+                tools: ['ServiceM8', 'Gmail', 'CRM'],
+              },
+              {
+                num: '02',
+                title: 'Job Scheduling',
+                body: 'Right crew, right job, right time. Automated dispatch that syncs across your tools the moment a booking is confirmed.',
+                tools: ['ServiceM8', 'Fergus', 'Calendar'],
+              },
+              {
+                num: '03',
+                title: 'Invoicing & Payments',
+                body: 'Job closes, invoice fires. No end-of-week catch-up. Financials current across every platform without your input.',
+                tools: ['Xero', 'QuickBooks', 'ServiceM8'],
+              },
+              {
+                num: '04',
+                title: 'Compliance & Docs',
+                body: 'Inspections filed, reports distributed, audit trails maintained. Before the crew leaves the site.',
+                tools: ['SafetyCulture', 'Fergus', 'Prime'],
+              },
+              {
+                num: '05',
+                title: 'Client Communications',
+                body: 'Booking confirmations, job updates, review requests. Clients stay informed without a single manual message from you.',
+                tools: ['Twilio', 'Gmail', 'Outlook'],
+              },
+              {
+                num: '06',
+                title: 'After-Hours Handling',
+                body: 'Calls answered, leads qualified, bookings made. 9pm Sunday or 5am Monday — your business never goes to voicemail.',
+                tools: ['Retell AI', 'ElevenLabs', 'Twilio'],
+              },
+            ].map(({ num, title, body, tools }) => (
+              <motion.div
+                key={num}
+                className="group relative bg-[#1a1a1a] p-7 flex flex-col gap-4 overflow-hidden hover:bg-[#1f1f1f] transition-colors duration-300"
+                variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
+              >
+                {/* Ghost number — depth layer, not decoration */}
+                <span className="absolute top-3 right-4 text-[72px] font-black leading-none select-none text-white/[0.05] group-hover:text-safety-orange/[0.09] transition-colors duration-400 pointer-events-none">
+                  {num}
+                </span>
+
+                <div className="relative z-10">
+                  <p className="text-[10px] font-black uppercase tracking-[0.22em] text-safety-orange/60 mb-2">{num}</p>
+                  <h3 className="text-[17px] font-black uppercase tracking-tight text-white leading-snug">{title}</h3>
+                </div>
+
+                <p className="text-white/65 text-[13px] leading-relaxed flex-1 relative z-10">{body}</p>
+
+                <div className="flex flex-wrap gap-1.5 relative z-10">
+                  {tools.map((t) => (
+                    <span
+                      key={t}
+                      className="text-[9px] font-black uppercase tracking-[0.18em] text-white/40 border border-white/[0.12] px-2.5 py-1 group-hover:text-white/60 group-hover:border-white/20 transition-colors duration-200"
+                    >
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── Built On ── */}
+      <section className="py-16 md:py-24 border-b border-white/5 bg-black/10">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+
+            {/* Left — the "not just Zapier" case */}
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-safety-orange/80 mb-4">How It's Built</p>
+              <h2 className="text-3xl md:text-4xl font-black uppercase italic leading-[1.0] mb-6">
+                Not Someone<br /><span className="text-safety-orange">With Zapier.</span>
+              </h2>
+              <div className="flex flex-col gap-4 text-white/65 text-[15px] leading-relaxed">
+                <p>
+                  n8n and Make.com are the orchestration engines behind every build. They handle the logic between your apps, route data, catch errors silently, and run around the clock without anyone watching.
+                </p>
+                <p>
+                  AI models sit on top for anything that requires language — qualifying leads, drafting responses, reading documents. Voice infrastructure handles the calls. Every layer connects to your actual trade software below.
+                </p>
+                <p>
+                  Nothing off-the-shelf. Custom-built for your specific stack, your business rules, and the exact gaps in your current workflow.
+                </p>
+              </div>
+            </motion.div>
+
+            {/* Right — layered architecture diagram */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+              className="flex flex-col"
+            >
+              {[
+                {
+                  label: 'Orchestration Layer',
+                  tools: ['n8n', 'Make.com'],
+                  sublabel: 'Logic, routing, error handling, triggers',
+                  accent: false,
+                },
+                {
+                  label: 'AI Layer',
+                  tools: ['OpenAI', 'Claude'],
+                  sublabel: 'Lead qualification, language, document processing',
+                  accent: false,
+                },
+                {
+                  label: 'Voice & Comms',
+                  tools: ['Retell AI', 'ElevenLabs', 'Twilio'],
+                  sublabel: 'Calls, SMS, after-hours handling',
+                  accent: false,
+                },
+                {
+                  label: 'Your Trade Stack',
+                  tools: ['ServiceM8', 'Fergus', 'SafetyCulture', 'Xero', '+8 more'],
+                  sublabel: 'The tools you already run',
+                  accent: true,
+                },
+              ].map(({ label, tools, sublabel, accent }, i) => (
+                <React.Fragment key={label}>
+                  <motion.div
+                    className={`border px-5 py-4 ${accent ? 'border-safety-orange/30 bg-safety-orange/[0.07]' : 'border-white/[0.11] bg-white/[0.03]'}`}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: 0.1 + i * 0.1 }}
+                  >
+                    <p className={`text-[9px] font-black uppercase tracking-[0.22em] mb-2.5 ${accent ? 'text-safety-orange/75' : 'text-white/40'}`}>
+                      {label}
+                    </p>
+                    <div className="flex items-center gap-2 flex-wrap mb-2">
+                      {tools.map((t) => (
+                        <span
+                          key={t}
+                          className={`text-[10px] font-black uppercase tracking-[0.15em] px-2.5 py-1 border ${accent ? 'text-white/80 border-safety-orange/20 bg-safety-orange/[0.06]' : 'text-white/75 border-white/[0.12] bg-white/[0.04]'}`}
+                        >
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                    <p className={`text-[11px] leading-snug ${accent ? 'text-safety-orange/50' : 'text-white/30'}`}>{sublabel}</p>
+                  </motion.div>
+
+                  {/* Connector line between layers */}
+                  {i < 3 && (
+                    <div className="flex justify-center py-0">
+                      <div className="w-px h-4 bg-gradient-to-b from-white/20 to-white/5" />
+                    </div>
+                  )}
+                </React.Fragment>
+              ))}
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── Platform Automations (tabbed) ── */}
+      <section id="tools" className="py-16 md:py-24 border-b border-white/5 bg-black/10">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            className="mb-10"
+          >
+            <p className="text-xs font-black uppercase tracking-[0.25em] text-safety-orange/80 mb-2">Platform Automations</p>
+            <h2 className="text-3xl md:text-4xl font-black uppercase italic leading-[1.05]">
+              Your Stack. <span className="text-safety-orange">Fully Automated.</span>
+            </h2>
+          </motion.div>
+
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-[180px_1fr] border border-white/[0.08]"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1], delay: 0.1 }}
+          >
+            {/* Tab nav */}
+            <div className="flex lg:flex-col border-b lg:border-b-0 lg:border-r border-white/[0.08] overflow-x-auto lg:overflow-visible">
+              {sectionData.map((s) => (
+                <button
+                  key={s.id}
+                  onClick={() => setActiveTab(s.id)}
+                  className={`flex-shrink-0 text-left px-5 py-4 lg:py-5 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] transition-colors duration-200 border-b border-white/[0.06] lg:last:border-b-0 ${
+                    activeTab === s.id
+                      ? 'bg-safety-orange/[0.08] text-safety-orange'
+                      : 'text-white/40 hover:text-white/70 hover:bg-white/[0.03]'
+                  }`}
+                >
+                  {s.title}
+                </button>
+              ))}
+            </div>
+
+            {/* Content panel */}
+            <div className="relative min-h-[260px]">
+              <AnimatePresence mode="wait">
+                {sectionData.filter((s) => s.id === activeTab).map((s) => (
+                  <motion.div
+                    key={s.id}
+                    className="p-7 md:p-10"
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -8 }}
+                    transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                  >
+                    <p className="text-[10px] font-black uppercase tracking-[0.25em] text-safety-orange/60 mb-2">{s.label}</p>
+                    <h3 className="text-2xl md:text-3xl font-black uppercase italic mb-4">{s.title}</h3>
+                    <p className="text-white/70 text-[15px] leading-relaxed mb-6 max-w-xl">{s.description}</p>
+                    {s.items && (
+                      <ul className="flex flex-col gap-3">
+                        {s.items.map((item, i) => (
+                          <li key={i} className="flex items-start gap-3 text-white/60 text-sm">
+                            <CheckCircle2 className="w-4 h-4 text-safety-orange flex-shrink-0 mt-0.5" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* ── FAQ ── */}
-      <section className="py-24 border-b border-white/5 bg-black">
+      <section id="faq" className="py-24 border-b border-white/5 bg-black">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
             <div className="text-center mb-16">
@@ -596,6 +1184,62 @@ export default function AutomationPage() {
         </div>
       </section>
 
+      {/* ── Guarantee ── */}
+      <section className="py-16 md:py-24 border-b border-white/5 border-t-[3px] border-t-safety-orange/40 bg-safety-orange/[0.06]">
+        <div className="container mx-auto px-6 max-w-5xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+            {/* Left — the commitment */}
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="text-xs font-black uppercase tracking-[0.25em] text-safety-orange/80 mb-5">The Guarantee</p>
+              <h2 className="text-4xl md:text-[52px] font-black uppercase italic leading-[0.95] mb-7">
+                8 Hours Back<br />in 30 Days.<br />
+                <span className="text-safety-orange">Or We Keep Building.</span>
+              </h2>
+              <p className="text-white/70 text-[15px] leading-relaxed">
+                Most tradies we work with recover 8 to 12 hours a week in the first month. If you're not there, we keep adding automations, refining what's live, and building what's missing. No extra charge. No "we tried our best" conversation.
+              </p>
+            </motion.div>
+
+            {/* Right — terms in plain language */}
+            <motion.div
+              initial={{ opacity: 0, y: 28 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-80px' }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.14 }}
+            >
+              <p className="text-[10px] font-black uppercase tracking-[0.25em] text-white/35 mb-6">What This Covers</p>
+              <ul className="flex flex-col gap-4 mb-8">
+                {[
+                  'Every automation in your initial build',
+                  'All refinements and additions in month one',
+                  'No further charge until you hit your hours target',
+                  'Direct access — not a support ticket queue',
+                ].map((item, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <CheckCircle2 className="w-4 h-4 text-safety-orange flex-shrink-0 mt-0.5" />
+                    <span className="text-white/70 text-[14px] leading-relaxed">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* Fine print — styled as a document footer */}
+              <div className="border border-white/[0.1] bg-white/[0.03] px-5 py-4">
+                <p className="text-[11px] text-white/45 leading-relaxed">
+                  No commitment to start. Free 20-minute audit first — we map what's worth automating and show you what it's worth before you spend anything. The guarantee applies from the day we go live.
+                </p>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA Section ── */}
       <motion.section
         id="cta"
@@ -621,13 +1265,16 @@ export default function AutomationPage() {
             asChild
             className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-12 py-7 text-lg md:text-2xl font-black uppercase tracking-widest shadow-2xl shadow-safety-orange/30 group w-full sm:w-auto"
           >
-            <a href="mailto:hello@yourtradepartner.com.au?subject=Automation Audit Request">
+            <a href="https://cal.com/saharsh-patel-fr7cuf/strategy-session" target="_blank" rel="noopener noreferrer">
               Book My Free Audit
               <ArrowRight className="ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
             </a>
           </Button>
           <p className="text-[10px] text-white/30 uppercase tracking-widest font-bold mt-4">
             No commitment · We show you what's possible before you spend a cent · Australian businesses only
+          </p>
+          <p className="text-sm text-white/40 mt-4">
+            Or call us: <a href="tel:+61451044751" className="text-white/65 hover:text-safety-orange transition-colors font-black">0451 044 751</a>
           </p>
         </div>
       </motion.section>
@@ -640,6 +1287,7 @@ export default function AutomationPage() {
             <span className="font-black uppercase tracking-tight">Your Trade Partner<span className="text-safety-orange">.</span></span>
           </div>
           <p>AI Automation · ServiceM8 · SafetyCulture · Fergus · Prime · Xero</p>
+          <a href="tel:+61451044751" className="hover:text-safety-orange transition-colors font-black">0451 044 751</a>
           <Link to="/" className="hover:text-white transition-colors">← Homepage</Link>
         </div>
       </footer>

@@ -993,6 +993,38 @@ function LandingPage() {
                 </div>
             </header>
 
+            {/* Client Proof Band */}
+            <div className="w-full border-y border-white/5 bg-black/40">
+                <div className="container mx-auto px-6 py-3 flex flex-col sm:flex-row items-center justify-center gap-x-6 gap-y-2 flex-wrap">
+                    <span className="text-[9px] font-black uppercase tracking-widest text-white flex-shrink-0">
+                        Verified trades we've built for
+                    </span>
+                    <div className="flex flex-wrap justify-center items-center gap-3">
+                        {[
+                            { name: "Rovina's Painting", location: "Adelaide, SA" },
+                            { name: "ZJC Renovations", location: "ACT" },
+                            { name: "State Wide Roof Plumbing", location: "NSW" },
+                        ].map((client) => (
+                            <a
+                                key={client.name}
+                                href="#projects"
+                                className="flex items-center gap-2 px-3 py-1.5 bg-white/5 border border-white/8 hover:border-safety-orange/40 hover:bg-white/8 transition-all rounded-sm group"
+                            >
+                                <div className="w-1.5 h-1.5 bg-safety-orange rounded-full flex-shrink-0"></div>
+                                <span className="text-[10px] font-black uppercase tracking-wider text-white/60 group-hover:text-white transition-colors">{client.name}</span>
+                                <span className="text-[8px] font-bold text-white/25 uppercase tracking-widest">{client.location}</span>
+                            </a>
+                        ))}
+                        <a
+                            href="#projects"
+                            className="text-[9px] font-black uppercase tracking-widest text-safety-orange hover:text-white transition-colors flex items-center gap-1"
+                        >
+                            See results <ArrowRight className="w-2.5 h-2.5" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+
             {/* AUTOMATION TEASER STRIP */}
             <motion.section
                 className="py-10 border-b border-white/5 bg-safety-orange/5"
