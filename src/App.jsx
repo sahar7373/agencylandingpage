@@ -17,6 +17,7 @@ import LandscaperWebsites from './pages/LandscaperWebsites';
 import PainterWebsites from './pages/PainterWebsites';
 import MarketingForTradies from './pages/MarketingForTradies';
 import SEOForTradies from './pages/SEOForTradies';
+import AutomationPage from './pages/AutomationPage';
 
 // Blog Articles
 import WhyTradieWebsitesDontGetCalls from './pages/blog/WhyTradieWebsitesDontGetCalls';
@@ -94,6 +95,7 @@ function App() {
                     <Route path="/painter-websites" element={<PainterWebsites />} />
                     <Route path="/marketing-for-tradies" element={<MarketingForTradies />} />
                     <Route path="/seo-for-tradies" element={<SEOForTradies />} />
+                    <Route path="/automation" element={<AutomationPage />} />
 
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>

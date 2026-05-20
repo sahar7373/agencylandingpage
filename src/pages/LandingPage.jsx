@@ -1,4 +1,5 @@
 import React from 'react'
+import { MarqueeLogoScroller } from '@/components/ui/marquee-logo-scroller'
 import ReactPixel from 'react-facebook-pixel'
 import ReactGA from 'react-ga4'
 import { Helmet } from 'react-helmet-async'
@@ -830,6 +831,7 @@ function LandingPage() {
                         <a href="#free-audit" onClick={() => handleNavClick("Free Audit")} className="hover:text-white transition-colors">Free Audit</a>
                         <a href="#packages" onClick={() => handleNavClick("Packages")} className="hover:text-white transition-colors">Packages</a>
                         <a href="/resources" className="hover:text-white transition-colors">Free Resources</a>
+                        <a href="/automation" className="text-safety-orange/80 hover:text-safety-orange transition-colors">AI Automation</a>
                         <div
                             className="relative"
                             onMouseEnter={() => setIsTradesDropdownOpen(true)}
@@ -880,6 +882,7 @@ function LandingPage() {
                             <a href="#free-audit" onClick={() => { setIsMenuOpen(false); handleNavClick("Free Audit Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Free Audit</a>
                             <a href="#packages" onClick={() => { setIsMenuOpen(false); handleNavClick("Packages Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Packages</a>
                             <a href="/resources" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Free Resources</a>
+                            <a href="/automation" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-safety-orange hover:text-safety-orange-hover transition-colors">AI Automation ↗</a>
                             <div>
                                 <button
                                     onClick={() => setIsTradesMobileOpen(!isTradesMobileOpen)}
@@ -909,7 +912,7 @@ function LandingPage() {
 
             {/* 1. HERO SECTION */}
             {/* 1. HERO SECTION */}
-            <header className="relative pt-8 pb-24 md:pt-24 md:pb-44 border-b border-white/5 overflow-hidden">
+            <header className="relative pt-8 pb-12 md:pt-24 md:pb-20 border-b border-white/5 overflow-hidden">
                 <div className="absolute inset-0 bg-grid-white opacity-20 pointer-events-none"></div>
                 <div className="container mx-auto px-6 relative z-10">
                     <motion.div
@@ -1022,6 +1025,59 @@ function LandingPage() {
                     </div>
                 </div>
             </div>
+
+
+            {/* AUTOMATION TEASER STRIP */}
+            <motion.section
+                className="py-10 border-b border-white/5 bg-safety-orange/5"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="flex flex-col md:flex-row md:items-center gap-8 md:gap-12">
+                        {/* Left — text block */}
+                        <div className="flex flex-col gap-3 md:w-72 shrink-0">
+                            <p className="text-[10px] font-black uppercase tracking-[0.25em] text-safety-orange/70">New Service</p>
+                            <p className="text-lg md:text-xl font-black uppercase text-white">
+                                AI Automation for Australian Trades
+                            </p>
+                            <p className="text-white/50 text-sm">
+                                We connect ServiceM8, SafetyCulture, Fergus, Prime, and Xero so your business runs without manual effort.
+                            </p>
+                            <a
+                                href="/automation"
+                                className="self-start inline-flex items-center gap-2 bg-safety-orange hover:bg-safety-orange-hover text-white font-black uppercase tracking-widest text-xs px-6 py-3 transition-colors"
+                            >
+                                See How It Works
+                                <ArrowRight className="w-4 h-4" />
+                            </a>
+                        </div>
+                        {/* Right — marquee at full remaining width */}
+                        <div className="flex-1 min-w-0">
+                            <MarqueeLogoScroller
+                                logos={[
+                                    { name: 'ServiceM8', src: '/logos/servicem8logo.png', gradient: { from: '#00A651', to: '#006B35' } },
+                                    { name: 'SafetyCulture', src: '/logos/safetyculturelogo.webp', gradient: { from: '#00B5AD', to: '#006B66' } },
+                                    { name: 'Fergus', src: '/logos/Ferguslogo.png', gradient: { from: '#1B5FBB', to: '#0D3575' } },
+                                    { name: 'Prime', src: '/logos/primeecologo.png', gradient: { from: '#1A5CA8', to: '#0D2137' } },
+                                    { name: 'Xero', src: '/logos/Xero_software_logo.svg.png', gradient: { from: '#13B5EA', to: '#0877A3' } },
+                                    { name: 'QuickBooks', src: '/logos/quickbooklogo.svg', gradient: { from: '#2CA01C', to: '#1A6011' } },
+                                    { name: 'Gmail', src: '/logos/gmaillogo.png', gradient: { from: '#EA4335', to: '#961F15' } },
+                                    { name: 'Outlook', src: '/logos/outlooklogo.png', gradient: { from: '#0078D4', to: '#004A8C' } },
+                                    { name: 'Google Business', src: '/logos/gbplogo.jpeg', gradient: { from: '#4285F4', to: '#1A56C4' } },
+                                    { name: 'ElevenLabs', src: '/logos/11labslogo.png', noBg: true, gradient: { from: '#FFFFFF', to: '#CCCCCC' } },
+                                    { name: 'Retell AI', src: '/logos/retellai-logo.png', gradient: { from: '#6C3EF4', to: '#3D1FAA' } },
+                                    { name: 'Twilio', src: '/logos/twiliologo.png', gradient: { from: '#F22F46', to: '#A31B30' } },
+                                ]}
+                                speed="normal"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
 
             {/* 2. PROBLEM AGITATION SECTION */}
             <motion.section
@@ -2900,6 +2956,8 @@ function LandingPage() {
                             <a href="/marketing-for-tradies" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Marketing for Tradies</a>
                             <span className="text-white/20">•</span>
                             <a href="/seo-for-tradies" className="text-safety-orange hover:text-safety-orange-hover transition-colors">SEO for Tradies</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/automation" className="text-safety-orange hover:text-safety-orange-hover transition-colors">AI Automation</a>
                         </div>
                     </div>
 
