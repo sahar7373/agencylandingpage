@@ -73,6 +73,7 @@ const BlueprintModal = ({ isOpen, onClose }) => {
 
                 <button
                     onClick={onClose}
+                    aria-label="Close"
                     className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors z-10"
                 >
                     <X className="w-5 h-5" />
@@ -99,6 +100,7 @@ const BlueprintModal = ({ isOpen, onClose }) => {
                                     <input
                                         type="email"
                                         required
+                                        aria-label="Email address"
                                         placeholder="Enter your email to unlock"
                                         className="w-full bg-white/5 border border-white/10 rounded-none px-4 py-4 text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors text-base font-medium"
                                         value={formData.email}

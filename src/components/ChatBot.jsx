@@ -191,6 +191,7 @@ const ChatBot = () => {
                         </div>
                         <button
                             onClick={() => setIsOpen(false)}
+                            aria-label="Close chat"
                             className="text-white hover:bg-white/20 rounded-full h-8 w-8 flex items-center justify-center transition-colors"
                         >
                             <X className="w-5 h-5" />
@@ -256,7 +257,7 @@ const ChatBot = () => {
                                 placeholder="Ask about growth..."
                                 className="flex h-10 w-full rounded-md border border-white/10 bg-white/5 px-3 py-2 text-sm text-white ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-safety-orange focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
                             />
-                            <button type="submit" className="h-10 w-10 bg-safety-orange hover:bg-safety-orange-hover text-white rounded-md flex items-center justify-center transition-colors">
+                            <button type="submit" aria-label="Send message" className="h-10 w-10 bg-safety-orange hover:bg-safety-orange-hover text-white rounded-md flex items-center justify-center transition-colors">
                                 <Send className="w-4 h-4" />
                             </button>
                         </form>

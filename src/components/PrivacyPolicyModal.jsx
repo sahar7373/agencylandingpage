@@ -26,6 +26,7 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
                     </div>
                     <button
                         onClick={onClose}
+                        aria-label="Close"
                         className="text-white/40 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full"
                     >
                         <X className="w-6 h-6" />
@@ -53,6 +54,8 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
                                 <li>Website or business details you voluntarily provide</li>
                                 <li>Booking and payment confirmation details</li>
                                 <li>Technical data such as IP address, browser type, device type, and pages visited</li>
+                                <li>Third-party platform credentials, API keys, and authentication tokens (where provided for automation setup)</li>
+                                <li>Business system access details required to configure and maintain agreed automations</li>
                             </ul>
                         </section>
 
@@ -67,6 +70,7 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
                                 <li>Make a payment</li>
                                 <li>Interact with our chatbot</li>
                                 <li>Browse our website (via analytics and tracking tools)</li>
+                                <li>Provide credentials or API keys via our secure onboarding intake form for automation and system setup</li>
                             </ul>
                         </section>
 
@@ -82,6 +86,7 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
                                 <li>Measure marketing performance and conversion activity</li>
                                 <li>Communicate service updates or follow-ups</li>
                                 <li>Communicate relevant business insights, system improvements, and service-related updates where you have submitted your details or requested information. You may unsubscribe from marketing communications at any time.</li>
+                                <li>Configure and maintain automation systems, integrations, and enquiry workflows using credentials you provide</li>
                             </ul>
                             <p className="font-bold text-white">We do NOT sell your personal information to third parties.</p>
                         </section>
@@ -131,7 +136,23 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">8.</span> Third-Party Services
+                                <span className="text-safety-orange">8.</span> Credential & API Key Handling
+                            </h3>
+                            <p className="mb-3">Where you provide credentials, API keys, or platform access as part of an automation or system setup engagement:</p>
+                            <ul className="list-disc pl-5 space-y-1 text-white/70 mb-4">
+                                <li>Credentials are collected via our <strong className="text-white">secure onboarding intake form only</strong> — never by email or unsecured channel</li>
+                                <li>Access is limited to authorised personnel directly involved in your project</li>
+                                <li>Credentials are used <strong className="text-white">only</strong> for delivery of agreed automation setup and ongoing maintenance</li>
+                                <li>We do not share credentials with any unauthorised third parties</li>
+                                <li>Credentials are <strong className="text-white">retained while you are on an active maintenance plan</strong> and securely deleted upon plan cancellation or written request</li>
+                                <li>Where possible, we recommend using platform-level access controls (e.g., limited API scopes) rather than full admin credentials</li>
+                                <li>Clients are advised to rotate credentials after any access period ends</li>
+                            </ul>
+                        </section>
+
+                        <section>
+                            <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
+                                <span className="text-safety-orange">9.</span> Third-Party Services
                             </h3>
                             <p className="mb-3">We may share limited information with trusted third-party services only when required to:</p>
                             <ul className="list-disc pl-5 space-y-1 text-white/70">
@@ -139,33 +160,34 @@ const PrivacyPolicyModal = ({ isOpen, onClose }) => {
                                 <li>Schedule bookings</li>
                                 <li>Deliver analytics or advertising</li>
                                 <li>Provide technical infrastructure</li>
+                                <li>Configure integrations or automations on your behalf using credentials or API keys you provide</li>
                             </ul>
                         </section>
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">9.</span> Cookies
+                                <span className="text-safety-orange">10.</span> Cookies
                             </h3>
                             <p>Our website may use cookies or similar technologies to improve website functionality, analyse traffic, and support advertising. You can disable cookies in your browser settings if you prefer.</p>
                         </section>
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">10.</span> Your Rights
+                                <span className="text-safety-orange">11.</span> Your Rights
                             </h3>
                             <p className="mb-3">You may request to access, correct, or delete your personal information (subject to legal requirements).</p>
                         </section>
 
                         <section>
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">11.</span> Changes to This Policy
+                                <span className="text-safety-orange">12.</span> Changes to This Policy
                             </h3>
                             <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
                         </section>
 
                         <section className="bg-white/5 p-6 rounded-sm border border-white/5">
                             <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
-                                <span className="text-safety-orange">12.</span> Contact Us
+                                <span className="text-safety-orange">13.</span> Contact Us
                             </h3>
                             <p className="mb-4">If you have questions about this Privacy Policy or how your information is handled, contact us at:</p>
                             <div className="space-y-1 font-bold text-white">

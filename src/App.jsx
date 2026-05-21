@@ -1,35 +1,36 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
-import Guide from './pages/Guide';
-import RevenueBlueprint from './pages/RevenueBlueprint';
-import LandingPage from './pages/LandingPage';
-import Unsubscribe from './pages/Unsubscribe';
-import Resources from './pages/Resources';
-import PlumbingWebsites from './pages/PlumbingWebsites';
-import ElectricianWebsites from './pages/ElectricianWebsites';
-import RooferWebsites from './pages/RooferWebsites';
-import HVACWebsites from './pages/HVACWebsites';
-import BuilderWebsites from './pages/BuilderWebsites';
-import CarpenterWebsites from './pages/CarpenterWebsites';
-import ConcreteLayerWebsites from './pages/ConcreteLayerWebsites';
-import LandscaperWebsites from './pages/LandscaperWebsites';
-import PainterWebsites from './pages/PainterWebsites';
-import MarketingForTradies from './pages/MarketingForTradies';
-import SEOForTradies from './pages/SEOForTradies';
-import AutomationPage from './pages/AutomationPage';
+
+const Guide = lazy(() => import('./pages/Guide'));
+const RevenueBlueprint = lazy(() => import('./pages/RevenueBlueprint'));
+const LandingPage = lazy(() => import('./pages/LandingPage'));
+const Unsubscribe = lazy(() => import('./pages/Unsubscribe'));
+const Resources = lazy(() => import('./pages/Resources'));
+const PlumbingWebsites = lazy(() => import('./pages/PlumbingWebsites'));
+const ElectricianWebsites = lazy(() => import('./pages/ElectricianWebsites'));
+const RooferWebsites = lazy(() => import('./pages/RooferWebsites'));
+const HVACWebsites = lazy(() => import('./pages/HVACWebsites'));
+const BuilderWebsites = lazy(() => import('./pages/BuilderWebsites'));
+const CarpenterWebsites = lazy(() => import('./pages/CarpenterWebsites'));
+const ConcreteLayerWebsites = lazy(() => import('./pages/ConcreteLayerWebsites'));
+const LandscaperWebsites = lazy(() => import('./pages/LandscaperWebsites'));
+const PainterWebsites = lazy(() => import('./pages/PainterWebsites'));
+const MarketingForTradies = lazy(() => import('./pages/MarketingForTradies'));
+const SEOForTradies = lazy(() => import('./pages/SEOForTradies'));
+const AutomationPage = lazy(() => import('./pages/AutomationPage'));
 
 // Blog Articles
-import WhyTradieWebsitesDontGetCalls from './pages/blog/WhyTradieWebsitesDontGetCalls';
-import AIReceptionistForTradies from './pages/blog/AIReceptionistForTradies';
-import GoogleBusinessProfileSetup from './pages/blog/GoogleBusinessProfileSetup';
-import ElectricianWebsiteRequirements from './pages/blog/ElectricianWebsiteRequirements';
-import WebsiteROICalculation from './pages/blog/WebsiteROICalculation';
-import SuburbSEOForTradies from './pages/blog/SuburbSEOForTradies';
-import ProfessionalTrustSignals from './pages/blog/ProfessionalTrustSignals';
-import GoogleAdsVsSEO from './pages/blog/GoogleAdsVsSEO';
-import AEOForTradies from './pages/blog/AEOForTradies';
-import GoogleAIOverviewsTradieLeads from './pages/blog/GoogleAIOverviewsTradieLeads';
+const WhyTradieWebsitesDontGetCalls = lazy(() => import('./pages/blog/WhyTradieWebsitesDontGetCalls'));
+const AIReceptionistForTradies = lazy(() => import('./pages/blog/AIReceptionistForTradies'));
+const GoogleBusinessProfileSetup = lazy(() => import('./pages/blog/GoogleBusinessProfileSetup'));
+const ElectricianWebsiteRequirements = lazy(() => import('./pages/blog/ElectricianWebsiteRequirements'));
+const WebsiteROICalculation = lazy(() => import('./pages/blog/WebsiteROICalculation'));
+const SuburbSEOForTradies = lazy(() => import('./pages/blog/SuburbSEOForTradies'));
+const ProfessionalTrustSignals = lazy(() => import('./pages/blog/ProfessionalTrustSignals'));
+const GoogleAdsVsSEO = lazy(() => import('./pages/blog/GoogleAdsVsSEO'));
+const AEOForTradies = lazy(() => import('./pages/blog/AEOForTradies'));
+const GoogleAIOverviewsTradieLeads = lazy(() => import('./pages/blog/GoogleAIOverviewsTradieLeads'));
 
 function App() {
     React.useEffect(() => {
@@ -62,6 +63,7 @@ function App() {
     return (
         <HelmetProvider>
             <BrowserRouter>
+                <Suspense fallback={null}>
                 <Routes>
                     <Route path="/" element={<LandingPage />} />
                     <Route path="/guide" element={<Guide />} />
@@ -99,6 +101,7 @@ function App() {
 
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
+                </Suspense>
             </BrowserRouter>
         </HelmetProvider>
     );

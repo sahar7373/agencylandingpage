@@ -35,6 +35,7 @@ const VideoModal = ({ isOpen, onClose, videoSrc }) => {
                 {/* Close Button */}
                 <button
                     onClick={onClose}
+                    aria-label="Close"
                     className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors z-[130] bg-black/50 p-2 rounded-full"
                 >
                     <X className="w-8 h-8" />

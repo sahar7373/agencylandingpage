@@ -26,6 +26,7 @@ const TermsConditionsModal = ({ isOpen, onClose }) => {
                     </div>
                     <button
                         onClick={onClose}
+                        aria-label="Close"
                         className="text-white/40 hover:text-white transition-colors p-2 hover:bg-white/5 rounded-full"
                     >
                         <X className="w-6 h-6" />
@@ -149,8 +150,34 @@ const TermsConditionsModal = ({ isOpen, onClose }) => {
                                 <li>Review and approve work within reasonable timeframes</li>
                                 <li>Ensure all supplied content is lawful and owned or licensed by you</li>
                                 <li>Maintain access to third-party services unless managed by us</li>
+                                <li>Ensure any credentials, API keys, or platform access provided to us are authorised for delegation to a third-party service provider</li>
+                                <li>Promptly notify us of any credential changes or security incidents that may affect active integrations</li>
+                                <li>Revoke or rotate any shared credentials after your active plan concludes, if you choose to do so</li>
                             </ul>
                             <p className="mt-2 text-sm italic">Delays caused by missing content or approvals may extend timelines.</p>
+                        </section>
+
+                        <section>
+                            <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
+                                <span className="text-safety-orange">7a.</span> Automation Services & Credential Access
+                            </h3>
+                            <div className="space-y-2 text-white/70">
+                                <p><strong className="text-white">7a.1</strong> Where automation setup is included in your service, you authorise YourTradePartner to access named third-party platforms using credentials you provide, solely for the purpose of configuring and maintaining agreed automations.</p>
+                                <p><strong className="text-white">7a.2</strong> Our use of your credentials is limited strictly to the agreed scope of work. We will not use your platform access for any purpose outside the services described in your package.</p>
+                                <p><strong className="text-white">7a.3</strong> Credentials provided are retained securely while you are on an active maintenance plan and deleted upon plan cancellation or written request.</p>
+                                <p><strong className="text-white">7a.4</strong> You are responsible for ensuring that delegation of access to your platforms does not violate the terms of service of any third-party provider. YourTradePartner is not liable for any breach of platform terms resulting from credential sharing authorised by you.</p>
+                                <p><strong className="text-white">7a.5</strong> In the event of a suspected security incident involving shared credentials, both parties agree to notify each other promptly and cooperate on remediation.</p>
+                            </div>
+                        </section>
+
+                        <section>
+                            <h3 className="text-xl font-black uppercase text-white mb-4 flex items-center gap-2">
+                                <span className="text-safety-orange">7b.</span> Confidentiality of Client Systems
+                            </h3>
+                            <div className="space-y-2 text-white/70">
+                                <p><strong className="text-white">7b.1</strong> Both parties agree to treat all business systems, credentials, workflow logic, and operational data shared during the engagement as confidential.</p>
+                                <p><strong className="text-white">7b.2</strong> YourTradePartner will not disclose, reproduce, or commercialise any client-specific system configuration or operational data without written consent.</p>
+                            </div>
                         </section>
 
                         <section>

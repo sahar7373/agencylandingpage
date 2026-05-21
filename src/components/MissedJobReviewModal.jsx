@@ -19,6 +19,7 @@ const MissedJobReviewModal = ({ isOpen, onClose }) => {
                 {/* Close Button */}
                 <button
                     onClick={onClose}
+                    aria-label="Close"
                     className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors z-10"
                 >
                     <X className="w-6 h-6" />

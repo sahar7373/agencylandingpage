@@ -74,6 +74,7 @@ const LeadMagnetModal = ({ isOpen, onClose }) => {
 
                 <button
                     onClick={onClose}
+                    aria-label="Close"
                     className="absolute top-4 right-4 text-white/40 hover:text-white transition-colors z-10"
                 >
                     <X className="w-5 h-5" />
@@ -99,6 +100,7 @@ const LeadMagnetModal = ({ isOpen, onClose }) => {
                                     <input
                                         type="email"
                                         required
+                                        aria-label="Email address"
                                         placeholder="Enter your email"
                                         className="w-full bg-white/5 border border-white/10 rounded px-4 py-3 text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors text-sm"
                                         value={formData.email}
