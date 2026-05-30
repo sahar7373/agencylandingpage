@@ -13,9 +13,9 @@ const relatedReads = [
         description: 'See the visual cues and proof points that make homeowners feel safe to call.'
     },
     {
-        href: '/resources/electrician-website-requirements',
-        title: 'Electrician Website Requirements',
-        description: 'A concrete example of the pages, proof, and calls to action a trade site needs.'
+        href: '/marketing-for-tradies',
+        title: 'Marketing for Tradies',
+        description: 'Once your site is fixed, here is the system to fill it with steady enquiries from the right jobs.'
     },
     {
         href: '/resources/website-roi-calculation',
@@ -28,12 +28,12 @@ const WhyTradieWebsitesDontGetCalls = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>Why Most Tradie Websites Don't Get Calls | Australian Trade Business Marketing</title>
+                <title>Why Most Tradie Websites Don't Get Calls (And the Fix)</title>
                 <meta name="description" content="78% of Australian homeowners research tradies online before calling. Learn why most tradie websites fail to convert visitors into phone calls and how to fix it." />
                 <meta name="keywords" content="tradie website, plumber website, electrician website, trade business marketing, Australian tradies, website conversions, lead generation" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/why-tradie-websites-dont-get-calls" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Why Most Tradie Websites Don't Get Calls" />
+                <meta property="og:title" content="Why Most Tradie Websites Don't Get Calls (And the Fix)" />
                 <meta property="og:description" content="78% of Australian homeowners research tradies online before calling. Learn why most tradie websites fail to convert." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({

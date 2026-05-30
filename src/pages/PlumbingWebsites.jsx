@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, useReducedMotion } from 'framer-motion';
-import { CheckCircle2, Wrench, ArrowRight, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2 } from 'lucide-react';
+import { CheckCircle2, Wrench, ArrowRight, Check, ChevronDown, ChevronUp, ShieldCheck, AlertCircle, Loader2, Search, Phone } from 'lucide-react';
 import { Button } from '../components/ui/button';
 import Breadcrumbs from '../components/Breadcrumbs';
 import TradeNavDropdown from '../components/TradeNavDropdown';
@@ -164,7 +164,7 @@ const PlumbingWebsites = () => {
                 <meta property="og:title" content="Plumber Website Design Australia | Your Trade Partner" />
                 <meta property="og:description" content="Custom websites for Australian plumbers. Professional sites that convert local enquiries into jobs." />
                 <meta property="og:url" content="https://yourtradepartner.com.au/plumbing-websites" />
-                <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
+                <meta property="og:image" content="https://yourtradepartner.com.au/Agency-hammer-favicon.jpeg" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
 
@@ -236,7 +236,7 @@ const PlumbingWebsites = () => {
 
                         {/* SEO Keyword Subtitle */}
                         <motion.p className="text-xs text-white/35 font-bold tracking-widest mb-2 -mt-4" variants={itemVariants}>
-                            Professional plumber website design for Australian plumbing businesses
+                            Plumber website design Australia — built for emergency call-outs, gas fitting, and drain work that wins more local jobs
                         </motion.p>
 
                         {/* Sub Headline */}
@@ -254,21 +254,25 @@ const PlumbingWebsites = () => {
 
                         {/* Primary CTA - EXACT same styling */}
                         <motion.div className="flex flex-col items-center gap-4" variants={itemVariants}>
-                            <a href="#packages" className="w-full sm:w-auto">
+                            <a href="#contact" className="w-full sm:w-auto">
                                 <Button
                                     size="xl"
                                     whileHover={hoverLift}
                                     whileTap={hoverTap}
                                     className="bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none px-6 md:px-12 py-6 md:py-8 text-sm md:text-2xl font-black uppercase tracking-widest group shadow-2xl shadow-safety-orange/30 w-full sm:w-auto transform-none transition-all duration-200"
                                 >
-                                    <span className="whitespace-normal text-center">VIEW PACKAGES</span>
+                                    <span className="whitespace-normal text-center">BOOK A FREE 15-MIN CHAT</span>
                                     <ArrowRight className="hidden md:block ml-4 w-6 h-6 group-hover:translate-x-2 transition-transform" />
                                 </Button>
                             </a>
 
+                            <a href="#packages" className="text-white/50 hover:text-white font-bold text-sm uppercase tracking-widest underline underline-offset-4 transition-colors">
+                                View packages &amp; pricing ↓
+                            </a>
+
                             {/* Micro Reassurance */}
                             <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-widest font-bold">
-                                Clear pricing • No lock-in contracts • Built for plumbers
+                                No commitment • No sales pressure • Reply within 24 hours
                             </p>
                         </motion.div>
 
@@ -280,7 +284,7 @@ const PlumbingWebsites = () => {
                             </div>
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="w-4 h-4 text-green-500" />
-                                <span>Local SEO optimized</span>
+                                <span>Local SEO optimised</span>
                             </div>
                             <div className="flex items-center gap-2">
                                 <CheckCircle2 className="w-4 h-4 text-green-500" />
@@ -328,12 +332,11 @@ const PlumbingWebsites = () => {
                                 }
                             ].map((item, i) => (
                                 <motion.div key={i} variants={itemVariants} className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
-                                    <div className="flex items-start gap-6 mb-4">
+                                    <div className="flex items-start gap-6">
                                         <AlertCircle className="text-red-500 w-10 h-10 flex-shrink-0 mt-1" />
                                         <div className="flex-grow">
-                                            <CollapsibleDetail title={<span className="text-xl md:text-2xl font-black uppercase">{item.title}</span>}>
-                                                <p className="mt-4 text-sm text-white/60 font-bold leading-relaxed">{item.detail}</p>
-                                            </CollapsibleDetail>
+                                            <p className="text-xl md:text-2xl font-black uppercase mb-4">{item.title}</p>
+                                            <p className="text-sm text-white/60 font-bold leading-relaxed">{item.detail}</p>
                                         </div>
                                     </div>
                                 </motion.div>
@@ -373,7 +376,7 @@ const PlumbingWebsites = () => {
                         >
                             {[
                                 {
-                                    icon: "🔍",
+                                    icon: <Search className="w-12 h-12 text-safety-orange" />,
                                     title: "Shows Up on Google",
                                     features: [
                                         "Optimised for 'plumber near me' searches",
@@ -384,7 +387,7 @@ const PlumbingWebsites = () => {
                                     ]
                                 },
                                 {
-                                    icon: "✓",
+                                    icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
                                     title: "Builds Trust Fast",
                                     features: [
                                         "Licensing & insurance displayed upfront",
@@ -395,7 +398,7 @@ const PlumbingWebsites = () => {
                                     ]
                                 },
                                 {
-                                    icon: "📞",
+                                    icon: <Phone className="w-12 h-12 text-safety-orange" />,
                                     title: "Converts Visitors into Calls",
                                     features: [
                                         "Click-to-call buttons everywhere",
@@ -411,7 +414,7 @@ const PlumbingWebsites = () => {
                                     variants={itemVariants}
                                     className="bg-white/5 p-8 border border-white/5 hover:border-safety-orange/30 transition-all"
                                 >
-                                    <div className="text-5xl mb-6">{item.icon}</div>
+                                    <div className="mb-6">{item.icon}</div>
                                     <h3 className="text-2xl font-black uppercase mb-6 text-safety-orange">{item.title}</h3>
                                     <ul className="space-y-3">
                                         {item.features.map((feature, j) => (
@@ -427,6 +430,19 @@ const PlumbingWebsites = () => {
                     </div>
                 </div>
             </motion.section>
+
+            {/* Mid-page CTA */}
+            <div className="py-12 text-center bg-safety-orange/5 border-y border-safety-orange/20">
+                <p className="text-white/60 font-bold uppercase tracking-widest text-sm mb-4">
+                    Ready to see what a plumber-specific website looks like?
+                </p>
+                <a href="#contact">
+                    <Button className="bg-safety-orange hover:bg-safety-orange-hover text-white px-8 py-4 font-black uppercase tracking-widest rounded-none">
+                        Book a Free 15-Min Chat
+                    </Button>
+                </a>
+                <p className="text-[10px] text-white/30 uppercase tracking-widest font-bold mt-4">No commitment · Quick call · Straight talk</p>
+            </div>
 
             {/* Plumbing Services Section */}
             <motion.section
@@ -914,6 +930,56 @@ const PlumbingWebsites = () => {
                 </div>
             </motion.section>
 
+            {/* Testimonial / Case Study Section */}
+            <motion.section
+                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto">
+                        <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic text-center">
+                            Real Results, <span className="text-safety-orange">Real Plumbers</span>
+                        </h2>
+
+                        <motion.div
+                            className="bg-white/5 border-l-4 border-safety-orange p-8 md:p-12"
+                            variants={itemVariants}
+                        >
+                            <div className="flex items-start gap-4 md:gap-6">
+                                <div className="text-6xl md:text-8xl text-safety-orange font-black leading-none flex-shrink-0 -mt-2">"</div>
+                                <div>
+                                    <p className="text-lg md:text-2xl font-black italic leading-relaxed mb-8 text-white/90">
+                                        Before the new site, we were getting maybe 2 enquiries a month — mostly from word of mouth.
+                                        Within 90 days of launch, we were averaging 14 a month. The phone started ringing from suburbs
+                                        we didn't even know were looking for a plumber.
+                                    </p>
+                                    <div className="border-t border-white/10 pt-6 mb-8">
+                                        <p className="font-black uppercase tracking-widest text-safety-orange">Jason M.</p>
+                                        <p className="text-sm text-white/50 font-bold uppercase tracking-widest">Licensed Plumber — Western Sydney</p>
+                                    </div>
+                                    <motion.div className="grid grid-cols-3 gap-4" variants={containerVariants}>
+                                        {[
+                                            { before: "2/mo", after: "14/mo", label: "Monthly Enquiries" },
+                                            { before: "1 area", after: "9 suburbs", label: "Ranking Areas" },
+                                            { before: "—", after: "90 days", label: "Time to Results" }
+                                        ].map((stat, i) => (
+                                            <motion.div key={i} variants={itemVariants} className="text-center bg-white/5 p-4 border border-white/5">
+                                                <p className="text-2xl font-black text-safety-orange">{stat.after}</p>
+                                                <p className="text-[10px] text-white/40 font-black uppercase tracking-widest mt-1">{stat.label}</p>
+                                                {stat.before !== "—" && <p className="text-[10px] text-white/20 font-bold mt-1">was {stat.before}</p>}
+                                            </motion.div>
+                                        ))}
+                                    </motion.div>
+                                </div>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+            </motion.section>
+
             {/* Packages Section - COPIED EXACT structure from landing page */}
             <motion.section
                 id="packages"
@@ -1220,56 +1286,10 @@ const PlumbingWebsites = () => {
                             </Card>
                         </motion.div>
                     </div>
-                </div>
-            </motion.section>
 
-            {/* Testimonial / Case Study Section */}
-            <motion.section
-                className="py-24 md:py-32 border-b border-white/5 bg-black/30"
-                variants={sectionVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-            >
-                <div className="container mx-auto px-6">
-                    <div className="max-w-4xl mx-auto">
-                        <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic text-center">
-                            Real Results, <span className="text-safety-orange">Real Plumbers</span>
-                        </h2>
-
-                        <motion.div
-                            className="bg-white/5 border-l-4 border-safety-orange p-8 md:p-12"
-                            variants={itemVariants}
-                        >
-                            <div className="flex items-start gap-4 md:gap-6">
-                                <div className="text-6xl md:text-8xl text-safety-orange font-black leading-none flex-shrink-0 -mt-2">"</div>
-                                <div>
-                                    <p className="text-lg md:text-2xl font-black italic leading-relaxed mb-8 text-white/90">
-                                        Before the new site, we were getting maybe 2 enquiries a month — mostly from word of mouth.
-                                        Within 90 days of launch, we were averaging 14 a month. The phone started ringing from suburbs
-                                        we didn't even know were looking for a plumber.
-                                    </p>
-                                    <div className="border-t border-white/10 pt-6 mb-8">
-                                        <p className="font-black uppercase tracking-widest text-safety-orange">Jason M.</p>
-                                        <p className="text-sm text-white/50 font-bold uppercase tracking-widest">Licensed Plumber — Western Sydney</p>
-                                    </div>
-                                    <motion.div className="grid grid-cols-3 gap-4" variants={containerVariants}>
-                                        {[
-                                            { before: "2/mo", after: "14/mo", label: "Monthly Enquiries" },
-                                            { before: "1 area", after: "9 suburbs", label: "Ranking Areas" },
-                                            { before: "—", after: "90 days", label: "Time to Results" }
-                                        ].map((stat, i) => (
-                                            <motion.div key={i} variants={itemVariants} className="text-center bg-white/5 p-4 border border-white/5">
-                                                <p className="text-2xl font-black text-safety-orange">{stat.after}</p>
-                                                <p className="text-[10px] text-white/40 font-black uppercase tracking-widest mt-1">{stat.label}</p>
-                                                {stat.before !== "—" && <p className="text-[10px] text-white/20 font-bold mt-1">was {stat.before}</p>}
-                                            </motion.div>
-                                        ))}
-                                    </motion.div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </div>
+                    <p className="text-center text-white/30 font-bold uppercase tracking-widest text-xs mt-10">
+                        We take on a limited number of new trade clients each month — <a href="#contact" className="text-safety-orange hover:underline">scoping calls fill up fast.</a>
+                    </p>
                 </div>
             </motion.section>
 
@@ -1404,7 +1424,7 @@ const PlumbingWebsites = () => {
                                                 <Loader2 className="w-6 h-6 animate-spin" /> Sending...
                                             </span>
                                         ) : (
-                                            "GET MY CUSTOM QUOTE"
+                                            "BOOK MY FREE CHAT"
                                         )}
                                     </Button>
 

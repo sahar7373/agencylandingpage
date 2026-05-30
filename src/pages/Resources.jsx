@@ -96,6 +96,15 @@ const Resources = () => {
             readTime: "6 min read",
             slug: "google-ai-overviews-tradie-leads",
             comingSoon: false
+        },
+        {
+            id: 'tradie-website-cost-australia',
+            title: "Tradie Website Cost Australia: 2026 Honest Breakdown",
+            description: "A tradie website costs $500–$8,000+ in Australia. But cost isn't the question — which website actually gets your phone ringing? Plain numbers, no fluff.",
+            category: "Business Growth",
+            readTime: "7 min read",
+            slug: "tradie-website-cost-australia",
+            comingSoon: false
         }
     ];
 

@@ -28,12 +28,12 @@ const WebsiteROICalculation = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>How Many Jobs Does a Website Need to Pay for Itself? | ROI Calculator for Australian Tradies</title>
+                <title>How Many Jobs to Break Even on a Tradie Website?</title>
                 <meta name="description" content="Break-even math for Australian trade businesses. If your average job is $2,500, you need 2-3 extra jobs to cover a $3,900 website. Most get that in the first month." />
                 <meta name="keywords" content="website roi, tradie marketing, business growth, Australian tradies, website cost, return on investment, lead generation" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/website-roi-calculation" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="How Many Jobs Does a Website Need to Pay for Itself?" />
+                <meta property="og:title" content="How Many Jobs to Break Even on a Tradie Website?" />
                 <meta property="og:description" content="Simple ROI calculator for tradie websites—break-even math that makes sense." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({

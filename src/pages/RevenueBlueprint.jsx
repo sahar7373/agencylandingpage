@@ -31,7 +31,7 @@ const RevenueBlueprint = () => {
                 <meta property="og:description" content="The Local Visibility & Revenue Capture Blueprint for Trades. Stop losing enquiries and double your revenue." />
                 <meta property="og:type" content="website" />
                 <meta property="og:url" content="https://yourtradepartner.com.au/blueprint" />
-                <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
+                <meta property="og:image" content="https://yourtradepartner.com.au/Agency-hammer-favicon.jpeg" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
             </Helmet>

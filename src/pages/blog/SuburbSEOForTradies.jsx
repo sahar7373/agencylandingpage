@@ -18,9 +18,9 @@ const relatedReads = [
         description: 'Decide when local SEO should carry the load and when to supplement it with ads.'
     },
     {
-        href: '/resources/aeo-for-tradies',
-        title: 'AEO for Tradies',
-        description: 'Location-specific content also helps AI tools understand where and who you serve.'
+        href: '/seo-for-tradies',
+        title: 'SEO for Tradies',
+        description: 'The full system: keyword targeting, suburb pages, technical foundation, and local ranking that keeps working without ad spend.'
     }
 ];
 
@@ -28,12 +28,12 @@ const SuburbSEOForTradies = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>How to Rank for 'Tradie + Your Suburb' Searches | Local SEO Guide for Australian Tradies</title>
+                <title>Suburb SEO for Tradies: Rank for Local Searches in Australia</title>
                 <meta name="description" content="Local SEO for Australian tradies: suburb-specific pages, Google Maps optimization, and content that matches what homeowners actually search for." />
                 <meta name="keywords" content="local seo, suburb seo, tradie seo, plumber near me, electrician sydney, australian trades, google maps, local rankings" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/suburb-seo-for-tradies" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="How to Rank for 'Tradie + Your Suburb' Searches" />
+                <meta property="og:title" content="Suburb SEO for Tradies: Rank for Local Searches in Australia" />
                 <meta property="og:description" content="Complete local SEO guide for Australian trade businesses—rank for suburb-specific searches." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({

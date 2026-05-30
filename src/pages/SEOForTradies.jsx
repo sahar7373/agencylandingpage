@@ -137,7 +137,7 @@ const SEOForTradies = () => {
                 <meta property="og:title" content="SEO for Tradies Australia | Your Trade Partner" />
                 <meta property="og:description" content="Get your trade business found on Google. SEO built exclusively for Australian tradies — no jargon, just results." />
                 <meta property="og:url" content="https://yourtradepartner.com.au/seo-for-tradies" />
-                <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
+                <meta property="og:image" content="https://yourtradepartner.com.au/Agency-hammer-favicon.jpeg" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
 

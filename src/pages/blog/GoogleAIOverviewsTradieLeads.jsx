@@ -13,9 +13,9 @@ const relatedReads = [
         description: 'The playbook for getting your business recommended by ChatGPT, Perplexity, and Google AI — not just ranked.'
     },
     {
-        href: '/resources/suburb-seo-for-tradies',
-        title: "How to Rank for 'Tradie + Your Suburb' Searches",
-        description: 'Suburb-specific pages and local signals that still drive bookings in the AI era.'
+        href: '/marketing-for-tradies',
+        title: 'Marketing for Tradies',
+        description: 'Build an enquiry system that captures jobs whether customers find you through Google, AI, or word of mouth.'
     },
     {
         href: '/resources/why-tradie-websites-dont-get-calls',
@@ -28,12 +28,12 @@ const GoogleAIOverviewsTradieLeads = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>How Google's AI Is Stealing Your Tradie Leads (And What To Do About It) | Your Trade Partner</title>
+                <title>Google's AI Is Stealing Tradie Leads — Here's the Fix</title>
                 <meta name="description" content="Google AI Overviews now answer local service searches before users click through. Find out why Australian tradies are losing leads to AI — and the exact steps to get cited instead." />
                 <meta name="keywords" content="Google AI Overviews tradies, AI search local SEO Australia, tradie leads 2026" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/google-ai-overviews-tradie-leads" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="How Google's AI Is Stealing Your Tradie Leads (And What To Do About It)" />
+                <meta property="og:title" content="Google's AI Is Stealing Tradie Leads — Here's the Fix" />
                 <meta property="og:description" content="Google AI Overviews now answer local service searches before users click through. Find out why Australian tradies are losing leads to AI — and the exact steps to get cited instead." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({

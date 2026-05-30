@@ -28,12 +28,12 @@ const ElectricianWebsiteRequirements = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>Electrician Website Requirements Australia: Licence Display, Reviews & 5 More Must-Haves</title>
+                <title>Electrician Website Requirements: 7 Things Homeowners Check</title>
                 <meta name="description" content="Australian homeowners check 7 specific things before calling an electrician online. Licence number visible? Safety certificates shown? See the full checklist — and fix what's costing you jobs." />
                 <meta name="keywords" content="electrician website checklist, electrician website requirements, Australian electrician website, electrical contractor website, trade website trust signals" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/electrician-website-requirements" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Electrician Website Requirements Australia: Licence Display, Reviews & 5 More Must-Haves" />
+                <meta property="og:title" content="Electrician Website Requirements: 7 Things Homeowners Check" />
                 <meta property="og:description" content="Australian homeowners check 7 specific things before calling an electrician online. See the full checklist — and fix what's costing you jobs." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({

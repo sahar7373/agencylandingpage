@@ -28,12 +28,12 @@ const GoogleBusinessProfileSetup = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>Google My Business Setup Guide for Australian Tradies | Complete 2026 Tutorial</title>
+                <title>Google Business Profile Setup for Australian Tradies (2026)</title>
                 <meta name="description" content="Step-by-step guide to setting up and optimizing your Google Business Profile. Show up when customers search 'plumber near me' or 'electrician [your suburb]' in Australia." />
                 <meta name="keywords" content="google business profile, google my business, tradie marketing, local SEO, Australian tradies, near me searches, google maps, local business" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/google-business-profile-setup" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Google My Business Setup Guide for Tradies" />
+                <meta property="og:title" content="Google Business Profile Setup for Australian Tradies (2026)" />
                 <meta property="og:description" content="Complete guide to setting up Google Business Profile for Australian trade businesses." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({

@@ -13,9 +13,9 @@ const relatedReads = [
         description: 'Use AI for both discovery and enquiry handling so attention turns into booked work.'
     },
     {
-        href: '/resources/google-business-profile-setup',
-        title: 'Google Business Profile Setup Guide',
-        description: 'Structured local signals still help answer engines understand and recommend your business.'
+        href: '/seo-for-tradies',
+        title: 'SEO for Tradies',
+        description: 'Traditional local SEO still underpins your AEO results — start here before optimising for AI.'
     },
     {
         href: '/resources/suburb-seo-for-tradies',
@@ -28,7 +28,7 @@ const AEOForTradies = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>AEO for Tradies: How to Get Featured in ChatGPT & AI Search | Australian Trade Business Marketing 2026</title>
+                <title>AEO for Tradies: Get Found in ChatGPT & AI Search Results</title>
                 <meta name="description" content="42% of Australians now use ChatGPT to find tradies. Learn Answer Engine Optimization (AEO) strategies to get your plumbing, electrical, or building business featured in AI search results and capture this growing market." />
                 <meta name="keywords" content="AEO for tradies, answer engine optimization, ChatGPT marketing, AI search optimization, Perplexity search, Google AI overviews, tradie AI marketing, plumber ChatGPT, electrician AI search, builder Perplexity, Australian tradie AEO, AI-powered search, voice search optimization, conversational AI marketing, tradie marketing 2026" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/aeo-for-tradies" />

@@ -28,12 +28,12 @@ const ProfessionalTrustSignals = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>Tradie Trust Signals Australia: Licence, Reviews & 5 More Things That Make Homeowners Call</title>
+                <title>Tradie Trust Signals: 7 Things That Make Homeowners Call</title>
                 <meta name="description" content="Australian homeowners check your licence, read your reviews, and look for real job photos before they call. Here's the full checklist of trust signals — and what's costing you jobs if they're missing." />
                 <meta name="keywords" content="tradie trust signals, professional tradie website, trust signals Australia, tradie credibility, tradie website checklist" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/professional-trust-signals" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Tradie Trust Signals Australia: Licence, Reviews & 5 More Things That Make Homeowners Call" />
+                <meta property="og:title" content="Tradie Trust Signals: 7 Things That Make Homeowners Call" />
                 <meta property="og:description" content="Australian homeowners check your licence, read your reviews, and look for real job photos before they call. Here's the full checklist — and what's costing you jobs if it's missing." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({

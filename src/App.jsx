@@ -31,6 +31,7 @@ const ProfessionalTrustSignals = lazy(() => import('./pages/blog/ProfessionalTru
 const GoogleAdsVsSEO = lazy(() => import('./pages/blog/GoogleAdsVsSEO'));
 const AEOForTradies = lazy(() => import('./pages/blog/AEOForTradies'));
 const GoogleAIOverviewsTradieLeads = lazy(() => import('./pages/blog/GoogleAIOverviewsTradieLeads'));
+const TradiWebsiteCostAustralia = lazy(() => import('./pages/blog/TradiWebsiteCostAustralia'));
 
 function App() {
     React.useEffect(() => {
@@ -84,6 +85,7 @@ function App() {
                     <Route path="/resources/google-ads-vs-seo-tradies" element={<GoogleAdsVsSEO />} />
                     <Route path="/resources/aeo-for-tradies" element={<AEOForTradies />} />
                     <Route path="/resources/google-ai-overviews-tradie-leads" element={<GoogleAIOverviewsTradieLeads />} />
+                    <Route path="/resources/tradie-website-cost-australia" element={<TradiWebsiteCostAustralia />} />
 
                     {/* Trade-Specific Landing Pages */}
                     <Route path="/plumbing-websites" element={<PlumbingWebsites />} />

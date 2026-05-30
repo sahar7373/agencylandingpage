@@ -28,12 +28,12 @@ const AIReceptionistForTradies = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>How to Handle Missed Calls Without Hiring Staff | AI Receptionist for Australian Tradies</title>
+                <title>AI Receptionist for Tradies: Answer Every Call On the Tools</title>
                 <meta name="description" content="The average Australian trade business misses 60% of calls while on the tools. Learn how AI receptionist systems answer every call, book appointments, and qualify leads—without wages or sick days." />
                 <meta name="keywords" content="ai receptionist, missed calls tradies, tradie automation, call answering service, trade business, Australian tradies, lead capture, appointment booking" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/ai-receptionist-for-tradies" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="How to Handle Missed Calls Without Hiring Staff" />
+                <meta property="og:title" content="AI Receptionist for Tradies: Answer Every Call On the Tools" />
                 <meta property="og:description" content="AI receptionist systems for Australian tradies—answer every call, book jobs, qualify leads automatically." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({

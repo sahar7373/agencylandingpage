@@ -431,17 +431,17 @@ function LandingPage() {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
             <Helmet>
-                <title>Tradie Website Design & Marketing Australia | Your Trade Partner</title>
+                <title>Tradie Website Design & AI Automation Australia | Your Trade Partner</title>
                 <meta name="description" content="Your Trade Partner provides high-converting websites and automated enquiry systems for Australian trade businesses. Stop missing jobs and start scaling." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/" />
                 <meta name="robots" content="index, follow" />
 
                 {/* Open Graph / Social Media */}
                 <meta property="og:type" content="website" />
-                <meta property="og:title" content="Your Trade Partner | Growth Systems for Tradies" />
+                <meta property="og:title" content="Tradie Website Design & AI Automation Australia | Your Trade Partner" />
                 <meta property="og:description" content="Your Trade Partner helps Australian trades build a job-winning online presence. Professional websites and lead capture systems built for the industry." />
                 <meta property="og:url" content="https://yourtradepartner.com.au/" />
-                <meta property="og:image" content="https://yourtradepartner.com.au/og-image.jpg" />
+                <meta property="og:image" content="https://yourtradepartner.com.au/Agency-hammer-favicon.jpeg" />
                 <meta property="og:image:width" content="1200" />
                 <meta property="og:image:height" content="630" />
                 <meta property="og:image:alt" content="Your Trade Partner - Digital Growth Systems for Australian Tradies" />

@@ -8,14 +8,14 @@ import RelatedReads from '../../components/RelatedReads';
 
 const relatedReads = [
     {
-        href: '/resources/google-business-profile-setup',
-        title: 'Google Business Profile Setup Guide',
-        description: 'Build your local visibility foundation before spending harder on traffic.'
+        href: '/seo-for-tradies',
+        title: 'SEO for Tradies',
+        description: 'The complete SEO system for Australian trade businesses — keyword targeting, local ranking, and suburb pages.'
     },
     {
-        href: '/resources/suburb-seo-for-tradies',
-        title: 'Suburb SEO for Tradies',
-        description: 'Create location relevance that compounds long after your ad spend stops.'
+        href: '/marketing-for-tradies',
+        title: 'Marketing for Tradies',
+        description: 'How to build a full enquiry pipeline — not just traffic, but calls, leads, and booked jobs.'
     },
     {
         href: '/resources/website-roi-calculation',
@@ -28,12 +28,12 @@ const GoogleAdsVsSEO = () => {
     return (
         <div className="min-h-screen bg-construction-charcoal text-white font-sans">
             <Helmet>
-                <title>Google Ads vs Organic SEO: What Actually Works for Tradies | Australian Trade Marketing Guide</title>
+                <title>Google Ads vs SEO for Tradies: Which One Actually Works?</title>
                 <meta name="description" content="Ads bring leads this week. SEO brings leads forever. Most successful Australian tradies do both. Here's how to decide what to invest in first." />
                 <meta name="keywords" content="google ads, seo, tradie marketing, australian tradies, ppc, organic search, lead generation, digital marketing" />
                 <link rel="canonical" href="https://yourtradepartner.com.au/resources/google-ads-vs-seo-tradies" />
                 <meta name="robots" content="index, follow" />
-                <meta property="og:title" content="Google Ads vs Organic SEO: What Actually Works for Tradies" />
+                <meta property="og:title" content="Google Ads vs SEO for Tradies: Which One Actually Works?" />
                 <meta property="og:description" content="Complete comparison for Australian trade businesses—when to use ads, when to use SEO, and how to combine both." />
                 <meta property="og:type" content="article" />
                 <script type="application/ld+json">{JSON.stringify({
