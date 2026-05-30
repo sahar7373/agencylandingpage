@@ -1,86 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-import { GoogleGenerativeAI } from "@google/generative-ai"
-import { Hammer, MessageCircle, X, Send, Bot, Loader2 } from 'lucide-react'
-
-const CONTEXT = `
-You are the operations assistant for “Your Trade Partner”.
-
-Your role is to diagnose how a trade business handles enquiries and identify where jobs may be slipping through due to response gaps.
-
-You must ask ONE question at a time.
-
-Never ask multiple questions in one message.
-
-Tone:
-
-* Calm
-* Practical
-* Direct
-* Trade-aware
-* Professional Australian tone
-* Not salesy
-
-You are NOT a marketing assistant.
-You do NOT lead with AI, automation, websites, SEO, or ads.
-You focus only on enquiry handling behaviour.
-
-PRIMARY OBJECTIVE:
-Identify small operational gaps in:
-
-* Missed calls
-* After-hours calls
-* Slow callbacks
-* Form enquiries sitting unanswered
-* Lack of structured follow-up
-* Booking delays
-
-DIAGNOSTIC FLOW:
-Ask 3–5 short operational questions.
-Each question must follow a response that:
-
-1. Acknowledges briefly.
-2. Identifies potential gap.
-3. Asks ONE next question.
-
-Keep responses under 35 words.
-
-After gathering enough information (3–5 responses), provide a short mini audit summary.
-
-MINI AUDIT SUMMARY RULES:
-
-* 3–5 short bullet-style observations
-* Calm tone
-* No blame
-* No hype
-* No revenue exaggeration
-* No technical explanation
-
-Example format:
-
-Based on what you’ve shared:
-
-• Some calls may go unanswered when you're on site
-• After-hours enquiries rely on manual callbacks
-• Response timing may vary depending on workload
-• Follow-up isn’t fully structured
-
-This usually results in small but consistent enquiry leakage.
-
-Then close with:
-
-“If you’d like, we can walk through your enquiry flow properly. Click Stop Missing Jobs above.”
-
-Do not force the CTA.
-Do not repeat it multiple times.
-Only present it after the mini audit.
-
-If the user ends the conversation, politely close.
-
-Never criticise workmanship.
-Never sound aggressive.
-Never oversell.
-Never use hype language.
-`
+import { X, Send, Bot } from 'lucide-react'
 
 const ChatBot = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -111,55 +30,32 @@ const ChatBot = () => {
     const handleSend = async () => {
         if (!input.trim()) return
 
-        const apiKey = import.meta.env.VITE_GEMINI_API_KEY
-        if (!apiKey) {
-            setMessages(prev => [...prev, { role: 'assistant', content: "System Error: API Key is missing. Please check .env file." }])
-            return
-        }
-
         const userMessage = { role: 'user', content: input }
+        const currentMessages = messages
         setMessages(prev => [...prev, userMessage])
         setInput('')
         setIsLoading(true)
 
-        // Capture current page text logic
-        let pageContent = ""
+        let pageContent = ''
         try {
-            // Simple robust scraping: Get visible text from body, ideally confusing parts removed
-            // But for this simple landing page, body.innerText is sufficient and robust
-            pageContent = document.body.innerText.slice(0, 10000) // Limit to avoid token overflow if huge
+            pageContent = document.body.innerText.slice(0, 10000)
         } catch (e) {
-            console.error("Failed to read page content", e)
+            console.error('Failed to read page content', e)
         }
 
         try {
-            const genAI = new GoogleGenerativeAI(apiKey)
-            const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash" })
-            const chat = model.startChat({
-                history: [
-                    {
-                        role: "user",
-                        parts: [{ text: `System Context: ${CONTEXT}\n\nCURRENT PAGE VISIBLE TEXT:\n${pageContent}` }],
-                    },
-                    {
-                        role: "model",
-                        parts: [{ text: "Understood. I will act as the YourTradePartner assistant, keeping answers under 30 words and using the specific data provided." }],
-                    },
-                    ...messages.map(m => ({
-                        role: m.role === 'user' ? 'user' : 'model',
-                        parts: [{ text: m.content }]
-                    }))
-                ],
+            const res = await fetch('/chat', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ messages: currentMessages, pageContent, userMessage: input })
             })
 
-            const result = await chat.sendMessage(input)
-            const response = await result.response
-            const text = response.text()
+            if (!res.ok) throw new Error(`Server error: ${res.status}`)
 
-            setMessages(prev => [...prev, { role: 'assistant', content: text }])
+            const data = await res.json()
+            setMessages(prev => [...prev, { role: 'assistant', content: data.text }])
         } catch (error) {
-            console.error('Chatbot API Error:', error)
-            console.error('Error details:', error.message)
+            console.error('Chatbot error:', error)
             setMessages(prev => [...prev, { role: 'assistant', content: "Sorry, I hit a snag. Try asking differently?" }])
         } finally {
             setIsLoading(false)
