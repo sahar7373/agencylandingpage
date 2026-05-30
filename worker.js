@@ -91,7 +91,7 @@ export default {
 }
 
 async function handleChat(request, env) {
-  const apiKey = env.GEMINI_API_KEY
+  const apiKey = env.OPENROUTER_API_KEY
   if (!apiKey) {
     return jsonResponse({ error: 'API key not configured' }, 500)
   }
@@ -108,43 +108,38 @@ async function handleChat(request, env) {
     return jsonResponse({ error: 'userMessage is required' }, 400)
   }
 
-  const contents = [
-    {
-      role: 'user',
-      parts: [{ text: `System Context: ${GEMINI_CONTEXT}\n\nCURRENT PAGE VISIBLE TEXT:\n${pageContent}` }]
-    },
-    {
-      role: 'model',
-      parts: [{ text: 'Understood. I will act as the YourTradePartner assistant, keeping answers under 30 words and using the specific data provided.' }]
-    },
+  const openRouterMessages = [
+    { role: 'system', content: `${GEMINI_CONTEXT}\n\nCURRENT PAGE VISIBLE TEXT:\n${pageContent}` },
     ...messages.map(m => ({
-      role: m.role === 'user' ? 'user' : 'model',
-      parts: [{ text: m.content }]
+      role: m.role === 'user' ? 'user' : 'assistant',
+      content: m.content
     })),
-    {
-      role: 'user',
-      parts: [{ text: userMessage }]
-    }
+    { role: 'user', content: userMessage }
   ]
 
   try {
-    const geminiRes = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ contents })
-      }
-    )
+    const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+        'HTTP-Referer': 'https://yourtradepartner.com.au',
+        'X-Title': 'YourTradePartner'
+      },
+      body: JSON.stringify({
+        model: 'openai/gpt-4o-mini',
+        messages: openRouterMessages
+      })
+    })
 
-    if (!geminiRes.ok) {
-      const err = await geminiRes.text()
-      console.error('Gemini API error:', err)
-      return jsonResponse({ error: 'Gemini API error' }, 502)
+    if (!res.ok) {
+      const err = await res.text()
+      console.error('OpenRouter API error:', err)
+      return jsonResponse({ error: 'OpenRouter API error' }, 502)
     }
 
-    const data = await geminiRes.json()
-    const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? "Sorry, I couldn't generate a response."
+    const data = await res.json()
+    const text = data.choices?.[0]?.message?.content ?? "Sorry, I couldn't generate a response."
 
     return jsonResponse({ text })
   } catch (error) {
