@@ -928,19 +928,13 @@ function LandingPage() {
                         </motion.p>
 
                         {/* Main Headline */}
-                        {/* Main Headline */}
                         <motion.h1 className="text-[52px] md:text-[80px] font-black leading-[0.9] mb-8 uppercase italic" variants={itemVariants}>
-                            Stop Losing Jobs to <br />
-                            <span className="text-safety-orange">Missed Calls & Slow Response</span>
+                            Stop Losing Jobs <br />
+                            <span className="text-safety-orange">While You're on the Tools</span>
                         </motion.h1>
 
-                        <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-6 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
-                            Whether they come from Google, referrals, or word of mouth — we make sure every enquiry is captured, responded to, and converted properly.
-                        </motion.p>
-
-                        {/* Sub Headline */}
-                        <motion.p className="text-sm md:text-base text-safety-orange/90 font-black uppercase tracking-[0.18em] mb-10 max-w-3xl mx-auto" variants={itemVariants}>
-                            Tradie websites and digital marketing for Australian tradies — plumbers, electricians, roofers, builders and more.
+                        <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
+                            Websites, AI enquiry response, and system automation — built so your business runs on autopilot 24x7, even when you're flat out on site.
                         </motion.p>
 
                         {/* Trust Position Strip */}
