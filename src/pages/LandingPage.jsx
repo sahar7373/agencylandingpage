@@ -3094,6 +3094,16 @@ function LandingPage() {
                                         <Globe className="w-4 h-4" />
                                         <span className="text-[10px] uppercase font-bold tracking-widest">Hotfrog</span>
                                     </a>
+                                    <a
+                                        href="https://clutch.co/profile/your-trade-partner"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-1.5 text-white/40 hover:text-safety-orange transition-colors"
+                                        aria-label="YourTradePartner on Clutch"
+                                    >
+                                        <Globe className="w-4 h-4" />
+                                        <span className="text-[10px] uppercase font-bold tracking-widest">Clutch</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
