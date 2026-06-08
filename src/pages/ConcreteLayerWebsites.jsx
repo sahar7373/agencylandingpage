@@ -309,20 +309,20 @@ const ConcreteLayerWebsites = () => {
                         >
                             {[
                                 {
-                                    title: "Emergency calls need immediate trust",
-                                    detail: "When a circuit breaker keeps tripping at 2 AM, homeowners don't have time to vet every sparky. They need to see your licensing, insurance, and certifications instantly. A professional website displays these credentials upfront, giving anxious callers the confidence to choose you over a competitor."
+                                    title: "9,900 Australians search 'concreting near me' every month",
+                                    detail: "Most of those clicks go to the first concreter who looks credible online. If your website is a basic template or doesn't exist at all, those jobs are going to a competitor. A site built for search captures the enquiry before anyone picks up the phone."
                                 },
                                 {
-                                    title: "Homeowners check licenses before calling",
-                                    detail: "85% of Australians research a tradie online before making contact. If your website looks outdated or doesn't show your electrical license number, they'll move to the next search result. Your site is often the first—and only—impression you get to make."
+                                    title: "Homeowners compare three quotes — your website closes the gap",
+                                    detail: "For driveways, exposed aggregate, and decorative work, the homeowner is always comparing. If your site shows real project photos, clear service areas, and honest pricing guides, you're already ahead. Without that, you're just another number on a quote form."
                                 },
                                 {
-                                    title: "Certifications build authority",
-                                    detail: "Licensed concreter? Level 2 ASP? Solar accredited? These aren't just credentials—they're deal-makers. Displaying them prominently on your website builds authority and separates you from unlicensed competitors who undercut on price."
+                                    title: "Builders and project managers have zero patience",
+                                    detail: "Commercial concreting clients — builders, developers, project managers — need to know your mix specs, slab thickness capability, and scheduling reliability before they call. They won't dig for that information. If your site doesn't answer those questions upfront, they move on."
                                 },
                                 {
-                                    title: "Price shoppers vs quality clients",
-                                    detail: "A well-designed website attracts clients who value expertise, reliability, and quality work—not just the cheapest quote. It positions you as a professional business, not a one-person operation racing to the bottom on price."
+                                    title: "Prep and cure time objections kill quotes",
+                                    detail: "Homeowners want to know: do you handle excavation? How long before they can drive on it? What's the cure time? These questions slow down every job. Answering them on your website pre-qualifies enquiries, cuts back-and-forth, and filters out time-wasters before they call."
                                 }
                             ].map((item, i) => (
                                 <motion.div key={i} variants={itemVariants} className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
@@ -339,8 +339,8 @@ const ConcreteLayerWebsites = () => {
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
-                                A professional website isn't about looking fancy — <br />
-                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">it's about being trusted enough to get the call.</span>
+                                You're doing quality work — <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">your website should prove it before you answer the phone.</span>
                             </p>
                         </div>
                     </div>
@@ -373,33 +373,33 @@ const ConcreteLayerWebsites = () => {
                                     icon: <Search className="w-12 h-12 text-safety-orange" />,
                                     title: "Shows Up on Google",
                                     features: [
-                                        "Optimised for 'concreter near me' searches",
-                                        "Service pages targeting local suburbs",
-                                        "Fast loading speeds Google rewards",
-                                        "Mobile-friendly (most searches are on phones)",
-                                        "Schema markup so AI assistants find you"
+                                        "Targets 'concreting near me' (9,900 searches/mo in Australia)",
+                                        "Separate pages for driveways, slabs, decorative, and exposed aggregate",
+                                        "Suburb-specific service pages for your work area",
+                                        "Fast mobile load — most homeowners search on their phone",
+                                        "Schema markup so Google and AI tools surface your business"
                                     ]
                                 },
                                 {
                                     icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
                                     title: "Builds Trust Fast",
                                     features: [
-                                        "Licensing & insurance displayed upfront",
-                                        "Real project photos (not stock images)",
-                                        "Clear contact info & service areas",
-                                        "Professional design signals reliability",
-                                        "Testimonials from local homeowners"
+                                        "Licence number and insurance details displayed upfront",
+                                        "Before-and-after project gallery for driveways and decorative finishes",
+                                        "Answers prep and cure time questions so clients arrive informed",
+                                        "Separate messaging for residential homeowners vs. commercial builders",
+                                        "Testimonials tied to specific job types and suburbs"
                                     ]
                                 },
                                 {
                                     icon: <Phone className="w-12 h-12 text-safety-orange" />,
                                     title: "Converts Visitors into Calls",
                                     features: [
-                                        "Click-to-call buttons everywhere",
-                                        "Simple quote forms (no 20 fields)",
-                                        "Clear pricing expectations (no sticker shock)",
-                                        "Live chat or after-hours handling",
-                                        "Emergency contact prominently placed"
+                                        "Click-to-call on every page — no hunting for a number",
+                                        "Quote form that asks the right questions upfront (job type, size, area)",
+                                        "Honest pricing guides that filter serious enquiries from price shoppers",
+                                        "After-hours handling so commercial enquiries don't slip through overnight",
+                                        "Clear call-to-action on every service page — one step to contact"
                                     ]
                                 }
                             ].map((item, i) => (

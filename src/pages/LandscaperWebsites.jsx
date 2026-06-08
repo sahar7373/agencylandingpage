@@ -312,20 +312,20 @@ const LandscaperWebsites = () => {
                         >
                             {[
                                 {
-                                    title: "Emergency calls need immediate trust",
-                                    detail: "When a circuit breaker keeps tripping at 2 AM, homeowners don't have time to vet every sparky. They need to see your licensing, insurance, and certifications instantly. A professional website displays these credentials upfront, giving anxious callers the confidence to choose you over a competitor."
+                                    title: "2,400 people search 'landscaper near me' every month in Australia",
+                                    detail: "That search volume spikes even higher in spring — October alone hit 3,600 searches. Homeowners planning a garden makeover or outdoor project go straight to Google. If your website isn't ranking, you're invisible to the exact clients who are ready to spend."
                                 },
                                 {
-                                    title: "Homeowners check licenses before calling",
-                                    detail: "85% of Australians research a tradie online before making contact. If your website looks outdated or doesn't show your electrical license number, they'll move to the next search result. Your site is often the first—and only—impression you get to make."
+                                    title: "Your portfolio is your pitch — but most landscapers have nowhere to show it",
+                                    detail: "Homeowners spend weeks on Instagram and Pinterest before they contact anyone. When they finally reach out, they want to see your actual work. A website without a strong before-and-after gallery loses the job before the quote is even requested."
                                 },
                                 {
-                                    title: "Certifications build authority",
-                                    detail: "Licensed landscaper? Level 2 ASP? Solar accredited? These aren't just credentials—they're deal-makers. Displaying them prominently on your website builds authority and separates you from unlicensed competitors who undercut on price."
+                                    title: "One-off projects and maintenance contracts need different pages",
+                                    detail: "Garden design and retaining wall installs are big-ticket decisions. Ongoing lawn and garden care is a recurring contract. These are different buyers with different intent — and a generic website treats them the same, losing both."
                                 },
                                 {
-                                    title: "Price shoppers vs quality clients",
-                                    detail: "A well-designed website attracts clients who value expertise, reliability, and quality work—not just the cheapest quote. It positions you as a professional business, not a one-person operation racing to the bottom on price."
+                                    title: "Spring enquiries flood in — most landscapers miss the wave",
+                                    detail: "Search volume for lawn mowing services peaks at 4,400 in March and retaining wall builders surge in September. Without suburb-specific service pages ready before the season, your competitors capture those enquiries while your site sits idle."
                                 }
                             ].map((item, i) => (
                                 <motion.div key={i} variants={itemVariants} className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
@@ -342,8 +342,8 @@ const LandscaperWebsites = () => {
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
-                                A professional website isn't about looking fancy — <br />
-                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">it's about being trusted enough to get the call.</span>
+                                Your portfolio wins the job — <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">only if homeowners can actually find it.</span>
                             </p>
                         </div>
                     </div>
@@ -376,33 +376,33 @@ const LandscaperWebsites = () => {
                                     icon: <Search className="w-12 h-12 text-safety-orange" />,
                                     title: "Shows Up on Google",
                                     features: [
-                                        "Optimised for 'landscaper near me' searches",
-                                        "Service pages targeting local suburbs",
-                                        "Fast loading speeds Google rewards",
-                                        "Mobile-friendly (most searches are on phones)",
-                                        "Schema markup so AI assistants find you"
+                                        "Ranks for 'landscaper near me' — 2,400 monthly searches in Australia",
+                                        "Separate pages for design/install projects and ongoing maintenance contracts",
+                                        "Suburb-specific service pages for every area you work in",
+                                        "Fast load speeds on mobile — where most enquiries start",
+                                        "Schema markup so AI tools and Google Maps surface your business"
                                     ]
                                 },
                                 {
                                     icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
                                     title: "Builds Trust Fast",
                                     features: [
-                                        "Licensing & insurance displayed upfront",
-                                        "Real project photos (not stock images)",
-                                        "Clear contact info & service areas",
-                                        "Professional design signals reliability",
-                                        "Testimonials from local homeowners"
+                                        "Before-and-after project gallery that shows your actual standard of work",
+                                        "Insurance and public liability details displayed clearly",
+                                        "Real client reviews from local suburbs — not generic testimonials",
+                                        "Seasonal content that speaks to spring garden planning and summer lawn care",
+                                        "Professional design that matches the quality of your outdoor projects"
                                     ]
                                 },
                                 {
                                     icon: <Phone className="w-12 h-12 text-safety-orange" />,
                                     title: "Converts Visitors into Calls",
                                     features: [
-                                        "Click-to-call buttons everywhere",
-                                        "Simple quote forms (no 20 fields)",
-                                        "Clear pricing expectations (no sticker shock)",
-                                        "Live chat or after-hours handling",
-                                        "Emergency contact prominently placed"
+                                        "Separate quote forms for one-off projects vs. ongoing maintenance",
+                                        "Click-to-call on every page — especially on mobile",
+                                        "Clear service descriptions with typical project scope and process",
+                                        "After-hours enquiry handling so spring leads don't go cold overnight",
+                                        "Maintenance contract sign-up path — convert install clients into recurring revenue"
                                     ]
                                 }
                             ].map((item, i) => (

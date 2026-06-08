@@ -36,7 +36,9 @@ import {
     Square,
     Leaf,
     PaintBucket,
-    LinkedinIcon
+    LinkedinIcon,
+    Star,
+    Globe
 } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -92,6 +94,8 @@ function LandingPage() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
     const [isTradesDropdownOpen, setIsTradesDropdownOpen] = React.useState(false)
     const [isTradesMobileOpen, setIsTradesMobileOpen] = React.useState(false)
+    const [isLocationsDropdownOpen, setIsLocationsDropdownOpen] = React.useState(false)
+    const [isLocationsMobileOpen, setIsLocationsMobileOpen] = React.useState(false)
     const [expandedPackages, setExpandedPackages] = React.useState([3]); // Default Package 3 open
     const [pricingVariesOpen, setPricingVariesOpen] = React.useState(false);
 
@@ -826,12 +830,13 @@ function LandingPage() {
                         <span className="text-sm md:text-xl font-black uppercase tracking-tighter">Your Trade Partner<span className="text-safety-orange">.</span></span>
                     </a>
                     <div className="hidden lg:flex items-center gap-8 text-[10px] font-black uppercase tracking-[0.2em] text-white/60">
-                        <a href="#why" onClick={() => handleNavClick("Why It Matters")} className="hover:text-white transition-colors">Why It Matters</a>
+
                         <a href="#projects" onClick={() => handleNavClick("Projects")} className="hover:text-white transition-colors">Projects</a>
                         <a href="#free-audit" onClick={() => handleNavClick("Free Audit")} className="hover:text-white transition-colors">Free Audit</a>
                         <a href="#packages" onClick={() => handleNavClick("Packages")} className="hover:text-white transition-colors">Packages</a>
                         <a href="/resources" className="hover:text-white transition-colors">Free Resources</a>
                         <a href="/automation" className="text-safety-orange/80 hover:text-safety-orange transition-colors">AI Automation</a>
+                        <a href="/about" className="hover:text-white transition-colors">About</a>
                         <div
                             className="relative"
                             onMouseEnter={() => setIsTradesDropdownOpen(true)}
@@ -857,6 +862,30 @@ function LandingPage() {
                                 </div>
                             )}
                         </div>
+                        <div
+                            className="relative"
+                            onMouseEnter={() => setIsLocationsDropdownOpen(true)}
+                            onMouseLeave={() => setIsLocationsDropdownOpen(false)}
+                        >
+                            <button className="hover:text-white transition-colors flex items-center gap-1">
+                                LOCATIONS
+                                <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${isLocationsDropdownOpen ? 'rotate-180' : ''}`} />
+                            </button>
+                            {isLocationsDropdownOpen && (
+                                <div className="absolute top-full right-0 bg-construction-charcoal border border-white/10 rounded-lg pt-6 px-4 pb-4 min-w-[200px] shadow-2xl animate-in fade-in slide-in-from-top-2 duration-200">
+                                    <div className="flex flex-col gap-3">
+                                        <a href="/tradie-website-design-adelaide" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Adelaide</a>
+                                        <a href="/tradie-website-design-sydney" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Sydney</a>
+                                        <a href="/tradie-website-design-brisbane" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Brisbane</a>
+                                        <a href="/tradie-website-design-melbourne" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Melbourne</a>
+                                        <a href="/tradie-website-design-perth" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Perth</a>
+                                        <a href="/tradie-website-design-gold-coast" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Gold Coast</a>
+                                        <a href="/tradie-website-design-hobart" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Hobart</a>
+                                        <a href="/tradie-website-design-alice-springs" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Alice Springs</a>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
                     </div>
                     <div className="flex items-center gap-4">
                         <Button
@@ -877,12 +906,13 @@ function LandingPage() {
                     {/* Mobile Menu Overlay */}
                     {isMenuOpen && (
                         <div className="absolute top-full left-0 w-full bg-construction-charcoal border-b border-white/10 p-6 flex flex-col gap-6 lg:hidden shadow-2xl animate-in slide-in-from-top-5 duration-200">
-                            <a href="#why" onClick={() => { setIsMenuOpen(false); handleNavClick("Why It Matters Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Why It Matters</a>
+
                             <a href="#projects" onClick={() => { setIsMenuOpen(false); handleNavClick("Projects Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Projects</a>
                             <a href="#free-audit" onClick={() => { setIsMenuOpen(false); handleNavClick("Free Audit Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Free Audit</a>
                             <a href="#packages" onClick={() => { setIsMenuOpen(false); handleNavClick("Packages Mobile"); }} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Packages</a>
                             <a href="/resources" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">Free Resources</a>
                             <a href="/automation" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-safety-orange hover:text-safety-orange-hover transition-colors">AI Automation ↗</a>
+                            <a href="/about" onClick={() => setIsMenuOpen(false)} className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors">About</a>
                             <div>
                                 <button
                                     onClick={() => setIsTradesMobileOpen(!isTradesMobileOpen)}
@@ -902,6 +932,27 @@ function LandingPage() {
                                         <a href="/concrete-layer-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Concrete Layers</a>
                                         <a href="/landscaper-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Landscapers</a>
                                         <a href="/painter-websites" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Painters</a>
+                                    </div>
+                                )}
+                            </div>
+                            <div>
+                                <button
+                                    onClick={() => setIsLocationsMobileOpen(!isLocationsMobileOpen)}
+                                    className="text-sm font-black uppercase tracking-[0.2em] text-white/80 hover:text-safety-orange transition-colors flex items-center gap-2 w-full"
+                                >
+                                    Locations
+                                    <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isLocationsMobileOpen ? 'rotate-180' : ''}`} />
+                                </button>
+                                {isLocationsMobileOpen && (
+                                    <div className="mt-4 ml-4 flex flex-col gap-3 animate-in fade-in slide-in-from-top-1 duration-200">
+                                        <a href="/tradie-website-design-adelaide" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Adelaide</a>
+                                        <a href="/tradie-website-design-sydney" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Sydney</a>
+                                        <a href="/tradie-website-design-brisbane" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Brisbane</a>
+                                        <a href="/tradie-website-design-melbourne" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Melbourne</a>
+                                        <a href="/tradie-website-design-perth" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Perth</a>
+                                        <a href="/tradie-website-design-gold-coast" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Gold Coast</a>
+                                        <a href="/tradie-website-design-hobart" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Hobart</a>
+                                        <a href="/tradie-website-design-alice-springs" onClick={() => setIsMenuOpen(false)} className="text-xs font-black uppercase tracking-widest text-safety-orange hover:text-safety-orange-hover transition-colors">Alice Springs</a>
                                     </div>
                                 )}
                             </div>
@@ -1677,6 +1728,17 @@ function LandingPage() {
                                     Most trades decide after seeing how this applies to businesses like theirs.
                                 </p>
                             </div>
+                        </div>
+                        <div className="text-center mt-8">
+                            <a
+                                href="https://g.page/r/CUgFdsWWbz7BEBM/review"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2 text-white/30 hover:text-safety-orange transition-colors group"
+                            >
+                                <Star className="w-4 h-4 group-hover:fill-safety-orange group-hover:text-safety-orange transition-colors" />
+                                <span className="text-[11px] font-black uppercase tracking-widest">Worked with us? Leave a Google review</span>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -2943,6 +3005,28 @@ function LandingPage() {
                         </div>
                     </div>
 
+                    {/* Location Pages Links */}
+                    <div className="mb-12 pb-12 border-b border-white/10">
+                        <h3 className="text-sm font-black uppercase tracking-widest text-white/40 mb-6 text-center">Locations</h3>
+                        <div className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-xs font-black uppercase tracking-widest">
+                            <a href="/tradie-website-design-adelaide" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Adelaide</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/tradie-website-design-sydney" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Sydney</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/tradie-website-design-brisbane" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Brisbane</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/tradie-website-design-melbourne" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Melbourne</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/tradie-website-design-perth" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Perth</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/tradie-website-design-gold-coast" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Gold Coast</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/tradie-website-design-hobart" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Hobart</a>
+                            <span className="text-white/20">•</span>
+                            <a href="/tradie-website-design-alice-springs" className="text-safety-orange hover:text-safety-orange-hover transition-colors">Alice Springs</a>
+                        </div>
+                    </div>
+
                     {/* Services Pages Links */}
                     <div className="mb-12 pb-12 border-b border-white/10">
                         <h3 className="text-sm font-black uppercase tracking-widest text-white/40 mb-6 text-center">Services</h3>
@@ -2956,9 +3040,8 @@ function LandingPage() {
                     </div>
 
                     {/* Main Footer Content */}
-                    <div className="flex flex-col lg:flex-row justify-between items-center gap-10">
-                        <div className="flex gap-10 text-xs font-black uppercase tracking-widest text-white/40 order-2 lg:order-1">
-                            <a href="/resources" className="hover:text-white transition-colors">Free Resources</a>
+                    <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
+                        <div className="flex justify-center gap-6 text-xs font-black uppercase tracking-widest text-white/40 order-2 lg:order-1">
                             <button onClick={() => setIsPrivacyModalOpen(true)} className="hover:text-white transition-colors">Privacy Policy</button>
                             <button onClick={() => setIsTermsModalOpen(true)} className="hover:text-white transition-colors">Terms & Conditions</button>
                         </div>
@@ -2974,23 +3057,45 @@ function LandingPage() {
                                 <span className="hidden lg:inline text-safety-orange select-none">•</span>
                                 <span className="whitespace-nowrap">Adelaide, Australia</span>
                             </div>
-                        </div>
-                        <div className="flex flex-col items-end gap-3 order-3 lg:order-3">
-                            <div className="flex flex-col items-end gap-1.5">
-                                <p className="text-[9px] uppercase font-bold tracking-widest text-white/30">Follow us</p>
-                                <a
-                                    href="https://www.linkedin.com/company/yourtradepartner/"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-white/40 hover:text-safety-orange transition-colors"
-                                    aria-label="LinkedIn"
-                                >
-                                    <LinkedinIcon className="w-5 h-5" />
-                                </a>
-                            </div>
-                            <p className="text-[10px] uppercase font-bold tracking-widest text-white/20">
+                            <p className="text-[10px] uppercase font-bold tracking-widest text-white/20 text-center">
                                 &copy; 2026 Your Trade Partner Australian Operations.
                             </p>
+                        </div>
+                        <div className="flex flex-col items-center gap-3 order-3 lg:order-3">
+                            <div className="flex flex-col items-end gap-1.5">
+                                <p className="text-[9px] uppercase font-bold tracking-widest text-white/30">Follow & Review</p>
+                                <div className="flex items-center gap-3">
+                                    <a
+                                        href="https://www.linkedin.com/company/yourtradepartner/"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-white/40 hover:text-safety-orange transition-colors"
+                                        aria-label="LinkedIn"
+                                    >
+                                        <LinkedinIcon className="w-5 h-5" />
+                                    </a>
+                                    <a
+                                        href="https://g.page/r/CUgFdsWWbz7BEBM/review"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-1.5 text-white/40 hover:text-safety-orange transition-colors"
+                                        aria-label="Leave a Google review"
+                                    >
+                                        <Star className="w-4 h-4" />
+                                        <span className="text-[10px] uppercase font-bold tracking-widest">Google</span>
+                                    </a>
+                                    <a
+                                        href="https://www.hotfrog.com.au/company/7aa13cefc8832cffd0e36cb77967d085"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-center gap-1.5 text-white/40 hover:text-safety-orange transition-colors"
+                                        aria-label="YourTradePartner on Hotfrog"
+                                    >
+                                        <Globe className="w-4 h-4" />
+                                        <span className="text-[10px] uppercase font-bold tracking-widest">Hotfrog</span>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

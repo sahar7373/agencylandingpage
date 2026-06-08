@@ -33,7 +33,7 @@ npm run dev        # local dev server
 npm run build      # production build → dist/
 ```
 
-**Deploy:** Netlify (auto on push to main). Also wrangler-compatible for Cloudflare Pages.
+**Deploy:** Cloudflare Pages (auto on push to main). Use wrangler CLI for secrets and manual deploys.
 
 ---
 

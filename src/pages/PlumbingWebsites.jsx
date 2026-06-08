@@ -315,20 +315,20 @@ const PlumbingWebsites = () => {
                         >
                             {[
                                 {
-                                    title: "Emergency calls need immediate trust",
-                                    detail: "When a pipe bursts at 2 AM, homeowners don't have time to vet every plumber. They need to see your licensing, insurance, and certifications instantly. A professional website displays these credentials upfront, giving anxious callers the confidence to choose you over a competitor."
+                                    title: "49,500 Australians search 'plumber near me' every month",
+                                    detail: "That's real homeowners right now, looking for someone to call. The plumber who shows up on page one gets the call — the one who doesn't, doesn't. If your website isn't ranking, you're not losing to better plumbers. You're losing to plumbers with better websites."
                                 },
                                 {
-                                    title: "Homeowners check online before calling",
-                                    detail: "85% of Australians research a tradie online before making contact. If your website looks outdated or hard to navigate, they'll move to the next search result. Your site is often the first—and only—impression you get to make."
+                                    title: "The 2AM call goes to whoever looks trustworthy first",
+                                    detail: "Hot water systems die on cold nights. Pipes burst without warning. When a homeowner searches 'emergency plumber' at 11PM, they're not comparing quotes — they're calling the first result that loads fast and shows a licence number upfront. A slow or outdated website means the call goes elsewhere."
                                 },
                                 {
-                                    title: "Certifications need to be visible",
-                                    detail: "Master Plumber? Licensed gasfitter? Backflow prevention certified? These aren't just credentials—they're deal-makers. Displaying them prominently on your website builds authority and separates you from unlicensed competitors who undercut on price."
+                                    title: "Gas fitting and backflow credentials close the high-value jobs",
+                                    detail: "Homeowners specifically search 'licensed gas plumber' and 'backflow prevention certified' for specialist work. If your gas endorsement and certifications aren't visible on your site — in the right format, in the right places — you're invisible for the jobs that pay more and quote less competitively."
                                 },
                                 {
-                                    title: "Price shoppers vs quality clients",
-                                    detail: "A well-designed website attracts clients who value expertise, reliability, and quality work—not just the cheapest quote. It positions you as a professional business, not a one-person operation racing to the bottom on price."
+                                    title: "Your GBP gets you found. Your website closes the deal.",
+                                    detail: "A Google Business Profile drives calls — but when someone taps through to your website and it looks unmaintained, the trust disappears before they dial. Your website is where the decision is made. It needs to convert the homeowner who's already interested, not just prove you exist."
                                 }
                             ].map((item, i) => (
                                 <motion.div key={i} variants={itemVariants} className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
@@ -345,8 +345,8 @@ const PlumbingWebsites = () => {
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
-                                A professional website isn't about looking fancy — <br />
-                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">it's about being trusted enough to get the call.</span>
+                                A plumber without a website loses the midnight call to a worse plumber with one — <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">every single time.</span>
                             </p>
                         </div>
                     </div>
@@ -379,33 +379,33 @@ const PlumbingWebsites = () => {
                                     icon: <Search className="w-12 h-12 text-safety-orange" />,
                                     title: "Shows Up on Google",
                                     features: [
-                                        "Optimised for 'plumber near me' searches",
-                                        "Service pages targeting local suburbs",
-                                        "Fast loading speeds Google rewards",
-                                        "Mobile-friendly (most searches are on phones)",
-                                        "Schema markup so AI assistants find you"
+                                        "'Plumber near me' — 49,500 searches/month in Australia",
+                                        "Emergency plumber page with transactional intent copy",
+                                        "Dedicated hot water & gas fitting service pages",
+                                        "Suburb service pages for every area you cover",
+                                        "Schema markup so Google Maps and AI assistants surface you"
                                     ]
                                 },
                                 {
                                     icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
                                     title: "Builds Trust Fast",
                                     features: [
-                                        "Licensing & insurance displayed upfront",
-                                        "Real project photos (not stock images)",
-                                        "Clear contact info & service areas",
-                                        "Professional design signals reliability",
-                                        "Testimonials from local homeowners"
+                                        "Licence number where homeowners look first",
+                                        "Gas fitting endorsement displayed separately",
+                                        "Public liability cover stated clearly upfront",
+                                        "24/7 emergency availability above the fold",
+                                        "Real job photos — drains, hot water, gas work"
                                     ]
                                 },
                                 {
                                     icon: <Phone className="w-12 h-12 text-safety-orange" />,
                                     title: "Converts Visitors into Calls",
                                     features: [
-                                        "Click-to-call buttons everywhere",
-                                        "Simple quote forms (no 20 fields)",
-                                        "Clear pricing expectations (no sticker shock)",
-                                        "Live chat or after-hours handling",
-                                        "Emergency contact prominently placed"
+                                        "Tap-to-call button above the fold on every mobile page",
+                                        "Emergency contact at the top — not buried in a contact page",
+                                        "Suburb service list so homeowners confirm you cover their street",
+                                        "Enquiry form under 60 seconds — no 12-field interrogation",
+                                        "After-hours handling so midnight calls don't hit voicemail"
                                     ]
                                 }
                             ].map((item, i) => (

@@ -105,6 +105,33 @@ const Resources = () => {
             readTime: "7 min read",
             slug: "tradie-website-cost-australia",
             comingSoon: false
+        },
+        {
+            id: 'suburb-seo-adelaide',
+            title: "Adelaide Suburb SEO for Tradies: Which Areas Are Worth Targeting?",
+            description: "Real search data on where Adelaide homeowners look for tradies — Salisbury, Glenelg, Norwood, Gawler and more. A data-backed priority list for Adelaide trade businesses.",
+            category: "Local SEO",
+            readTime: "7 min read",
+            slug: "suburb-seo-for-adelaide-tradies",
+            comingSoon: false
+        },
+        {
+            id: 'suburb-seo-sydney-roofers',
+            title: "Sydney Suburb SEO for Roof Tilers & Metal Roofers: Where the Jobs Are",
+            description: "Real search data on where Sydney homeowners look for roofers — Blacktown, Penrith, Campbelltown, Sutherland Shire and more. A data-backed priority list for Sydney roofing businesses.",
+            category: "Local SEO",
+            readTime: "8 min read",
+            slug: "suburb-seo-for-sydney-roofers",
+            comingSoon: false
+        },
+        {
+            id: 'suburb-seo-brisbane-roofers',
+            title: "Brisbane Suburb SEO for Roofers: Where the Jobs Actually Are (The Data Surprises)",
+            description: "Real search data for Brisbane roof tilers and metal roofers — Caboolture, Logan, Ipswich, Sunshine Coast and more. Why the biggest opportunity near Brisbane isn't in a Brisbane suburb.",
+            category: "Local SEO",
+            readTime: "8 min read",
+            slug: "suburb-seo-for-brisbane-roofers",
+            comingSoon: false
         }
     ];
 

@@ -312,20 +312,20 @@ const CarpenterWebsites = () => {
                         >
                             {[
                                 {
-                                    title: "Emergency calls need immediate trust",
-                                    detail: "When a circuit breaker keeps tripping at 2 AM, homeowners don't have time to vet every sparky. They need to see your licensing, insurance, and certifications instantly. A professional website displays these credentials upfront, giving anxious callers the confidence to choose you over a competitor."
+                                    title: "Homeowners can't see the quality gap online",
+                                    detail: "Custom joinery costs three times what flat-pack does. But if your website looks the same as a budget operator's — or worse, has no website at all — the homeowner defaults to price. Your site needs to show the craftsmanship before they call."
                                 },
                                 {
-                                    title: "Homeowners check licenses before calling",
-                                    detail: "85% of Australians research a tradie online before making contact. If your website looks outdated or doesn't show your electrical license number, they'll move to the next search result. Your site is often the first—and only—impression you get to make."
+                                    title: "Different jobs attract completely different buyers",
+                                    detail: "The person searching 'decking installer' and the one searching 'built-in wardrobes' (9,900 searches/month in Australia) are in different headspaces with different budgets. One page trying to speak to both converts neither. Dedicated pages for each service win the job."
                                 },
                                 {
-                                    title: "Certifications build authority",
-                                    detail: "Licensed carpenter? Level 2 ASP? Solar accredited? These aren't just credentials—they're deal-makers. Displaying them prominently on your website builds authority and separates you from unlicensed competitors who undercut on price."
+                                    title: "No portfolio means no booking",
+                                    detail: "Carpentry is a visual trade. A homeowner commissioning a custom kitchen or staircase wants to see finished work — not stock photos. Without a project gallery that loads fast on mobile, you're asking them to trust you blind. They won't."
                                 },
                                 {
-                                    title: "Price shoppers vs quality clients",
-                                    detail: "A well-designed website attracts clients who value expertise, reliability, and quality work—not just the cheapest quote. It positions you as a professional business, not a one-person operation racing to the bottom on price."
+                                    title: "'Carpenter near me' gets 5,400 searches a month in Australia",
+                                    detail: "Those 5,400 people are ready to hire. If you're not ranking — or your site looks rough when they land on it — they call the next result. A website built for local search puts you in front of buyers at the exact moment they're ready to spend."
                                 }
                             ].map((item, i) => (
                                 <motion.div key={i} variants={itemVariants} className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
@@ -342,8 +342,8 @@ const CarpenterWebsites = () => {
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
-                                A professional website isn't about looking fancy — <br />
-                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">it's about being trusted enough to get the call.</span>
+                                If they can't see the quality of your work online — <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">they'll pay flat-pack prices for someone else.</span>
                             </p>
                         </div>
                     </div>
@@ -376,33 +376,33 @@ const CarpenterWebsites = () => {
                                     icon: <Search className="w-12 h-12 text-safety-orange" />,
                                     title: "Shows Up on Google",
                                     features: [
-                                        "Optimised for 'carpenter near me' searches",
-                                        "Service pages targeting local suburbs",
-                                        "Fast loading speeds Google rewards",
-                                        "Mobile-friendly (most searches are on phones)",
-                                        "Schema markup so AI assistants find you"
+                                        "Dedicated pages for each service — decking, built-ins, framing, fit-outs",
+                                        "Targets 'carpenter near me' (5,400 searches/month in Australia)",
+                                        "Suburb-specific pages so you rank where you actually work",
+                                        "Fast mobile load — most homeowners search on their phone",
+                                        "Schema markup so AI tools and Google Maps surface your business"
                                     ]
                                 },
                                 {
                                     icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
                                     title: "Builds Trust Fast",
                                     features: [
-                                        "Licensing & insurance displayed upfront",
-                                        "Real project photos (not stock images)",
-                                        "Clear contact info & service areas",
-                                        "Professional design signals reliability",
-                                        "Testimonials from local homeowners"
+                                        "Project gallery showing real finished work — not stock images",
+                                        "Contractor licence number displayed prominently by state",
+                                        "Public liability insurance and trade cert called out upfront",
+                                        "Before-and-after photos that show the quality gap vs flat-pack",
+                                        "Testimonials from actual clients in the suburbs you serve"
                                     ]
                                 },
                                 {
                                     icon: <Phone className="w-12 h-12 text-safety-orange" />,
                                     title: "Converts Visitors into Calls",
                                     features: [
-                                        "Click-to-call buttons everywhere",
-                                        "Simple quote forms (no 20 fields)",
-                                        "Clear pricing expectations (no sticker shock)",
-                                        "Live chat or after-hours handling",
-                                        "Emergency contact prominently placed"
+                                        "Clear quote request form — one page, no friction",
+                                        "Click-to-call on every page, including the project gallery",
+                                        "Separate enquiry paths for different job types (deck vs joinery vs fit-out)",
+                                        "After-hours handling so you don't lose jobs while on site",
+                                        "No generic templates — copy written for the type of work you want"
                                     ]
                                 }
                             ].map((item, i) => (

@@ -515,6 +515,28 @@ const SuburbSEOForTradies = () => {
                             </p>
                         </div>
 
+                        {/* City-Specific Deep Dives */}
+                        <div className="bg-white/5 border border-white/10 p-8">
+                            <h2 className="text-xl font-black uppercase italic mb-2 text-safety-orange">City-Specific Data: Go Deeper</h2>
+                            <p className="text-sm text-white/60 font-bold mb-6">We've pulled real DataForSEO search volume and competition data for three major cities. Find your city below.</p>
+                            <div className="grid md:grid-cols-3 gap-4">
+                                {[
+                                    { href: '/resources/suburb-seo-for-adelaide-tradies', city: 'Adelaide', desc: 'SA tradies — Salisbury, Glenelg, Norwood, Gawler and more. Data-backed priority list for all trades.' },
+                                    { href: '/resources/suburb-seo-for-sydney-roofers', city: 'Sydney', desc: 'NSW roofers — Blacktown, Penrith, Campbelltown, Sutherland Shire. Where the roofing jobs actually come from.' },
+                                    { href: '/resources/suburb-seo-for-brisbane-roofers', city: 'Brisbane', desc: 'QLD roofers — why Ipswich is a trap, why the Sunshine Coast is the surprise standout, and where to target instead.' },
+                                ].map(({ href, city, desc }) => (
+                                    <a key={city} href={href} className="flex flex-col gap-2 bg-white/5 border border-white/10 p-5 hover:border-safety-orange/40 transition-colors group">
+                                        <div className="flex items-center gap-2">
+                                            <MapPin className="w-4 h-4 text-safety-orange flex-shrink-0" />
+                                            <span className="text-xs font-black uppercase tracking-widest text-safety-orange">{city}</span>
+                                        </div>
+                                        <p className="text-xs text-white/60 font-bold leading-relaxed">{desc}</p>
+                                        <span className="text-xs font-black uppercase tracking-widest text-white/40 group-hover:text-safety-orange transition-colors mt-auto">Read the guide →</span>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+
                         <RelatedReads items={relatedReads} />
 
                     </div>

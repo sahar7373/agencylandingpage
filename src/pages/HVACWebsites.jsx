@@ -312,20 +312,20 @@ const HVACWebsites = () => {
                         >
                             {[
                                 {
-                                    title: "Emergency calls need immediate trust",
-                                    detail: "When a circuit breaker keeps tripping at 2 AM, homeowners don't have time to vet every sparky. They need to see your licensing, insurance, and certifications instantly. A professional website displays these credentials upfront, giving anxious callers the confidence to choose you over a competitor."
+                                    title: "You're invisible in October — the biggest install month",
+                                    detail: "\"Air conditioning installation\" gets 18,100 searches a month in Australia — and it peaks in October and November as homeowners prepare for summer. If your site isn't ranking by spring, you've already missed the most valuable jobs of the year."
                                 },
                                 {
-                                    title: "Homeowners check licenses before calling",
-                                    detail: "85% of Australians research a tradie online before making contact. If your website looks outdated or doesn't show your electrical license number, they'll move to the next search result. Your site is often the first—and only—impression you get to make."
+                                    title: "Heatwave calls go to whoever looks trustworthy first",
+                                    detail: "\"AC repair near me\" spikes to nearly 10,000 searches in January — right when systems fail mid-heatwave. Those customers aren't comparing quotes. They're calling the first HVAC business that looks credible on their phone. A weak website sends them straight to your competitor."
                                 },
                                 {
-                                    title: "Certifications build authority",
-                                    detail: "Licensed hvac? Level 2 ASP? Solar accredited? These aren't just credentials—they're deal-makers. Displaying them prominently on your website builds authority and separates you from unlicensed competitors who undercut on price."
+                                    title: "No ARCtick displayed means no call",
+                                    detail: "Homeowners know refrigerant work requires a licence. If your website doesn't show your ARCtick number and insurance upfront, they move on. Unlicensed operators have made customers cautious — your site needs to clear that doubt in the first five seconds."
                                 },
                                 {
-                                    title: "Price shoppers vs quality clients",
-                                    detail: "A well-designed website attracts clients who value expertise, reliability, and quality work—not just the cheapest quote. It positions you as a professional business, not a one-person operation racing to the bottom on price."
+                                    title: "One-time installs vs recurring service contracts",
+                                    detail: "A split system service every 12 months is worth far more than a single install job. Most HVAC websites are built only for the urgent call. Yours should also capture the homeowner looking to set up ongoing maintenance — a different customer worth a lot more over time."
                                 }
                             ].map((item, i) => (
                                 <motion.div key={i} variants={itemVariants} className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
@@ -342,8 +342,8 @@ const HVACWebsites = () => {
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
-                                A professional website isn't about looking fancy — <br />
-                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">it's about being trusted enough to get the call.</span>
+                                Miss October, miss your whole summer — <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">rank before the season or hand those jobs to someone else.</span>
                             </p>
                         </div>
                     </div>
@@ -376,33 +376,33 @@ const HVACWebsites = () => {
                                     icon: <Search className="w-12 h-12 text-safety-orange" />,
                                     title: "Shows Up on Google",
                                     features: [
-                                        "Optimised for 'hvac near me' searches",
-                                        "Service pages targeting local suburbs",
-                                        "Fast loading speeds Google rewards",
-                                        "Mobile-friendly (most searches are on phones)",
-                                        "Schema markup so AI assistants find you"
+                                        "Optimised for 'air conditioning installation' — 12,100 searches/month in Australia",
+                                        "Suburb pages targeting high-intent local searches",
+                                        "Built to rank before the October spring install surge",
+                                        "Mobile-first — heatwave callers are always on phones",
+                                        "Schema markup so AI assistants surface your business"
                                     ]
                                 },
                                 {
                                     icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
                                     title: "Builds Trust Fast",
                                     features: [
-                                        "Licensing & insurance displayed upfront",
-                                        "Real project photos (not stock images)",
-                                        "Clear contact info & service areas",
-                                        "Professional design signals reliability",
-                                        "Testimonials from local homeowners"
+                                        "ARCtick licence number displayed prominently",
+                                        "Brands you're accredited for (Daikin, Mitsubishi, Fujitsu etc.)",
+                                        "Real install and service photos — not stock images",
+                                        "Clear service areas so customers know you cover their suburb",
+                                        "Separate pages for installations vs ongoing service contracts"
                                     ]
                                 },
                                 {
                                     icon: <Phone className="w-12 h-12 text-safety-orange" />,
                                     title: "Converts Visitors into Calls",
                                     features: [
-                                        "Click-to-call buttons everywhere",
-                                        "Simple quote forms (no 20 fields)",
-                                        "Clear pricing expectations (no sticker shock)",
-                                        "Live chat or after-hours handling",
-                                        "Emergency contact prominently placed"
+                                        "Emergency contact front and centre for heatwave calls",
+                                        "Click-to-call on every page — no hunting for a number",
+                                        "Simple quote forms for installs (brand, size, storeys)",
+                                        "Separate booking path for annual service and maintenance",
+                                        "After-hours enquiry capture so no job slips through overnight"
                                     ]
                                 }
                             ].map((item, i) => (

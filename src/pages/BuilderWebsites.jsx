@@ -312,20 +312,20 @@ const BuilderWebsites = () => {
                         >
                             {[
                                 {
-                                    title: "Emergency calls need immediate trust",
-                                    detail: "When a circuit breaker keeps tripping at 2 AM, homeowners don't have time to vet every sparky. They need to see your licensing, insurance, and certifications instantly. A professional website displays these credentials upfront, giving anxious callers the confidence to choose you over a competitor."
+                                    title: "No portfolio means no meeting",
+                                    detail: "Builders are making a $350K+ sale online before the first phone call. Homeowners shortlist based on what they can see. No project photos, no stage-by-stage progress shots, no finished work on display — you don't make the shortlist. The builder with the best portfolio wins the enquiry."
                                 },
                                 {
-                                    title: "Homeowners check licenses before calling",
-                                    detail: "85% of Australians research a tradie online before making contact. If your website looks outdated or doesn't show your electrical license number, they'll move to the next search result. Your site is often the first—and only—impression you get to make."
+                                    title: "6,600 people search 'builder near me' every month in Australia",
+                                    detail: "That's 6,600 homeowners actively looking for a builder right now. If your site doesn't rank — or ranks without showing any real work — that traffic goes straight to your competitor. A generic template with no project photos loses to any builder who shows their actual builds."
                                 },
                                 {
-                                    title: "Certifications build authority",
-                                    detail: "Licensed builder? Level 2 ASP? Solar accredited? These aren't just credentials—they're deal-makers. Displaying them prominently on your website builds authority and separates you from unlicensed competitors who undercut on price."
+                                    title: "The sales cycle is long — your website has to start it",
+                                    detail: "Builders don't close over the phone. The job is: get the enquiry, then win the quote. Your website needs to move a sceptical homeowner from 'found you on Google' to 'I want to talk to you'. That requires visible proof — testimonials with project values, a clear process, and a licence number front and centre."
                                 },
                                 {
-                                    title: "Price shoppers vs quality clients",
-                                    detail: "A well-designed website attracts clients who value expertise, reliability, and quality work—not just the cheapest quote. It positions you as a professional business, not a one-person operation racing to the bottom on price."
+                                    title: "Renovation and knock-down-rebuild clients need proof before they'll pick up the phone",
+                                    detail: "Renovation builder and knock down rebuild together get 2,300 monthly searches in Australia. These are high-value jobs — $80K to $500K+. Homeowners making that kind of financial decision do serious research first. A website without real project history, client reviews, and a visible builder's licence loses to one that has all three."
                                 }
                             ].map((item, i) => (
                                 <motion.div key={i} variants={itemVariants} className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
@@ -342,8 +342,8 @@ const BuilderWebsites = () => {
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
-                                A professional website isn't about looking fancy — <br />
-                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">it's about being trusted enough to get the call.</span>
+                                Homeowners don't call the best builder — <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">they call the one who looked the most trustworthy online.</span>
                             </p>
                         </div>
                     </div>
@@ -376,33 +376,33 @@ const BuilderWebsites = () => {
                                     icon: <Search className="w-12 h-12 text-safety-orange" />,
                                     title: "Shows Up on Google",
                                     features: [
-                                        "Optimised for 'builder near me' searches",
-                                        "Service pages targeting local suburbs",
-                                        "Fast loading speeds Google rewards",
-                                        "Mobile-friendly (most searches are on phones)",
-                                        "Schema markup so AI assistants find you"
+                                        "Ranks for 'builder near me' — 6,600 monthly searches in Australia",
+                                        "Suburb-specific pages for new homes, renovations, and extensions",
+                                        "Optimised for 'knock down rebuild' and 'home extension builder' searches",
+                                        "Fast load times on mobile — where most homeowners research",
+                                        "Schema markup so AI assistants surface your business first"
                                     ]
                                 },
                                 {
                                     icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
                                     title: "Builds Trust Fast",
                                     features: [
-                                        "Licensing & insurance displayed upfront",
-                                        "Real project photos (not stock images)",
-                                        "Clear contact info & service areas",
-                                        "Professional design signals reliability",
-                                        "Testimonials from local homeowners"
+                                        "Builder's licence number displayed where homeowners look for it",
+                                        "Project portfolio with before/during/after photos — real work, not stock",
+                                        "Testimonials that include project type and approximate value",
+                                        "Insurance and warranty details visible without digging",
+                                        "Clear 'how we work' process so the homeowner knows what to expect"
                                     ]
                                 },
                                 {
                                     icon: <Phone className="w-12 h-12 text-safety-orange" />,
-                                    title: "Converts Visitors into Calls",
+                                    title: "Converts Visitors into Enquiries",
                                     features: [
-                                        "Click-to-call buttons everywhere",
-                                        "Simple quote forms (no 20 fields)",
-                                        "Clear pricing expectations (no sticker shock)",
-                                        "Live chat or after-hours handling",
-                                        "Emergency contact prominently placed"
+                                        "Quote request form — low friction, built for the multi-stage sales cycle",
+                                        "Clear call to action at every scroll depth, not just the bottom",
+                                        "Service pages covering new builds, renovations, extensions, and knockdowns",
+                                        "Click-to-call on mobile — homeowners enquire when they decide, not later",
+                                        "No confusing pricing — just a clear invitation to get a quote"
                                     ]
                                 }
                             ].map((item, i) => (

@@ -312,20 +312,20 @@ const RooferWebsites = () => {
                         >
                             {[
                                 {
-                                    title: "Storm damage calls need immediate trust",
-                                    detail: "When severe weather hits and homeowners discover roof leaks, they're frantically searching for a reliable roofer. They need to see your licensing, insurance, and past work instantly. A professional website displays these credentials upfront, giving anxious callers the confidence to choose you over a competitor."
+                                    title: "Storm hits — they call whoever looks trustworthy first",
+                                    detail: "After a hailstorm or heavy rain, homeowners aren't comparing quotes. They're panicking and calling the first roofer who looks legit. If your website doesn't show your licence, insurance, and past storm work upfront, that call goes to a competitor."
                                 },
                                 {
-                                    title: "Homeowners check reviews before calling",
-                                    detail: "85% of Australians research a tradie online before making contact. If your website looks outdated or doesn't show client testimonials and completed projects, they'll move to the next search result. Your site is often the first—and only—impression you get to make."
+                                    title: "'Roofer near me' gets 5,400 searches a month in Australia",
+                                    detail: "That's 5,400 homeowners every month actively looking for a roofer in their area. If you're not on page one when they search, that work goes elsewhere. A properly built website — with suburb pages and local SEO — is how you show up at the right moment."
                                 },
                                 {
-                                    title: "Insurance credentials matter",
-                                    detail: "Working with insurance claims? Licensed roofer with proper insurance coverage? These aren't just credentials—they're deal-makers. Displaying them prominently on your website builds authority and separates you from unlicensed competitors who undercut on price."
+                                    title: "Reroof jobs are high-ticket and trust-driven",
+                                    detail: "A full roof replacement is a $10,000–$30,000 decision. Homeowners take their time, check multiple roofers, and pick the one who looks most established. Without project photos, testimonials, and a professional site, you're not even in the running."
                                 },
                                 {
-                                    title: "Price shoppers vs quality clients",
-                                    detail: "A well-designed website attracts clients who value expertise, reliability, and quality work—not just the cheapest quote. It positions you as a professional business, not a one-person operation racing to the bottom on price."
+                                    title: "Insurance work dries up without the right credentials on display",
+                                    detail: "Insurance assessors and loss adjusters check your website before approving you for storm damage repairs. Your licence number, PLI coverage, and insurer panel approvals need to be visible and easy to find — or you miss the referral entirely."
                                 }
                             ].map((item, i) => (
                                 <motion.div key={i} variants={itemVariants} className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
@@ -342,8 +342,8 @@ const RooferWebsites = () => {
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
-                                A professional website isn't about looking fancy — <br />
-                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">it's about being trusted enough to get the call.</span>
+                                When the roof comes off, they're not shopping around — <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">they're calling whoever looks like they can fix it today.</span>
                             </p>
                         </div>
                     </div>
@@ -376,33 +376,33 @@ const RooferWebsites = () => {
                                     icon: <Search className="w-12 h-12 text-safety-orange" />,
                                     title: "Shows Up on Google",
                                     features: [
-                                        "Optimised for 'roofer near me' searches",
-                                        "Service pages targeting local suburbs",
-                                        "Fast loading speeds Google rewards",
-                                        "Mobile-friendly (most searches are on phones)",
-                                        "Schema markup so AI assistants find you"
+                                        "Ranks for 'roof repair' — 6,600 searches/mo in Australia",
+                                        "Suburb-specific service pages for your work area",
+                                        "Separate pages for storm damage, reroof, and metal roofing",
+                                        "Google Business Profile wired up and optimised",
+                                        "Schema markup so AI tools surface your business"
                                     ]
                                 },
                                 {
                                     icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
                                     title: "Builds Trust Fast",
                                     features: [
-                                        "Licensing & insurance displayed upfront",
-                                        "Real project photos (not stock images)",
-                                        "Clear contact info & service areas",
-                                        "Professional design signals reliability",
-                                        "Testimonials from local homeowners"
+                                        "Licence number and class displayed in the header",
+                                        "Public liability insurance amount shown upfront",
+                                        "Before-and-after project photos, not stock images",
+                                        "Insurer panel approvals shown if you hold them",
+                                        "Testimonials from real homeowners in your area"
                                     ]
                                 },
                                 {
                                     icon: <Phone className="w-12 h-12 text-safety-orange" />,
                                     title: "Converts Visitors into Calls",
                                     features: [
-                                        "Click-to-call buttons everywhere",
-                                        "Simple quote forms (no 20 fields)",
-                                        "Clear pricing expectations (no sticker shock)",
-                                        "Live chat or after-hours handling",
-                                        "Emergency contact prominently placed"
+                                        "Emergency contact button above the fold",
+                                        "Click-to-call on every page — mobile-first",
+                                        "Quote form with roof type and urgency fields",
+                                        "Storm damage enquiry path separate from reroof",
+                                        "After-hours handling so urgent jobs aren't missed"
                                     ]
                                 }
                             ].map((item, i) => (

@@ -19,6 +19,15 @@ const PainterWebsites = lazy(() => import('./pages/PainterWebsites'));
 const MarketingForTradies = lazy(() => import('./pages/MarketingForTradies'));
 const SEOForTradies = lazy(() => import('./pages/SEOForTradies'));
 const AutomationPage = lazy(() => import('./pages/AutomationPage'));
+const AdelaideLocationPage = lazy(() => import('./pages/AdelaideLocationPage'));
+const SydneyLocationPage = lazy(() => import('./pages/SydneyLocationPage'));
+const PerthLocationPage = lazy(() => import('./pages/PerthLocationPage'));
+const BrisbaneLocationPage = lazy(() => import('./pages/BrisbaneLocationPage'));
+const GoldCoastLocationPage = lazy(() => import('./pages/GoldCoastLocationPage'));
+const MelbourneLocationPage = lazy(() => import('./pages/MelbourneLocationPage'));
+const HobartLocationPage = lazy(() => import('./pages/HobartLocationPage'));
+const AliceSpringsLocationPage = lazy(() => import('./pages/AliceSpringsLocationPage'));
+const AboutPage = lazy(() => import('./pages/AboutPage'));
 
 // Blog Articles
 const WhyTradieWebsitesDontGetCalls = lazy(() => import('./pages/blog/WhyTradieWebsitesDontGetCalls'));
@@ -32,6 +41,9 @@ const GoogleAdsVsSEO = lazy(() => import('./pages/blog/GoogleAdsVsSEO'));
 const AEOForTradies = lazy(() => import('./pages/blog/AEOForTradies'));
 const GoogleAIOverviewsTradieLeads = lazy(() => import('./pages/blog/GoogleAIOverviewsTradieLeads'));
 const TradiWebsiteCostAustralia = lazy(() => import('./pages/blog/TradiWebsiteCostAustralia'));
+const SuburbSEOAdelaideTradies = lazy(() => import('./pages/blog/SuburbSEOAdelaideTradies'));
+const SuburbSEOSydneyRoofers = lazy(() => import('./pages/blog/SuburbSEOSydneyRoofers'));
+const SuburbSEOBrisbaneRoofers = lazy(() => import('./pages/blog/SuburbSEOBrisbaneRoofers'));
 
 function App() {
     React.useEffect(() => {
@@ -86,6 +98,9 @@ function App() {
                     <Route path="/resources/aeo-for-tradies" element={<AEOForTradies />} />
                     <Route path="/resources/google-ai-overviews-tradie-leads" element={<GoogleAIOverviewsTradieLeads />} />
                     <Route path="/resources/tradie-website-cost-australia" element={<TradiWebsiteCostAustralia />} />
+                    <Route path="/resources/suburb-seo-for-adelaide-tradies" element={<SuburbSEOAdelaideTradies />} />
+                    <Route path="/resources/suburb-seo-for-sydney-roofers" element={<SuburbSEOSydneyRoofers />} />
+                    <Route path="/resources/suburb-seo-for-brisbane-roofers" element={<SuburbSEOBrisbaneRoofers />} />
 
                     {/* Trade-Specific Landing Pages */}
                     <Route path="/plumbing-websites" element={<PlumbingWebsites />} />
@@ -100,7 +115,16 @@ function App() {
                     <Route path="/marketing-for-tradies" element={<MarketingForTradies />} />
                     <Route path="/seo-for-tradies" element={<SEOForTradies />} />
                     <Route path="/automation" element={<AutomationPage />} />
+                    <Route path="/tradie-website-design-adelaide" element={<AdelaideLocationPage />} />
+                    <Route path="/tradie-website-design-sydney" element={<SydneyLocationPage />} />
+                    <Route path="/tradie-website-design-perth" element={<PerthLocationPage />} />
+                    <Route path="/tradie-website-design-brisbane" element={<BrisbaneLocationPage />} />
+                    <Route path="/tradie-website-design-gold-coast" element={<GoldCoastLocationPage />} />
+                    <Route path="/tradie-website-design-melbourne" element={<MelbourneLocationPage />} />
+                    <Route path="/tradie-website-design-hobart" element={<HobartLocationPage />} />
+                    <Route path="/tradie-website-design-alice-springs" element={<AliceSpringsLocationPage />} />
 
+                    <Route path="/about" element={<AboutPage />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 </Suspense>

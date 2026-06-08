@@ -312,20 +312,20 @@ const PainterWebsites = () => {
                         >
                             {[
                                 {
-                                    title: "Emergency calls need immediate trust",
-                                    detail: "When a circuit breaker keeps tripping at 2 AM, homeowners don't have time to vet every sparky. They need to see your licensing, insurance, and certifications instantly. A professional website displays these credentials upfront, giving anxious callers the confidence to choose you over a competitor."
+                                    title: "4,400 Australians search 'painter near me' every month",
+                                    detail: "That's 4,400 homeowners ready to book — right now. If your website doesn't show up, a competitor gets the call. Most painters are invisible in local search because their site was built once and never touched again."
                                 },
                                 {
-                                    title: "Homeowners check licenses before calling",
-                                    detail: "85% of Australians research a tradie online before making contact. If your website looks outdated or doesn't show your painting license number, they'll move to the next search result. Your site is often the first—and only—impression you get to make."
+                                    title: "Cheap quotes win online, quality painters lose offline",
+                                    detail: "Homeowners who get burned by a low-ball painter who skipped surface prep are everywhere. A website that explains your prep process — filling cracks, priming bare surfaces, sanding between coats — justifies your price before they even ring you."
                                 },
                                 {
-                                    title: "Certifications build authority",
-                                    detail: "Licensed painter? Level 2 ASP? Solar accredited? These aren't just credentials—they're deal-makers. Displaying them prominently on your website builds authority and separates you from unlicensed competitors who undercut on price."
+                                    title: "Interior and exterior are two completely different sales",
+                                    detail: "Interior painting is an aesthetic decision — colour, finish, disruption to the home. Exterior is about protection, curb appeal, and timing before the wet season. One website trying to speak to both ends up connecting with neither. You need separate pages for each."
                                 },
                                 {
-                                    title: "Price shoppers vs quality clients",
-                                    detail: "A well-designed website attracts clients who value expertise, reliability, and quality work—not just the cheapest quote. It positions you as a professional business, not a one-person operation racing to the bottom on price."
+                                    title: "Commercial painting is a third market you're missing",
+                                    detail: "Strata managers, project builders, and facility managers search differently to homeowners. They want ABN, public liability, and experience with their job type — fast. Without a commercial-specific page, you don't exist to that buyer."
                                 }
                             ].map((item, i) => (
                                 <motion.div key={i} variants={itemVariants} className="bg-white/5 p-8 border border-white/5 hover:border-white/20 transition-colors">
@@ -342,8 +342,8 @@ const PainterWebsites = () => {
 
                         <div className="text-center md:text-right">
                             <p className="text-3xl md:text-5xl font-black italic uppercase leading-tight">
-                                A professional website isn't about looking fancy — <br />
-                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">it's about being trusted enough to get the call.</span>
+                                The painter with the better website wins the job — <br />
+                                <span className="text-safety-orange underline decoration-white/20 underline-offset-8">even when the other quote is cheaper.</span>
                             </p>
                         </div>
                     </div>
@@ -376,33 +376,33 @@ const PainterWebsites = () => {
                                     icon: <Search className="w-12 h-12 text-safety-orange" />,
                                     title: "Shows Up on Google",
                                     features: [
-                                        "Optimised for 'painter near me' searches",
-                                        "Service pages targeting local suburbs",
-                                        "Fast loading speeds Google rewards",
-                                        "Mobile-friendly (most searches are on phones)",
-                                        "Schema markup so AI assistants find you"
+                                        "Targets 'painter near me' — 4,400 searches/month in Australia",
+                                        "Separate pages for interior, exterior, and commercial painting",
+                                        "Suburb-specific pages so you rank where you actually work",
+                                        "Fast load times on mobile — where most painting enquiries come from",
+                                        "Schema markup so AI assistants recommend you by name"
                                     ]
                                 },
                                 {
                                     icon: <ShieldCheck className="w-12 h-12 text-safety-orange" />,
                                     title: "Builds Trust Fast",
                                     features: [
-                                        "Licensing & insurance displayed upfront",
-                                        "Real project photos (not stock images)",
-                                        "Clear contact info & service areas",
-                                        "Professional design signals reliability",
-                                        "Testimonials from local homeowners"
+                                        "Licence number and public liability displayed front and centre",
+                                        "Before-and-after project photos — not generic stock images",
+                                        "Surface prep process explained — so clients understand why you cost more",
+                                        "Separate trust signals for residential vs commercial buyers",
+                                        "Testimonials from real local clients — by suburb where possible"
                                     ]
                                 },
                                 {
                                     icon: <Phone className="w-12 h-12 text-safety-orange" />,
                                     title: "Converts Visitors into Calls",
                                     features: [
-                                        "Click-to-call buttons everywhere",
-                                        "Simple quote forms (no 20 fields)",
-                                        "Clear pricing expectations (no sticker shock)",
-                                        "Live chat or after-hours handling",
-                                        "Emergency contact prominently placed"
+                                        "Click-to-call on every page — one tap from the search result",
+                                        "Quote forms built for painting jobs — service type, property size, timeline",
+                                        "Seasonal exterior painting prompts — capture demand before the wet season",
+                                        "Commercial enquiry path separate from residential — right message, right buyer",
+                                        "After-hours handling so weekend browsers become Monday bookings"
                                     ]
                                 }
                             ].map((item, i) => (
