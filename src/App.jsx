@@ -59,18 +59,20 @@ function App() {
                 }
             });
 
-        // GA4 Initialization
-        import('react-ga4')
-            .then((x) => x.default)
-            .then((ReactGA) => {
-                const gaId = import.meta.env.VITE_GA_ID;
-                if (gaId) {
-                    ReactGA.initialize(gaId);
-                    ReactGA.send({ hitType: "pageview", page: window.location.pathname });
-                } else {
-                    console.warn("GA4 ID not found in VITE_GA_ID");
-                }
-            });
+        // GA4 Initialization — production only, so local dev doesn't pollute the stats
+        if (import.meta.env.PROD) {
+            import('react-ga4')
+                .then((x) => x.default)
+                .then((ReactGA) => {
+                    const gaId = import.meta.env.VITE_GA_ID;
+                    if (gaId) {
+                        ReactGA.initialize(gaId);
+                        ReactGA.send({ hitType: "pageview", page: window.location.pathname });
+                    } else {
+                        console.warn("GA4 ID not found in VITE_GA_ID");
+                    }
+                });
+        }
     }, []);
 
     return (
