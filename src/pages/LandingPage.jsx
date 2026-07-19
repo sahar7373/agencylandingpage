@@ -978,7 +978,7 @@ function LandingPage() {
                         </motion.h1>
 
                         <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
-                            Websites, AI enquiry response, and system automation — built so your business runs on autopilot 24x7, even when you're flat out on site.
+                            Websites, practical AI, and better systems — so you win more work, cut the admin, and stop losing jobs while you're on the tools. We find what's actually broken, then fix the right thing.
                         </motion.p>
 
                         {/* Trust Position Strip */}
