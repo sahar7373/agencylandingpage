@@ -1,6 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { initAnalytics } from './lib/analytics';
 
 const Guide = lazy(() => import('./pages/Guide'));
 const RevenueBlueprint = lazy(() => import('./pages/RevenueBlueprint'));
@@ -47,32 +48,8 @@ const SuburbSEOBrisbaneRoofers = lazy(() => import('./pages/blog/SuburbSEOBrisba
 
 function App() {
     React.useEffect(() => {
-        import('react-facebook-pixel')
-            .then((x) => x.default)
-            .then((ReactPixel) => {
-                const pixelId = import.meta.env.VITE_FB_PIXEL_ID;
-                if (pixelId) {
-                    ReactPixel.init(pixelId);
-                    ReactPixel.pageView();
-                } else {
-                    console.warn("Meta Pixel ID not found in VITE_FB_PIXEL_ID");
-                }
-            });
-
-        // GA4 Initialization — production only, so local dev doesn't pollute the stats
-        if (import.meta.env.PROD) {
-            import('react-ga4')
-                .then((x) => x.default)
-                .then((ReactGA) => {
-                    const gaId = import.meta.env.VITE_GA_ID;
-                    if (gaId) {
-                        ReactGA.initialize(gaId);
-                        ReactGA.send({ hitType: "pageview", page: window.location.pathname });
-                    } else {
-                        console.warn("GA4 ID not found in VITE_GA_ID");
-                    }
-                });
-        }
+        // GA4 + Meta Pixel init, both prod-gated. See src/lib/analytics.js
+        initAnalytics();
     }, []);
 
     return (

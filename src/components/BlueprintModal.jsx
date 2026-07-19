@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { X, Lock, Download, CheckCircle, Loader2, Zap, ArrowRight } from 'lucide-react';
 import { Button } from './ui/button';
-import ReactPixel from 'react-facebook-pixel';
-import ReactGA from 'react-ga4';
+import { trackLead } from '../lib/analytics';
 
 import { GOOGLE_SHEET_URL } from '../config';
 
@@ -37,9 +36,8 @@ const BlueprintModal = ({ isOpen, onClose }) => {
                 body: JSON.stringify(payload),
             }).catch(err => console.error("Background submission error:", err));
 
-            // Tracking
-            ReactPixel.track('Lead', { content_name: 'Revenue Blueprint Download' });
-            ReactGA.event({ category: "Lead", action: "Submit_Blueprint_Magnet", label: "Blueprint Download" });
+            // Tracking — soft lead (freebie email grab)
+            trackLead('blueprint_download', { tier: 'soft' });
 
             setStep('success');
 

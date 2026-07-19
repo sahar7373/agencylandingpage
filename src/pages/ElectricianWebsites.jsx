@@ -7,6 +7,7 @@ import Breadcrumbs from '../components/Breadcrumbs';
 import TradeNavDropdown from '../components/TradeNavDropdown';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import { GOOGLE_SHEET_URL } from '../config';
+import { trackLead } from '../lib/analytics';
 
 const CollapsibleDetail = ({ title, children }) => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -137,6 +138,7 @@ const ElectricianWebsites = () => {
                 }),
             });
             setFormStatus('success');
+            trackLead('electrician_page_form', { tier: 'primary' });
             setFormData({
                 name: '',
                 email: '',

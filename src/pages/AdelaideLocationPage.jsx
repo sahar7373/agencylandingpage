@@ -7,6 +7,7 @@ import { Badge } from '../components/ui/badge';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { GOOGLE_SHEET_URL } from '../config';
+import { trackLead } from '../lib/analytics';
 const CaseStudyModal = React.lazy(() => import('../components/CaseStudyModal'));
 const VideoModal = React.lazy(() => import('../components/VideoModal'));
 
@@ -123,6 +124,7 @@ const AdelaideLocationPage = () => {
                 }),
             });
             setFormStatus('success');
+            trackLead('adelaide_page_form', { tier: 'primary' });
             setFormData({ name: '', email: '', phone: '', business: '', location: '', trade: '', message: '' });
         } catch (error) {
             console.error("Form submission error:", error);

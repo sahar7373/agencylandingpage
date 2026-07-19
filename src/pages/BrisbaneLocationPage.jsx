@@ -7,6 +7,7 @@ import { Badge } from '../components/ui/badge';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '../components/ui/card';
 import Breadcrumbs from '../components/Breadcrumbs';
 import { GOOGLE_SHEET_URL } from '../config';
+import { trackLead } from '../lib/analytics';
 const CaseStudyModal = React.lazy(() => import('../components/CaseStudyModal'));
 const VideoModal = React.lazy(() => import('../components/VideoModal'));
 
@@ -58,6 +59,7 @@ const BrisbaneLocationPage = () => {
         try {
             await fetch(GOOGLE_SHEET_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain" }, body: JSON.stringify({ sheetName: "Leads from form", Name: formData.name, Phone: `'${formData.phone}`, Email: formData.email, Business: formData.business, Trade: formData.trade, Location: formData.location, Message: formData.message, timestamp: new Date().toISOString() }) });
             setFormStatus('success');
+            trackLead('brisbane_page_form', { tier: 'primary' });
             setFormData({ name: '', email: '', phone: '', business: '', location: '', trade: '', message: '' });
         } catch (error) { console.error("Form submission error:", error); setFormStatus('idle'); }
     };

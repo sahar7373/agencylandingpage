@@ -60,6 +60,7 @@ import TermsConditionsModal from '../components/TermsConditionsModal';
 import LeadMagnetModal from '../components/LeadMagnetModal';
 import BlueprintModal from '../components/BlueprintModal';
 import { GOOGLE_SHEET_URL } from '../config';
+import { trackLead } from '../lib/analytics';
 
 const CollapsibleDetail = ({ title, children }) => {
     const [isOpen, setIsOpen] = React.useState(false);
@@ -241,15 +242,7 @@ function LandingPage() {
             setFormStatus('success')
             console.log("DEBUG: Status set to success");
 
-            ReactPixel.track('Lead', {
-                content_name: 'Consultation Form',
-                currency: 'AUD'
-            });
-            ReactGA.event({
-                category: "Lead",
-                action: "Submit_Contact_Form",
-                label: "New Enquiry"
-            });
+            trackLead('home_contact_form', { tier: 'primary' });
 
             // Reset form
             setFormData({
@@ -1822,6 +1815,9 @@ function LandingPage() {
                                                 Email: data.email,
                                             })
                                         });
+
+                                        // Tracking — soft lead (free audit email grab)
+                                        trackLead('free_audit_form', { tier: 'soft' });
 
                                         // Show success message or redirect
                                         alert('Thanks! Check your email for the free audit report.');
