@@ -1010,6 +1010,52 @@ function LandingPage() {
                             <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-widest font-bold">
                                 15-minute review • No pressure • Real improvement plan
                             </p>
+
+                            {/* Inline Email Capture — zero-scroll lead grab */}
+                            <div className="mt-6 w-full max-w-md">
+                                <p className="text-white/40 text-[10px] md:text-xs uppercase tracking-widest font-bold mb-3">
+                                    Or get a free site audit emailed to you
+                                </p>
+                                <form
+                                    className="flex flex-col sm:flex-row gap-2"
+                                    onSubmit={(e) => {
+                                        e.preventDefault();
+                                        const formData = new FormData(e.target);
+                                        const data = Object.fromEntries(formData);
+
+                                        // Submit to Google Sheets (same pipe as Free Audit form)
+                                        fetch(GOOGLE_SHEET_URL, {
+                                            method: 'POST',
+                                            mode: 'no-cors',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({
+                                                sheetName: "Leads from free SEO audit",
+                                                Email: data.email,
+                                            })
+                                        });
+
+                                        // Tracking — soft lead (hero inline email grab)
+                                        trackLead('hero_inline_audit', { tier: 'soft' });
+
+                                        alert('Thanks! Check your email for the free audit report.');
+                                        e.target.reset();
+                                    }}
+                                >
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        placeholder="your@email.com"
+                                        className="flex-1 bg-white/10 border border-white/20 px-4 py-3 text-sm font-bold text-white placeholder:text-white/50 focus:border-safety-orange focus:outline-none transition-colors rounded-none"
+                                        required
+                                    />
+                                    <Button
+                                        type="submit"
+                                        className="bg-white text-black hover:bg-white/90 font-black uppercase tracking-widest text-xs px-5 py-3 h-auto rounded-none whitespace-nowrap"
+                                    >
+                                        Free Audit
+                                    </Button>
+                                </form>
+                            </div>
                         </motion.div>
 
                         {/* Optional Proof Strip */}
@@ -1308,6 +1354,220 @@ function LandingPage() {
             </motion.section>
 
 
+            {/* FREE AUDIT LEAD MAGNET SECTION */}
+            <motion.section
+                id="free-audit"
+                className="py-8 md:py-12 border-b border-white/5 bg-black/20"
+                variants={sectionVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+            >
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-8">
+                        <div className="inline-block px-4 py-2 rounded-full bg-safety-orange/10 border border-safety-orange/20 mb-4">
+                            <p className="text-xs font-black uppercase tracking-widest text-safety-orange">Step 0: Diagnosis</p>
+                        </div>
+                        <h2 className="text-2xl md:text-4xl font-black mb-4 uppercase italic">
+                            Before We Build Your Solution, Let&apos;s Diagnose Your Problem
+                        </h2>
+                        <p className="text-white/40 text-sm font-black uppercase tracking-widest italic">
+                            Start with a free health check → see what&apos;s actually broken → choose your fix
+                        </p>
+                    </div>
+
+                    <div className="max-w-5xl mx-auto space-y-6">
+                        {/* FREE Health Report - Always Visible, Full Width Lead Magnet */}
+                        <div className="bg-gradient-to-r from-safety-orange/15 to-safety-orange/5 border-4 border-safety-orange rounded-lg pt-8 p-6 relative shadow-[0_0_40px_rgba(234,88,12,0.3)]">
+                            <div className="absolute top-0 left-6 -translate-y-1/2 bg-safety-orange text-white px-3 py-1 text-xs font-black uppercase tracking-widest">
+                                FREE
+                            </div>
+
+                            <div className="grid md:grid-cols-2 gap-6 items-center">
+                                {/* Left Side - Benefits */}
+                                <div>
+                                    <div className="flex items-center gap-2 mb-4">
+                                        <div className="text-2xl">🎯</div>
+                                        <div>
+                                            <h3 className="text-xl md:text-2xl font-black uppercase text-safety-orange mb-1">FREE Website Health Report</h3>
+                                            <p className="text-xs uppercase font-black tracking-widest text-white/60">Get instant diagnosis in 60 seconds</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="space-y-2 mb-4">
+                                        <div className="flex gap-2 text-sm font-bold uppercase tracking-tight text-white/80">
+                                            <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
+                                            <span>Keyword rankings vs competitors</span>
+                                        </div>
+                                        <div className="flex gap-2 text-sm font-bold uppercase tracking-tight text-white/80">
+                                            <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
+                                            <span>3 quick wins you can implement today</span>
+                                        </div>
+                                        <div className="flex gap-2 text-sm font-bold uppercase tracking-tight text-white/80">
+                                            <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
+                                            <span>Domain authority + technical health score</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                {/* Right Side - Form */}
+                                <div className="bg-black/40 p-4 rounded border border-white/20">
+                                    <p className="text-xs font-black uppercase tracking-wide text-safety-orange mb-3 text-center">
+                                        Enter your details for instant audit report
+                                    </p>
+
+                                    <form className="space-y-3" onSubmit={(e) => {
+                                        e.preventDefault();
+                                        const formData = new FormData(e.target);
+                                        const data = Object.fromEntries(formData);
+
+                                        // Submit to Google Sheets
+                                        fetch(GOOGLE_SHEET_URL, {
+                                            method: 'POST',
+                                            mode: 'no-cors',
+                                            headers: { 'Content-Type': 'application/json' },
+                                            body: JSON.stringify({
+                                                sheetName: "Leads from free SEO audit",
+                                                Website: data.website,
+                                                Email: data.email,
+                                            })
+                                        });
+
+                                        // Tracking — soft lead (free audit email grab)
+                                        trackLead('free_audit_form', { tier: 'soft' });
+
+                                        // Show success message or redirect
+                                        alert('Thanks! Check your email for the free audit report.');
+                                        e.target.reset();
+                                    }}>
+                                        <input
+                                            type="text"
+                                            name="website"
+                                            placeholder="yourbusiness.com.au"
+                                            className="w-full p-3 bg-white/10 border border-white/30 rounded text-sm font-bold text-white placeholder:text-white/60 focus:border-safety-orange focus:outline-none transition-colors"
+                                            required
+                                        />
+                                        <input
+                                            type="email"
+                                            name="email"
+                                            placeholder="Your email address"
+                                            className="w-full p-3 bg-white/10 border border-white/30 rounded text-sm font-bold text-white placeholder:text-white/60 focus:border-safety-orange focus:outline-none transition-colors"
+                                            required
+                                        />
+                                        <Button type="submit" className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded h-12 font-black uppercase tracking-widest text-sm shadow-lg shadow-safety-orange/20 transition-all">
+                                            Get FREE Audit Report Now
+                                        </Button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Paid Audit Options - Compact Row with Dropdowns */}
+                        <div className="grid md:grid-cols-2 gap-4">
+                            {/* Full SEO + AI Audit */}
+                            <div className="bg-white/5 border border-white/20 rounded p-4 relative">
+                                <div className="absolute top-0 right-2 -translate-y-1/2 bg-safety-orange text-white px-2 py-1 text-[8px] font-black uppercase tracking-widest">
+                                    Popular
+                                </div>
+                                <CollapsibleDetail
+                                    title={
+                                        <div className="flex items-center justify-between w-full">
+                                            <div>
+                                                <div className="text-lg font-black uppercase text-white mb-1 flex items-center gap-2">
+                                                    <span>🔍</span>
+                                                    <span>Full Audit - $997</span>
+                                                </div>
+                                                <div className="text-xs uppercase font-black tracking-widest text-white/60">Complete diagnosis + roadmap</div>
+                                            </div>
+                                        </div>
+                                    }
+                                >
+                                    <div className="mt-4 space-y-4">
+                                        <p className="text-xs font-black uppercase tracking-wide text-safety-orange">
+                                            FOR TRADES WHO WANT THE FULL PICTURE BEFORE INVESTING IN FIXES
+                                        </p>
+
+                                        <div className="bg-safety-orange/10 p-3 border border-safety-orange/30 rounded">
+                                            <div className="text-xs font-black uppercase text-white mb-2">The Full Diagnosis</div>
+                                            <div className="space-y-1 text-[10px] text-white/70">
+                                                <p>50+ keyword mapping + competitor gaps</p>
+                                                <p>AI search visibility (ChatGPT, Claude, etc.)</p>
+                                                <p>90-day roadmap with priorities</p>
+                                            </div>
+                                        </div>
+
+                                        <div className="space-y-2">
+                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
+                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
+                                                <span>Backlink profile analysis</span>
+                                            </div>
+                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
+                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
+                                                <span>Live demo: "Find me a plumber" in ChatGPT</span>
+                                            </div>
+                                        </div>
+
+                                        <Button asChild className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded h-10 font-black uppercase tracking-widest text-xs">
+                                            <a href="#contact">Get Full Audit - $997</a>
+                                        </Button>
+                                    </div>
+                                </CollapsibleDetail>
+                            </div>
+
+                            {/* Ongoing SEO Management */}
+                            <div className="bg-white/5 border border-white/20 rounded p-4">
+                                <CollapsibleDetail
+                                    title={
+                                        <div className="flex items-center justify-between w-full">
+                                            <div>
+                                                <div className="text-lg font-black uppercase text-white mb-1 flex items-center gap-2">
+                                                    <span>⚡</span>
+                                                    <span>Management - $1,497/mo</span>
+                                                </div>
+                                                <div className="text-xs uppercase font-black tracking-widest text-white/60">Set & forget SEO</div>
+                                            </div>
+                                        </div>
+                                    }
+                                >
+                                    <div className="mt-4 space-y-4">
+                                        <p className="text-xs font-black uppercase tracking-wide text-safety-orange">
+                                            FOR TRADES WHO WANT TO SET-AND-FORGET WHILE DOMINATING LOCAL SEARCH
+                                        </p>
+
+                                        <div className="space-y-2">
+                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
+                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
+                                                <span>Weekly ranking checks + alerts</span>
+                                            </div>
+                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
+                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
+                                                <span>Monthly full audit cycle</span>
+                                            </div>
+                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
+                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
+                                                <span>AI citation monitoring (ChatGPT, etc.)</span>
+                                            </div>
+                                        </div>
+
+                                        <Button asChild className="w-full bg-white text-black hover:bg-white/90 rounded h-10 font-black uppercase tracking-widest text-xs">
+                                            <a href="#contact">Start Management - $1,497/mo</a>
+                                        </Button>
+                                    </div>
+                                </CollapsibleDetail>
+                            </div>
+                        </div>
+
+                        <div className="text-center">
+                            <div className="inline-block px-4 py-2 rounded bg-safety-orange/10 border border-safety-orange/20">
+                                <p className="text-xs font-black uppercase tracking-widest text-safety-orange">
+                                    Most agencies only check Google. We check Google + ChatGPT + Claude + Perplexity.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </motion.section>
+
             {/* 3. SOLUTION SECTION */}
             <motion.section
                 className="py-24 md:py-32 border-b border-white/5"
@@ -1345,15 +1605,15 @@ function LandingPage() {
                                     Revenue Capture Blueprint for Trades
                                 </p>
 
-                                <Button
+                                <button
                                     onClick={() => {
                                         setIsBlueprintModalOpen(true);
                                         ReactPixel.trackCustom('BlueprintCTAClick', { location: 'SolutionSection' });
                                     }}
-                                    className="bg-safety-orange hover:bg-safety-orange-hover text-white font-black uppercase tracking-widest text-sm md:text-base px-10 py-8 h-auto rounded-none shadow-xl transform transition-transform hover:scale-105 active:scale-95 shadow-safety-orange/20"
+                                    className="inline-flex items-center gap-2 text-white/60 hover:text-safety-orange font-bold uppercase tracking-widest text-xs md:text-sm underline underline-offset-4 decoration-white/20 hover:decoration-safety-orange transition-colors cursor-pointer"
                                 >
-                                    Download the free blueprint <ArrowRight className="ml-3 w-5 h-5" />
-                                </Button>
+                                    Download the free blueprint <ArrowRight className="w-4 h-4" />
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -1737,219 +1997,6 @@ function LandingPage() {
                 </div>
             </motion.section >
 
-            {/* FREE AUDIT LEAD MAGNET SECTION */}
-            <motion.section
-                id="free-audit"
-                className="py-8 md:py-12 border-b border-white/5 bg-black/20"
-                variants={sectionVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-50px" }}
-            >
-                <div className="container mx-auto px-6">
-                    <div className="text-center mb-8">
-                        <div className="inline-block px-4 py-2 rounded-full bg-safety-orange/10 border border-safety-orange/20 mb-4">
-                            <p className="text-xs font-black uppercase tracking-widest text-safety-orange">Step 0: Diagnosis</p>
-                        </div>
-                        <h2 className="text-2xl md:text-4xl font-black mb-4 uppercase italic">
-                            Before We Build Your Solution, Let&apos;s Diagnose Your Problem
-                        </h2>
-                        <p className="text-white/40 text-sm font-black uppercase tracking-widest italic">
-                            Start with a free health check → see what&apos;s actually broken → choose your fix
-                        </p>
-                    </div>
-
-                    <div className="max-w-5xl mx-auto space-y-6">
-                        {/* FREE Health Report - Always Visible, Full Width Lead Magnet */}
-                        <div className="bg-gradient-to-r from-safety-orange/10 to-safety-orange/5 border-2 border-safety-orange/40 rounded-lg pt-8 p-6 relative">
-                            <div className="absolute top-0 left-6 -translate-y-1/2 bg-safety-orange text-white px-3 py-1 text-xs font-black uppercase tracking-widest">
-                                FREE
-                            </div>
-
-                            <div className="grid md:grid-cols-2 gap-6 items-center">
-                                {/* Left Side - Benefits */}
-                                <div>
-                                    <div className="flex items-center gap-2 mb-4">
-                                        <div className="text-2xl">🎯</div>
-                                        <div>
-                                            <h3 className="text-xl md:text-2xl font-black uppercase text-safety-orange mb-1">FREE Website Health Report</h3>
-                                            <p className="text-xs uppercase font-black tracking-widest text-white/60">Get instant diagnosis in 60 seconds</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="space-y-2 mb-4">
-                                        <div className="flex gap-2 text-sm font-bold uppercase tracking-tight text-white/80">
-                                            <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                            <span>Keyword rankings vs competitors</span>
-                                        </div>
-                                        <div className="flex gap-2 text-sm font-bold uppercase tracking-tight text-white/80">
-                                            <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                            <span>3 quick wins you can implement today</span>
-                                        </div>
-                                        <div className="flex gap-2 text-sm font-bold uppercase tracking-tight text-white/80">
-                                            <Check className="text-safety-orange w-4 h-4 flex-shrink-0 mt-0.5" />
-                                            <span>Domain authority + technical health score</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Right Side - Form */}
-                                <div className="bg-black/40 p-4 rounded border border-white/20">
-                                    <p className="text-xs font-black uppercase tracking-wide text-safety-orange mb-3 text-center">
-                                        Enter your details for instant audit report
-                                    </p>
-
-                                    <form className="space-y-3" onSubmit={(e) => {
-                                        e.preventDefault();
-                                        const formData = new FormData(e.target);
-                                        const data = Object.fromEntries(formData);
-
-                                        // Submit to Google Sheets
-                                        fetch(GOOGLE_SHEET_URL, {
-                                            method: 'POST',
-                                            mode: 'no-cors',
-                                            headers: { 'Content-Type': 'application/json' },
-                                            body: JSON.stringify({
-                                                sheetName: "Leads from free SEO audit",
-                                                Website: data.website,
-                                                Email: data.email,
-                                            })
-                                        });
-
-                                        // Tracking — soft lead (free audit email grab)
-                                        trackLead('free_audit_form', { tier: 'soft' });
-
-                                        // Show success message or redirect
-                                        alert('Thanks! Check your email for the free audit report.');
-                                        e.target.reset();
-                                    }}>
-                                        <input
-                                            type="text"
-                                            name="website"
-                                            placeholder="yourbusiness.com.au"
-                                            className="w-full p-3 bg-white/10 border border-white/30 rounded text-sm font-bold text-white placeholder:text-white/60 focus:border-safety-orange focus:outline-none transition-colors"
-                                            required
-                                        />
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            placeholder="Your email address"
-                                            className="w-full p-3 bg-white/10 border border-white/30 rounded text-sm font-bold text-white placeholder:text-white/60 focus:border-safety-orange focus:outline-none transition-colors"
-                                            required
-                                        />
-                                        <Button type="submit" className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded h-12 font-black uppercase tracking-widest text-sm shadow-lg shadow-safety-orange/20 transition-all">
-                                            Get FREE Audit Report Now
-                                        </Button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        {/* Paid Audit Options - Compact Row with Dropdowns */}
-                        <div className="grid md:grid-cols-2 gap-4">
-                            {/* Full SEO + AI Audit */}
-                            <div className="bg-white/5 border border-white/20 rounded p-4 relative">
-                                <div className="absolute top-0 right-2 -translate-y-1/2 bg-safety-orange text-white px-2 py-1 text-[8px] font-black uppercase tracking-widest">
-                                    Popular
-                                </div>
-                                <CollapsibleDetail
-                                    title={
-                                        <div className="flex items-center justify-between w-full">
-                                            <div>
-                                                <div className="text-lg font-black uppercase text-white mb-1 flex items-center gap-2">
-                                                    <span>🔍</span>
-                                                    <span>Full Audit - $997</span>
-                                                </div>
-                                                <div className="text-xs uppercase font-black tracking-widest text-white/60">Complete diagnosis + roadmap</div>
-                                            </div>
-                                        </div>
-                                    }
-                                >
-                                    <div className="mt-4 space-y-4">
-                                        <p className="text-xs font-black uppercase tracking-wide text-safety-orange">
-                                            FOR TRADES WHO WANT THE FULL PICTURE BEFORE INVESTING IN FIXES
-                                        </p>
-
-                                        <div className="bg-safety-orange/10 p-3 border border-safety-orange/30 rounded">
-                                            <div className="text-xs font-black uppercase text-white mb-2">The Full Diagnosis</div>
-                                            <div className="space-y-1 text-[10px] text-white/70">
-                                                <p>50+ keyword mapping + competitor gaps</p>
-                                                <p>AI search visibility (ChatGPT, Claude, etc.)</p>
-                                                <p>90-day roadmap with priorities</p>
-                                            </div>
-                                        </div>
-
-                                        <div className="space-y-2">
-                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
-                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
-                                                <span>Backlink profile analysis</span>
-                                            </div>
-                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
-                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
-                                                <span>Live demo: "Find me a plumber" in ChatGPT</span>
-                                            </div>
-                                        </div>
-
-                                        <Button asChild className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded h-10 font-black uppercase tracking-widest text-xs">
-                                            <a href="#contact">Get Full Audit - $997</a>
-                                        </Button>
-                                    </div>
-                                </CollapsibleDetail>
-                            </div>
-
-                            {/* Ongoing SEO Management */}
-                            <div className="bg-white/5 border border-white/20 rounded p-4">
-                                <CollapsibleDetail
-                                    title={
-                                        <div className="flex items-center justify-between w-full">
-                                            <div>
-                                                <div className="text-lg font-black uppercase text-white mb-1 flex items-center gap-2">
-                                                    <span>⚡</span>
-                                                    <span>Management - $1,497/mo</span>
-                                                </div>
-                                                <div className="text-xs uppercase font-black tracking-widest text-white/60">Set & forget SEO</div>
-                                            </div>
-                                        </div>
-                                    }
-                                >
-                                    <div className="mt-4 space-y-4">
-                                        <p className="text-xs font-black uppercase tracking-wide text-safety-orange">
-                                            FOR TRADES WHO WANT TO SET-AND-FORGET WHILE DOMINATING LOCAL SEARCH
-                                        </p>
-
-                                        <div className="space-y-2">
-                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
-                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
-                                                <span>Weekly ranking checks + alerts</span>
-                                            </div>
-                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
-                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
-                                                <span>Monthly full audit cycle</span>
-                                            </div>
-                                            <div className="flex gap-2 text-xs font-bold uppercase tracking-tight text-white/70">
-                                                <Check className="text-safety-orange w-4 h-4 flex-shrink-0" />
-                                                <span>AI citation monitoring (ChatGPT, etc.)</span>
-                                            </div>
-                                        </div>
-
-                                        <Button asChild className="w-full bg-white text-black hover:bg-white/90 rounded h-10 font-black uppercase tracking-widest text-xs">
-                                            <a href="#contact">Start Management - $1,497/mo</a>
-                                        </Button>
-                                    </div>
-                                </CollapsibleDetail>
-                            </div>
-                        </div>
-
-                        <div className="text-center">
-                            <div className="inline-block px-4 py-2 rounded bg-safety-orange/10 border border-safety-orange/20">
-                                <p className="text-xs font-black uppercase tracking-widest text-safety-orange">
-                                    Most agencies only check Google. We check Google + ChatGPT + Claude + Perplexity.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </motion.section>
 
             {/* 4. PACKAGES SECTION */}
             < motion.section
