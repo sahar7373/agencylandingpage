@@ -1010,52 +1010,6 @@ function LandingPage() {
                             <p className="text-[10px] md:text-xs text-white/40 uppercase tracking-widest font-bold">
                                 15-minute review • No pressure • Real improvement plan
                             </p>
-
-                            {/* Inline Email Capture — zero-scroll lead grab */}
-                            <div className="mt-6 w-full max-w-md">
-                                <p className="text-white/40 text-[10px] md:text-xs uppercase tracking-widest font-bold mb-3">
-                                    Or get a free site audit emailed to you
-                                </p>
-                                <form
-                                    className="flex flex-col sm:flex-row gap-2"
-                                    onSubmit={(e) => {
-                                        e.preventDefault();
-                                        const formData = new FormData(e.target);
-                                        const data = Object.fromEntries(formData);
-
-                                        // Submit to Google Sheets (same pipe as Free Audit form)
-                                        fetch(GOOGLE_SHEET_URL, {
-                                            method: 'POST',
-                                            mode: 'no-cors',
-                                            headers: { 'Content-Type': 'application/json' },
-                                            body: JSON.stringify({
-                                                sheetName: "Leads from free SEO audit",
-                                                Email: data.email,
-                                            })
-                                        });
-
-                                        // Tracking — soft lead (hero inline email grab)
-                                        trackLead('hero_inline_audit', { tier: 'soft' });
-
-                                        alert('Thanks! Check your email for the free audit report.');
-                                        e.target.reset();
-                                    }}
-                                >
-                                    <input
-                                        type="email"
-                                        name="email"
-                                        placeholder="your@email.com"
-                                        className="flex-1 bg-white/10 border border-white/20 px-4 py-3 text-sm font-bold text-white placeholder:text-white/50 focus:border-safety-orange focus:outline-none transition-colors rounded-none"
-                                        required
-                                    />
-                                    <Button
-                                        type="submit"
-                                        className="bg-white text-black hover:bg-white/90 font-black uppercase tracking-widest text-xs px-5 py-3 h-auto rounded-none whitespace-nowrap"
-                                    >
-                                        Free Audit
-                                    </Button>
-                                </form>
-                            </div>
                         </motion.div>
 
                         {/* Optional Proof Strip */}
