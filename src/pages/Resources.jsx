@@ -8,6 +8,15 @@ import { Badge } from '../components/ui/badge';
 const Resources = () => {
     const articles = [
         {
+            id: 'what-missed-calls-cost',
+            title: "What Every Missed Call Really Costs a Tradie",
+            description: "A missed call isn't a missed call — it's a lost job that just rang the next tradie. Run your own numbers, then see the systems that stop the bleed.",
+            category: "Lead Generation",
+            readTime: "6 min read",
+            slug: "what-missed-calls-cost-tradies",
+            comingSoon: false
+        },
+        {
             id: 'missed-calls',
             title: "Why Most Tradie Websites Don't Get Calls",
             description: "78% of homeowners research online before contacting a tradie. If your website doesn't build trust in 3 seconds, they're calling someone else.",

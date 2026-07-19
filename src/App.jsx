@@ -45,6 +45,7 @@ const TradiWebsiteCostAustralia = lazy(() => import('./pages/blog/TradiWebsiteCo
 const SuburbSEOAdelaideTradies = lazy(() => import('./pages/blog/SuburbSEOAdelaideTradies'));
 const SuburbSEOSydneyRoofers = lazy(() => import('./pages/blog/SuburbSEOSydneyRoofers'));
 const SuburbSEOBrisbaneRoofers = lazy(() => import('./pages/blog/SuburbSEOBrisbaneRoofers'));
+const WhatMissedCallsCost = lazy(() => import('./pages/blog/WhatMissedCallsCost'));
 
 function App() {
     React.useEffect(() => {
@@ -80,6 +81,7 @@ function App() {
                     <Route path="/resources/suburb-seo-for-adelaide-tradies" element={<SuburbSEOAdelaideTradies />} />
                     <Route path="/resources/suburb-seo-for-sydney-roofers" element={<SuburbSEOSydneyRoofers />} />
                     <Route path="/resources/suburb-seo-for-brisbane-roofers" element={<SuburbSEOBrisbaneRoofers />} />
+                    <Route path="/resources/what-missed-calls-cost-tradies" element={<WhatMissedCallsCost />} />
 
                     {/* Trade-Specific Landing Pages */}
                     <Route path="/plumbing-websites" element={<PlumbingWebsites />} />
