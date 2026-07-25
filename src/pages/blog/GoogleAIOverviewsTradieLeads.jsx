@@ -43,7 +43,7 @@ const GoogleAIOverviewsTradieLeads = () => {
                     "description": "Google AI Overviews now answer local service searches before users click through. Find out why Australian tradies are losing leads to AI — and the exact steps to get cited instead.",
                     "url": "https://yourtradepartner.com.au/resources/google-ai-overviews-tradie-leads",
                     "datePublished": "2026-04-23",
-                    "dateModified": "2026-05-17",
+                    "dateModified": "2026-07-25",
                     "author": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" },
                     "publisher": { "@type": "Organization", "name": "Your Trade Partner", "url": "https://yourtradepartner.com.au" }
                 })}</script>
@@ -103,10 +103,10 @@ const GoogleAIOverviewsTradieLeads = () => {
                                 What Are AI Overviews and Why Should Tradies Care Right Now?
                             </h2>
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-6">
-                                In October 2025, Google rolled out <strong className="text-safety-orange">AI Mode across Australia</strong>. Instead of showing a list of blue links, Google now generates a written answer at the top of the page — pulling from websites it considers authoritative — before any organic result appears. These are called AI Overviews.
+                                On <strong className="text-safety-orange">8 October 2025, Google launched AI Mode in Australia</strong>. It's part of a bigger shift: instead of a list of blue links, Google increasingly generates a written answer at the top of the page — pulling from websites it considers authoritative — before any organic result appears. On a standard search that answer is called an <strong className="text-safety-orange">AI Overview</strong>; AI Mode is the full chat-style version of the same idea.
                             </p>
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-6">
-                                For a homeowner searching "emergency plumber Parramatta" or "best electrician Sydney north shore," that AI Overview might name one or two businesses directly — and answer the question so completely that the user never scrolls down to click anything else.
+                                For a homeowner searching "emergency plumber Parramatta" or "best electrician Sydney north shore," that AI answer might name one or two businesses directly — and cover the question so completely that the user never scrolls down to click anything else.
                             </p>
                             <p className="text-lg text-white/80 font-bold leading-relaxed">
                                 If your business isn't one of the ones being cited, you're invisible. Not just low on page two — genuinely invisible, even if you've been ranking #1 for years.
@@ -117,30 +117,33 @@ const GoogleAIOverviewsTradieLeads = () => {
                         <div className="bg-white/5 border border-white/10 p-8">
                             <div className="grid md:grid-cols-3 gap-6">
                                 <div className="text-center">
-                                    <div className="text-4xl font-black text-safety-orange mb-2">47%</div>
-                                    <p className="text-sm text-white/60 font-bold uppercase tracking-wider">of AU searches now show an AI Overview</p>
+                                    <div className="text-4xl font-black text-safety-orange mb-2">~48%</div>
+                                    <p className="text-sm text-white/60 font-bold uppercase tracking-wider">of tracked searches now show an AI Overview — up from 31% a year earlier</p>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-4xl font-black text-safety-orange mb-2">70%</div>
-                                    <p className="text-sm text-white/60 font-bold uppercase tracking-wider">drop in click-through when AI Overview is present</p>
+                                    <div className="text-4xl font-black text-safety-orange mb-2">58%</div>
+                                    <p className="text-sm text-white/60 font-bold uppercase tracking-wider">lower click-through for the #1 result when an AI Overview is present</p>
                                 </div>
                                 <div className="text-center">
-                                    <div className="text-4xl font-black text-safety-orange mb-2">Oct '25</div>
+                                    <div className="text-4xl font-black text-safety-orange mb-2">8 Oct '25</div>
                                     <p className="text-sm text-white/60 font-bold uppercase tracking-wider">Google AI Mode went live in Australia</p>
                                 </div>
                             </div>
+                            <p className="text-xs text-white/30 font-bold mt-6 leading-relaxed">
+                                Sources: BrightEdge (Feb 2026, US tracked queries); Ahrefs (Dec 2025, 300,000 keywords); Google (blog.google, 8 Oct 2025). Coverage and CTR figures are US/global — Google has not published Australia-specific data.
+                            </p>
                         </div>
 
                         {/* Section 2 */}
                         <div>
                             <h2 className="text-2xl md:text-3xl font-black uppercase italic mb-6 border-b-2 border-safety-orange pb-2 inline-block">
-                                The 47% Problem: How AI Is Cutting Your Enquiry Rate
+                                The Zero-Click Problem: How AI Is Cutting Your Enquiry Rate
                             </h2>
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-6">
-                                Before AI Overviews, if you ranked #1 for "roof repairs Brisbane Northside," you'd capture roughly 28–35% of clicks for that query. Now, when an AI Overview appears above your result, that click-through rate drops by up to 70%. Your ranking didn't change. Your website didn't change. But your leads did.
+                                Ranking #1 used to mean roughly a third of the clicks for that search. Now, when an AI Overview sits above your result, that changes fast. Ahrefs measured a <strong className="text-safety-orange">58% lower click-through rate for the #1 position</strong> when an AI Overview is present (Dec 2025). Pew Research found people click a normal result only 8% of the time with an AI summary showing, versus 15% without — and just <strong className="text-safety-orange">1% ever click a link inside the AI answer itself</strong>. Your ranking didn't change. Your website didn't change. But your enquiries did.
                             </p>
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-6">
-                                This is the core problem: tradies are judging their online performance by old metrics. If your Google Search Console shows the same impressions but fewer clicks than 6 months ago, you're already seeing the AI Overview effect — you just didn't know what to call it.
+                                This is the core problem: tradies are judging their online performance by old metrics. If your Google Search Console shows the same impressions but fewer clicks than 6 months ago, you're already seeing the AI Overview effect — you just didn't know what to call it. Google now reports this directly in Search Console's <strong className="text-safety-orange">"AI features" performance view</strong>, so you can see exactly how much of your visibility is being absorbed by AI answers.
                             </p>
                             <div className="bg-safety-orange/10 border-l-4 border-safety-orange p-8">
                                 <p className="text-2xl font-black italic">"Ranking #1 used to mean winning the search. Now it might just mean being the first result nobody clicks."</p>
@@ -153,29 +156,29 @@ const GoogleAIOverviewsTradieLeads = () => {
                                 Why "Ranking #1 on Google" Doesn't Mean What It Used To
                             </h2>
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-6">
-                                Traditional SEO was about ranking position. The higher you were, the more clicks you got. That logic held for 20 years. It's now breaking down — fast.
+                                Traditional SEO was about ranking position. The higher you were, the more clicks you got. That logic held for 20 years. It's now breaking down — fast. And here's the part most "AI SEO experts" get wrong: <strong className="text-safety-orange">AI Overviews aren't a separate system with its own secret rulebook.</strong> Google has said plainly that its AI features run on the same core Search ranking it always used — so the fundamentals that got you ranked still matter.
                             </p>
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-6">
-                                Today there are effectively <strong className="text-safety-orange">two separate competitions</strong> happening for every local search:
+                                What's changed is the <strong className="text-safety-orange">outcome</strong>. The same search now produces two very different results for a business:
                             </p>
                             <div className="space-y-4">
                                 <div className="flex gap-4 items-start">
                                     <div className="w-8 h-8 bg-safety-orange flex items-center justify-center flex-shrink-0 font-black text-sm">1</div>
                                     <div>
-                                        <p className="font-black mb-1">The AI Overview competition</p>
-                                        <p className="text-white/70 font-bold text-sm">Google's AI decides which 2–3 businesses to mention in the generated answer at the top of the page. This is won by structured content, schema markup, reviews, and authority — not just keyword density.</p>
+                                        <p className="font-black mb-1">Getting named in the AI answer</p>
+                                        <p className="text-white/70 font-bold text-sm">Google's AI cites the businesses it trusts most for that query. Being cited isn't the same as ranking #1 — Ahrefs found only about 38% of URLs cited in AI Overviews also rank in the top 10. Trust and relevance decide it, and you can be pulled in even when you're not the top blue link.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-start">
                                     <div className="w-8 h-8 bg-safety-orange flex items-center justify-center flex-shrink-0 font-black text-sm">2</div>
                                     <div>
-                                        <p className="font-black mb-1">The organic blue link competition</p>
-                                        <p className="text-white/70 font-bold text-sm">The traditional search results that appear below the AI Overview. Still important, but now capturing a far smaller share of clicks. The users who scroll past the AI answer are often already informed and further down the decision funnel.</p>
+                                        <p className="font-black mb-1">Being a blue link below the answer</p>
+                                        <p className="text-white/70 font-bold text-sm">The traditional results that appear under the AI Overview. Still important, but now capturing a far smaller share of clicks. The users who scroll past the AI answer are often already informed and further down the decision funnel.</p>
                                     </div>
                                 </div>
                             </div>
                             <p className="text-lg text-white/80 font-bold leading-relaxed mt-6">
-                                If you're only playing the organic SEO game, you're ignoring the competition that now decides most of the traffic. The good news: the tactics that win AI Overviews also tend to improve your organic rankings anyway.
+                                So you don't need a separate "AI strategy" full of hacks. You need the same thing you always did — done properly: a fast, crawlable site with genuinely useful, trustworthy content. Get that right and you improve both outcomes at once.
                             </p>
                         </div>
 
@@ -185,28 +188,28 @@ const GoogleAIOverviewsTradieLeads = () => {
                                 The 5 Things That Make Google's AI Cite Your Business
                             </h2>
                             <p className="text-lg text-white/80 font-bold leading-relaxed mb-8">
-                                Google's AI pulls from sources it trusts. Here's what earns that trust for a local tradie business:
+                                Google's AI pulls from sources it trusts. Here's what earns that trust for a local tradie business — in order of what actually moves the needle:
                             </p>
                             <div className="space-y-4">
                                 <div className="flex gap-4 items-start">
                                     <div className="w-8 h-8 bg-safety-orange flex items-center justify-center flex-shrink-0 font-black text-sm">1</div>
                                     <div>
-                                        <p className="font-black mb-1">Structured data (schema markup)</p>
-                                        <p className="text-white/70 font-bold text-sm">LocalBusiness, Service, and FAQPage schema tell Google's AI exactly what you do, where you operate, and what your customers ask. Without it, the AI has to guess — and it often guesses wrong, or picks a competitor with clearer signals.</p>
+                                        <p className="font-black mb-1">Genuinely useful content from real experience</p>
+                                        <p className="text-white/70 font-bold text-sm">This is Google's own number one. Content that shows first-hand knowledge — how you actually fix a burst pipe, what a rewire really costs in your area, the mistakes you see homeowners make — beats recycled, generic copy every time. If it reads like it was written by someone who's never held the tools, the AI treats it as commodity content and skips it.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-start">
                                     <div className="w-8 h-8 bg-safety-orange flex items-center justify-center flex-shrink-0 font-black text-sm">2</div>
                                     <div>
-                                        <p className="font-black mb-1">Direct-answer content format</p>
-                                        <p className="text-white/70 font-bold text-sm">AI Overviews are generated by extracting concise answers from web pages. If your site buries the answer in fluffy paragraphs, the AI skips you. Write short, factual, question-answer blocks that state the most important point in the first sentence.</p>
+                                        <p className="font-black mb-1">Clear answers to the questions people actually ask</p>
+                                        <p className="text-white/70 font-bold text-sm">You don't need to "rewrite for the AI" — Google says there's no special format or magic style. You just need to answer the real questions homeowners search, clearly and up front, instead of burying the point under three paragraphs of waffle. Organise pages with plain headings and get to the answer quickly.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-start">
                                     <div className="w-8 h-8 bg-safety-orange flex items-center justify-center flex-shrink-0 font-black text-sm">3</div>
                                     <div>
                                         <p className="font-black mb-1">Google Business Profile with recent reviews</p>
-                                        <p className="text-white/70 font-bold text-sm">Your GBP is still the strongest local signal. Businesses with 50+ reviews, a 4.5+ rating, and regular activity (posts, Q&A replies) are far more likely to be surfaced in AI answers for local queries.</p>
+                                        <p className="text-white/70 font-bold text-sm">Your GBP is still the strongest local signal. A complete profile with plenty of recent reviews, a strong rating, and regular activity (posts, Q&A replies) makes you far more likely to be surfaced in AI answers for local queries.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-start">
@@ -219,19 +222,21 @@ const GoogleAIOverviewsTradieLeads = () => {
                                 <div className="flex gap-4 items-start">
                                     <div className="w-8 h-8 bg-safety-orange flex items-center justify-center flex-shrink-0 font-black text-sm">5</div>
                                     <div>
-                                        <p className="font-black mb-1">Fast, technically clean website</p>
-                                        <p className="text-white/70 font-bold text-sm">AI Overviews pull from pages Google can crawl and render quickly. A slow site, broken mobile layout, or missing sitemap actively hurts your chances of being cited — regardless of how good your content is.</p>
+                                        <p className="font-black mb-1">A fast site Google can crawl and index</p>
+                                        <p className="text-white/70 font-bold text-sm">To be cited at all, a page has to be indexed and eligible to show in normal Search first. AI answers pull from pages Google can crawl and render quickly — so a slow site, a broken mobile layout, or a page Google can't index takes you out of the running before the content even gets a look. Most template builders fail this; purpose-built sites don't.</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Case study */}
-                        <div className="bg-black/40 p-6">
-                            <p className="font-black mb-3 text-lg">What this looks like in practice:</p>
-                            <ul className="space-y-2 text-sm text-white/80 font-bold">
-                                <li>• A plumber in Melbourne's inner north added FAQ schema, rewrote service pages with direct-answer formatting, and pushed a review campaign. Within 8 weeks, his business appeared in AI Overviews for 11 suburb-specific queries — queries where he previously only ranked #4–6 organically.</li>
-                                <li>• His organic traffic stayed roughly flat. But his phone enquiries from new customers increased 34% in the same period. The AI Overview effect in reverse: instead of losing clicks, he captured them from competitors who weren't cited.</li>
+                        {/* Myths callout */}
+                        <div className="bg-black/40 border-l-4 border-safety-orange p-8">
+                            <p className="font-black mb-4 text-lg uppercase italic">What Google says <span className="text-safety-orange">won't</span> help (don't waste money on it)</p>
+                            <ul className="space-y-3 text-sm text-white/80 font-bold">
+                                <li>• <strong className="text-safety-orange">Schema markup isn't required to appear in AI answers.</strong> It's still worth having for rich results and clean local data — but anyone selling "schema = AI citations" as a silver bullet is overselling it. It's one supporting signal, not the thing that gets you named.</li>
+                                <li>• <strong className="text-safety-orange">You don't need an "llms.txt" file or special AI markup.</strong> Google ignores them. They won't help or hurt.</li>
+                                <li>• <strong className="text-safety-orange">Don't chop your content into tiny "chunks" for the AI.</strong> Google's systems read a full page for context. There's no magic word count.</li>
+                                <li>• <strong className="text-safety-orange">Ignore tools claiming "inside access" to Google's AI ranking.</strong> No third-party tool has it. Use Search Console's own AI features report instead.</li>
                             </ul>
                         </div>
 
@@ -250,8 +255,8 @@ const GoogleAIOverviewsTradieLeads = () => {
                                 <div className="flex gap-4 items-start">
                                     <div className="w-8 h-8 bg-safety-orange flex items-center justify-center flex-shrink-0 font-black text-sm">✓</div>
                                     <div>
-                                        <p className="font-black mb-1">Service pages written in Q&A format with schema</p>
-                                        <p className="text-white/70 font-bold text-sm">Each major service gets its own page. Each page answers the 3–5 questions homeowners actually search — structured as H2 questions with short, factual answers directly below.</p>
+                                        <p className="font-black mb-1">Service pages that answer real questions clearly</p>
+                                        <p className="text-white/70 font-bold text-sm">Each major service gets its own page that answers the 3–5 questions homeowners actually search — plain headings, the answer up front, no waffle. Not because the AI needs a special format, but because clear, genuinely useful pages are what get read and trusted.</p>
                                     </div>
                                 </div>
                                 <div className="flex gap-4 items-start">
