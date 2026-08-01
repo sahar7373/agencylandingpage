@@ -175,7 +175,7 @@ const ConcreteLayerWebsites = () => {
                         {
                             "@context": "https://schema.org",
                             "@type": "Service",
-                            "serviceType": "ConcreteLayer Website Design",
+                            "serviceType": "Concrete Layer Website Design",
                             "provider": {
                                 "@type": "ProfessionalService",
                                 "name": "Your Trade Partner",
@@ -186,7 +186,7 @@ const ConcreteLayerWebsites = () => {
                             },
                             "audience": {
                                 "@type": "Audience",
-                                "name": "ConcreteLayers and Electrical Businesses in Australia"
+                                "name": "Concreters and Concreting Businesses in Australia"
                             }
                         }
                     `}
@@ -349,7 +349,7 @@ const ConcreteLayerWebsites = () => {
                 </div>
             </motion.section>
 
-            {/* What Makes an ConcreteLayer's Website Actually Work Section */}
+            {/* What Makes a Concrete Layer's Website Actually Work Section */}
             <motion.section
                 className="py-24 md:py-32 border-b border-white/5 bg-black/30"
                 variants={sectionVariants}
@@ -360,7 +360,7 @@ const ConcreteLayerWebsites = () => {
                 <div className="container mx-auto px-6">
                     <div className="max-w-6xl mx-auto">
                         <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">
-                            What Makes an ConcreteLayer's Website <span className="text-safety-orange">Actually Work</span>
+                            What Makes a Concrete Layer's Website <span className="text-safety-orange">Actually Work</span>
                         </h2>
                         <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-16">
                             It's not just about looking good — it's about getting found, trusted, and called.
@@ -451,7 +451,7 @@ const ConcreteLayerWebsites = () => {
                 <div className="container mx-auto px-6">
                     <div className="max-w-4xl mx-auto">
                         <h2 className="text-4xl md:text-6xl font-black mb-16 uppercase italic text-center">
-                            Common Questions <span className="text-safety-orange">From ConcreteLayers</span>
+                            Common Questions <span className="text-safety-orange">From Concreters</span>
                         </h2>
 
                         <motion.div className="space-y-6" variants={containerVariants}>

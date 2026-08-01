@@ -269,6 +269,24 @@ function LandingPage() {
 
     const faqs = [
         {
+            question: "What makes a good tradie website?",
+            answer: (
+                <div className="space-y-4">
+                    <p>A good tradie website does one thing: it turns visitors into booked jobs.</p>
+                    <p>The tradie websites that actually get calls all share the same basics:</p>
+                    <ul className="list-disc pl-5 space-y-1 text-white/80">
+                        <li>Loads fast on a phone — that’s where your customers are</li>
+                        <li>Your number one tap away, on every screen</li>
+                        <li>Real photos of your work, not stock images</li>
+                        <li>Trust signals up front — licence, insurance, reviews</li>
+                        <li>Built for local search so you show up for “tradie near me”</li>
+                        <li>Captures every enquiry so nothing slips while you’re on the tools</li>
+                    </ul>
+                    <p className="font-bold text-safety-orange">Looks good, gets found, gets the call.</p>
+                </div>
+            )
+        },
+        {
             question: "Will this actually make me more money?",
             answer: (
                 <div className="space-y-4">
@@ -432,14 +450,14 @@ function LandingPage() {
         <div className="min-h-screen bg-construction-charcoal text-white font-sans selection:bg-safety-orange selection:text-white">
             <Helmet>
                 <title>Tradie Website Design & AI Automation Australia | Your Trade Partner</title>
-                <meta name="description" content="Your Trade Partner provides high-converting websites and automated enquiry systems for Australian trade businesses. Stop missing jobs and start scaling." />
+                <meta name="description" content="Tradie website design and automated enquiry systems for Australian trades. Websites for tradies that turn visitors into booked jobs — so you stop missing work." />
                 <link rel="canonical" href="https://yourtradepartner.com.au/" />
                 <meta name="robots" content="index, follow" />
 
                 {/* Open Graph / Social Media */}
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content="Tradie Website Design & AI Automation Australia | Your Trade Partner" />
-                <meta property="og:description" content="Your Trade Partner helps Australian trades build a job-winning online presence. Professional websites and lead capture systems built for the industry." />
+                <meta property="og:description" content="Your Trade Partner helps Australian trades build a job-winning online presence. Tradie websites and enquiry systems built for the industry." />
                 <meta property="og:url" content="https://yourtradepartner.com.au/" />
                 <meta property="og:image" content="https://yourtradepartner.com.au/Agency-hammer-favicon.jpeg" />
                 <meta property="og:image:width" content="1200" />
@@ -667,6 +685,14 @@ function LandingPage() {
                             "@context": "https://schema.org",
                             "@type": "FAQPage",
                             "mainEntity": [
+                                {
+                                    "@type": "Question",
+                                    "name": "What makes a good tradie website?",
+                                    "acceptedAnswer": {
+                                        "@type": "Answer",
+                                        "text": "A good tradie website does one thing: it turns visitors into booked jobs. The tradie websites that actually get calls all share the same basics: loads fast on a phone, your number one tap away on every screen, real photos of your work (not stock images), trust signals up front like licence, insurance and reviews, and it's built for local search so you show up for 'tradie near me' — capturing every enquiry so nothing slips while you're on the tools. Looks good, gets found, gets the call."
+                                    }
+                                },
                                 {
                                     "@type": "Question",
                                     "name": "Will this actually make me more money?",
@@ -981,7 +1007,7 @@ function LandingPage() {
                         </motion.h1>
 
                         <motion.p className="text-lg md:text-xl text-white/90 font-medium mb-10 leading-relaxed max-w-3xl mx-auto" variants={itemVariants}>
-                            Websites, practical AI, and better systems — so you win more work, cut the admin, and stop losing jobs while you're on the tools. We find what's actually broken, then fix the right thing.
+                            Tradie websites, practical AI, and better systems — so you win more work, cut the admin, and stop losing jobs while you're on the tools. We find what's actually broken, then fix the right thing.
                         </motion.p>
 
                         {/* Trust Position Strip */}
