@@ -243,18 +243,138 @@ const HobartLocationPage = () => {
             {/* Contact */}
             <motion.section id="contact" className="py-24 md:py-32 bg-black/40" variants={sectionVariants} initial="hidden" whileInView="visible" viewport={{ once: true, margin: "-50px" }}>
                 <div className="container mx-auto px-6">
-                    <div className="max-w-2xl mx-auto">
+                    <div className="max-w-2xl md:max-w-5xl mx-auto">
                         <h2 className="text-4xl md:text-6xl font-black mb-4 uppercase italic text-center">Get a Free <span className="text-safety-orange">Website Audit</span></h2>
                         <p className="text-white/40 text-center font-bold uppercase tracking-widest mb-12 text-sm">Tell us your trade and we'll show you exactly what's costing you Hobart jobs right now.</p>
                         {formStatus === 'success' ? (
                             <div className="text-center py-16 border border-safety-orange/20 bg-safety-orange/5"><CheckCircle2 className="w-16 h-16 text-safety-orange mx-auto mb-6" /><h3 className="text-2xl font-black uppercase mb-4">We'll be in touch shortly.</h3><p className="text-white/60 font-bold">Expect a call or email within one business day.</p></div>
                         ) : (
                             <form onSubmit={handleSubmit} className="space-y-4">
-                                <div className="grid grid-cols-2 gap-4"><div><label className="text-[10px] font-black uppercase tracking-widest text-white/40 block mb-2">Your Name *</label><input type="text" name="name" required value={formData.name} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm font-bold focus:outline-none focus:border-safety-orange/50 transition-colors" placeholder="First name" /></div><div><label className="text-[10px] font-black uppercase tracking-widest text-white/40 block mb-2">Phone *</label><input type="tel" name="phone" required value={formData.phone} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm font-bold focus:outline-none focus:border-safety-orange/50 transition-colors" placeholder="04xx xxx xxx" />{phoneError && <p className="text-red-400 text-xs mt-1 font-bold">{phoneError}</p>}</div></div>
-                                <div><label className="text-[10px] font-black uppercase tracking-widest text-white/40 block mb-2">Email *</label><input type="email" name="email" required value={formData.email} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm font-bold focus:outline-none focus:border-safety-orange/50 transition-colors" placeholder="your@email.com.au" /></div>
-                                <div className="grid grid-cols-2 gap-4"><div><label className="text-[10px] font-black uppercase tracking-widest text-white/40 block mb-2">Business Name</label><input type="text" name="business" value={formData.business} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm font-bold focus:outline-none focus:border-safety-orange/50 transition-colors" placeholder="Your business name" /></div><div><label className="text-[10px] font-black uppercase tracking-widest text-white/40 block mb-2">Your Trade *</label><select name="trade" required value={formData.trade} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm font-bold focus:outline-none focus:border-safety-orange/50 transition-colors"><option value="" className="bg-construction-charcoal">Select trade</option><option value="Plumber" className="bg-construction-charcoal">Plumber</option><option value="Electrician" className="bg-construction-charcoal">Electrician</option><option value="Builder" className="bg-construction-charcoal">Builder</option><option value="Roofer" className="bg-construction-charcoal">Roofer</option><option value="HVAC" className="bg-construction-charcoal">HVAC / Air Con</option><option value="Landscaper" className="bg-construction-charcoal">Landscaper</option><option value="Painter" className="bg-construction-charcoal">Painter</option><option value="Concreter" className="bg-construction-charcoal">Concreter</option><option value="Carpenter" className="bg-construction-charcoal">Carpenter</option><option value="Other" className="bg-construction-charcoal">Other trade</option></select></div></div>
-                                <div><label className="text-[10px] font-black uppercase tracking-widest text-white/40 block mb-2">Hobart Suburb / Area</label><input type="text" name="location" value={formData.location} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm font-bold focus:outline-none focus:border-safety-orange/50 transition-colors" placeholder="e.g. Sandy Bay, Kingston, Glenorchy" /></div>
-                                <div><label className="text-[10px] font-black uppercase tracking-widest text-white/40 block mb-2">Anything else we should know?</label><textarea name="message" rows={3} value={formData.message} onChange={handleInputChange} className="w-full bg-white/5 border border-white/10 text-white px-4 py-3 text-sm font-bold focus:outline-none focus:border-safety-orange/50 transition-colors resize-none" placeholder="Current website, biggest problem, what you're after..." /></div>
+
+                                {/* Madlib-style CTA fields — desktop: flowing sentence, mobile: stacked labelled fields.
+                                    Visual layer only; input name/value/onChange + validation preserved so the Google Sheets
+                                    payload in handleSubmit is unaffected. */}
+                                <div className="md:text-2xl md:leading-[2.4] md:text-white/80 font-medium">
+                                    {/* Name */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Your name <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80">G’day — I’m </span>
+                                        <input
+                                            required
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-auto bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-44"
+                                            placeholder="your name"
+                                        />
+                                    </span>
+
+                                    {/* Trade */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Your trade <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80">, a </span>
+                                        <select
+                                            required
+                                            name="trade"
+                                            value={formData.trade}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-auto bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-48 appearance-none"
+                                        >
+                                            <option value="" disabled className="bg-construction-charcoal">e.g. plumber</option>
+                                            <option value="Plumber" className="bg-construction-charcoal">Plumber</option>
+                                            <option value="Electrician" className="bg-construction-charcoal">Electrician</option>
+                                            <option value="Builder" className="bg-construction-charcoal">Builder</option>
+                                            <option value="Roofer" className="bg-construction-charcoal">Roofer</option>
+                                            <option value="HVAC" className="bg-construction-charcoal">HVAC / Air Con</option>
+                                            <option value="Landscaper" className="bg-construction-charcoal">Landscaper</option>
+                                            <option value="Painter" className="bg-construction-charcoal">Painter</option>
+                                            <option value="Concreter" className="bg-construction-charcoal">Concreter</option>
+                                            <option value="Carpenter" className="bg-construction-charcoal">Carpenter</option>
+                                            <option value="Other" className="bg-construction-charcoal">Other trade</option>
+                                        </select>
+                                    </span>
+
+                                    {/* Business */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Business name</span>
+                                        <span className="hidden md:inline text-white/80"> running </span>
+                                        <input
+                                            type="text"
+                                            name="business"
+                                            value={formData.business}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-auto bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-56"
+                                            placeholder="business name"
+                                        />
+                                    </span>
+
+                                    {/* Location */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Suburb / area</span>
+                                        <span className="hidden md:inline text-white/80"> around </span>
+                                        <input
+                                            type="text"
+                                            name="location"
+                                            value={formData.location}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-auto bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-56"
+                                            placeholder="e.g. Sandy Bay, Kingston, Glenorchy"
+                                        />
+                                        <span className="hidden md:inline text-white/80">.</span>
+                                    </span>
+
+                                    {/* Phone */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Phone <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80"> Best number’s </span>
+                                        <input
+                                            required
+                                            type="tel"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            maxLength="12"
+                                            className={`w-full md:w-auto bg-white/5 border rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-48 ${phoneError ? 'border-red-500 md:border-red-500' : 'border-white/10 md:border-white/25'}`}
+                                            placeholder="0412 345 678"
+                                        />
+                                    </span>
+
+                                    {/* Email */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Email <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80"> and email’s </span>
+                                        <input
+                                            required
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-auto bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-64"
+                                            placeholder="you@email.com"
+                                        />
+                                        <span className="hidden md:inline text-white/80">. Show me where I’m </span>
+                                        <span className="hidden md:inline text-safety-orange font-black">losing jobs.</span>
+                                    </span>
+                                </div>
+
+                                {phoneError && (
+                                    <p className="text-red-500 text-xs font-bold mt-3 uppercase tracking-wider">{phoneError}</p>
+                                )}
+
+                                {/* Message */}
+                                <div className="space-y-1 mt-8">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Anything else we should know?</label>
+                                    <textarea
+                                        name="message"
+                                        rows={3}
+                                        value={formData.message}
+                                        onChange={handleInputChange}
+                                        className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium min-h-[80px]"
+                                        placeholder="Current website, biggest problem, what you’re after..."
+                                    />
+                                </div>
+
                                 <Button type="submit" disabled={formStatus === 'submitting'} className="w-full bg-safety-orange hover:bg-safety-orange-hover text-white rounded-none py-6 text-lg font-black uppercase tracking-widest">{formStatus === 'submitting' ? <><Loader2 className="w-5 h-5 animate-spin mr-2" />Sending...</> : <>Get My Free Audit <ArrowRight className="ml-2 w-5 h-5" /></>}</Button>
                                 <p className="text-[10px] text-white/30 text-center font-bold uppercase tracking-widest">No spam. No obligation. We'll call or email within one business day.</p>
                             </form>

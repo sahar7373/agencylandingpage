@@ -104,6 +104,7 @@ function LandingPage() {
     const [formStatus, setFormStatus] = React.useState('idle') // idle, submitting, success
     const [formData, setFormData] = React.useState({
         name: '',
+        business: '',
         phone: '',
         email: '',
         trade: '',
@@ -220,6 +221,7 @@ function LandingPage() {
             const refinedPayload = {
                 sheetName: "Leads from form", // Correct sheet name
                 Name: formData.name,
+                Business: formData.business,
                 Phone: `'${formData.phone}`, // Force text format
                 Email: formData.email,
                 Trade: formData.trade === 'Other' ? formData.otherTrade : formData.trade,
@@ -247,6 +249,7 @@ function LandingPage() {
             // Reset form
             setFormData({
                 name: '',
+                business: '',
                 phone: '',
                 email: '',
                 trade: '',
@@ -2811,73 +2814,53 @@ function LandingPage() {
                             </p>
                         </div>
                     ) : (
-                        <div className="max-w-xl mx-auto">
+                        <div className="max-w-xl md:max-w-5xl mx-auto">
                             <div className="mb-10">
+                                <p className="text-xs font-black uppercase tracking-[0.3em] text-safety-orange mb-4">Ready to grow?</p>
                                 <h2 className="text-3xl md:text-5xl font-black mb-4 uppercase italic leading-none tracking-tighter text-white">
-                                    Let’s See Where Jobs <br /> <span className="text-safety-orange">Might Be Slipping Through</span>
+                                    Tell Us About Your Business <br /> <span className="text-safety-orange">In Your Own Words</span>
                                 </h2>
                             </div>
 
-                            <form onSubmit={handleSubmit} className="text-left space-y-6 bg-zinc-900/80 p-6 md:p-8 border border-white/10 backdrop-blur-sm shadow-2xl">
+                            {/*
+                                Madlib-style CTA form.
+                                One set of controlled inputs drives BOTH layouts:
+                                  - Mobile: each .field-wrap is block → clean stacked labelled fields.
+                                    Connector words are hidden; the sr-only labels become visible.
+                                  - Desktop (md+): fields flow inline as underline "blanks" inside a
+                                    sentence; connector words show; labels go sr-only.
+                                All state/validation/analytics wiring is unchanged.
+                            */}
+                            <form onSubmit={handleSubmit} className="text-left bg-zinc-900/80 p-6 md:p-10 border border-white/10 backdrop-blur-sm shadow-2xl">
 
-                                {/* Full Name */}
-                                <div className="space-y-1">
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Full Name <span className="text-red-500">*</span></label>
-                                    <input
-                                        required
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleInputChange}
-                                        className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                        placeholder="Your Name"
-                                    />
-                                </div>
-
-                                {/* Phone & Email Grid */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Phone Number <span className="text-red-500">*</span></label>
+                                <div className="md:text-2xl md:leading-[2.4] md:text-white/80 font-medium md:max-w-none">
+                                    {/* Name */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Your name <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80">G’day — I’m </span>
                                         <input
                                             required
-                                            type="tel"
-                                            name="phone"
-                                            value={formData.phone}
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
                                             onChange={handleInputChange}
-                                            maxLength="12"
-                                            className={`w-full bg-white/5 border ${phoneError ? 'border-red-500' : 'border-white/10'} p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium`}
-                                            placeholder="Best number to reach you"
+                                            className="w-full md:w-44 bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:w-44 md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30"
+                                            placeholder="your name"
                                         />
-                                        {phoneError && (
-                                            <p className="text-red-500 text-xs font-bold mt-1 uppercase tracking-wider">{phoneError}</p>
-                                        )}
-                                    </div>
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Email <span className="text-red-500">*</span></label>
-                                        <input
-                                            required
-                                            type="email"
-                                            name="email"
-                                            value={formData.email}
-                                            onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="Email"
-                                        />
-                                    </div>
-                                </div>
+                                    </span>
 
-                                {/* Trade Type & Location Grid */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Trade Type <span className="text-red-500">*</span></label>
+                                    {/* Trade */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Your trade <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80">, a </span>
                                         <select
                                             required
                                             name="trade"
                                             value={formData.trade}
                                             onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium appearance-none"
+                                            className="w-full md:w-48 bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white focus:outline-none focus:border-safety-orange transition-colors appearance-none md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl"
                                         >
-                                            <option value="" disabled className="bg-zinc-900 leading-none">Select your trade</option>
+                                            <option value="" disabled className="bg-zinc-900 leading-none">e.g. plumber</option>
                                             <option value="Electrician" className="bg-zinc-900 leading-none">Electrician</option>
                                             <option value="Plumber" className="bg-zinc-900 leading-none">Plumber</option>
                                             <option value="Carpenter" className="bg-zinc-900 leading-none">Carpenter</option>
@@ -2889,45 +2872,103 @@ function LandingPage() {
                                             <option value="Builder" className="bg-zinc-900 leading-none">Builder</option>
                                             <option value="Other" className="bg-zinc-900 leading-none">Other</option>
                                         </select>
-                                    </div>
+                                    </span>
 
+                                    {/* Other trade (conditional) */}
                                     {formData.trade === 'Other' && (
-                                        <div className="space-y-1 animate-in fade-in slide-in-from-top-1 duration-200">
-                                            <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Specify Trade <span className="text-red-500">*</span></label>
+                                        <span className="field-wrap block md:inline mb-4 md:mb-0 animate-in fade-in slide-in-from-top-1 duration-200">
+                                            <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Specify trade <span className="text-red-500">*</span></span>
+                                            <span className="hidden md:inline text-white/80"> (</span>
                                             <input
                                                 required
                                                 type="text"
                                                 name="otherTrade"
                                                 value={formData.otherTrade}
                                                 onChange={handleInputChange}
-                                                className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                                placeholder="What is your trade?"
+                                                className="w-full md:w-40 bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30"
+                                                placeholder="what trade?"
                                             />
-                                        </div>
+                                            <span className="hidden md:inline text-white/80">)</span>
+                                        </span>
                                     )}
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Service Area / Location <span className="text-red-500">*</span></label>
+
+                                    {/* Business name */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Business name</span>
+                                        <span className="hidden md:inline text-white/80"> running </span>
+                                        <input
+                                            type="text"
+                                            name="business"
+                                            value={formData.business}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-52 bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30"
+                                            placeholder="business name"
+                                        />
+                                    </span>
+
+                                    {/* Location */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Service area <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80"> around </span>
                                         <input
                                             required
                                             type="text"
                                             name="location"
                                             value={formData.location}
                                             onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="Where do you service?"
+                                            className="w-full md:w-52 bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30"
+                                            placeholder="suburb / city"
                                         />
-                                    </div>
+                                        <span className="hidden md:inline text-white/80">.</span>
+                                    </span>
+
+                                    {/* Phone */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Phone <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80"> Best number’s </span>
+                                        <input
+                                            required
+                                            type="tel"
+                                            name="phone"
+                                            value={formData.phone}
+                                            onChange={handleInputChange}
+                                            maxLength="12"
+                                            className={`w-full md:w-48 bg-white/5 border rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 ${phoneError ? 'border-red-500 md:border-red-500' : 'border-white/10 md:border-white/25'}`}
+                                            placeholder="0412 345 678"
+                                        />
+                                    </span>
+
+                                    {/* Email */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Email <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80"> and email’s </span>
+                                        <input
+                                            required
+                                            type="email"
+                                            name="email"
+                                            value={formData.email}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-64 bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30"
+                                            placeholder="you@email.com"
+                                        />
+                                        <span className="hidden md:inline text-white/80">. Show me where I’m </span>
+                                        <span className="hidden md:inline text-safety-orange font-black">losing jobs.</span>
+                                    </span>
                                 </div>
 
+                                {phoneError && (
+                                    <p className="text-red-500 text-xs font-bold mt-3 uppercase tracking-wider">{phoneError}</p>
+                                )}
+
                                 {/* Message */}
-                                <div className="space-y-1">
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Message / Additional Info</label>
+                                <div className="space-y-1 mt-8">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Anything else we should know?</label>
                                     <textarea
                                         name="message"
                                         value={formData.message}
                                         onChange={handleInputChange}
-                                        className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium min-h-[100px]"
-                                        placeholder="Anything else we should know?"
+                                        className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium min-h-[80px]"
+                                        placeholder="Optional — the more we know, the sharper your review."
                                     />
                                 </div>
 

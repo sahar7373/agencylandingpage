@@ -1361,33 +1361,68 @@ const PainterWebsites = () => {
                             </p>
                         </div>
                     ) : (
-                        <div className="max-w-xl mx-auto">
+                        <div className="max-w-xl md:max-w-5xl mx-auto">
                             <div className="mb-10">
                                 <h2 className="text-3xl md:text-5xl font-black mb-4 uppercase italic leading-none tracking-tighter text-white">
                                     Ready To Get More <br /> <span className="text-safety-orange">Quality Painting Jobs?</span>
                                 </h2>
                             </div>
 
-                            <form onSubmit={handleSubmit} className="text-left space-y-6 bg-zinc-900/80 p-6 md:p-8 border border-white/10 backdrop-blur-sm shadow-2xl">
+                            <form onSubmit={handleSubmit} className="text-left space-y-6 bg-zinc-900/80 p-6 md:p-10 border border-white/10 backdrop-blur-sm shadow-2xl">
 
-                                {/* Full Name */}
-                                <div className="space-y-1">
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Full Name <span className="text-red-500">*</span></label>
-                                    <input
-                                        required
-                                        type="text"
-                                        name="name"
-                                        value={formData.name}
-                                        onChange={handleInputChange}
-                                        className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                        placeholder="Your Name"
-                                    />
-                                </div>
+                                {/* Madlib-style CTA fields — desktop: flowing sentence, mobile: stacked labelled fields.
+                                    Only the visual layer changed; input name/value/onChange + validation are preserved so the
+                                    Google Sheets payload in handleSubmit is unaffected. */}
+                                <div className="md:text-2xl md:leading-[2.4] md:text-white/80 font-medium">
+                                    {/* Name */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Your name <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80">G’day — I’m </span>
+                                        <input
+                                            required
+                                            type="text"
+                                            name="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-auto bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-44"
+                                            placeholder="your name"
+                                        />
+                                    </span>
 
-                                {/* Phone & Email Grid */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Phone Number <span className="text-red-500">*</span></label>
+                                    {/* Business */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Business name</span>
+                                        <span className="hidden md:inline text-white/80"> running </span>
+                                        <input
+                                            type="text"
+                                            name="business"
+                                            value={formData.business}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-auto bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-56"
+                                            placeholder="business name"
+                                        />
+                                    </span>
+
+                                    {/* Location */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Service area <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80"> around </span>
+                                        <input
+                                            required
+                                            type="text"
+                                            name="location"
+                                            value={formData.location}
+                                            onChange={handleInputChange}
+                                            className="w-full md:w-auto bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-52"
+                                            placeholder="suburb / city"
+                                        />
+                                        <span className="hidden md:inline text-white/80">.</span>
+                                    </span>
+
+                                    {/* Phone */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Phone <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80"> Best number’s </span>
                                         <input
                                             required
                                             type="tel"
@@ -1395,63 +1430,42 @@ const PainterWebsites = () => {
                                             value={formData.phone}
                                             onChange={handleInputChange}
                                             maxLength="12"
-                                            className={`w-full bg-white/5 border ${phoneError ? 'border-red-500' : 'border-white/10'} p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium`}
-                                            placeholder="Best number to reach you"
+                                            className={`w-full md:w-auto bg-white/5 border rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-48 ${phoneError ? 'border-red-500 md:border-red-500' : 'border-white/10 md:border-white/25'}`}
+                                            placeholder="0412 345 678"
                                         />
-                                        {phoneError && (
-                                            <p className="text-red-500 text-xs font-bold mt-1 uppercase tracking-wider">{phoneError}</p>
-                                        )}
-                                    </div>
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Email <span className="text-red-500">*</span></label>
+                                    </span>
+
+                                    {/* Email */}
+                                    <span className="field-wrap block md:inline mb-4 md:mb-0">
+                                        <span className="md:sr-only block text-xs font-bold uppercase tracking-widest text-white/60 mb-1">Email <span className="text-red-500">*</span></span>
+                                        <span className="hidden md:inline text-white/80"> and email’s </span>
                                         <input
                                             required
                                             type="email"
                                             name="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="Email"
+                                            className="w-full md:w-auto bg-white/5 border border-white/10 rounded-sm p-3 text-base font-medium text-white placeholder:text-white/30 focus:outline-none focus:border-safety-orange transition-colors md:inline-block md:align-baseline md:bg-transparent md:border-0 md:border-b-2 md:border-white/25 md:rounded-none md:px-1.5 md:py-0.5 md:text-2xl md:placeholder:text-white/30 md:w-64"
+                                            placeholder="you@email.com"
                                         />
-                                    </div>
+                                        <span className="hidden md:inline text-white/80">. Show me where I’m </span>
+                                        <span className="hidden md:inline text-safety-orange font-black">losing jobs.</span>
+                                    </span>
                                 </div>
 
-                                {/* Business Name & Location */}
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Business Name</label>
-                                        <input
-                                            type="text"
-                                            name="business"
-                                            value={formData.business}
-                                            onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="Your painting business"
-                                        />
-                                    </div>
-                                    <div className="space-y-1">
-                                        <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Service Area / Location <span className="text-red-500">*</span></label>
-                                        <input
-                                            required
-                                            type="text"
-                                            name="location"
-                                            value={formData.location}
-                                            onChange={handleInputChange}
-                                            className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium"
-                                            placeholder="Where do you service?"
-                                        />
-                                    </div>
-                                </div>
+                                {phoneError && (
+                                    <p className="text-red-500 text-xs font-bold mt-3 uppercase tracking-wider">{phoneError}</p>
+                                )}
 
                                 {/* Message */}
-                                <div className="space-y-1">
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Message / Additional Info</label>
+                                <div className="space-y-1 mt-8">
+                                    <label className="block text-xs font-bold uppercase tracking-widest text-white/60">Anything else we should know?</label>
                                     <textarea
                                         name="message"
                                         value={formData.message}
                                         onChange={handleInputChange}
-                                        className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium min-h-[100px]"
-                                        placeholder="Anything else we should know?"
+                                        className="w-full bg-white/5 border border-white/10 p-3 text-base text-white placeholder:text-white/20 focus:outline-none focus:border-safety-orange transition-colors rounded-sm font-medium min-h-[80px]"
+                                        placeholder="Optional — the more we know, the sharper your review."
                                     />
                                 </div>
 
