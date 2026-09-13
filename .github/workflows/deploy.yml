@@ -61,8 +61,9 @@ jobs:
           wranglerVersion: "4.131.1"
           command: deploy
 
-  index:
-    name: Submit URLs to Google Indexing API
-    needs: deploy
-    uses: ./.github/workflows/index-on-deploy.yml
-    secrets: inherit
+# The Google Indexing API job used to run here. Retired 2026-09-13: Google
+# restricts that API to "pages with either JobPosting or BroadcastEvent embedded
+# in a VideoObject", and none of our pages qualify, so it was failing the
+# pipeline for a call that cannot legitimately index marketing pages anyway.
+# scripts/index_pages.py and index-on-deploy.yml are kept for the day we ship
+# JobPosting markup. Recrawl is driven by sitemap lastmod + GSC instead.
