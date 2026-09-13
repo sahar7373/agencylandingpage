@@ -1,18 +1,24 @@
 name: Index pages after Cloudflare deploy
 
-# Fires when Cloudflare Pages posts a deployment_status back to GitHub.
-# Only runs when the Production deployment succeeds.
+# Called by deploy.yml once the Worker is live. The deployment_status trigger is
+# kept for the legacy Cloudflare Git build integration — it stops firing once
+# that integration is switched off, and can be dropped then.
 on:
   deployment_status:
+  workflow_call:
 
 jobs:
   index:
     name: Submit sitemap URLs to Google Indexing API
+    # Gate applies only to the deployment_status path; a workflow_call is always
+    # deliberate and has no deployment_status payload to inspect.
     if: |
-      github.event.deployment_status.state == 'success' &&
-      (
-        github.event.deployment_status.environment == 'Production' ||
-        github.event.deployment_status.environment == 'production'
+      github.event_name != 'deployment_status' || (
+        github.event.deployment_status.state == 'success' &&
+        (
+          github.event.deployment_status.environment == 'Production' ||
+          github.event.deployment_status.environment == 'production'
+        )
       )
     runs-on: ubuntu-latest
 
