@@ -1,0 +1,57 @@
+name: Build, prerender & deploy
+
+# Replaces Cloudflare's own build step. Cloudflare's build image cannot launch
+# Chromium (no libatk-1.0.so.0, no root to install it), so `npm run build:ssg`
+# fails there. GitHub's ubuntu runner has the system libraries Puppeteer needs,
+# so the prerender runs here and only the finished dist/ is shipped.
+#
+# Turn OFF the Cloudflare Git build integration once this is live, otherwise
+# both pipelines race to deploy the same Worker.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Prerender and deploy to Cloudflare
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and prerender
+        run: npm run build:ssg
+
+      # The whole point of this pipeline. If prerender silently no-ops we would
+      # ship 40 copies of the homepage again, so fail loudly instead of deploying.
+      - name: Verify prerender output
+        run: npm run verify:prerender
+
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy
+
+  index:
+    name: Submit URLs to Google Indexing API
+    needs: deploy
+    uses: ./.github/workflows/index-on-deploy.yml
+    secrets: inherit
