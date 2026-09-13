@@ -5,6 +5,12 @@
     "assets": {
         "directory": "./dist",
         "binding": "ASSETS",
-        "not_found_handling": "single-page-application"
+        "not_found_handling": "single-page-application",
+        // Prerender writes each route to <route>/index.html. Cloudflare's default
+        // "auto-trailing-slash" then 307s /seo-for-tradies -> /seo-for-tradies/,
+        // so every non-homepage sitemap URL redirected and the canonical on the
+        // destination pointed back at the non-slash URL. Serve the no-slash form
+        // directly so sitemap, redirect and canonical all agree.
+        "html_handling": "drop-trailing-slash"
     }
 }
