@@ -21,6 +21,10 @@ jobs:
   deploy:
     name: Prerender and deploy to Cloudflare
     runs-on: ubuntu-latest
+    # The whole job is ~2 min of real work. Without a cap, a hung prerender runs
+    # against GitHub's 6-hour default — run 34747991654 sat idle for 60 minutes
+    # after a successful 65-second prerender before it was cancelled by hand.
+    timeout-minutes: 15
 
     steps:
       - name: Checkout
@@ -37,6 +41,7 @@ jobs:
 
       - name: Build and prerender
         run: npm run build:ssg
+        timeout-minutes: 8
 
       # The whole point of this pipeline. If prerender silently no-ops we would
       # ship 40 copies of the homepage again, so fail loudly instead of deploying.

@@ -31,6 +31,9 @@ function startServer() {
     const server = spawn('npx', ['vite', 'preview', '--port', String(PORT)], {
       cwd: join(__dirname, '..'),
       stdio: ['ignore', 'pipe', 'pipe'],
+      // Own process group, so stopServer() can kill npx *and* the vite
+      // grandchild it spawns. See stopServer() for why that matters.
+      detached: true,
     });
 
     let resolved = false;
@@ -52,6 +55,20 @@ function startServer() {
     // Fallback: resolve after 5 seconds regardless
     setTimeout(tryResolve, 5000);
   });
+}
+
+// `npx vite preview` runs vite as a *grandchild* of this process, so a SIGTERM
+// aimed at the npx wrapper leaves vite alive still holding the stdio pipes we
+// subscribed to above. Those live handles keep the Node event loop alive, so the
+// script prints "Prerender complete" and then hangs forever — which is exactly
+// how CI run 34747991654 burned 60 minutes after a 65-second prerender.
+// Negative PID signals the whole process group instead.
+function stopServer(server) {
+  try {
+    process.kill(-server.pid, 'SIGTERM');
+  } catch {
+    server.kill('SIGTERM');
+  }
 }
 
 function routeToOutputPath(route) {
@@ -128,11 +145,16 @@ async function main() {
     console.log('Deploy the dist/ folder as usual.\n');
   } finally {
     await browser.close();
-    server.kill('SIGTERM');
+    stopServer(server);
   }
 }
 
-main().catch((err) => {
-  console.error('\nPrerender failed:', err.message);
-  process.exit(1);
-});
+// Every file is written with writeFileSync, so by the time main() resolves the
+// output is already flushed. Exit explicitly rather than waiting on the event
+// loop to drain — a stray handle must never be able to hang the build again.
+main()
+  .then(() => process.exit(0))
+  .catch((err) => {
+    console.error('\nPrerender failed:', err.message);
+    process.exit(1);
+  });
