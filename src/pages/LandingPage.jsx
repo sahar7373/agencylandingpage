@@ -3106,8 +3106,16 @@ function LandingPage() {
                     {/* Main Footer Content */}
                     <div className="grid grid-cols-1 lg:grid-cols-3 items-center gap-8">
                         <div className="flex justify-center gap-6 text-xs font-black uppercase tracking-widest text-white/40 order-2 lg:order-1">
-                            <button onClick={() => setIsPrivacyModalOpen(true)} className="hover:text-white transition-colors">Privacy Policy</button>
-                            <button onClick={() => setIsTermsModalOpen(true)} className="hover:text-white transition-colors">Terms & Conditions</button>
+                            <a
+                                href="/privacy"
+                                onClick={(e) => { e.preventDefault(); setIsPrivacyModalOpen(true); }}
+                                className="hover:text-white transition-colors"
+                            >Privacy Policy</a>
+                            <a
+                                href="/terms"
+                                onClick={(e) => { e.preventDefault(); setIsTermsModalOpen(true); }}
+                                className="hover:text-white transition-colors"
+                            >Terms & Conditions</a>
                         </div>
                         <div className="flex flex-col items-center gap-4 order-1 lg:order-2">
                             <div className="flex items-center gap-2">

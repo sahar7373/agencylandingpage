@@ -29,6 +29,8 @@ const MelbourneLocationPage = lazy(() => import('./pages/MelbourneLocationPage')
 const HobartLocationPage = lazy(() => import('./pages/HobartLocationPage'));
 const AliceSpringsLocationPage = lazy(() => import('./pages/AliceSpringsLocationPage'));
 const AboutPage = lazy(() => import('./pages/AboutPage'));
+const PrivacyPolicy = lazy(() => import('./pages/PrivacyPolicy'));
+const TermsConditions = lazy(() => import('./pages/TermsConditions'));
 
 // Blog Articles
 const WhyTradieWebsitesDontGetCalls = lazy(() => import('./pages/blog/WhyTradieWebsitesDontGetCalls'));
@@ -106,6 +108,8 @@ function App() {
                     <Route path="/tradie-website-design-alice-springs" element={<AliceSpringsLocationPage />} />
 
                     <Route path="/about" element={<AboutPage />} />
+                    <Route path="/privacy" element={<PrivacyPolicy />} />
+                    <Route path="/terms" element={<TermsConditions />} />
                     <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
                 </Suspense>
