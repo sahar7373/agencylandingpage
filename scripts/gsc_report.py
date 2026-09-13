@@ -90,7 +90,8 @@ def auth_headers(creds):
 
 # ── API calls ─────────────────────────────────────────────────────────────────
 
-def fetch_performance(creds, start_date: str, end_date: str, dimension: str, row_limit=50) -> list:
+def fetch_performance(creds, start_date: str, end_date: str, dimension: str,
+                      row_limit=50, order_by="impressions") -> list:
     encoded = urllib.parse.quote(SITE_URL, safe="")
     url = f"https://www.googleapis.com/webmasters/v3/sites/{encoded}/searchAnalytics/query"
     payload = {
@@ -98,11 +99,15 @@ def fetch_performance(creds, start_date: str, end_date: str, dimension: str, row
         "endDate": end_date,
         "dimensions": [dimension],
         "rowLimit": row_limit,
-        "orderBy": [{"fieldName": "clicks", "sortOrder": "DESCENDING"}],
     }
     resp = requests.post(url, json=payload, headers=auth_headers(creds), timeout=15)
     resp.raise_for_status()
-    return resp.json().get("rows", [])
+    rows = resp.json().get("rows", [])
+    # searchAnalytics.query has no orderBy field — it always returns rows by
+    # clicks descending and silently ignores one if you send it. On a site with
+    # a 0.5% CTR nearly everything ties at zero clicks and the tail comes back
+    # alphabetically, so sorting has to happen here instead.
+    return sorted(rows, key=lambda r: -r.get(order_by, 0))
 
 
 def inspect_url(creds, page_url: str) -> dict:
@@ -160,6 +165,9 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--inspect", action="store_true", help="Check index status for every sitemap URL")
     parser.add_argument("--days", type=int, default=90, help="Date window in days (default: 90)")
+    parser.add_argument("--since", metavar="YYYY-MM-DD",
+                        help="With --inspect: flag URLs Google has not recrawled since this date. "
+                             "Use the date a fix went live to see what has picked it up.")
     args = parser.parse_args()
 
     end_date   = datetime.now().strftime("%Y-%m-%d")
@@ -170,11 +178,12 @@ def main():
     print(f"Report window: {start_date} → {end_date}")
 
     report = {}
+    page_rows = []
 
     # ── Top pages by clicks ──────────────────────────────────────────────────
     section(f"Top pages by clicks (last {args.days} days)")
     try:
-        page_rows = fetch_performance(creds, start_date, end_date, "page", row_limit=50)
+        page_rows = fetch_performance(creds, start_date, end_date, "page", row_limit=200)
         report["top_pages"] = [fmt_row(r) for r in page_rows]
         for r in report["top_pages"][:10]:
             print(f"  {r['clicks']:>6} clicks  {r['impressions']:>8} impr  pos {r['position']:>6}  {r['url']}")
@@ -199,10 +208,11 @@ def main():
     # ── Top queries ──────────────────────────────────────────────────────────
     section(f"Top search queries (last {args.days} days)")
     try:
-        query_rows = fetch_performance(creds, start_date, end_date, "query", row_limit=20)
+        query_rows = fetch_performance(creds, start_date, end_date, "query", row_limit=500)
         report["top_queries"] = [fmt_row(r) for r in query_rows]
-        for r in report["top_queries"]:
+        for r in report["top_queries"][:25]:
             print(f"  {r['clicks']:>6} clicks  {r['impressions']:>8} impr  pos {r['position']:>6}  {r['url']}")
+        print(f"\n  (showing 25 of {len(query_rows)} queries — all are in gsc_report.json)")
     except Exception as e:
         print(f"  ERROR: {e}")
         report["top_queries"] = []
@@ -263,6 +273,26 @@ def main():
             print("\n  Errors:")
             for r in errors:
                 print(f"    {r['url']}")
+
+        if args.since:
+            stale = [r for r in inspection_results
+                     if r["last_crawl"] == "never" or r["last_crawl"] < args.since]
+            fresh = [r for r in inspection_results if r not in stale]
+            report["recrawled_since"] = {
+                "cutoff": args.since,
+                "recrawled": [r["url"] for r in fresh],
+                "stale": [r["url"] for r in stale],
+            }
+
+            section(f"Recrawl status since {args.since}")
+            print(f"  Recrawled since cutoff: {len(fresh)} of {len(inspection_results)}")
+            print(f"  Still on old crawl:     {len(stale)}")
+            if stale:
+                # Request Indexing is manual and rate-limited, so this list is
+                # deliberately the thing you work through by hand, worst first.
+                print("\n  Not yet recrawled — feed these through GSC Request Indexing:")
+                for r in sorted(stale, key=lambda x: x["last_crawl"]):
+                    print(f"    last crawled {r['last_crawl']:<12} {r['url']}")
 
     # ── Save report ──────────────────────────────────────────────────────────
     report["generated_at"] = datetime.now().isoformat()
