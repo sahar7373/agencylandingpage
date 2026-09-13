@@ -53,6 +53,12 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # wrangler is not a project dependency, so the action falls back to its
+          # own default (3.90.0). That predates JSON/JSONC config support, added
+          # in 3.91.0, so it silently ignored wrangler.jsonc, found no config and
+          # failed with "Missing entry-point" despite `main` being set. Pin a
+          # current wrangler that actually reads the config file we ship.
+          wranglerVersion: "4.131.1"
           command: deploy
 
   index:
