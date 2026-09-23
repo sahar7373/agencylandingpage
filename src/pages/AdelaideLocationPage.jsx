@@ -277,7 +277,7 @@ const AdelaideLocationPage = () => {
                         { "@type": "Question", "name": "How long before I show up in Adelaide search results?", "acceptedAnswer": { "@type": "Answer", "text": "A properly set up Google Business Profile can appear in local results within days to weeks. Your website's SEO takes 3–6 months to build real ranking momentum. If you need Adelaide jobs faster, we can include Google Ads management to get calls coming in within days of launch." } },
                         { "@type": "Question", "name": "Are you Adelaide-based?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your Trade Partner is based in Adelaide, SA. We understand the SA trade market — the suburbs, the competition, and how Adelaide homeowners search for tradies. You're not dealing with someone in Sydney guessing at your local market." } },
                         { "@type": "Question", "name": "Can you build websites for any trade in Adelaide?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. We've built digital systems for plumbers, electricians, roofers, builders, HVAC, landscapers, painters, concreters, and carpenters across the Adelaide metro and Hills. Each trade has different trust signals and search behaviour — we know the difference." } },
-                        { "@type": "Question", "name": "What does a tradie website cost in Adelaide?", "acceptedAnswer": { "@type": "Answer", "text": "Our Trade-Ready Online Setup starts at $1,900 one-time + $299/quarter for hosting and support. The Local Jobs Engine (website + SEO + Google Business Profile) is $3,900 + $399/quarter. Full Growth System (website + automation + ads management) starts from $7,900. Every project is scoped before you commit — no surprises." } }
+                        { "@type": "Question", "name": "What does a tradie website cost in Adelaide?", "acceptedAnswer": { "@type": "Answer", "text": "Our Trade-Ready Online Setup starts at $1,900 one-time + $299/quarter for hosting and support. The Local Jobs Engine (website + SEO + Google Business Profile) is $3,900 + $399/quarter. Full Growth System (website + automation + local SEO) starts from $7,900. Every project is scoped before you commit — no surprises." } }
                     ]
                 })}</script>
             </Helmet>
@@ -816,30 +816,6 @@ const AdelaideLocationPage = () => {
                                                                             <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
                                                                                 <li>USED ON YOUR WEBSITE OR ADS TO BUILD TRUST FAST</li>
                                                                                 <li>3 videos x 10-15 secs included in the package, additional videos quote separately</li>
-                                                                            </ul>
-                                                                        </CollapsibleDetail>
-                                                                    )
-                                                                },
-                                                                {
-                                                                    content: (
-                                                                        <CollapsibleDetail title="GOOGLE ADS MANAGEMENT">
-                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
-                                                                                <li>SEARCH ADS TARGETING PEOPLE ACTIVELY LOOKING FOR YOUR TRADE</li>
-                                                                                <li>LOCAL SERVICE ADS TO DOMINATE YOUR SUBURB</li>
-                                                                                <li>AD COPY WRITTEN IN TRADE LANGUAGE THAT CONVERTS</li>
-                                                                                <li>MONTHLY OPTIMISATION INCLUDED</li>
-                                                                            </ul>
-                                                                        </CollapsibleDetail>
-                                                                    )
-                                                                },
-                                                                {
-                                                                    content: (
-                                                                        <CollapsibleDetail title="META ADS MANAGEMENT (FACEBOOK & INSTAGRAM)">
-                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
-                                                                                <li>REACH HOMEOWNERS IN YOUR SERVICE AREA BEFORE THEY SEARCH</li>
-                                                                                <li>RETARGETING SO WARM LEADS DON'T FORGET YOU</li>
-                                                                                <li>CREATIVES BUILT AROUND YOUR PAST WORK</li>
-                                                                                <li>MONTHLY REPORTING ON WHAT'S WORKING</li>
                                                                             </ul>
                                                                         </CollapsibleDetail>
                                                                     )

@@ -170,7 +170,7 @@ const SEOForTradies = () => {
                         { "@type": "Question", "name": "How long does SEO take for a tradie business?", "acceptedAnswer": { "@type": "Answer", "text": "Most tradie businesses start seeing movement in Google rankings within 3–6 months of a properly built and optimised website. For competitive suburbs, it can take 6–12 months to reach the top positions. The upside: once you're there, it doesn't cost per click like ads do." } },
                         { "@type": "Question", "name": "Can I do my own SEO as a tradie?", "acceptedAnswer": { "@type": "Answer", "text": "The basics are learnable, but the time cost is high — and mistakes (like duplicate content or wrong suburb targeting) can actually hurt your ranking. Most tradies find that the time spent is better used on the tools. We handle the whole setup so you don't have to think about it." } },
                         { "@type": "Question", "name": "Do Google reviews help with SEO?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — significantly. Google Business Profile reviews are one of the strongest local ranking signals. More reviews means higher placement in the map pack (the top 3 results you see on Google Maps). We help you set up a system that automatically prompts happy customers to leave reviews." } },
-                        { "@type": "Question", "name": "Should I run Google Ads instead of SEO?", "acceptedAnswer": { "@type": "Answer", "text": "Ads get results fast — but you pay every time someone clicks. SEO is slower to build but generates free traffic once it kicks in. Most tradies benefit from ads early on (Package 3 includes this) while SEO builds in the background, then scale back ad spend as organic traffic grows." } },
+                        { "@type": "Question", "name": "Should I run Google Ads instead of SEO?", "acceptedAnswer": { "@type": "Answer", "text": "Ads get results fast — but you pay every time someone clicks. SEO is slower to build but generates free traffic once it kicks in. Most tradies benefit from ads early on while SEO builds in the background, then scale back ad spend as organic traffic grows. Ads aren't part of our packages — you run those directly so you stay in control of the spend." } },
                         { "@type": "Question", "name": "Do I need to keep updating my website for SEO?", "acceptedAnswer": { "@type": "Answer", "text": "Google rewards sites that stay active and relevant. That means adding suburb pages, updating content, and keeping your Google profile current. We handle all of this for you as part of the ongoing partnership — you don't need to touch a thing." } }
                     ]
                 })}</script>
@@ -458,7 +458,7 @@ const SEOForTradies = () => {
                                 The smart play: <span className="text-safety-orange">run ads while SEO builds</span>, then scale ads back as organic traffic grows.
                             </p>
                             <p className="text-sm text-white/60 font-bold text-center mt-3">
-                                Package 3 includes both — Google Ads management and full local SEO setup from day one.
+                                Package 3 covers the full local SEO setup from day one. Ads stay in your hands — optional, and paid directly by you.
                             </p>
                         </motion.div>
                     </div>
@@ -581,7 +581,7 @@ const SEOForTradies = () => {
                                 },
                                 {
                                     question: "Should I run Google Ads instead of SEO?",
-                                    answer: "Ads get results fast — but you pay every time someone clicks. SEO is slower to build but generates free traffic once it kicks in. Most tradies benefit from running ads early on while SEO builds in the background, then scaling back ad spend as organic traffic grows. Package 3 includes both."
+                                    answer: "Ads get results fast — but you pay every time someone clicks. SEO is slower to build but generates free traffic once it kicks in. Most tradies benefit from running ads early on while SEO builds in the background, then scaling back ad spend as organic traffic grows. Ads aren't part of our packages — you run those directly so you stay in control of the spend."
                                 },
                                 {
                                     question: "Do I need to keep updating my website for SEO?",

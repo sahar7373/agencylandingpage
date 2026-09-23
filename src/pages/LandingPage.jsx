@@ -2143,30 +2143,6 @@ function LandingPage() {
                                                                             </ul>
                                                                         </CollapsibleDetail>
                                                                     )
-                                                                },
-                                                                {
-                                                                    content: (
-                                                                        <CollapsibleDetail title="GOOGLE ADS MANAGEMENT">
-                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
-                                                                                <li>SEARCH ADS TARGETING PEOPLE ACTIVELY LOOKING FOR YOUR TRADE</li>
-                                                                                <li>LOCAL SERVICE ADS TO DOMINATE YOUR SUBURB</li>
-                                                                                <li>AD COPY WRITTEN IN TRADE LANGUAGE THAT CONVERTS</li>
-                                                                                <li>MONTHLY OPTIMISATION INCLUDED</li>
-                                                                            </ul>
-                                                                        </CollapsibleDetail>
-                                                                    )
-                                                                },
-                                                                {
-                                                                    content: (
-                                                                        <CollapsibleDetail title="META ADS MANAGEMENT (FACEBOOK & INSTAGRAM)">
-                                                                            <ul className="pl-4 mt-2 space-y-1 list-disc text-xs text-white/60 font-normal uppercase">
-                                                                                <li>REACH HOMEOWNERS IN YOUR SERVICE AREA BEFORE THEY SEARCH</li>
-                                                                                <li>RETARGETING SO WARM LEADS DON'T FORGET YOU</li>
-                                                                                <li>CREATIVES BUILT AROUND YOUR PAST WORK</li>
-                                                                                <li>MONTHLY REPORTING ON WHAT'S WORKING</li>
-                                                                            </ul>
-                                                                        </CollapsibleDetail>
-                                                                    )
                                                                 }
                                                             ].map((item, i) => (
                                                                 <li key={`highlight-${i}`} className="flex items-start gap-3 text-sm font-bold text-white">
