@@ -49,6 +49,12 @@ jobs:
             echo "::error::VITE_GA_ID / VITE_FB_PIXEL_ID repo secrets are missing — analytics would ship disabled."
             exit 1
           fi
+          # GA4 measurement IDs are "G-XXXXXXXXXX". Without the prefix GA silently
+          # drops every hit (this happened on 2026-10-11).
+          case "$VITE_GA_ID" in
+            G-*) ;;
+            *) echo "::error::VITE_GA_ID must start with 'G-' (GA4 measurement ID)."; exit 1 ;;
+          esac
           npm run build:ssg
         timeout-minutes: 8
         env:
