@@ -39,9 +39,21 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      # Vite inlines VITE_* at build time. Cloudflare's build had these set; this
+      # runner doesn't unless we pass them, and without them GA4 + Meta Pixel
+      # compile to a no-op. That silently killed tracking from 2026-09-13 to
+      # 2026-10-11, so refuse to build without them.
       - name: Build and prerender
-        run: npm run build:ssg
+        run: |
+          if [ -z "$VITE_GA_ID" ] || [ -z "$VITE_FB_PIXEL_ID" ]; then
+            echo "::error::VITE_GA_ID / VITE_FB_PIXEL_ID repo secrets are missing — analytics would ship disabled."
+            exit 1
+          fi
+          npm run build:ssg
         timeout-minutes: 8
+        env:
+          VITE_GA_ID: ${{ secrets.VITE_GA_ID }}
+          VITE_FB_PIXEL_ID: ${{ secrets.VITE_FB_PIXEL_ID }}
 
       # The whole point of this pipeline. If prerender silently no-ops we would
       # ship 40 copies of the homepage again, so fail loudly instead of deploying.
